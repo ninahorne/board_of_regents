@@ -100,3 +100,14 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /* Alignments
 --------------------------------------------- */
 @import "utilities/alignments";
+
+
+$blue: #143595;
+
+@import '_header.scss';
+@import "_footer.scss";
+
+
+.bold {
+	font-weight: 600;
+}

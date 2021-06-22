@@ -160,7 +160,20 @@ function bor_scripts()
 }
 add_action('wp_enqueue_scripts', 'bor_scripts');
 
+/**
+ * Custom Menu Location
+ */
 
+function wpb_custom_new_menu()
+{
+	register_nav_menus(
+		array(
+			'extra-menu' => __('First Menu
+			')
+		)
+	);
+}
+add_action('init', 'wpb_custom_new_menu');
 /**
  * Register Custom Navigation Walker
  */

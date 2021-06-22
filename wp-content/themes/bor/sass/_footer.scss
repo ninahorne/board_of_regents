@@ -1,0 +1,40 @@
+footer {
+  background-color: $blue;
+
+  a {
+    color: white;
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  p {
+    color: white;
+  }
+}
+
+.footer__title {
+  color: white;
+}
+
+.footer__nav-links {
+  margin: 1rem 0;
+  padding: 0;
+  color: white;
+  li {
+    list-style: none;
+    color: white;
+  }
+}
+
+.footer__title,
+.footer__nav-links {
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
