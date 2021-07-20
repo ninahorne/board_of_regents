@@ -66,7 +66,9 @@
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'your-theme-slug'); ?>">
 						<span class="navbar-toggler-icon"></span>
 					</button>
-					<a class="navbar-brand" href="#">Navbar</a>
+					<a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home">
+						<img src="<?php echo get_template_directory_uri(); ?>/images/logo-low-res@2x.png" alt="Logo" />
+					</a>
 
 					<?php
 					wp_nav_menu(array(
