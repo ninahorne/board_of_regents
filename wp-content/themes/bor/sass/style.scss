@@ -103,8 +103,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 $blue: #143595;
 $dark-gray: #404040;
 $orange: #ee7600;
+$light-orange: #FFE9D37E;
 @import "_classes.scss";
-
+@import "_vendor.scss";
 @import "_header.scss";
 @import "_footer.scss";
 
@@ -172,6 +173,37 @@ $orange: #ee7600;
   margin: 2rem 0;
 }
 
+/* section three */
+.section-three {
+	border-radius: 15px;
+	width: 100%;
+	padding: 5rem;
+
+	h1{
+		max-width: 700px;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.section-three{
+		padding: 2rem;
+		.ugb-video-popup{
+			padding-bottom: 0;
+			margin-bottom: 0;
+		}
+		.ugb-play-button{
+			img{
+				width: 60px;
+
+			}
+		}
+	}
+}
+
+.video-poster{
+	border-radius: 10px;
+}
 .bold {
   font-weight: 600;
 }

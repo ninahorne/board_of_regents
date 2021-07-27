@@ -1,0 +1,47 @@
+.ugb-video-popup {
+	position: relative;
+	margin: 3rem auto;
+	width: 100%;
+	max-width: 900px;
+    
+	.ugb-video-preview, a, .ugb-play-button {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+	.ugb-video-preview {
+		background-size: cover;
+		background-position: center;
+		opacity: .4;
+		transition: all .3s ease-in-out;
+		z-index: 1;
+		object-fit: fill;
+		width: 100%;
+	}
+	&:hover .ugb-video-preview {
+		opacity: .5;
+	}
+	.ugb-video-wrapper {
+		position: relative;
+		width: 100%;
+		padding-bottom: 56.25%;
+	}
+	a {
+		z-index: 3;
+		box-shadow: none !important;
+		background: transparent !important;
+		display: block !important;
+	}
+	.ugb-play-button {
+		z-index: 3;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+       
+	}
+	svg {
+		fill: #fff !important;
+	}
+}

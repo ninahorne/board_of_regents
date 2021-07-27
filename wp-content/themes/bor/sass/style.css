@@ -1007,7 +1007,7 @@ section {
 }
 .brush-stroke__wrapper {
   width: 200px;
-  margin: 0 auto;
+  margin: 2rem auto;
 }
 
 .background__blue-brush-stroke {
@@ -1054,27 +1054,93 @@ section {
   max-width: calc(100vw - 2.5rem);
 }
 
+.background__light-orange {
+  background-color: #FFE9D37E;
+}
+
+.color-orange {
+  color: #ee7600;
+}
+
 .cta {
   background-color: #ee7600;
   color: white;
   font-size: 20px;
   border-radius: 20px;
   height: 66px;
-  width: 218px;
-  padding: 0;
+  padding: 0 2rem;
   outline: none;
   border: none;
+}
+
+.cta--center {
+  display: block;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 767px) {
   .cta {
     display: block;
-    margin: 2rem auto;
     height: 60px;
-    width: 197px;
+    margin: 2rem auto;
     font-size: 16px;
   }
 }
+.ugb-video-popup {
+  position: relative;
+  margin: 3rem auto;
+  width: 100%;
+  max-width: 900px;
+}
+.ugb-video-popup .ugb-video-preview, .ugb-video-popup a, .ugb-video-popup .ugb-play-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.ugb-video-popup .ugb-video-preview {
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+  -o-object-fit: fill;
+     object-fit: fill;
+  width: 100%;
+}
+.ugb-video-popup:hover .ugb-video-preview {
+  opacity: 0.5;
+}
+.ugb-video-popup .ugb-video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+.ugb-video-popup a {
+  z-index: 3;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  background: transparent !important;
+  display: block !important;
+}
+.ugb-video-popup .ugb-play-button {
+  z-index: 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.ugb-video-popup svg {
+  fill: #fff !important;
+}
+
 header .vertical-line {
   border-left: 1px solid #404040;
   height: 20px;
@@ -1233,6 +1299,33 @@ footer p {
 /* section two */
 .section-two__graphic {
   margin: 2rem 0;
+}
+
+/* section three */
+.section-three {
+  border-radius: 15px;
+  width: 100%;
+  padding: 5rem;
+}
+.section-three h1 {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+  .section-three {
+    padding: 2rem;
+  }
+  .section-three .ugb-video-popup {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .section-three .ugb-play-button img {
+    width: 60px;
+  }
+}
+.video-poster {
+  border-radius: 10px;
 }
 
 .bold {
