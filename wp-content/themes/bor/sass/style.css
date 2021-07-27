@@ -934,9 +934,14 @@ h1 {
   font-weight: 900;
 }
 
+h3 {
+  font-weight: 900;
+}
+
 p,
 li,
-a {
+a,
+h3 {
   font-size: 20px;
 }
 
@@ -947,7 +952,8 @@ a {
 
   p,
 li,
-a {
+a,
+h3 {
     font-size: calc(16px + 6 * ((100vw - 320px) / 680));
   }
 }
@@ -999,6 +1005,11 @@ section {
     display: inline;
   }
 }
+.brush-stroke__wrapper {
+  width: 200px;
+  margin: 0 auto;
+}
+
 .background__blue-brush-stroke {
   background-image: url("../images/blue-brush-stroke.svg");
   background-size: cover;
@@ -1012,11 +1023,58 @@ section {
   max-width: calc(100vw - 2.5rem);
 }
 
-.cta {
-  background-color: #EE7600;
-  color: white;
+.background__orange-brush-stroke {
+  background-image: url("../images/orange-brush-stroke.svg");
+  background-size: cover;
+  background-position: center;
+}
+.background__orange-brush-stroke img {
+  margin-left: 0.5rem;
+  margin-bottom: 0rem;
+  margin-top: 1rem;
+  margin-right: 2rem;
+  max-width: calc(100vw - 2.5rem);
 }
 
+.dummy {
+  height: 200px;
+  width: 100%;
+}
+
+.background__yellow-brush-stroke {
+  background-image: url("../images/yellow-brush-stroke.svg");
+  background-size: cover;
+  background-position: center;
+}
+.background__yellow-brush-stroke img {
+  margin-left: 0.5rem;
+  margin-bottom: 0rem;
+  margin-top: 1rem;
+  margin-right: 2rem;
+  max-width: calc(100vw - 2.5rem);
+}
+
+.cta {
+  background-color: #ee7600;
+  color: white;
+  font-size: 20px;
+  border-radius: 20px;
+  height: 66px;
+  width: 218px;
+  padding: 0;
+  outline: none;
+  border: none;
+}
+
+@media screen and (max-width: 767px) {
+  .cta {
+    display: block;
+    margin: 2rem auto;
+    height: 60px;
+    width: 197px;
+    font-size: 16px;
+  }
+}
 header .vertical-line {
   border-left: 1px solid #404040;
   height: 20px;
@@ -1149,9 +1207,10 @@ footer p {
 .secondary-navigation__menu li {
   margin: 0 1rem;
 }
-.secondary-navigation__menu li, .secondary-navigation__menu a {
+.secondary-navigation__menu li,
+.secondary-navigation__menu a {
   text-decoration: none;
-  color: #FFFFFFDD;
+  color: #ffffffdd;
   font-weight: 500;
 }
 
@@ -1165,11 +1224,17 @@ footer p {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .secondary-navigation p, .secondary-navigation li {
+  .secondary-navigation p,
+.secondary-navigation li {
     margin: 1rem auto;
     text-align: center;
   }
 }
+/* section two */
+.section-two__graphic {
+  margin: 2rem 0;
+}
+
 .bold {
   font-weight: 600;
 }

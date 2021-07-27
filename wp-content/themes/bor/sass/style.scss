@@ -102,7 +102,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 $blue: #143595;
 $dark-gray: #404040;
-$orange: #EE7600;
+$orange: #ee7600;
 @import "_classes.scss";
 
 @import "_header.scss";
@@ -135,39 +135,42 @@ $orange: #EE7600;
   }
 }
 
-
 /* Secondary Navigation */
-.secondary-navigation{
-	width: 100vw;
-	height: 87px;
-	background-color: $blue;
-	color: white;
+.secondary-navigation {
+  width: 100vw;
+  height: 87px;
+  background-color: $blue;
+  color: white;
 }
-.secondary-navigation__menu{
-	li{
-		margin: 0 1rem;
-	}
-	li, a {
-		text-decoration: none;
-		color: #FFFFFFDD;
-		font-weight: 500;
-	}
+.secondary-navigation__menu {
+  li {
+    margin: 0 1rem;
+  }
+  li,
+  a {
+    text-decoration: none;
+    color: #ffffffdd;
+    font-weight: 500;
+  }
 }
 @media screen and (max-width: 767px) {
-	.secondary-navigation{
-		height: auto;
-		.flex-center {
-			flex-direction: column;
-
-		}
-		p, li {
-			margin: 1rem auto;
-			text-align: center;
-		}
-	}
-
-	
+  .secondary-navigation {
+    height: auto;
+    .flex-center {
+      flex-direction: column;
+    }
+    p,
+    li {
+      margin: 1rem auto;
+      text-align: center;
+    }
   }
+}
+
+/* section two */
+.section-two__graphic {
+  margin: 2rem 0;
+}
 
 .bold {
   font-weight: 600;
