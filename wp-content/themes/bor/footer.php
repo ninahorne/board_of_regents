@@ -16,7 +16,7 @@
 	<div class="site-info">
 		<div class="container">
 
-			<p class="footer__title">Get in touch. <span class="bold">Call <a href="tel:2253424253">225.342.4253</a></span> or <span class="bold">email <a href="mailto:dualenrollment@laregents.edu">dualenrollment@laregents.edu</a></span></p>
+			<p class="footer__title">Get in touch. <span class="bold">Call <a href="tel:2253424253">225.342.4253</a></span> or <span class="bold">email <a href="mailto:dualenrollment@laregents.edu">dualenrollment@laregents.edu.</a></span></p>
 
 			<hr />
 			<div class="row">
@@ -24,7 +24,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<ul class="footer__nav-links">
-								<li class="bold">Start here</li>
+								<li class="bold color-white">Start here</li>
 								<li><a href="#">Students</a></li>
 								<li><a href="#">Parents</a></li>
 								<li><a href="#">Counselors</a></li>
@@ -32,34 +32,40 @@
 						</div>
 						<div class="col-md-6">
 							<ul class="footer__nav-links">
-								<li class="bold">Another Heading</li>
+								<li class="bold color-white">Another Heading</li>
 								<li><a href="#">FAQs</a></li>
 								<li><a href="#">Career Pathways</a></li>
 								<li><a href="#">About</a></li>
 							</ul>
 						</div>
 					</div>
+					<p class="footer__copyright">
+						Copyright
+						<a href="<?php echo esc_url(__('https://regents.la.gov/', 'bor')); ?>target='_blank'">
+							<?php
+							/* translators: %s: CMS name, i.e. WordPress. */
+							printf(esc_html__('Louisiana Board of Regents'));
+
+							?>
+						</a>
+						
+						<br class="footer__copyright__break" />
+						Created by
+						<a href="<?php echo esc_url(__('https://wherewego.org/', 'bor')); ?>target='_blank'">
+							<?php
+							/* translators: %s: CMS name, i.e. WordPress. */
+							printf(esc_html__('WhereWeGo'));
+
+							?>
+						</a>
+					</p>
+
+				</div>
+				<div class="col-md-6">
+					<img class="footer__logo" src="<?php echo get_template_directory_uri(); ?>/images/Dual Enrollment Logo - Footer.svg" alt="">
+
 				</div>
 			</div>
-			<p>
-				Copyright
-				<a href="<?php echo esc_url(__('https://regents.la.gov/', 'bor')); ?>target='_blank'">
-					<?php
-					/* translators: %s: CMS name, i.e. WordPress. */
-					printf(esc_html__('Louisiana Board of Regents'));
-
-					?>
-				</a>
-
-				Created by
-				<a href="<?php echo esc_url(__('https://wherewego.org/', 'bor')); ?>target='_blank'">
-					<?php
-					/* translators: %s: CMS name, i.e. WordPress. */
-					printf(esc_html__('WhereWeGo'));
-
-					?>
-				</a>
-			</p>
 
 
 		</div>

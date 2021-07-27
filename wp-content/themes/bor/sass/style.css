@@ -1195,6 +1195,7 @@ header ul li a:visited {
 }
 footer {
   background-color: #143595;
+  padding: 4rem 0;
 }
 footer a {
   color: white;
@@ -1206,10 +1207,16 @@ footer p {
   color: white;
 }
 
-.footer__title {
+.footer__title, .footer__title .span, .footer__title a {
   color: white;
+  font-size: 25px;
 }
 
+@media screen and (max-width: 1000px) {
+  .footer__title, .footer__title .span, .footer__title a {
+    font-size: calc(20px + 6 * ((100vw - 320px) / 680));
+  }
+}
 .footer__nav-links {
   margin: 1rem 0;
   padding: 0;

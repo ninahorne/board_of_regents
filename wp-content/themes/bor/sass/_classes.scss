@@ -141,9 +141,11 @@ section {
 }
 
 .color-orange{
-    color: $orange;
+    color: $orange !important;
 }
-
+.color-white{
+  color: white !important;
+}
 .cta {
   background-color: $orange;
   color: white;

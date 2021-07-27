@@ -110,7 +110,7 @@
                         double the credit
                     </span> for your hard work?
                 </h1>
-                <div class="ugb-video-popup" data-video='08vIy0y1N9I' data-video='https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4'>
+                <div class="ugb-video-popup"  data-video='<?php echo get_template_directory_uri(); ?>/videos/Dual Enrollment LA_061521.mp4'>
               
                     <div class="ugb-video-wrapper">
 
