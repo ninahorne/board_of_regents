@@ -7,7 +7,11 @@
   font-family: "Rubik";
   font-weight: 500;
 }
-
+@mixin backgroundImage($url) {
+  background-image: url($url);
+  background-size: cover;
+  background-position: center;
+}
 @mixin backgroundImageWithGradient($url) {
   background-image: linear-gradient(
       90deg,
@@ -53,6 +57,10 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+section {
+  padding: 4rem 0;
+}
 .inline-list {
   li {
     display: inline;
@@ -80,4 +88,38 @@ ul {
       display: inline;
     }
   }
+}
+
+.background__blue-brush-stroke {
+  @include backgroundImage("../images/blue-brush-stroke.svg");
+  img {
+    margin-left: 0.5rem;
+    margin-bottom: 0rem;
+    margin-top: 1rem;
+    margin-right: 2rem;
+    max-width: calc(100vw - 2.5rem);
+  }
+}
+
+
+.cta{
+    background-color: $orange;
+    color: white;
+    font-size: 20px;
+    border-radius: 20px;
+    height: 66px;
+    width: 218px;
+    padding: 0;
+    outline: none;
+    border: none;
+}
+
+@media screen and (max-width: 767px) {
+    .cta{
+        display: block;
+        margin: 2rem auto;
+        height: 60px;
+        width: 197px;
+        font-size: 16px;
+    }
 }

@@ -971,6 +971,11 @@ a {
 ul {
   list-style: none;
   margin: 0;
+  padding: 0;
+}
+
+section {
+  padding: 4rem 0;
 }
 
 .inline-list li {
@@ -994,6 +999,24 @@ ul {
     display: inline;
   }
 }
+.background__blue-brush-stroke {
+  background-image: url("../images/blue-brush-stroke.svg");
+  background-size: cover;
+  background-position: center;
+}
+.background__blue-brush-stroke img {
+  margin-left: 0.5rem;
+  margin-bottom: 0rem;
+  margin-top: 1rem;
+  margin-right: 2rem;
+  max-width: calc(100vw - 2.5rem);
+}
+
+.cta {
+  background-color: #EE7600;
+  color: white;
+}
+
 header .vertical-line {
   border-left: 1px solid #404040;
   height: 20px;
