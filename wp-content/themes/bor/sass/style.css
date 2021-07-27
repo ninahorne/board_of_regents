@@ -934,7 +934,9 @@ h1 {
   font-weight: 900;
 }
 
-p {
+p,
+li,
+a {
   font-size: 20px;
 }
 
@@ -943,8 +945,53 @@ p {
     font-size: calc(25px + 6 * ((100vw - 320px) / 680));
   }
 
-  p {
+  p,
+li,
+a {
     font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+  }
+}
+.flex-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+}
+
+.inline-list li {
+  display: inline;
+}
+
+.contents-inline div,
+.contents-inline p,
+.contents-inline ul {
+  display: inline;
+}
+
+@media screen and (min-width: 768px) {
+  .contents-inline__md div,
+.contents-inline__md p,
+.contents-inline__md ul {
+    display: inline;
+  }
+
+  .inline-list__md li {
+    display: inline;
   }
 }
 header .vertical-line {
@@ -1040,6 +1087,7 @@ footer p {
   grid-area: main;
 }
 
+/* Front Page */
 .front-page__full-width-image {
   width: 100vw;
   height: calc(100vh - 100px);
@@ -1065,6 +1113,38 @@ footer p {
     -webkit-box-align: end;
         -ms-flex-align: end;
             align-items: flex-end;
+  }
+}
+/* Secondary Navigation */
+.secondary-navigation {
+  width: 100vw;
+  height: 87px;
+  background-color: #143595;
+  color: white;
+}
+
+.secondary-navigation__menu li {
+  margin: 0 1rem;
+}
+.secondary-navigation__menu li, .secondary-navigation__menu a {
+  text-decoration: none;
+  color: #FFFFFFDD;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 767px) {
+  .secondary-navigation {
+    height: auto;
+  }
+  .secondary-navigation .flex-center {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .secondary-navigation p, .secondary-navigation li {
+    margin: 1rem auto;
+    text-align: center;
   }
 }
 .bold {

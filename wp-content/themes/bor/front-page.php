@@ -12,6 +12,7 @@
             </div>
 
         </div>
+        <?php include('secondary-navigation.php'); ?>
 
     </div>
 </div>
