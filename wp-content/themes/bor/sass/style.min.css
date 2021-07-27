@@ -127,8 +127,7 @@ a {
 abbr[title] {
   border-bottom: none;
   text-decoration: underline;
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
+  text-decoration: underline dotted;
 }
 
 /**
@@ -615,66 +614,6 @@ textarea {
 /*--------------------------------------------------------------
 # Layouts
 --------------------------------------------------------------*/
-.site {
-  display: grid;
-  grid-template-columns: auto 25%;
-  grid-template-areas: "header header" "main sidebar" "footer footer";
-}
-
-.site-header {
-  grid-area: header;
-}
-
-.site-main {
-  grid-area: main;
-  overflow: hidden;
-  /* Resolves issue with <pre> elements forcing full width. */
-}
-
-.widget-area {
-  grid-area: sidebar;
-}
-
-.site-footer {
-  grid-area: footer;
-}
-
-.no-sidebar .site {
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-areas: "header" "main" "footer";
-}
-
-.site {
-  display: grid;
-  grid-template-columns: 25% auto;
-  grid-template-areas: "header header" "sidebar main" "footer footer";
-}
-
-.site-header {
-  grid-area: header;
-}
-
-.site-main {
-  grid-area: main;
-  overflow: hidden;
-  /* Resolves issue with <pre> elements forcing full width. */
-}
-
-.widget-area {
-  grid-area: sidebar;
-}
-
-.site-footer {
-  grid-area: footer;
-}
-
-.no-sidebar .site {
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-areas: "header" "main" "footer";
-}
-
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
@@ -912,8 +851,7 @@ textarea {
 .screen-reader-text {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
-  -webkit-clip-path: inset(50%);
-          clip-path: inset(50%);
+  clip-path: inset(50%);
   height: 1px;
   margin: -1px;
   overflow: hidden;
@@ -927,8 +865,7 @@ textarea {
   border-radius: 3px;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
   clip: auto !important;
-  -webkit-clip-path: none;
-          clip-path: none;
+  clip-path: none;
   color: #21759b;
   display: block;
   font-size: 0.875rem;
@@ -974,10 +911,31 @@ textarea {
   margin-bottom: 1.5em;
 }
 
+h1 {
+  font-size: 40px;
+  font-weight: 900;
+}
+
+p {
+  font-size: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+  h1 {
+    font-size: calc(25px + 6 * ((100vw - 320px) / 680));
+  }
+
+  p {
+    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+  }
+}
 header .vertical-line {
-  border-left: 1px solid black;
+  border-left: 1px solid #404040;
   height: 20px;
   margin: 1rem 0;
+}
+header ul {
+  margin: 0px;
 }
 header ul li {
   margin: 0 1rem;
@@ -985,16 +943,44 @@ header ul li {
 header ul li a {
   text-decoration: none;
   color: inherit;
+  font-size: 17px;
 }
 header ul li a:hover {
   text-decoration: none;
   color: inherit;
+}
+header ul li a:visited {
+  color: inherit;
+}
+
+.navbar {
+  height: 100px;
 }
 
 .navbar-brand img {
   height: 84px;
 }
 
+#menu-first li a {
+  font-family: "Rubik";
+  font-weight: 500;
+}
+
+#menu-header li a {
+  font-family: "Rubik";
+  font-weight: 400;
+}
+
+.navbar-toggler {
+  border: none;
+  color: #404040 !important;
+}
+
+@media screen and (max-width: 767px) {
+  header .vertical-line {
+    display: none;
+  }
+}
 footer {
   background-color: #143595;
 }
@@ -1032,6 +1018,35 @@ footer p {
   color: white;
 }
 
+#content {
+  grid-area: main;
+}
+
+.front-page__full-width-image {
+  width: 100vw;
+  height: calc(100vh - 100px);
+  min-height: 500px;
+  background-image: linear-gradient(90deg, #0000009a 0%, #00000036 67%, #00000000 100%), url("../../../uploads/2021/07/dual-enrollment-home-banner-1@2x.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+.front-page__full-width-image h1,
+.front-page__full-width-image p {
+  color: white;
+}
+
+@media screen and (max-width: 767px) {
+  .front-page__full-width-image {
+    align-items: flex-end;
+  }
+}
 .bold {
   font-weight: 600;
+}
+
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }/*# sourceMappingURL=style.min.css.map */

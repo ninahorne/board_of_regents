@@ -1,19 +1,24 @@
 header {
     .vertical-line{
-        border-left: 1px solid black;
+        border-left: 1px solid $dark-gray;
         height: 20px;
         margin: 1rem 0;
     }
 
     ul {
+        margin: 0px;
         li {
             margin: 0 1rem;
 
             a {
                 text-decoration: none;
                 color: inherit;
+                font-size: 17px;
                  &:hover{
                      text-decoration: none;
+                     color: inherit;
+                 }
+                 &:visited{
                      color: inherit;
                  }
             }
@@ -28,5 +33,34 @@ header {
 .navbar-brand {
     img {
         height: 84px;
+    }
+}
+
+#menu-first {
+    li {
+        a {
+            @include rubikMedium();
+        }
+    }
+}
+
+#menu-header {
+    li {
+        a {
+
+           @include rubikRegular();
+        }
+    }
+}
+
+.navbar-toggler{
+    border: none;
+    color: $dark-gray !important;
+}
+@media screen and (max-width: 767px) {
+    header {
+        .vertical-line{
+            display: none;
+        }
     }
 }

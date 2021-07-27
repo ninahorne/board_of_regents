@@ -1,0 +1,39 @@
+@mixin rubikRegular() {
+  font-family: "Rubik";
+  font-weight: 400;
+}
+
+@mixin rubikMedium() {
+  font-family: "Rubik";
+  font-weight: 500;
+}
+
+@mixin backgroundImageWithGradient($url) {
+  background-image: linear-gradient(
+      90deg,
+      #0000009a 0%,
+      #00000036 67%,
+      #00000000 100%
+    ),
+    url($url);
+  background-size: cover;
+  background-position: center;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 900;
+}
+p{
+    font-size: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+  h1 {
+    font-size: calc(25px + 6 * ((100vw - 320px) / 680));
+  }
+  p {
+    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+
+  }
+}

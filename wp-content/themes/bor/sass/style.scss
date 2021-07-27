@@ -72,8 +72,8 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 # Layouts
 --------------------------------------------------------------*/
-@import "layouts/content-sidebar"; // Uncomment this line for a sidebar on right side of your content.
-@import "layouts/sidebar-content"; // Uncomment this line for a sidebar on left side of your content.
+// @import "layouts/content-sidebar"; // Uncomment this line for a sidebar on right side of your content.
+// @import "layouts/sidebar-content"; // Uncomment this line for a sidebar on left side of your content.
 
 /*--------------------------------------------------------------
 # Components
@@ -100,13 +100,43 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 --------------------------------------------- */
 @import "utilities/alignments";
 
-
 $blue: #143595;
+$dark-gray: #404040;
+@import "_classes.scss";
 
-@import '_header.scss';
+@import "_header.scss";
 @import "_footer.scss";
 
+#content {
+  grid-area: main;
+}
+.front-page__full-width-image {
+  width: 100vw;
+  height: calc(100vh - 100px);
+  min-height: 500px;
+  @include backgroundImageWithGradient(
+    "../../../uploads/2021/07/dual-enrollment-home-banner-1@2x.png"
+  );
+  display: flex;
+  align-items: center;
+
+  h1,
+  p {
+    color: white;
+  }
+}
+
+@media screen and (max-width: 767px) {
+	.front-page__full-width-image{
+		align-items: flex-end;
+		
+	}
+}
 
 .bold {
-	font-weight: 600;
+  font-weight: 600;
+}
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
