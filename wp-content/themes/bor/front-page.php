@@ -52,7 +52,7 @@
         <div class="container">
             <h1 class="text-center">How does duel enrollment work?</h1>
             <div class="mt-4 mb-4">
-                <div class="row section-two__graphic">
+                <div class="row home-page__section-two__graphic">
                     <div class="col-lg-3  col-xl-2 offset-lg-1">
                         <div class="brush-stroke__wrapper">
                             <div class="background__blue-brush-stroke">
@@ -117,7 +117,7 @@
     </section>
     <section>
         <div class="container">
-            <div class="background__light-orange section-three">
+            <div class="background__light-orange home-page__section-three">
                 <h1 class="text-center">
                     Are you ready to get
                     <span class="color-orange">

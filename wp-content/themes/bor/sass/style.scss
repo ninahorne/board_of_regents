@@ -110,6 +110,9 @@ $light-gray: #ffffffb7;
 @import "_header.scss";
 @import "_footer.scss";
 
+h1 {
+  font-weight: 900;
+}
 #content {
   grid-area: main;
 }
@@ -120,7 +123,7 @@ $light-gray: #ffffffb7;
   height: calc(100vh - 100px);
   min-height: 500px;
   @include backgroundImageWithGradient(
-    "../../../uploads/2021/07/dual-enrollment-home-banner-1@2x.png"
+    "../images/dual-enrollment-home-banner-1@2x.png"
   );
   display: flex;
   align-items: center;
@@ -169,21 +172,21 @@ $light-gray: #ffffffb7;
   }
 }
 
-/* section two */
-.section-two__graphic {
+/* Front Page section two */
+.home-page__section-two__graphic {
   margin: 2rem 0;
-  
 }
 
-.dotted-connector--top, .dotted-connector--bottom{
+.dotted-connector--top,
+.dotted-connector--bottom {
   height: 250px !important;
   img {
     max-width: 100%;
   }
 }
 
-/* section three */
-.section-three {
+/* Front p age  section three */
+.home-page__section-three {
   border-radius: 15px;
   width: 100%;
   padding: 5rem;
@@ -195,7 +198,7 @@ $light-gray: #ffffffb7;
 }
 
 @media screen and (max-width: 767px) {
-  .section-three {
+  .home-page__section-three {
     padding: 2rem;
     .ugb-video-popup {
       padding-bottom: 0;
@@ -211,6 +214,66 @@ $light-gray: #ffffffb7;
 
 .video-poster {
   border-radius: 10px;
+}
+
+/* Students Page */
+.students-page__banner {
+  width: 100vw;
+  height: calc(80vh - 100px);
+  min-height: 500px;
+  @include backgroundImageWithGradient("../images/students-banner-2@2x.png");
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-end;
+  h1 {
+    color: white;
+    margin-bottom: 120px;
+  }
+}
+
+.students-page__blue-section {
+  background-color: $blue;
+  @include backgroundImage("blue");
+  position: relative;
+  color: white;
+  padding-bottom: 400px;
+}
+.students-page__blue-section__person-with-pencil {
+  position: absolute;
+  @include backgroundImage("../images/person-with-pencil-illustration.svg");
+  height: 350px;
+  width: 300px;
+  right: -40px;
+}
+
+.students-page__video {
+  margin-top: -300px;
+}
+
+@media screen and (max-width: 767px) {
+  .students-page__blue-section__person-with-pencil {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    right: auto;
+    margin: 0 auto 2rem;
+  }
+  .students-page__blue-section {
+    padding-bottom: 100px;
+  }
+  .students-page__video {
+    margin-top: -200px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+    .ugb-play-button{
+      img {
+        width: 60px;
+        height: 60px;
+      }
+
+    }
+  }
 }
 .bold {
   font-weight: 600;
