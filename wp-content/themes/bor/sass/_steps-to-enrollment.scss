@@ -1,0 +1,70 @@
+.steps-to-enrollment {
+  .tabs {
+    .nav-link {
+      color: $dark-gray;
+      font-weight: 600;
+      margin-bottom: 0px;
+      font-size: 18px;
+      position: relative;
+
+      &::before {
+        content: "";
+        display: inline-block;
+        height: 28px;
+        width: 28px;
+        box-sizing: border-box;
+        border: 1px solid $dark-gray;
+        border-radius: 100%;
+        transition: 180ms transform ease-in-out;
+        position: relative;
+        top: 7px;
+        right: 10px;
+      }
+      &::after {
+        position: absolute;
+        left: 6px;
+        content: "";
+        display: inline-block;
+        height: 28px;
+        width: 28px;
+        box-sizing: border-box;
+        background-color: $dark-gray;
+        border-radius: 100%;
+        transition: 180ms transform ease-in-out;
+        transform: scale(0);
+        top: 15px;
+      }
+      &.active {
+        color: $dark-gray;
+
+        background-color: transparent;
+        &::after {
+          transform: scale(0.75);
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    background-color: $orange;
+    border-radius: 10px;
+    padding: 2rem;
+    width: 100%;
+    color: white;
+  }
+  .large-number {
+    font-size: 60px;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+  .arrow-container {
+    width: auto;
+    float: right;
+    font-size: 40px;
+    i {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

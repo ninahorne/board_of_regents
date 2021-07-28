@@ -28,7 +28,10 @@ h1 {
   font-size: 40px;
   font-weight: 900;
 }
-h3 {
+h2{
+  font-size: 30px;
+}
+h3,h2,h1 {
   font-weight: 900;
 }
 p,
@@ -47,6 +50,10 @@ h3 {
   a,
   h3 {
     font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+  }
+  h2 {
+    font-size: calc(18px + 6 * ((100vw - 320px) / 680));
+
   }
 }
 

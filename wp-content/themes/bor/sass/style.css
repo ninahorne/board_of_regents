@@ -934,7 +934,11 @@ h1 {
   font-weight: 900;
 }
 
-h3 {
+h2 {
+  font-size: 30px;
+}
+
+h3, h2, h1 {
   font-weight: 900;
 }
 
@@ -955,6 +959,10 @@ li,
 a,
 h3 {
     font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+  }
+
+  h2 {
+    font-size: calc(18px + 6 * ((100vw - 320px) / 680));
   }
 }
 .flex-center {
@@ -1432,6 +1440,7 @@ h1 {
   position: relative;
   color: white;
   padding-bottom: 400px;
+  overflow: hidden;
 }
 
 .students-page__blue-section__person-with-pencil {

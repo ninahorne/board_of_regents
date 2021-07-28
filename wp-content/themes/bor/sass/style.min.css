@@ -916,7 +916,11 @@ h1 {
   font-weight: 900;
 }
 
-h3 {
+h2 {
+  font-size: 30px;
+}
+
+h3, h2, h1 {
   font-weight: 900;
 }
 
@@ -937,6 +941,10 @@ li,
 a,
 h3 {
     font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+  }
+
+  h2 {
+    font-size: calc(18px + 6 * ((100vw - 320px) / 680));
   }
 }
 .flex-center {
@@ -1252,6 +1260,68 @@ a:visited {
     display: block;
   }
 }
+.steps-to-enrollment .tabs .nav-link {
+  color: #404040;
+  font-weight: 600;
+  margin-bottom: 0px;
+  font-size: 18px;
+  position: relative;
+}
+.steps-to-enrollment .tabs .nav-link::before {
+  content: "";
+  display: inline-block;
+  height: 28px;
+  width: 28px;
+  box-sizing: border-box;
+  border: 1px solid #404040;
+  border-radius: 100%;
+  transition: 180ms transform ease-in-out;
+  position: relative;
+  top: 7px;
+  right: 10px;
+}
+.steps-to-enrollment .tabs .nav-link::after {
+  position: absolute;
+  left: 6px;
+  content: "";
+  display: inline-block;
+  height: 28px;
+  width: 28px;
+  box-sizing: border-box;
+  background-color: #404040;
+  border-radius: 100%;
+  transition: 180ms transform ease-in-out;
+  transform: scale(0);
+  top: 15px;
+}
+.steps-to-enrollment .tabs .nav-link.active {
+  color: #404040;
+  background-color: transparent;
+}
+.steps-to-enrollment .tabs .nav-link.active::after {
+  transform: scale(0.75);
+}
+.steps-to-enrollment .tab-content {
+  background-color: #ee7600;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 100%;
+  color: white;
+}
+.steps-to-enrollment .large-number {
+  font-size: 60px;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+.steps-to-enrollment .arrow-container {
+  width: auto;
+  float: right;
+  font-size: 40px;
+}
+.steps-to-enrollment .arrow-container i:hover {
+  cursor: pointer;
+}
+
 h1 {
   font-weight: 900;
 }
@@ -1378,6 +1448,7 @@ h1 {
   position: relative;
   color: white;
   padding-bottom: 400px;
+  overflow: hidden;
 }
 
 .students-page__blue-section__person-with-pencil {
