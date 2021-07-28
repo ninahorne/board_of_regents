@@ -1055,11 +1055,15 @@ section {
 }
 
 .background__light-orange {
-  background-color: #FFE9D37E;
+  background-color: #ffe9d37e;
 }
 
 .color-orange {
-  color: #ee7600;
+  color: #ee7600 !important;
+}
+
+.color-white {
+  color: white !important;
 }
 
 .cta {
@@ -1207,26 +1211,45 @@ footer p {
   color: white;
 }
 
-.footer__title, .footer__title .span, .footer__title a {
+a:visited {
+  color: inherit;
+}
+
+.footer__title,
+.footer__title .span,
+.footer__title a {
   color: white;
   font-size: 25px;
 }
 
 @media screen and (max-width: 1000px) {
-  .footer__title, .footer__title .span, .footer__title a {
+  .footer__title,
+.footer__title .span,
+.footer__title a {
     font-size: calc(20px + 6 * ((100vw - 320px) / 680));
   }
 }
 .footer__nav-links {
   margin: 1rem 0;
   padding: 0;
-  color: white;
+  color: #ffffffb7;
+  font-weight: 500;
 }
 .footer__nav-links li {
   list-style: none;
-  color: white;
+  color: #ffffffb7;
+  font-weight: 500;
+}
+.footer__nav-links li a {
+  color: #ffffffb7;
+  font-weight: 500;
 }
 
+@media screen and (max-width: 767px) {
+  .footer__nav-links {
+    margin: 0;
+  }
+}
 .footer__title a,
 .footer__nav-links a {
   text-decoration: none;
@@ -1234,9 +1257,37 @@ footer p {
 .footer__title a:hover,
 .footer__nav-links a:hover {
   text-decoration: none;
-  color: white;
+  color: #ffffffb7;
 }
 
+.footer__copyright {
+  margin: 1rem 0;
+  font-size: 15px;
+}
+.footer__copyright a {
+  font-size: 15px;
+}
+
+.footer__logo {
+  width: 265px;
+  height: 72px;
+  float: right;
+}
+
+@media screen and (max-width: 767px) {
+  .footer__logo {
+    float: left;
+  }
+}
+.footer__copyright__break {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .footer__copyright__break {
+    display: block;
+  }
+}
 #content {
   grid-area: main;
 }
@@ -1306,6 +1357,13 @@ footer p {
 /* section two */
 .section-two__graphic {
   margin: 2rem 0;
+}
+
+.dotted-connector--top, .dotted-connector--bottom {
+  height: 250px !important;
+}
+.dotted-connector--top img, .dotted-connector--bottom img {
+  max-width: 100%;
 }
 
 /* section three */

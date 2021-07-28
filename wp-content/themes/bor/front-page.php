@@ -34,7 +34,7 @@
                         credits, so they save money as well as time.
                     </p>
                     <button class="cta">
-                        Learn more &nbsp;&nbsp;<i class="fa fa-long-arrow-right"></i>
+                        Learn more &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
                     </button>
                 </div>
                 <div class="col-md-6">
@@ -53,7 +53,7 @@
             <h1 class="text-center">How does duel enrollment work?</h1>
             <div class="mt-4 mb-4">
                 <div class="row section-two__graphic">
-                    <div class="col-md-4">
+                    <div class="col-lg-3  col-xl-2 offset-lg-1">
                         <div class="brush-stroke__wrapper">
                             <div class="background__blue-brush-stroke">
                                 <div class="dummy"></div>
@@ -62,7 +62,14 @@
                         </div>
                         <h3 class="text-center">Step 1: Talk to your High School Counselor</p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="d-none d-lg-block col-lg-1 col-xl-2">
+                        <div class="dotted-connector--top flex-center">
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/dotted-top.svg" alt="">
+
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-xl-2">
                         <div class="brush-stroke__wrapper">
                             <div class="background__orange-brush-stroke">
                                 <div class="dummy"></div>
@@ -72,7 +79,14 @@
                         <h3 class="text-center">Step 2: Complete a Dual Enrollment Application</h3>
 
                     </div>
-                    <div class="col-md-4">
+                    <div class="d-none d-lg-block col-lg-1 col-xl-2">
+                        <div class="dotted-connector--bottom flex-center">
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/dotted-bottom.svg" alt="">
+
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-xl-2">
                         <div class="brush-stroke__wrapper">
                             <div class="background__yellow-brush-stroke">
                                 <div class="dummy"></div>
@@ -92,7 +106,7 @@
 
                 <div class="mt-4 mb-4">
                     <button class="cta cta--center">
-                        See Application Help &nbsp;&nbsp; <i class="fa fa-long-arrow-right"></i>
+                        See Application Help &nbsp;&nbsp; <i class="fa fa-long-arrow-alt-right"></i>
                     </button>
                 </div>
 
@@ -110,8 +124,8 @@
                         double the credit
                     </span> for your hard work?
                 </h1>
-                <div class="ugb-video-popup"  data-video='<?php echo get_template_directory_uri(); ?>/videos/Dual Enrollment LA_061521.mp4'>
-              
+                <div class="ugb-video-popup" data-video='<?php echo get_template_directory_uri(); ?>/videos/Dual Enrollment LA_061521.mp4'>
+
                     <div class="ugb-video-wrapper">
 
                         <a href="#">
