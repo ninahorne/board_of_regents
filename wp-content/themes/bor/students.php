@@ -332,6 +332,7 @@
         </div>
       </div>
     </section>
+      <?php include('useful-college-links.php'); ?>
   </div>
 </div>
 

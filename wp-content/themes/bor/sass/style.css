@@ -1368,6 +1368,10 @@ a:visited {
   cursor: pointer;
 }
 
+.useful-college-links {
+  background-color: #143595;
+}
+
 h1 {
   font-weight: 900;
 }

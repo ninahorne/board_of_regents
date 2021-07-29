@@ -154,12 +154,20 @@ function bor_scripts()
 	wp_enqueue_script('bor-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
 	wp_enqueue_style('theme', get_template_directory_uri() . '/sass/style.min.css');
 	wp_enqueue_style('font-awesome', 'https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
-	wp_enqueue_script('big-picture', 'https://cdn.jsdelivr.net/npm/bigpicture@2.5.3/index.min.js');
+	wp_enqueue_script('big-picture', 'https://cdn.jsdelivr.net/npm/bigpicture@2.5.3/dist/BigPicture.min.js');
+	if (!is_admin()) {
+		wp_register_script('gmaps-init', get_template_directory_uri() . '/js/vendor/gmaps.js', array(), '', false);
+		wp_enqueue_script('gmaps-init');
+	}
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
 	}
 }
 add_action('wp_enqueue_scripts', 'bor_scripts');
+
+// Locations Map Shortcode - [locations_map]
+
+
 
 /**
  * Custom Menu Location
