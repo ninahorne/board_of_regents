@@ -1488,6 +1488,58 @@ h1 {
     height: 60px;
   }
 }
+.students-page__eligibility {
+  background-image: url("../images/large-yellow-brush-stroke.svg");
+  background-size: cover;
+  background-position: center;
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+.student-eligibility__white-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 13px 23px 19px #00000008;
+}
+.student-eligibility__white-card i {
+  color: #ee7600;
+  margin-right: 1rem;
+  font-size: 25px;
+}
+.student-eligibility__white-card h5 {
+  display: inline;
+}
+.student-eligibility__white-card h3 {
+  padding: 1rem 0.5rem;
+  margin: 0.5rem;
+}
+.student-eligibility__white-card .student-eligibility__white-card__item {
+  padding: 1rem 0.5rem;
+  border-bottom: 1px dashed #404040;
+  margin: 0.5rem;
+  height: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  .students-page__eligibility {
+    height: 800px;
+  }
+
+  .student-eligibility__white-card {
+    padding: 1rem;
+  }
+}
+@media screen and (max-width: 767px) {
+  .students-page__eligibility {
+    height: auto;
+    margin-bottom: 0;
+  }
+
+  .student-eligibility__white-card .student-eligibility__white-card__item {
+    height: auto;
+  }
+}
 .bold {
   font-weight: 600;
 }
