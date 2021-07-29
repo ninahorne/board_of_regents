@@ -1370,6 +1370,44 @@ a:visited {
 
 .useful-college-links {
   background-color: #143595;
+  color: white;
+}
+
+#map_wrapper {
+  height: 400px;
+  color: #404040;
+  border-radius: 10px;
+  border: 5px solid white;
+}
+
+#map_canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+
+#usefulCollegeLinksSearchBox {
+  width: 466px;
+  height: 66px;
+  max-width: calc(100% - 20px);
+  margin: 10px;
+  background-color: transparent;
+}
+#usefulCollegeLinksSearchBox .ais-SearchBox,
+#usefulCollegeLinksSearchBox .ais-SearchBox-form,
+#usefulCollegeLinksSearchBox .ais-SearchBox-input {
+  height: 100%;
+  background-color: transparent;
+}
+#usefulCollegeLinksSearchBox .ais-SearchBox::before,
+#usefulCollegeLinksSearchBox .ais-SearchBox-form::before,
+#usefulCollegeLinksSearchBox .ais-SearchBox-input::before {
+  display: none;
+}
+#usefulCollegeLinksSearchBox .ais-SearchBox-input {
+  border-radius: 5px;
+  border: 1px solid #404040;
+  background-color: white;
 }
 
 h1 {

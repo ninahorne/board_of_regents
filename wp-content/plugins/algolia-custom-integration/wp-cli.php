@@ -6,10 +6,10 @@ if (!(defined('WP_CLI') && WP_CLI)) {
 
 class Algolia_Command
 {
-    public function reindex_post($args, $assoc_args)
+    public function index_useful_college_links($args, $assoc_args)
     {
         global $algolia;
-        $index = $algolia->initIndex('index_name');
+        $index = $algolia->initIndex('useful-college-links');
 
         $index->clearObjects()->wait();
 
@@ -20,7 +20,7 @@ class Algolia_Command
             $posts = new WP_Query([
                 'posts_per_page' => 100,
                 'paged' => $paged,
-                'post_type' => 'post'
+                'post_type' => 'college_link'
             ]);
 
             if (!$posts->have_posts()) {

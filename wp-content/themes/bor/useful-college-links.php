@@ -4,7 +4,7 @@
             <div class="col-md-6">
                 <div class="flex-center">
                     <h1 onclick="changeMarkers()">Useful College Links</h1>
-                    <div id="searchbox"></div>
+                    <div id="usefulCollegeLinksSearchBox"></div>
 
                 </div>
             </div>
