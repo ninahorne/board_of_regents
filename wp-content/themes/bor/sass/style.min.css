@@ -1348,7 +1348,7 @@ a:visited {
   background-color: transparent;
   position: relative;
 }
-#usefulCollegeLinksSearchBox::after {
+#usefulCollegeLinksSearchBox .useful-college-links__dropdown {
   background-image: url("../images/triangle-down-medium-gray.png");
   background-size: cover;
   background-position: center;
@@ -1362,7 +1362,7 @@ a:visited {
   right: 0;
   cursor: pointer;
 }
-#usefulCollegeLinksSearchBox::after::hover {
+#usefulCollegeLinksSearchBox .useful-college-links__dropdown::hover {
   cursor: pointer;
 }
 #usefulCollegeLinksSearchBox .ais-SearchBox,
@@ -1391,6 +1391,27 @@ a:visited {
 }
 #usefulCollegeLinksSearchBox .ais-SearchBox-input::placeholder {
   color: #A3A3A3;
+}
+
+#usefulCollegeLinksResults {
+  width: 466px;
+  max-width: calc(100% - 20px);
+  position: relative;
+}
+#usefulCollegeLinksResults .ais-Hits {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.useful-college-links__search-result {
+  color: #404040;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+.useful-college-links__search-result:hover {
+  cursor: pointer;
 }
 
 h1 {

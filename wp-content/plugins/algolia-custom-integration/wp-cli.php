@@ -16,43 +16,62 @@ class Algolia_Command
         $paged = 1;
         $count = 0;
 
-        do {
-            $posts = new WP_Query([
-                'posts_per_page' => 100,
-                'paged' => $paged,
-                'post_type' => 'college_link'
-            ]);
 
-            if (!$posts->have_posts()) {
-                break;
-            }
+        $posts_response = new WP_Query([
+            'posts_per_page' => 1000,
+            'paged' => $paged,
+            'post_type' => 'college_link'
+        ]);
 
-            $records = [];
+        if (!$posts_response->have_posts()) {
+            return;
+        }
 
-            foreach ($posts->posts as $post) {
-                if ($assoc_args['verbose']) {
-                    WP_CLI::line('Serializing [' . $post->post_title . ']');
+        $records = [];
+     
+        $posts = $posts_response->posts;
+
+        foreach ($posts as $post) {
+            global $wpdb;
+
+            $querystr = "
+                    SELECT *
+                    FROM $wpdb->postmeta 
+                    WHERE post_id LIKE $post->ID 
+                ";
+            $post_metas = $wpdb->get_results($querystr, OBJECT);
+
+
+            foreach ($post_metas as $meta) {
+
+                $key = $meta->meta_key;
+                $substring = substr($key, 0, 1);
+                $record['objectID'] = implode('#', [$post->post_type, $post->ID]);
+
+                if ($substring != "_") {
+                    if ($assoc_args['verbose']) {
+
+                        WP_CLI::line('writing ' . $key . '=' . $meta->meta_value . ' for ' . $post->ID);
+                    }
+                    $record[$meta->meta_key] = $meta->meta_value;
                 }
-                $record = (array) apply_filters('post_to_record', $post);
-
-                if (!isset($record['objectID'])) {
-                    $record['objectID'] = implode('#', [$post->post_type, $post->ID]);
-                }
-
-                $records[] = $record;
-                $count++;
             }
 
-            if ($assoc_args['verbose']) {
-                WP_CLI::line('Sending batch');
-            }
+            $index->saveObject($record);
+        }
 
-            $index->saveObjects($records);
+        if ($assoc_args['verbose']) {
+            WP_CLI::line('Sending batch');
+        }
+        if ($assoc_args['verbose']) {
+            WP_CLI::line('record length [' . count($records) . ']');
+        }
+        $index->saveObjects($records);
 
-            $paged++;
-        } while (true);
+        $paged++;
 
-        WP_CLI::success("$count posts indexed in Algolia");
+
+        WP_CLI::success("$count college links indexed in Algolia");
     }
 }
 
