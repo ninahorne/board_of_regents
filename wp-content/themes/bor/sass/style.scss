@@ -283,7 +283,6 @@ h1 {
 
 .students-page__eligibility{
   @include backgroundImage('../images/large-yellow-brush-stroke.svg');
-  background-size: auto;
   background-repeat: no-repeat;
 
 }
@@ -341,4 +340,8 @@ h1 {
 html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1200px;
 }

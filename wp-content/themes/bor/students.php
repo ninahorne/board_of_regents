@@ -47,7 +47,6 @@
 
     </section>
     <section class="students-page__eligibility">
-      <!-- <img class="background-brush-stroke" src="<?php echo get_template_directory_uri(); ?>/images/large-yellow-brush-stroke.svg" alt=""> -->
 
       <div class="container">
         <div class="row">

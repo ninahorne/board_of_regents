@@ -1392,6 +1392,24 @@ a:visited {
   max-width: calc(100% - 20px);
   margin: 10px;
   background-color: transparent;
+  position: relative;
+}
+#usefulCollegeLinksSearchBox .useful-college-links__dropdown {
+  background-image: url("../images/triangle-down-medium-gray.png");
+  background-size: cover;
+  background-position: center;
+  content: "";
+  border-left: 1px solid #A3A3A3;
+  height: 60px;
+  width: 60px;
+  display: block;
+  position: absolute;
+  top: 2px;
+  right: 0;
+  cursor: pointer;
+}
+#usefulCollegeLinksSearchBox .useful-college-links__dropdown::hover {
+  cursor: pointer;
 }
 #usefulCollegeLinksSearchBox .ais-SearchBox,
 #usefulCollegeLinksSearchBox .ais-SearchBox-form,
@@ -1399,15 +1417,59 @@ a:visited {
   height: 100%;
   background-color: transparent;
 }
-#usefulCollegeLinksSearchBox .ais-SearchBox::before,
-#usefulCollegeLinksSearchBox .ais-SearchBox-form::before,
-#usefulCollegeLinksSearchBox .ais-SearchBox-input::before {
+#usefulCollegeLinksSearchBox .ais-Searchbox-form::before {
   display: none;
+}
+#usefulCollegeLinksSearchBox .ais-SearchBox-reset {
+  z-index: 10;
+  background-color: white;
+  width: 29px;
+  height: 61px;
 }
 #usefulCollegeLinksSearchBox .ais-SearchBox-input {
   border-radius: 5px;
   border: 1px solid #404040;
   background-color: white;
+  padding: 20px;
+  font-family: "Rubik";
+  font-size: 17px;
+  position: relative;
+}
+#usefulCollegeLinksSearchBox .ais-SearchBox-input::-webkit-input-placeholder {
+  color: #A3A3A3;
+}
+#usefulCollegeLinksSearchBox .ais-SearchBox-input::-moz-placeholder {
+  color: #A3A3A3;
+}
+#usefulCollegeLinksSearchBox .ais-SearchBox-input:-ms-input-placeholder {
+  color: #A3A3A3;
+}
+#usefulCollegeLinksSearchBox .ais-SearchBox-input::-ms-input-placeholder {
+  color: #A3A3A3;
+}
+#usefulCollegeLinksSearchBox .ais-SearchBox-input::placeholder {
+  color: #A3A3A3;
+}
+
+#usefulCollegeLinksResults {
+  width: 466px;
+  max-width: calc(100% - 20px);
+  position: relative;
+}
+#usefulCollegeLinksResults .ais-Hits {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.useful-college-links__search-result {
+  color: #404040;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+.useful-college-links__search-result:hover {
+  cursor: pointer;
 }
 
 h1 {
@@ -1598,7 +1660,6 @@ h1 {
   background-image: url("../images/large-yellow-brush-stroke.svg");
   background-size: cover;
   background-position: center;
-  background-size: auto;
   background-repeat: no-repeat;
 }
 
@@ -1654,5 +1715,9 @@ h1 {
 html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1200px;
 }
 /*# sourceMappingURL=style.css.map */

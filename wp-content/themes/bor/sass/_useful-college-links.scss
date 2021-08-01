@@ -71,15 +71,20 @@
     }
   }
 }
+
+
 #usefulCollegeLinksResults {
   width: 466px;
   max-width: calc(100% - 20px);
   position: relative;
 
+
   .ais-Hits{
     position: absolute;
     left:0;
     right:0;
+    max-height: 400px;
+    overflow-y: scroll;
   }
 }
 .useful-college-links__search-result {

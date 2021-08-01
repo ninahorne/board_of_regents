@@ -23,13 +23,16 @@
                         <div class="col-6">
                             <div class="arrow-container">
                                 <i onclick="navigateTo('v-pills-four-tab')" class="fa fa-long-arrow-alt-left"></i>
-                                <i onclick="navigateTo('v-pills-two-tab')" class="fa fa-long-arrow-alt-right" ></i>
+                                <i onclick="navigateTo('v-pills-two-tab')" class="fa fa-long-arrow-alt-right"></i>
 
                             </div>
                         </div>
                     </div>
-                    <h2>Heading</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <h2>Talk to your School Counselor</h2>
+                    <p>Interested in earning college credits while still in high school?
+                        Talk to your school counselor to see what dual enrollment courses you are eligible for.
+                        Explore the options of an academic or a technical dual enrollment course and
+                        find what is the best fit for you. </p>
 
 
                 </div>
@@ -47,8 +50,10 @@
                             </div>
                         </div>
                     </div>
-                    <h2>Heading</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <h2>Complete a Dual Enrollment Application</h2>
+                    <p>Decide which dual enrollment course(s) you want to register and apply for. 
+                        Be sure to check the eligibility requirements and talk to your school 
+                        counselor about how to apply.</p>
 
                 </div>
                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-three-tab">
@@ -65,8 +70,10 @@
                             </div>
                         </div>
                     </div>
-                    <h2>Heading</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <h2>Prepare for your course</h2>
+                    <p>Now that you’ve been admitted, check to see if there are any additional materials or textbooks that should be purchased. 
+                        Most do not require any additional materials, but they do require your focus and preparation. 
+                        Happy studying!</p>
                 </div>
                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-four-tab">
                     <div class="row">
