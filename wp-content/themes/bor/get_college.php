@@ -40,14 +40,6 @@ if ($college_link->num_rows > 0) {
             $registrarEmail = $row['meta_value'];
         }
 
-        // $campusIndex = array_search('campus', array_column($row, 'meta_key'));
-        // $campus = $row[$campusIndex]->meta_value;
-
-        // $registrarIndex = array_search('registrar_name', array_column($row, 'meta_key'));
-        // $registrarName = $row[$registrarIndex]->meta_value;
-
-        // $registrarEmailIndex = array_search('registrar_contact_information', array_column($row, 'meta_key'));
-        // $registrarEmail = $row[$registrarEmailIndex]->meta_value;
 
     }
 
@@ -55,9 +47,9 @@ if ($college_link->num_rows > 0) {
     <i onclick="clearSelectedCollege()" class="far fa-times-circle"></i>
     <div class="row"><div class="col-md-5"><h2>' .
         $system . '</h2><p>' . $campus . '</p></div><div class="col-md-7"><h3>Registrar</h3>
-<div class="row"><div class="col-md-6"><p>' . $registrarName . '</p><p>' . $registrarEmail . '</p></div>' .
-        '<div class="col-md-6"><p><i class="fas fa-external-link-alt"></i>&nbsp;Request your transcript</p><p><i class="fas fa-external-link-alt"></i>&nbsp;Contact the DE coordinator </p></div>' . '
-</div>';
+    <div class="row"><div class="col-md-6"><p>' . $registrarName . '</p><p>' . $registrarEmail . '</p></div>' .
+            '<div class="col-md-6"><p><i class="fas fa-external-link-alt"></i>&nbsp;Request your transcript</p><p><i class="fas fa-external-link-alt"></i>&nbsp;Contact the DE coordinator </p></div>' . '
+    </div>';
 } else {
     echo "0 results";
 }

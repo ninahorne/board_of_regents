@@ -1332,6 +1332,8 @@ a:visited {
   color: #404040;
   border-radius: 10px;
   border: 5px solid white;
+  width: calc(100% - 20px);
+  margin: 0 auto;
 }
 
 #map_canvas {

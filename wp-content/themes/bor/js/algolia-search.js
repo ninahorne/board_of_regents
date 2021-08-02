@@ -69,7 +69,7 @@ const renderHits = (renderOptions, isFirstRender) => {
       ${hits
         .map(
           (item) =>
-            `<label onclick="onClick(${item.objectID}, ${item.latitude}, ${item.longitude}, \`${item.campus}\`, \`${item.system}\`)" class="useful-college-links__search-result">
+            `<label onclick="clickMarker( \`${item.campus}\`)" class="useful-college-links__search-result">
               ${instantsearch.highlight({ attribute: "campus", hit: item })}
             </label>
             <input class="d-none" type="radio" name="postID" value="${item.objectID}" />
