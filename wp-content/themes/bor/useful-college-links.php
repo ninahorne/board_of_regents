@@ -9,7 +9,9 @@
                     </div>
                     <div id="usefulCollegeLinksResults">
                         <div id="usefulCollegeLinksTagsList"></div>
-                        <div id="usefulCollegeLinksHits"></div>
+                        <div id="usefulCollegeLinksHits">
+
+                        </div>
                     </div>
 
                 </div>
@@ -20,15 +22,50 @@
                 </div>
             </div>
         </div>
+        <div>
+            <div class="container">
+                <div id="selectedCollege">
 
+                </div>
+
+            </div>
+
+
+        </div>
     </div>
 </section>
 
 <script>
+    function clearSelectedCollege() {
+        const selectedCollege = document.querySelector('#selectedCollege');
+        selectedCollege.innerHTML = '';
+    }
+
     function showResults() {
         const results = document.getElementById('usefulCollegeLinksResults');
         results.style.display = 'block';
-    }
+    };
+    function hideResults() {
+        const results = document.getElementById('usefulCollegeLinksResults');
+        results.style.display = 'none';
+    };
+
+    function onClick(objectId, lat, long, campus, system) {
+        hideResults();
+        changeMarkers(lat, long, campus, system);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            console.log(this.responseText);
+            const selectedCollege = document.querySelector('#selectedCollege');
+            selectedCollege.innerHTML = this.responseText;
+        };
+        var body = {
+            objectId
+        };
+
+        xhttp.open("GET", "./wp-content/themes/bor/get_college.php?objectId=" + objectId, false);
+        xhttp.send('objectId=' + encodeURIComponent(objectId));
+    };
     jQuery(function($) {
         // Asynchronously Load the map API 
         var script = document.createElement('script');
@@ -36,7 +73,7 @@
         document.body.appendChild(script);
     });
 
-    function changeMarkers() {
+    function changeMarkers(lat, long, campus, system) {
         var map;
         var bounds = new google.maps.LatLngBounds();
         var mapOptions = {
@@ -45,19 +82,14 @@
         };
         map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
         var markers = [
-            ['New Orleans, LA', 29.9511, -90.0715]
+            [`${campus} - ${system}`, lat, long]
         ];
 
         // Info Window Content
         var infoWindowContent = [
             ['<div class="info_content">' +
-                '<h3>London Eye</h3>' +
-                '<p>The London Eye is a giant Ferris wheel situated on the banks of the River Thames. The entire structure is 135 metres (443 ft) tall and the wheel has a diameter of 120 metres (394 ft).</p>' + '</div>'
-            ],
-            ['<div class="info_content">' +
-                '<h3>Palace of Westminster</h3>' +
-                '<p>The Palace of Westminster is the meeting place of the House of Commons and the House of Lords, the two houses of the Parliament of the United Kingdom. Commonly known as the Houses of Parliament after its tenants.</p>' +
-                '</div>'
+                `<h3>${campus}</h3>` +
+                `<h6>${system}</h6></div>` 
             ]
         ];
 

@@ -58,9 +58,31 @@ const useful_links_search = instantsearch({
     container.style.display = helper.state.query === "" ? "none" : "";
 
     helper.search();
-    
   },
 });
+// Create the render function
+const renderHits = (renderOptions, isFirstRender) => {
+  const { hits, widgetParams } = renderOptions;
+
+  widgetParams.container.innerHTML = `
+    <form class="ais-Hits" method="POST">
+      ${hits
+        .map(
+          (item) =>
+            `<label onclick="onClick(${item.objectID}, ${item.latitude}, ${item.longitude}, \`${item.campus}\`, \`${item.system}\`)" class="useful-college-links__search-result">
+              ${instantsearch.highlight({ attribute: "campus", hit: item })}
+            </label>
+            <input class="d-none" type="radio" name="postID" value="${item.objectID}" />
+            `
+        )
+        .join("")}
+    </form>
+  `;
+};
+
+// Create the custom widget
+const customHits = instantsearch.connectors.connectHits(renderHits);
+
 
 useful_links_search.addWidgets([
   instantsearch.widgets.searchBox({
@@ -75,20 +97,9 @@ useful_links_search.addWidgets([
     showMore: true,
   }),
 
-  instantsearch.widgets.hits({
-    container: "#usefulCollegeLinksHits",
-    templates: {
-      item: `
-      <article class="flex-center">
-        <p onclick="alert('clicked')" class="useful-college-links__search-result">
-            {{#helpers.highlight}}
-              { "attribute": "campus", "highlightedTagName": "mark" }
-            {{/helpers.highlight}}
-        </p>
+  customHits({
+    container: document.querySelector("#usefulCollegeLinksHits"),
 
-      </article>
-    `,
-    },
   }),
 ]);
 

@@ -46,7 +46,7 @@ class Algolia_Command
 
                 $key = $meta->meta_key;
                 $substring = substr($key, 0, 1);
-                $record['objectID'] = implode('#', [$post->post_type, $post->ID]);
+                $record['objectID'] = $post->ID;
 
                 if ($substring != "_") {
                     if ($assoc_args['verbose']) {
