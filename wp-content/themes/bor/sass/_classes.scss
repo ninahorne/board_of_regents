@@ -7,6 +7,10 @@
   font-family: "Rubik";
   font-weight: 500;
 }
+@mixin arvoRegular() {
+  font-family: "Arvo";
+  font-weight: 500;
+}
 @mixin backgroundImage($url) {
   background-image: url($url);
   background-size: cover;
@@ -28,10 +32,12 @@ h1 {
   font-size: 40px;
   font-weight: 900;
 }
-h2{
+h2 {
   font-size: 30px;
 }
-h3,h2,h1 {
+h3,
+h2,
+h1 {
   font-weight: 900;
 }
 p,
@@ -53,7 +59,6 @@ h3 {
   }
   h2 {
     font-size: calc(18px + 6 * ((100vw - 320px) / 680));
-
   }
 }
 
@@ -61,6 +66,12 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.flex-vertical-center {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   height: 100%;
 }
@@ -105,6 +116,17 @@ section {
   width: 200px;
   margin: 2rem auto;
 }
+.background__orange-gradient {
+  background: transparent
+    linear-gradient(
+      180deg,
+      #ee76002c 0%,
+      #ee78042b 0%,
+      #f6a75a14 75%,
+      #fcd0a500 100%
+    )
+    0% 0% no-repeat padding-box;
+}
 
 .background__blue-brush-stroke {
   @include backgroundImage("../images/blue-brush-stroke.svg");
@@ -113,7 +135,7 @@ section {
     margin-bottom: 0rem;
     margin-top: 1rem;
     margin-right: 2rem;
-    max-width: calc(100vw - 2.5rem);
+    max-width: calc(100% - 2.5rem);
   }
 }
 
@@ -124,7 +146,12 @@ section {
     margin-bottom: 0rem;
     margin-top: 1rem;
     margin-right: 2rem;
-    max-width: calc(100vw - 2.5rem);
+    max-width: calc(100% - 2.5rem);
+  }
+  &.background__brush-stroke--large {
+    img {
+      max-width: calc(100% - 5rem);
+    }
   }
 }
 
@@ -139,19 +166,22 @@ section {
     margin-bottom: 0rem;
     margin-top: 1rem;
     margin-right: 2rem;
-    max-width: calc(100vw - 2.5rem);
+    max-width: calc(100% - 2.5rem);
   }
 }
 
-.background__light-orange{
-    background-color: $light-orange;
+.background__light-orange {
+  background-color: $light-orange;
 }
 
-.color-orange{
-    color: $orange !important;
+.color-orange {
+  color: $orange !important;
 }
-.color-white{
+.color-white {
   color: white !important;
+}
+.color__dark-blue {
+  color: $dark-blue;
 }
 .cta {
   background-color: $orange;
@@ -164,9 +194,9 @@ section {
   border: none;
 }
 
-.cta--center{
-    display: block;
-    margin: 0 auto;
+.cta--center {
+  display: block;
+  margin: 0 auto;
 }
 @media screen and (max-width: 767px) {
   .cta {
@@ -175,4 +205,24 @@ section {
     margin: 2rem auto;
     font-size: 16px;
   }
+}
+
+.arvo-regular {
+  @include arvoRegular();
+}
+.subtitle {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.rubik-medium {
+  @include rubikMedium();
+}
+
+a.unformatted {
+  text-decoration: none;
+  color: inherit;
+}
+.dotted-line__dark-gray {
+  border-bottom: 1px dotted $dark-gray;
 }

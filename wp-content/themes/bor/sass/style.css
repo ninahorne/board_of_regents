@@ -982,6 +982,20 @@ h3 {
   height: 100%;
 }
 
+.flex-vertical-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+}
+
 ul {
   list-style: none;
   margin: 0;
@@ -1016,6 +1030,11 @@ section {
 .brush-stroke__wrapper {
   width: 200px;
   margin: 2rem auto;
+}
+
+.background__orange-gradient {
+  background: transparent -webkit-gradient(linear, left top, left bottom, from(#ee76002c), color-stop(0%, #ee78042b), color-stop(75%, #f6a75a14), to(#fcd0a500)) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(180deg, #ee76002c 0%, #ee78042b 0%, #f6a75a14 75%, #fcd0a500 100%) 0% 0% no-repeat padding-box;
 }
 
 .background__blue-brush-stroke {
@@ -1098,6 +1117,16 @@ section {
     font-size: 16px;
   }
 }
+.arvo-regular {
+  font-family: "Arvo";
+  font-weight: 500;
+}
+
+.subtitle {
+  font-size: 12px;
+  font-style: italic;
+}
+
 .ugb-video-popup {
   position: relative;
   margin: 3rem auto;
@@ -1378,6 +1407,8 @@ a:visited {
   color: #404040;
   border-radius: 10px;
   border: 5px solid white;
+  width: calc(100% - 20px);
+  margin: 0 auto;
 }
 
 #map_canvas {
@@ -1460,16 +1491,159 @@ a:visited {
   position: absolute;
   left: 0;
   right: 0;
+  max-height: 400px;
+  overflow-y: scroll;
+  background-color: white;
+  padding: 1rem;
+  z-index: 5;
+  border-radius: 5px;
 }
 
 .useful-college-links__search-result {
+  display: block;
   color: #404040;
-  margin: 0;
+  margin: 0.3rem 0;
   padding: 0;
   font-size: 16px;
 }
 .useful-college-links__search-result:hover {
   cursor: pointer;
+}
+
+.useful-college-links__selected-result {
+  background-color: white;
+  color: #404040;
+  padding: 2rem;
+  margin: 2rem auto;
+  border-radius: 10px;
+  position: relative;
+  -webkit-animation-name: slideup;
+          animation-name: slideup;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+  opacity: 0;
+}
+.useful-college-links__selected-result .fa-times-circle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 25px;
+}
+.useful-college-links__selected-result .fa-times-circle:hover {
+  cursor: pointer;
+}
+.useful-college-links__selected-result p,
+.useful-college-links__selected-result h3 {
+  margin-bottom: 0;
+}
+.useful-college-links__selected-result h2 {
+  font-size: clamp(22px, 25px, 25px);
+}
+.useful-college-links__selected-result h3 {
+  margin-top: 1rem;
+}
+.useful-college-links__selected-result p {
+  font-size: clamp(14px, 18px, 18px);
+}
+
+@-webkit-keyframes slideup {
+  0% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideup {
+  0% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+.faq-preview__wrapper {
+  padding: 3rem;
+  border-radius: 15px;
+}
+
+.faq-preview__small-header {
+  text-transform: uppercase;
+  font-size: 15px;
+  font-family: "Arvo";
+  font-weight: 500;
+}
+
+.faq-preview__faq {
+  padding: 1rem 0rem;
+  border-bottom: 1px dotted #707070;
+}
+
+.faq-preview__question {
+  font-family: "Rubik";
+  font-weight: 500;
+  color: #ee7600;
+  font-weight: 700;
+  font-size: clamp(16px, 20px, 20px);
+  margin-bottom: 1rem;
+}
+.faq-preview__question:hover {
+  cursor: pointer;
+}
+
+.faq-preview__answer {
+  height: auto;
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 1s;
+  transition: max-height 1s;
+}
+.faq-preview__answer ul {
+  list-style: disc;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
+.faq-preview__answer li,
+.faq-preview__answer a,
+.faq-preview__answer span,
+.faq-preview__answer p {
+  font-size: clamp(16px, 20px, 20px);
+}
+.faq-preview__answer.faq-preview__answer--open {
+  max-height: 1000px;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+.faq-preview__view-all {
+  font-size: clamp(16px, 20px, 20px);
+  color: #404040;
+  border-bottom: 2px solid #EE760080;
+  font-weight: 600;
+  margin-top: 2rem;
 }
 
 h1 {

@@ -16,7 +16,6 @@
   width: 100%;
   height: 100%;
   border-radius: 4px;
-
 }
 
 #usefulCollegeLinksSearchBox {
@@ -27,7 +26,7 @@
   background-color: transparent;
   position: relative;
 
-  .useful-college-links__dropdown{
+  .useful-college-links__dropdown {
     @include backgroundImage("../images/triangle-down-medium-gray.png");
     content: "";
     border-left: 1px solid $medium-gray;
@@ -75,16 +74,15 @@
   }
 }
 
-
 #usefulCollegeLinksResults {
   width: 466px;
   max-width: calc(100% - 20px);
   position: relative;
 
-  .ais-Hits{
+  .ais-Hits {
     position: absolute;
-    left:0;
-    right:0;
+    left: 0;
+    right: 0;
     max-height: 400px;
     overflow-y: scroll;
     background-color: white;
@@ -100,38 +98,61 @@
   margin: 0.3rem 0;
   padding: 0;
   font-size: 16px;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 }
 
-.useful-college-links__selected-result{
+.useful-college-links__selected-result {
   background-color: white;
   color: $dark-gray;
   padding: 2rem;
   margin: 2rem auto;
   border-radius: 10px;
   position: relative;
-  .fa-times-circle{
-    position: absolute; 
+  animation-name: slideup;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  transform: translateY(100%);
+  opacity: 0;
+
+  .fa-times-circle {
+    position: absolute;
     top: 1rem;
     right: 1rem;
     font-size: 25px;
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
-  p, h3 {
+  p,
+  h3 {
     margin-bottom: 0;
     // padding: 0;
   }
-  h2{
+  h2 {
     font-size: clamp(22px, 25px, 25px);
   }
-  h3{
+  h3 {
     margin-top: 1rem;
   }
   p {
-    font-size: clamp(14px, 18px,18px);
+    font-size: clamp(14px, 18px, 18px);
+  }
+}
+
+@keyframes slideup {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  80%{
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+
   }
 }

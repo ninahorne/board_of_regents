@@ -53,7 +53,7 @@
           <div class="col-md-4 col-lg-5">
             <h1>Eligibility</h1>
             <p>
-              Dual Enrollment is very accessible. First, a 2.5 cumulative GPA is required. Then, either a subject-specific test score OR a recommendation from their counselor. To see the specific test score requirements for non-technical subjects, visit the FAQ page. <br />
+              Dual Enrollment is very accessible. First, a 2.5 cumulative GPA is required. Then, either a subject-specific test score OR a recommendation from their counselor. To see the specific test score requirements for non-technical subjects, <a target="_blank" href="./faqs">visit the FAQ page.</a> <br />
 
               <br />
               The technical course options often require tools, so they have an age limit (15+) and require good standing in high school. Each college has their own paperwork requirements, which can be found using the useful college links resource.
@@ -331,7 +331,11 @@
         </div>
       </div>
     </section>
-      <?php include('useful-college-links.php'); ?>
+    <?php include('useful-college-links.php'); ?>
+    <section>
+      <?php include('faq_preview.php'); ?>
+
+    </section>
   </div>
 </div>
 

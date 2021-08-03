@@ -24,6 +24,7 @@
         </div>
         <div>
             <div class="container">
+            
                 <div id="selectedCollege">
 
                 </div>
@@ -65,7 +66,7 @@
         };
      
 
-        xhttp.open("GET", "./wp-content/themes/bor/get_colleges.php");
+        xhttp.open("GET", "../../wp-content/themes/bor/get_colleges.php");
         xhttp.send();
     };
 
@@ -85,7 +86,7 @@
             objectId
         };
 
-        xhttp.open("GET", "./wp-content/themes/bor/get_college.php?objectId=" + objectId, false);
+        xhttp.open("GET", "../../wp-content/themes/bor/get_college.php?objectId=" + objectId, false);
         xhttp.send('objectId=' + encodeURIComponent(objectId));
     };
 </script>

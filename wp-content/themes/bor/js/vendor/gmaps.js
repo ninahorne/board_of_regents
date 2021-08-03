@@ -1,6 +1,6 @@
 var map;
 var markers = [];
-// var infoWindow = new google.maps.InfoWindow();
+var lastWindow;
 
 function initialize(collegeLinks) {
   var colleges = collegeLinks.colleges;
@@ -14,10 +14,6 @@ function initialize(collegeLinks) {
   map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   map.setTilt(45);
 
-  // Display multiple markers on a map
-  //   var infoWindow = new google.maps.InfoWindow(),
-  //     marker,
-  //     i;
 
   // Loop through our array of markers & place each one on the map
   for (i = 0; i < colleges.length; i++) {
@@ -32,36 +28,43 @@ function initialize(collegeLinks) {
 
     // Allow each marker to have an info window
     google.maps.event.addListener(
-        marker,
-        "click",
-        (function (marker, i) {
-          return function () {
-            var infoWindow = new google.maps.InfoWindow();
-  
-            infoWindow.setContent(`<h3>${colleges[i].campus}</h3>`);
-  
-            infoWindow.open({
-              anchor: marker,
-              map,
-              shouldFocus: false,
-            });
-  
-            onClick(
-              colleges[i].objectId,
-              colleges[i].lat,
-              colleges[i].long,
-              colleges[i].campus,
-              colleges[i].system
-            );
-          };
-        })(marker, i)
-      );
+      marker,
+      "click",
+      (function (marker, i) {
+        return function () {
+          if (lastWindow) {
+            lastWindow.close();
+          }
+          var infoWindow = new google.maps.InfoWindow();
+          lastWindow = infoWindow;
+          infoWindow.setContent(`<h3>${colleges[i].campus}</h3>`);
+
+          infoWindow.open({
+            anchor: marker,
+            map,
+            shouldFocus: false,
+          });
+
+          onClick(
+            colleges[i].objectId,
+            colleges[i].lat,
+            colleges[i].long,
+            colleges[i].campus,
+            colleges[i].system
+          );
+        };
+      })(marker, i)
+    );
     google.maps.event.addListener(
       markers[i],
       "click",
       (function (marker, i) {
         return function () {
+          if (lastWindow) {
+            lastWindow.close();
+          }
           var infoWindow = new google.maps.InfoWindow();
+          lastWindow = infoWindow;
 
           infoWindow.setContent(`<h3>${colleges[i].campus}</h3>`);
 
@@ -71,13 +74,6 @@ function initialize(collegeLinks) {
             shouldFocus: false,
           });
 
-        //   onClick(
-        //     colleges[i].objectId,
-        //     colleges[i].lat,
-        //     colleges[i].long,
-        //     colleges[i].campus,
-        //     colleges[i].system
-        //   );
         };
       })(marker, i)
     );
@@ -85,6 +81,7 @@ function initialize(collegeLinks) {
     // Automatically center the map fitting all markers on the screen
     map.fitBounds(bounds);
   }
+
 
   // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
   var boundsListener = google.maps.event.addListener(
@@ -108,7 +105,5 @@ function changeMarker(lat, long, campus, system) {
 function clickMarker(campus) {
   var marker = markers.find((mark) => mark.title === campus);
 
-  new google.maps.event.trigger( marker, 'click' );
-
-
+  new google.maps.event.trigger(marker, "click");
 }
