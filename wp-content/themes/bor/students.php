@@ -332,10 +332,34 @@
       </div>
     </section>
     <?php include('useful-college-links.php'); ?>
-    <section>
-      <?php include('faq_preview.php'); ?>
+    <section class="students-page__section-three">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 d-md-block d-none">
+            <div class="background__blue-brush-stroke background__brush-stroke--large">
+              <img class="m-1 " src="<?php echo get_template_directory_uri(); ?>/images/career-pathways@2x.png" alt="">
 
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="flex-vertical-center">
+              <h1>Courses By Campus</h1>
+              <p>Dual Enrollment courses connect to all sorts of careers and high school credits. You might be looking to take college algebra to get ahead in high school and college at the same time. Or, you might want a more career-specific option like cosmetology!</p>
+              <a href="./career-pathways" style="max-width: 200px; line-height: 60px;" class="cta unformatted color-white">Learn More <i class="fa fa-long-arrow-alt-right"></i></a>
+            </div>
+
+          </div>
+          <div class="col-md-6 d-sm-block d-md-none">
+            <div class="background__blue-brush-stroke">
+              <img class="m-1 " src="<?php echo get_template_directory_uri(); ?>/images/career-pathways@2x.png" alt="">
+
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+    <?php include('faq_preview.php'); ?>
+
   </div>
 </div>
 

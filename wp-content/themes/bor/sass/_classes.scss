@@ -137,7 +137,13 @@ section {
     margin-right: 2rem;
     max-width: calc(100% - 2.5rem);
   }
+  &.background__brush-stroke--large {
+    img {
+      max-width: calc(100% - 5rem);
+    }
+  }
 }
+
 
 .background__orange-brush-stroke {
   @include backgroundImage("../images/orange-brush-stroke.svg");
@@ -154,7 +160,16 @@ section {
     }
   }
 }
-
+@media screen and (max-width: 767px) {
+  .background__blue-brush-stroke, .background__orange-brush-stroke, .background__yellow-brush-stroke {
+ 
+    &.background__brush-stroke--large {
+      img {
+        max-width: calc(100% - 2.5rem);
+      }
+    }
+  }
+}
 .dummy {
   height: 200px;
   width: 100%;
@@ -167,6 +182,11 @@ section {
     margin-top: 1rem;
     margin-right: 2rem;
     max-width: calc(100% - 2.5rem);
+  }
+  &.background__brush-stroke--large {
+    img {
+      max-width: calc(100% - 5rem);
+    }
   }
 }
 

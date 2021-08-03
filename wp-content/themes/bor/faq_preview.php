@@ -104,7 +104,7 @@
             </div>
             <div class="col-md-6">
                 <div class="background__orange-brush-stroke background__brush-stroke--large">
-                    <img class="m-1 " src="<?php echo get_template_directory_uri(); ?>/images/contact.png" alt="">
+                    <img class="m-1 " src="<?php echo get_template_directory_uri(); ?>/images/contact@2x.png" alt="">
                 </div>
             </div>
         </div>
