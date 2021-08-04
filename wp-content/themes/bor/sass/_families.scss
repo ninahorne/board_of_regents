@@ -1,0 +1,22 @@
+.families-page__banner {
+  width: 100vw;
+  height: 300px;
+  @include backgroundImageWithGradient("../images/parents-banner@2x.png");
+
+  h1 {
+    color: white;
+  }
+}
+.families-page__section-one {
+  @include backgroundImage(
+    "../images/board of regents_web graphics_parents page.svg"
+  );
+  height: 800px;
+  color: white;
+}
+
+@media screen and (max-width: 767px) {
+}
+.families-page__section-one {
+  height: 500px;
+}

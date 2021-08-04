@@ -1377,6 +1377,145 @@ a:visited {
   cursor: pointer;
 }
 
+/* Students Page */
+.students-page__banner {
+  width: 100vw;
+  height: calc(80vh - 100px);
+  min-height: 500px;
+  background-image: linear-gradient(90deg, #0000009a 0%, #00000036 67%, #00000000 100%), url("../images/students-banner-2@2x.png");
+  background-size: cover;
+  background-position: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-end;
+}
+.students-page__banner h1 {
+  color: white;
+  margin-bottom: 120px;
+}
+
+.students-page__blue-section {
+  background-color: #143595;
+  background-image: url("blue");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: white;
+  padding-bottom: 400px;
+  overflow: hidden;
+}
+
+.students-page__blue-section__person-with-pencil {
+  position: absolute;
+  background-image: url("../images/person-with-pencil-illustration.svg");
+  background-size: cover;
+  background-position: center;
+  height: 350px;
+  width: 300px;
+  right: -40px;
+}
+
+.students-page__video {
+  margin-top: -300px;
+}
+
+@media screen and (max-width: 767px) {
+  .students-page__blue-section__person-with-pencil {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    right: auto;
+    margin: 0 auto 2rem;
+  }
+
+  .students-page__blue-section {
+    padding-bottom: 100px;
+  }
+
+  .students-page__video {
+    margin-top: -200px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  .students-page__video .ugb-play-button img {
+    width: 60px;
+    height: 60px;
+  }
+}
+.students-page__eligibility {
+  background-image: url("../images/large-yellow-brush-stroke.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.student-eligibility__white-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 13px 23px 19px #00000008;
+}
+.student-eligibility__white-card i {
+  color: #ee7600;
+  margin-right: 1rem;
+  font-size: 25px;
+}
+.student-eligibility__white-card h5 {
+  display: inline;
+}
+.student-eligibility__white-card h3 {
+  padding: 1rem 0.5rem;
+  margin: 0.5rem;
+}
+.student-eligibility__white-card .student-eligibility__white-card__item {
+  padding: 1rem 0.5rem;
+  border-bottom: 1px dashed #404040;
+  margin: 0.5rem;
+  height: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  .students-page__eligibility {
+    height: 800px;
+  }
+
+  .student-eligibility__white-card {
+    padding: 1rem;
+  }
+}
+@media screen and (max-width: 767px) {
+  .students-page__eligibility {
+    height: auto;
+    margin-bottom: 0;
+  }
+
+  .student-eligibility__white-card .student-eligibility__white-card__item {
+    height: auto;
+  }
+}
+.families-page__banner {
+  width: 100vw;
+  height: 300px;
+  background-image: linear-gradient(90deg, #0000009a 0%, #00000036 67%, #00000000 100%), url("../images/parents-banner@2x.png");
+  background-size: cover;
+  background-position: center;
+}
+.families-page__banner h1 {
+  color: white;
+}
+
+.families-page__section-one {
+  background-image: url("../images/board of regents_web graphics_parents page.svg");
+  background-size: cover;
+  background-position: center;
+  height: 800px;
+  color: white;
+}
+
+.families-page__section-one {
+  height: 500px;
+}
+
 .useful-college-links {
   background-color: #143595;
   color: white;
@@ -1697,122 +1836,6 @@ h1 {
   border-radius: 10px;
 }
 
-/* Students Page */
-.students-page__banner {
-  width: 100vw;
-  height: calc(80vh - 100px);
-  min-height: 500px;
-  background-image: linear-gradient(90deg, #0000009a 0%, #00000036 67%, #00000000 100%), url("../images/students-banner-2@2x.png");
-  background-size: cover;
-  background-position: center;
-  flex-direction: column;
-  display: flex;
-  justify-content: flex-end;
-}
-.students-page__banner h1 {
-  color: white;
-  margin-bottom: 120px;
-}
-
-.students-page__blue-section {
-  background-color: #143595;
-  background-image: url("blue");
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  color: white;
-  padding-bottom: 400px;
-  overflow: hidden;
-}
-
-.students-page__blue-section__person-with-pencil {
-  position: absolute;
-  background-image: url("../images/person-with-pencil-illustration.svg");
-  background-size: cover;
-  background-position: center;
-  height: 350px;
-  width: 300px;
-  right: -40px;
-}
-
-.students-page__video {
-  margin-top: -300px;
-}
-
-@media screen and (max-width: 767px) {
-  .students-page__blue-section__person-with-pencil {
-    position: relative;
-    width: 250px;
-    height: 250px;
-    right: auto;
-    margin: 0 auto 2rem;
-  }
-
-  .students-page__blue-section {
-    padding-bottom: 100px;
-  }
-
-  .students-page__video {
-    margin-top: -200px;
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-  .students-page__video .ugb-play-button img {
-    width: 60px;
-    height: 60px;
-  }
-}
-.students-page__eligibility {
-  background-image: url("../images/large-yellow-brush-stroke.svg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.student-eligibility__white-card {
-  background-color: white;
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: 13px 23px 19px #00000008;
-}
-.student-eligibility__white-card i {
-  color: #ee7600;
-  margin-right: 1rem;
-  font-size: 25px;
-}
-.student-eligibility__white-card h5 {
-  display: inline;
-}
-.student-eligibility__white-card h3 {
-  padding: 1rem 0.5rem;
-  margin: 0.5rem;
-}
-.student-eligibility__white-card .student-eligibility__white-card__item {
-  padding: 1rem 0.5rem;
-  border-bottom: 1px dashed #404040;
-  margin: 0.5rem;
-  height: 100%;
-}
-
-@media screen and (max-width: 1024px) {
-  .students-page__eligibility {
-    height: 800px;
-  }
-
-  .student-eligibility__white-card {
-    padding: 1rem;
-  }
-}
-@media screen and (max-width: 767px) {
-  .students-page__eligibility {
-    height: auto;
-    margin-bottom: 0;
-  }
-
-  .student-eligibility__white-card .student-eligibility__white-card__item {
-    height: auto;
-  }
-}
 .bold {
   font-weight: 600;
 }

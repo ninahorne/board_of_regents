@@ -1,0 +1,114 @@
+/* Students Page */
+.students-page__banner {
+    width: 100vw;
+    height: calc(80vh - 100px);
+    min-height: 500px;
+    @include backgroundImageWithGradient("../images/students-banner-2@2x.png");
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-end;
+    h1 {
+      color: white;
+      margin-bottom: 120px;
+    }
+  }
+  
+  .students-page__blue-section {
+    background-color: $blue;
+    @include backgroundImage("blue");
+    position: relative;
+    color: white;
+    padding-bottom: 400px;
+    overflow: hidden;
+  }
+  .students-page__blue-section__person-with-pencil {
+    position: absolute;
+    @include backgroundImage("../images/person-with-pencil-illustration.svg");
+    height: 350px;
+    width: 300px;
+    right: -40px;
+  }
+  
+  .students-page__video {
+    margin-top: -300px;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .students-page__blue-section__person-with-pencil {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      right: auto;
+      margin: 0 auto 2rem;
+    }
+    .students-page__blue-section {
+      padding-bottom: 100px;
+    }
+    .students-page__video {
+      margin-top: -200px;
+      margin-left: 1rem;
+      margin-right: 1rem;
+  
+      .ugb-play-button{
+        img {
+          width: 60px;
+          height: 60px;
+        }
+  
+      }
+    }
+  }
+  
+  .students-page__eligibility{
+    @include backgroundImage('../images/large-yellow-brush-stroke.svg');
+    background-repeat: no-repeat;
+  
+  }
+  
+  
+  .student-eligibility__white-card{
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 13px 23px 19px #00000008;
+    i{
+      color: $orange;
+      margin-right: 1rem;
+      font-size: 25px;
+    }
+    h5{
+      display: inline;
+    }
+    h3{
+      padding: 1rem 0.5rem;
+      margin: 0.5rem ;
+  
+    }
+    .student-eligibility__white-card__item{
+      padding: 1rem 0.5rem;
+      border-bottom: 1px dashed $dark-gray;
+      margin: 0.5rem ;
+       height: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .students-page__eligibility{
+      height: 800px;
+    }
+    .student-eligibility__white-card{
+      padding: 1rem;
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    .students-page__eligibility{
+      height: auto;
+      margin-bottom: 0;
+    }
+    .student-eligibility__white-card {
+      .student-eligibility__white-card__item{
+        height: auto;
+      }
+    }
+  }
