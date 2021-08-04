@@ -1436,6 +1436,18 @@ a:visited {
   cursor: pointer;
 }
 
+@media screen and (max-width: 1024px) {
+  .steps-to-enrollment {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+@media screen and (max-width: 767px) {
+  .steps-to-enrollment {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
 /* Students Page */
 .students-page__banner {
   width: 100vw;
@@ -1537,6 +1549,8 @@ a:visited {
   .students-page__eligibility {
     height: auto;
     margin-bottom: 0;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 
   .student-eligibility__white-card .student-eligibility__white-card__item {

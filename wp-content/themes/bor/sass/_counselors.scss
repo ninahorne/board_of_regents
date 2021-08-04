@@ -1,0 +1,59 @@
+.counselors-page__banner {
+  width: 100vw;
+  height: 300px;
+  @include backgroundImageWithGradient("../images/parents-banner@2x.png");
+
+  h1 {
+    color: white;
+  }
+}
+.counselors-page__benefits__wrapper {
+  //   margin-top: -300px;
+}
+.shifted-up{
+    position: relative;
+    top: -300px;
+}
+.counselors-page__benefits {
+  padding: 4rem;
+  background-color: white;
+  border-radius: 15px;
+
+  box-shadow: 0px 23px 29px #0000000a;
+
+  .cta {
+    max-width: 235px;
+    line-height: 65px;
+  }
+}
+
+.counselors-page__benefit-item {
+  h2 {
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width: 767px) {
+    .shifted-up{
+        position: relative;
+        top: -100px;
+    }
+  .counselors-page__benefits {
+    padding: 2rem;
+
+    .cta {
+      max-width: 201px;
+      line-height: 62px;
+    }
+  }
+}
+
+#counselors {
+  .students-page__section-three {
+    .background__blue-brush-stroke {
+      width: 500px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+  }
+}

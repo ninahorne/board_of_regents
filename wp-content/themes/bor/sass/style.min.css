@@ -1530,6 +1530,57 @@ a:visited {
     height: 500px;
   }
 }
+.counselors-page__banner {
+  width: 100vw;
+  height: 300px;
+  background-image: linear-gradient(90deg, #0000009a 0%, #00000036 67%, #00000000 100%), url("../images/parents-banner@2x.png");
+  background-size: cover;
+  background-position: center;
+}
+.counselors-page__banner h1 {
+  color: white;
+}
+
+.shifted-up {
+  position: relative;
+  top: -300px;
+}
+
+.counselors-page__benefits {
+  padding: 4rem;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0px 23px 29px #0000000a;
+}
+.counselors-page__benefits .cta {
+  max-width: 235px;
+  line-height: 65px;
+}
+
+.counselors-page__benefit-item h2 {
+  font-weight: 400;
+}
+
+@media screen and (max-width: 767px) {
+  .shifted-up {
+    position: relative;
+    top: -100px;
+  }
+
+  .counselors-page__benefits {
+    padding: 2rem;
+  }
+  .counselors-page__benefits .cta {
+    max-width: 201px;
+    line-height: 62px;
+  }
+}
+#counselors .students-page__section-three .background__blue-brush-stroke {
+  width: 500px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
 .useful-college-links {
   background-color: #143595;
   color: white;

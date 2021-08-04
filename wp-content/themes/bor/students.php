@@ -64,7 +64,7 @@
             <div class="flex-vertical-center">
               <h1>Courses By Campus</h1>
               <p>Dual Enrollment courses connect to all sorts of careers and high school credits. You might be looking to take college algebra to get ahead in high school and college at the same time. Or, you might want a more career-specific option like cosmetology!</p>
-              <a href="./career-pathways" style="max-width: 200px; line-height: 60px;" class="cta unformatted color-white">Learn More <i class="fa fa-long-arrow-alt-right"></i></a>
+              <a href="./career-pathways" style="max-width: 200px; line-height: 65px;" class="cta unformatted color-white">Learn More <i class="fa fa-long-arrow-alt-right"></i></a>
             </div>
 
           </div>
