@@ -18,8 +18,8 @@
         </div>
       </div>
     </div>
-    <section class="students-page__blue-section">
-      <div class="students-page__blue-section__person-with-pencil">
+    <section class="blue-section blue-section--students">
+      <div class="blue-section__image">
       </div>
       <div class="flex-center">
         <div class="container">

@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <section class="families-page__section-one">
+        <section class="blue-section blue-section--families">
             <div class="flex-vertical-center">
                 <div class="container">
                     <div class="row">
@@ -28,6 +28,10 @@
                     </div>
                 </div>
             </div>
+        </section>
+        <section class="families-page__video">
+            <?php include('video.php'); ?>
+
         </section>
     </div>
 </div>

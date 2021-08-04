@@ -101,13 +101,13 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import "utilities/alignments";
 
 $blue: #143595;
-$dark-blue: #0B1F57;
+$dark-blue: #0b1f57;
 $dark-gray: #404040;
 $orange: #ee7600;
 $light-orange: #ffe9d37e;
-$medium-orange: #EE760080;
+$medium-orange: #ee760080;
 $light-gray: #ffffffb7;
-$medium-gray: #A3A3A3;
+$medium-gray: #a3a3a3;
 $medium-dark-gray: #707070;
 @import "_classes.scss";
 @import "_vendor.scss";
@@ -225,7 +225,6 @@ h1 {
   border-radius: 10px;
 }
 
-
 .bold {
   font-weight: 600;
 }
@@ -236,4 +235,47 @@ html {
 
 .container {
   max-width: 1200px;
+}
+
+/** blue section **/
+.blue-section {
+  background-color: $blue;
+  position: relative;
+  color: white;
+  padding-bottom: 400px;
+  overflow: hidden;
+  &.blue-section--students {
+    @include backgroundImage("blue");
+    .blue-section__image {
+      @include backgroundImage("../images/person-with-pencil-illustration.svg");
+    }
+  }
+}
+
+.blue-section__image {
+  position: absolute;
+  height: 350px;
+  width: 300px;
+  right: -40px;
+}
+
+
+@media screen and (max-width: 767px) {
+  .blue-section {
+    padding-bottom: 100px;
+  }
+  .students-page__video, .families-page__video {
+    margin-top: -200px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  
+    .ugb-play-button{
+      img {
+        width: 60px;
+        height: 60px;
+      }
+  
+    }
+  }
+  
 }
