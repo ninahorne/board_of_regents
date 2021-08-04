@@ -84,6 +84,12 @@ ul {
 section {
   padding: 4rem 0;
 }
+
+@media screen and (max-width: 767px) {
+  section {
+    padding: 2rem 0;
+  }
+}
 .inline-list {
   li {
     display: inline;
