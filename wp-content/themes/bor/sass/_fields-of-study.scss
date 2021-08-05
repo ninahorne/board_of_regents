@@ -1,0 +1,83 @@
+.courses-page__banner {
+    width: 100vw;
+    height: 300px;
+    @include backgroundImageWithGradient("../images/career-banner@2x.png");
+  
+    h1 {
+      color: white;
+    }
+  }
+
+#coursesByCampus {
+    .background__blue{
+        padding: 2rem;
+        img {
+            width: calc(100% - 2rem);
+            padding: 1rem;
+        }
+    }
+    .modal-content{
+        padding: 1rem;
+        i{
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+}
+.courses-page__item{
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 2rem 0;
+    height: calc(100% - 4rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+
+    .courses-page__item__image {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+        margin: 1rem auto;
+        max-width: 100%;
+        display: block;
+        border-radius: 100%;
+        background-color: $dark-gray;
+    }
+
+    h5 {
+        font-weight: 800;
+    }
+
+    .courses-page__more{
+        text-align: center;
+        color: $orange;
+        font-size: 16px;
+        margin: 1rem 0px;
+        i{
+            font-size: 14px;
+        }
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+     
+}
+
+.courses-page__item__details{
+    font-size: 16px;
+    padding: 1rem;
+    * {
+        font-size: 16px;
+    }
+    ul {
+        list-style: disc;
+        margin: 1rem 1rem 0 1rem;
+    }
+
+   
+} 

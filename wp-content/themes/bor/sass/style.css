@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*!
 Theme Name: Louisiana Board of Regents - Dual Enrollment
 Theme URI: http://underscores.me/
@@ -1041,7 +1042,6 @@ section {
 
 .background__blue {
   background-color: #143595;
-  color: white;
 }
 
 .background__orange-gradient {
@@ -1838,6 +1838,218 @@ a:visited {
     opacity: 1;
   }
 }
+.faq__categories {
+  background-color: white;
+  padding: 2rem 1rem;
+  border-radius: 15px;
+}
+.faq__categories label {
+  background-color: #ffee00;
+  border-radius: 36px;
+  padding: 0.5rem 1rem;
+  font-size: 14px;
+  font-weight: 600;
+}
+.faq__categories h6 {
+  font-weight: 600;
+  cursor: pointer;
+}
+.faq__categories h6.selected {
+  color: #ee7600;
+}
+.faq__categories .ais-SearchBox-form::before {
+  background: none;
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 900;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  content: "";
+  color: #a3a3a3;
+  margin-top: -6px;
+  margin-left: 5px;
+}
+.faq__categories .ais-SearchBox-form .ais-SearchBox-input {
+  border-radius: 36px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding-left: 50px;
+  font-size: 20px;
+  color: #404040;
+}
+.faq__categories .ais-SearchBox-form .ais-SearchBox-input::-webkit-input-placeholder {
+  color: #a3a3a3;
+}
+.faq__categories .ais-SearchBox-form .ais-SearchBox-input::-moz-placeholder {
+  color: #a3a3a3;
+}
+.faq__categories .ais-SearchBox-form .ais-SearchBox-input:-ms-input-placeholder {
+  color: #a3a3a3;
+}
+.faq__categories .ais-SearchBox-form .ais-SearchBox-input::-ms-input-placeholder {
+  color: #a3a3a3;
+}
+.faq__categories .ais-SearchBox-form .ais-SearchBox-input::placeholder {
+  color: #a3a3a3;
+}
+.faq__categories .ais-SearchBox-form .ais-SearchBox-input:focus {
+  border-color: #143595;
+}
+
+#faqHits {
+  min-height: 500px;
+}
+
+.faq__result {
+  background-color: white;
+  border-radius: 20px;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+}
+
+.faq__result__question {
+  margin: 0;
+  padding: 0;
+}
+.faq__result__question:hover {
+  cursor: pointer;
+}
+
+.faq__result__answer {
+  font-size: 16px;
+  max-height: 0px;
+  overflow: hidden;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  margin: 0;
+}
+.faq__result__answer * {
+  font-size: 16px;
+}
+.faq__result__answer ul {
+  list-style: disc;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.faq__result__answer.faq__result__answer--open {
+  margin: 1rem auto;
+  max-height: 1000px;
+  -webkit-transition: max-height 1.4s ease-out;
+  transition: max-height 1.4s ease-out;
+}
+
+@media screen and (max-width: 767px) {
+  .faq__result .col-11,
+.faq__result .col-1 {
+    padding: 0;
+  }
+}
+#faqs .ais-Pagination-list {
+  float: right;
+}
+#faqs .ais-Pagination-link {
+  background-color: white;
+  background-image: none;
+  color: #404040;
+}
+
+.courses-page__banner {
+  width: 100vw;
+  height: 300px;
+  background-image: -webkit-gradient(linear, left top, right top, from(#0000009a), color-stop(67%, #00000036), to(#00000000)), url("../images/career-banner@2x.png");
+  background-image: linear-gradient(90deg, #0000009a 0%, #00000036 67%, #00000000 100%), url("../images/career-banner@2x.png");
+  background-size: cover;
+  background-position: center;
+}
+.courses-page__banner h1 {
+  color: white;
+}
+
+#coursesByCampus .background__blue {
+  padding: 2rem;
+}
+#coursesByCampus .background__blue img {
+  width: calc(100% - 2rem);
+  padding: 1rem;
+}
+
+.courses-page__item {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 2rem 0;
+  height: calc(100% - 4rem);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+}
+.courses-page__item .courses-page__item__image {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  margin: 1rem auto;
+  max-width: 100%;
+  display: block;
+  border-radius: 100%;
+  background-color: #404040;
+}
+.courses-page__item h5 {
+  font-weight: 800;
+}
+.courses-page__item .courses-page__more {
+  text-align: center;
+  color: #ee7600;
+  font-size: 16px;
+  margin: 1rem 0px;
+}
+.courses-page__item .courses-page__more i {
+  font-size: 14px;
+}
+.courses-page__item .courses-page__more:hover {
+  cursor: pointer;
+}
+
+.courses-page__item__details {
+  font-size: 16px;
+  max-height: 0;
+  -webkit-transition: max-height 0.5s;
+  transition: max-height 0.5s;
+  overflow: hidden;
+  position: absolute;
+  top: 2rem;
+  background-color: white;
+  border-radius: 10px;
+}
+.courses-page__item__details * {
+  font-size: 16px;
+}
+.courses-page__item__details ul {
+  list-style: disc;
+  margin: 1rem 1rem 0 1rem;
+}
+.courses-page__item__details.course-page__item__details--open {
+  max-height: 10000px;
+  -webkit-transition: max-height 1.5s ease-out;
+  transition: max-height 1.5s ease-out;
+  padding: 1rem;
+  z-index: 4;
+}
+
 .faq-preview__wrapper {
   padding: 3rem;
   border-radius: 15px;

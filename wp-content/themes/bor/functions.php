@@ -148,7 +148,7 @@ function bor_scripts()
 	wp_enqueue_style('bor-style', get_stylesheet_uri(), array(), _S_VERSION);
 	wp_style_add_data('bor-style', 'rtl', 'replace');
 	wp_enqueue_style('bootstrap-style', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css');
-	wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js', array('jquery'));
+	wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js', array('jquery'));
 	wp_enqueue_style('swiper-style', get_template_directory_uri() . '/swiper/css/swiper.min.css');
 	wp_enqueue_script('swiper-js', get_template_directory_uri() . '/swiper/js/swiper-bundle.js');
 	wp_enqueue_script('bor-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
