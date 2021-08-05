@@ -23,28 +23,26 @@
         {
             $newObj = new stdClass();
 
-            foreach($array as $item) {
+            foreach ($array as $item) {
                 $id = $item->post_id;
-                if($id === $id) {
+                if ($id === $id) {
                     $key = $item->meta_key;
                     $value = $item->meta_value;
-                  
-                    if($key == 'what_is_the_faq') {
+
+                    if ($key == 'what_is_the_faq') {
                         $newObj->question = $value;
                     }
 
-                    if($key == 'what_is_the_answer') {
+                    if ($key == 'what_is_the_answer') {
                         $formattedString = $value;
-                        while(strpos($formattedString, '&nbsp;')) {
-                            $formattedString = str_replace('&nbsp;', '<br /><br />', $formattedString);
-                        }
+                        $formattedString = str_replace('&nbsp;', '<br /><br />', $formattedString);
                         $newObj->answer = $formattedString;
                     }
                 }
             }
             return $newObj;
         }
-        $count = 0; 
+        $count = 0;
         foreach ($result as $faq) {
             $faq_id = $faq->ID;
 
@@ -54,20 +52,20 @@
                 WHERE post_id = $faq_id
              
             ");
-         
+
             foreach ($faq_result as $faq_item) {
                 $key = $faq_item->meta_key;
                 $value = $faq_item->meta_value;
-                $id= $faq_item->post_id;
-                
-      
+                $id = $faq_item->post_id;
+
+
                 if (count($first_three_student_faqs) < 4) {
                     if ($key == 'who_is_the_faq_for' && strpos(strtolower($value), $pagename)) {
                         $obj = get_object_from_meta_rows($faq_result, $id);
                         $count++;
-                        $obj->count=$count;
-                        
-                        array_push($first_three_student_faqs,$obj);
+                        $obj->count = $count;
+
+                        array_push($first_three_student_faqs, $obj);
                     }
                 }
             }
@@ -75,16 +73,16 @@
 
         // echo count($first_three_student_faqs);
         foreach ($first_three_student_faqs as $faq) {
-            echo '<div class="faq-preview__faq">
-                    <h3 onclick="toggleFaq(\'FAQ-'.strval($faq->count).'\')" class="faq-preview__question">' . $faq->question . '</h3> 
-                    <div id="FAQ-'.strval($faq->count).'" class="faq-preview__answer">
-                        <p  innerHTML="' . $faq->answer . '"</p>
+            echo "<div class='faq-preview__faq'>
+                    <h3 onclick='toggleFaq(\"FAQ-" . strval($faq->count) . "\")' class='faq-preview__question'>" . $faq->question . "</h3> 
+                    <div id='FAQ-" . strval($faq->count) . "' class='faq-preview__answer'>
+                        <p>" . $faq->answer . "</p>
                     </div>
                     
-                </div>';
+                </div>";
         }
 
-        
+
         ?>
         <a href="./faqs" class="btn faq-preview__view-all"><i class="fas fa-share"></i>&nbsp;&nbsp;View all FAQs</a>
         <div class="row">
