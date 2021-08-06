@@ -121,6 +121,7 @@ $medium-dark-gray: #707070;
 @import "_faq.scss";
 @import "fields-of-study.scss";
 @import "faq-preview.scss";
+@import "_about.scss";
 
 h1 {
   font-weight: 900;
@@ -260,6 +261,16 @@ html {
   height: 350px;
   width: 300px;
   right: -40px;
+}
+@media screen and (max-width: 767px) {
+
+  .blue-section__image {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    right: auto;
+    margin: 0 auto 2rem;
+  }
 }
 @media screen and (max-width: 1024px) {
   .blue-section {

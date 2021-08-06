@@ -91,25 +91,26 @@
 
 
 
-    const useful_links_search = instantsearch({
-        indexName: "useful-college-links",
-        searchClient,
-        searchFunction(helper) {
-            // Ensure we only trigger a search when there's a query
-            const container = document.querySelector("#usefulCollegeLinksResults");
-            container.style.display = helper.state.query === "" ? "none" : "";
+    function initializeUsefulLinkSearch() {
+        const useful_links_search = instantsearch({
+            indexName: "useful-college-links",
+            searchClient,
+            searchFunction(helper) {
+                // Ensure we only trigger a search when there's a query
+                const container = document.querySelector("#usefulCollegeLinksResults");
+                container.style.display = helper.state.query === "" ? "none" : "";
 
-            helper.search();
-        },
-    });
-    // Create the render function
-    const renderHits = (renderOptions, isFirstRender) => {
-        const {
-            hits,
-            widgetParams
-        } = renderOptions;
+                helper.search();
+            },
+        });
+        // Create the render function
+        const renderHits = (renderOptions, isFirstRender) => {
+            const {
+                hits,
+                widgetParams
+            } = renderOptions;
 
-        widgetParams.container.innerHTML = `
+            widgetParams.container.innerHTML = `
     <form class="ais-Hits" method="POST">
       ${hits
         .map(
@@ -127,28 +128,36 @@
         .join("")}
     </form>
   `;
-    };
+        };
 
-    // Create the custom widget
-    const customHits = instantsearch.connectors.connectHits(renderHits);
+        // Create the custom widget
+        const customHits = instantsearch.connectors.connectHits(renderHits);
 
-    useful_links_search.addWidgets([
-        instantsearch.widgets.searchBox({
-            container: "#usefulCollegeLinksSearchBox",
-            placeholder: "Search for a college",
-        }),
+        useful_links_search.addWidgets([
+            instantsearch.widgets.searchBox({
+                container: "#usefulCollegeLinksSearchBox",
+                placeholder: "Search for a college",
+            }),
 
-        instantsearch.widgets.refinementList({
-            container: "#usefulCollegeLinksTagsList",
-            attribute: "tags",
-            limit: 5,
-            showMore: true,
-        }),
+            instantsearch.widgets.refinementList({
+                container: "#usefulCollegeLinksTagsList",
+                attribute: "tags",
+                limit: 5,
+                showMore: true,
+            }),
 
-        customHits({
-            container: document.querySelector("#usefulCollegeLinksHits"),
-        }),
-    ]);
+            customHits({
+                container: document.querySelector("#usefulCollegeLinksHits"),
+            }),
+        ]);
 
-    useful_links_search.start();
+        useful_links_search.start();
+    }
+
+    setTimeout(
+        ()=> {
+            initializeUsefulLinkSearch();
+
+        }, 1000
+    )
 </script>

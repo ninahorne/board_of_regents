@@ -1258,6 +1258,30 @@ header ul li a:visited {
   height: 84px;
 }
 
+@media screen and (max-width: 1000px) {
+  header ul li a {
+    font-size: 14px;
+  }
+
+  .navbar-brand img {
+    width: 150px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .navbar > .container {
+    background-color: white;
+    padding: 1rem;
+  }
+
+  .navbar-brand img {
+    width: 400px;
+  }
+}
+@media screen and (max-width: 565px) {
+  .navbar-brand img {
+    width: 230px;
+  }
+}
 #menu-first li a {
   font-family: "Rubik";
   font-weight: 500;
@@ -1278,6 +1302,48 @@ header ul li a:visited {
     display: none;
   }
 }
+#searchToggle:hover {
+  cursor: pointer;
+}
+
+#searchModalDialog .ais-SearchBox-form,
+#searchModalDialog .ais-SearchBox,
+#searchModalDialog #ais-SearchBox,
+#searchModalDialog #algoliaSearch {
+  width: calc(100% - 10px);
+}
+#searchModalDialog i {
+  font-size: 20px;
+}
+#searchModalDialog i:hover {
+  cursor: pointer;
+}
+#searchModalDialog .ais-SearchBox-input {
+  width: 100%;
+  border-radius: 35px;
+  padding-left: 50px;
+  font-size: 16px;
+  color: #404040;
+}
+#searchModalDialog .ais-SearchBox-input::-webkit-input-placeholder {
+  color: #ffffffb7;
+}
+#searchModalDialog .ais-SearchBox-input::-moz-placeholder {
+  color: #ffffffb7;
+}
+#searchModalDialog .ais-SearchBox-input:-ms-input-placeholder {
+  color: #ffffffb7;
+}
+#searchModalDialog .ais-SearchBox-input::-ms-input-placeholder {
+  color: #ffffffb7;
+}
+#searchModalDialog .ais-SearchBox-input::placeholder {
+  color: #ffffffb7;
+}
+#searchModalDialog .ais-SearchBox-input:focus {
+  border-color: #143595;
+}
+
 footer {
   background-color: #143595;
   padding: 4rem 0;
@@ -1538,6 +1604,7 @@ a:visited {
 }
 .student-eligibility__white-card h5 {
   display: inline;
+  font-size: 1rem;
 }
 .student-eligibility__white-card h3 {
   padding: 1rem 0.5rem;
@@ -1628,6 +1695,9 @@ a:visited {
   line-height: 65px;
 }
 
+.counselors-page__benefit-item img {
+  width: 100%;
+}
 .counselors-page__benefit-item h2 {
   font-weight: 400;
 }
@@ -1652,6 +1722,12 @@ a:visited {
   margin: 0 auto;
 }
 
+@media screen and (max-width: 767px) {
+  #counselors .faq-preview__view-all {
+    display: block;
+    margin: 0 auto;
+  }
+}
 .useful-college-links {
   background-color: #143595;
   color: white;
@@ -1976,6 +2052,12 @@ a:visited {
   width: calc(100% - 2rem);
   padding: 1rem;
 }
+#coursesByCampus .modal-content {
+  padding: 1rem;
+}
+#coursesByCampus .modal-content i:hover {
+  cursor: pointer;
+}
 
 .courses-page__item {
   background-color: white;
@@ -2026,14 +2108,7 @@ a:visited {
 
 .courses-page__item__details {
   font-size: 16px;
-  max-height: 0;
-  -webkit-transition: max-height 0.5s;
-  transition: max-height 0.5s;
-  overflow: hidden;
-  position: absolute;
-  top: 2rem;
-  background-color: white;
-  border-radius: 10px;
+  padding: 1rem;
 }
 .courses-page__item__details * {
   font-size: 16px;
@@ -2042,12 +2117,10 @@ a:visited {
   list-style: disc;
   margin: 1rem 1rem 0 1rem;
 }
-.courses-page__item__details.course-page__item__details--open {
-  max-height: 10000px;
-  -webkit-transition: max-height 1.5s ease-out;
-  transition: max-height 1.5s ease-out;
-  padding: 1rem;
-  z-index: 4;
+
+.fields-of-study__fixed-width {
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .faq-preview__wrapper {
@@ -2118,6 +2191,11 @@ a:visited {
   border-bottom: 2px solid #ee760080;
   font-weight: 600;
   margin-top: 2rem;
+}
+
+.about-page__form-control {
+  width: 100%;
+  border-radius: 8px;
 }
 
 h1 {
@@ -2270,6 +2348,15 @@ html {
   right: -40px;
 }
 
+@media screen and (max-width: 767px) {
+  .blue-section__image {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    right: auto;
+    margin: 0 auto 2rem;
+  }
+}
 @media screen and (max-width: 1024px) {
   .blue-section h1,
 .blue-section p {

@@ -7,9 +7,7 @@
     color: white;
   }
 }
-.counselors-page__benefits__wrapper {
-  //   margin-top: -300px;
-}
+
 .shifted-up{
     position: relative;
     top: -300px;
@@ -28,6 +26,9 @@
 }
 
 .counselors-page__benefit-item {
+  img {
+    width: 100%;
+  }
   h2 {
     font-weight: 400;
   }
@@ -56,4 +57,14 @@
       margin: 0 auto;
     }
   }
+  
+}
+
+@media screen and (max-width: 767px) {
+  #counselors {
+    .faq-preview__view-all {
+      display: block;
+      margin: 0 auto;
+    }
+  } 
 }

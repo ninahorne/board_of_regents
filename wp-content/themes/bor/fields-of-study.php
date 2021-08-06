@@ -17,15 +17,17 @@
             </div>
         </div>
         <div class="background__blue">
-            <div class="row">
-                <div class="col-md-4 offset-md-4">
-                    <h1 class="text-center color-white">What dual enrollment courses do colleges and universities near you offer?</h1>
-                    <p class="text-center color-white">
-                        Louisiana’s colleges and universities offer all sorts of courses to help high school students double up on credits.
-                    </p>
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/courses-illustration.svg" alt="">
+            <div class="flex-vertical-center">
+                <div class="fields-of-study__fixed-width">
+                <h1 class="text-center color-white">What dual enrollment courses do colleges and universities near you offer?</h1>
+                <p class="text-center color-white">
+                    Louisiana’s colleges and universities offer all sorts of courses to help high school students double up on credits.
+                </p>
+                <img src="<?php echo get_template_directory_uri(); ?>/images/courses-illustration.svg" alt="">
                 </div>
+          
             </div>
+
             <div class="container">
                 <div class="row">
                     <?php

@@ -1,0 +1,47 @@
+.about-page__form-control {
+  input,
+  select,
+  textarea {
+    width: 100% !important;
+    border-radius: 8px !important;
+    border: 1px solid $dark-gray !important;
+    padding: 2rem !important;
+    max-width: 100% !important;
+    color: $dark-gray;
+  }
+  select {
+      height: 66px !important;
+      line-height: 66px !important;
+      padding: 0px !important;
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+
+      
+  }
+
+}
+.wpforms-container.wpforms-container-full {
+    background-color: white !important;
+    padding: 1rem !important;
+    margin: 1rem 0 !important;
+    border-radius: 8px !important;
+}
+.wpforms-title {
+    font-family: 'Arvo';
+    font-size: 18px !important;
+    font-weight: 600;
+}
+div.wpforms-container-full .wpforms-form input[type="submit"],
+div.wpforms-container-full .wpforms-form button[type="submit"],
+div.wpforms-container-full .wpforms-form .wpforms-page-button {
+  background-color: $orange !important;
+  color: white !important;
+  font-size: 20px !important;
+  border-radius: 20px !important;
+  height: 66px !important;
+  padding: 0 2rem !important;
+  outline: none !important;
+  border: none !important;
+  display: block !important;
+  margin: 0 auto !important;
+}

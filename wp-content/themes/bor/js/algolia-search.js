@@ -9,7 +9,6 @@ initializeHeaderAlgolia();
 			
 
 function initializeHeaderAlgolia() {
-  console.log('init');
 
   const search = instantsearch({
     indexName: "dev_board-of-regents",
@@ -56,5 +55,4 @@ function initializeHeaderAlgolia() {
   ]);
 
   search.start();
-  console.log('start');
 }
