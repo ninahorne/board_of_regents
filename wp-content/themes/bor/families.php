@@ -44,7 +44,10 @@
 
             <?php include('eligibility.php'); ?>
         </section>
+        <section>
         <?php include('faq_preview.php'); ?>
+
+        </section>
 
     </div>
 </div>
