@@ -1782,10 +1782,25 @@ a:visited {
   font-size: clamp(22px, 25px, 25px);
 }
 .useful-college-links__selected-result h3 {
-  margin-top: 1rem;
+  margin: 0.5rem auto;
 }
 .useful-college-links__selected-result p {
   font-size: clamp(14px, 18px, 18px);
+}
+.useful-college-links__selected-result .fa-external-link {
+  font-size: 14px;
+  position: relative;
+  bottom: 2px;
+}
+.useful-college-links__selected-result a, .useful-college-links__selected-result p {
+  font-size: 16px;
+  word-break: break-all;
+}
+.useful-college-links__selected-result a:hover {
+  text-decoration: underline;
+}
+.useful-college-links__selected-result a:hover * {
+  text-decoration: underline;
 }
 
 @keyframes slideup {
