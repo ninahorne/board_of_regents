@@ -23,6 +23,7 @@ function initialize(collegeLinks) {
       position: position,
       map: map,
       title: colleges[i].campus,
+      icon: '../../wp-content/themes/bor/images/map-icon.svg'
     });
     markers.push(marker);
 
