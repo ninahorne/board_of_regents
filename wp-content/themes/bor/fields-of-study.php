@@ -119,15 +119,17 @@
 <?php include('footer.php'); ?>
 
 <script>
-    const queryParams = window.location.search;
-    console.log(window.location.search);
-
-    if (queryParams) {
-        const id = queryParams.replace('?field=', '');
-        openModal(id);
-    }
-
     listenForAllModalsToHide();
+    checkForQueryParamsAndOpenModal();
+
+    function checkForQueryParamsAndOpenModal() {
+        const queryParams = window.location.search;
+
+        if (queryParams) {
+            const id = queryParams.replace('?field=', '');
+            openModal(id);
+        }
+    }
 
     function listenForAllModalsToHide() {
         const modals = document.querySelectorAll('.modal');
@@ -147,11 +149,11 @@
 
         var myModal = new bootstrap.Modal(document.getElementById(id), {
             keyboard: false
-        })
+        });
         myModal.show();
     }
 
-    function clearParams(params)  {
+    function clearParams(params) {
         window.history.replaceState(null, null, '?');
 
     }
@@ -164,7 +166,7 @@
 
     }
 
-   
+
 
     function changeParams(params) {
         window.history.replaceState(null, null, `?field=${params}`);

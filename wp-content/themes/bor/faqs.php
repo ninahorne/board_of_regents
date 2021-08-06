@@ -10,7 +10,6 @@
     <div id="faqs">
         <div class="background__blue">
             <div class="container">
-                <i class="fas fa-search"></i>
                 <div class="p-2">
                     <h1 class="color-white">FAQs</h1>
                     <div class="row">
@@ -47,25 +46,63 @@
 
 <?php include('footer.php'); ?>
 <script>
-    const faqs_search = instantsearch({
-        indexName: "faqs",
-        searchClient,
-        searchFunction(helper) {
-            // Ensure we only trigger a search when there's a query
-            // const container = document.querySelector("#faqResults");
+    var faqs_search;
+    var openFirstResultTimer;
 
-            helper.search();
-        },
-    });
+    initializeAlgolia();
+    checkForQueryParamsAndOpenModal();
 
-    // Create the render function
-    const renderHits = (renderOptions, isFirstRender) => {
-        const {
-            hits,
-            widgetParams
-        } = renderOptions;
+    function checkForQueryParamsAndOpenModal() {
+        const queryParams = window.location.search;
 
-        widgetParams.container.innerHTML = `
+        if (queryParams) {
+            const faq = queryParams.replace('?question=', '');
+            const input = document.querySelector('#faqSearchBox .ais-SearchBox-input');
+            const decodedFAQ = decodeURI(faq);
+            input.value = decodedFAQ;
+            faqs_search.helper.state.query = decodedFAQ;
+            faqs_search.helper.search();
+            clearParams();
+
+
+        }
+    }
+ 
+    function openFirstResult() {
+        openFirstResultTimer = setTimeout(() => {
+            const results = document.querySelector('.faq__result__question');
+            console.log(results.length);
+            results.click();
+            console.log("here")
+        }, 500);
+        
+    }
+    
+
+    function initializeAlgolia() {
+
+
+        faqs_search = instantsearch({
+            indexName: "faqs",
+            searchClient,
+            searchFunction(helper) {
+                // Ensure we only trigger a search when there's a query
+                // const container = document.querySelector("#faqResults");
+                clearTimeout(openFirstResultTimer);
+                helper.search();
+                openFirstResult();
+
+            },
+        });
+
+        // Create the render function
+        const renderHits = (renderOptions, isFirstRender) => {
+            const {
+                hits,
+                widgetParams
+            } = renderOptions;
+
+            widgetParams.container.innerHTML = `
     
       ${hits
         .map(
@@ -94,21 +131,21 @@
         )
         .join("")}
   `;
-    };
+        };
 
-    // Create the custom widget
-    const faqCustomHits = instantsearch.connectors.connectHits(renderHits);
+        // Create the custom widget
+        const faqCustomHits = instantsearch.connectors.connectHits(renderHits);
 
 
-    // Create the render function
-    const renderMenu = (renderOptions, isFirstRender) => {
-        const {
-            items,
-            refine
-        } = renderOptions;
+        // Create the render function
+        const renderMenu = (renderOptions, isFirstRender) => {
+            const {
+                items,
+                refine
+            } = renderOptions;
 
-        const container = document.querySelector('#faqTags');
-        container.innerHTML = `
+            const container = document.querySelector('#faqTags');
+            container.innerHTML = `
                 <div class="row">
                     ${items.map(item => `
                                 <div class="col-md-6 mt-2">
@@ -123,42 +160,44 @@
 
                  </div>`;
 
-        [...container.querySelectorAll('a')].forEach(element => {
-            element.addEventListener('click', event => {
-                event.preventDefault();
-                refine(event.currentTarget.dataset.value);
+            [...container.querySelectorAll('a')].forEach(element => {
+                element.addEventListener('click', event => {
+                    event.preventDefault();
+                    refine(event.currentTarget.dataset.value);
+                });
             });
-        });
-    };
+        };
 
-    const faqCustomMenu = instantsearch.connectors.connectMenu(renderMenu);
-
-
-    faqs_search.addWidgets([
-
-        instantsearch.widgets.searchBox({
-            container: "#faqSearchBox",
-            placeholder: "Search",
-            showSubmit: true
-        }),
-        instantsearch.widgets.pagination({
-            container: '#pagination',
-        }),
-
-        faqCustomMenu({
-            container: document.querySelector('#faqTags'),
-            attribute: 'categories',
-            sortBy: ["name:asc"]
-
-        }),
-
-        faqCustomHits({
-            container: document.querySelector("#faqHits"),
-        })
-    ]);
+        const faqCustomMenu = instantsearch.connectors.connectMenu(renderMenu);
 
 
-    faqs_search.start();
+        faqs_search.addWidgets([
+
+            instantsearch.widgets.searchBox({
+                container: "#faqSearchBox",
+                placeholder: "Search",
+                showSubmit: true
+            }),
+            instantsearch.widgets.pagination({
+                container: '#pagination',
+            }),
+
+            faqCustomMenu({
+                container: document.querySelector('#faqTags'),
+                attribute: 'categories',
+                sortBy: ["name:asc"]
+
+            }),
+
+            faqCustomHits({
+                container: document.querySelector("#faqHits"),
+            })
+        ]);
+
+
+        faqs_search.start();
+
+    }
 
 
     function htmlEntities(str) {
@@ -173,6 +212,10 @@
         faq.classList.toggle('faq__result__answer--open');
         icon.classList.toggle('fa-chevron-up');
         icon.classList.toggle('fa-chevron-down');
+
+    }
+    function clearParams(params) {
+        window.history.replaceState(null, null, '?');
 
     }
 </script>

@@ -67,7 +67,13 @@
 					<a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home">
 						<img src="<?php echo get_template_directory_uri(); ?>/images/Dual Enrollment Logo.svg" alt="Logo" />
 					</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'your-theme-slug'); ?>">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div id="searchToggle" class="d-md-none d-block" data-bs-toggle="modal" data-bs-target="#searchModalDialog">
+						<i  class="fa fa-search"></i>
 
+					</div>
 					<?php
 					wp_nav_menu(array(
 						'theme_location'    => 'extra-menu',
@@ -91,17 +97,37 @@
 
 					));
 					?>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'your-theme-slug'); ?>">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div id="searchbox"></div>
-					<!-- <form class="search" action="<?php echo home_url('/'); ?>">
-						<input type="search" name="s" placeholder="Search&hellip;">
-						<input type="submit" value="Search">
-						<input type="hidden" name="post_type" value="page">
-					</form> -->
+					<div id="searchToggle" class="d-none d-md-block" data-bs-toggle="modal" data-bs-target="#searchModalDialog">
+						<i  class="fa fa-search"></i>
+
+					</div>
+
 				</div>
 			</nav>
 		</header><!-- #masthead -->
-		<div id="hits"></div>
-<div id="tags-list"></div>
+		<div class="modal fade" id="searchModalDialog" tabindex="-1" aria-labelledby="searchModalDialog" aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div id="algoliaSearch"></div>
+						<i onclick="closeHeaderSearchModal()" class="far fa-times-circle"></i>
+
+						<!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+					</div>
+					<div style="min-height: 400px" class="modal-body">
+						<div id="hits"></div>
+						<div id="tags-list"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+		<script>
+			function closeHeaderSearchModal() {
+				const button = document.querySelector('#searchToggle');
+				button.click();
+			}
+		</script>

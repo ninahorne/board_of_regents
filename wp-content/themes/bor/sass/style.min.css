@@ -1214,6 +1214,30 @@ header ul li a:visited {
   height: 84px;
 }
 
+@media screen and (max-width: 1000px) {
+  header ul li a {
+    font-size: 14px;
+  }
+
+  .navbar-brand img {
+    width: 150px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .navbar > .container {
+    background-color: white;
+    padding: 1rem;
+  }
+
+  .navbar-brand img {
+    width: 400px;
+  }
+}
+@media screen and (max-width: 565px) {
+  .navbar-brand img {
+    width: 230px;
+  }
+}
 #menu-first li a {
   font-family: "Rubik";
   font-weight: 500;
@@ -1234,6 +1258,36 @@ header ul li a:visited {
     display: none;
   }
 }
+#searchToggle:hover {
+  cursor: pointer;
+}
+
+#searchModalDialog .ais-SearchBox-form,
+#searchModalDialog .ais-SearchBox,
+#searchModalDialog #ais-SearchBox,
+#searchModalDialog #algoliaSearch {
+  width: calc(100% - 10px);
+}
+#searchModalDialog i {
+  font-size: 20px;
+}
+#searchModalDialog i:hover {
+  cursor: pointer;
+}
+#searchModalDialog .ais-SearchBox-input {
+  width: 100%;
+  border-radius: 35px;
+  padding-left: 50px;
+  font-size: 16px;
+  color: #404040;
+}
+#searchModalDialog .ais-SearchBox-input::placeholder {
+  color: #ffffffb7;
+}
+#searchModalDialog .ais-SearchBox-input:focus {
+  border-color: #143595;
+}
+
 footer {
   background-color: #143595;
   padding: 4rem 0;
