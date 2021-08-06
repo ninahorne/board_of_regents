@@ -58,7 +58,8 @@
         if (queryParams) {
             const faq = queryParams.replace('?question=', '');
             const input = document.querySelector('#faqSearchBox .ais-SearchBox-input');
-            const decodedFAQ = decodeURI(faq);
+            var decodedFAQ = decodeURI(faq);
+            decodedFAQ = decodedFAQ.replace(/%3F/g,' ').replace(/%2F/g, ' ');
             input.value = decodedFAQ;
             faqs_search.helper.state.query = decodedFAQ;
             faqs_search.helper.search();
@@ -71,9 +72,7 @@
     function openFirstResult() {
         openFirstResultTimer = setTimeout(() => {
             const results = document.querySelector('.faq__result__question');
-            console.log(results.length);
             results.click();
-            console.log("here")
         }, 500);
         
     }

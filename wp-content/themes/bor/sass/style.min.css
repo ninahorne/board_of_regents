@@ -1099,6 +1099,12 @@ section {
   border: none;
 }
 
+a.cta {
+  line-height: 66px;
+  color: white !important;
+  display: block;
+}
+
 .cta--center {
   display: block;
   margin: 0 auto;
@@ -1130,6 +1136,9 @@ section {
 a.unformatted {
   text-decoration: none;
   color: inherit;
+}
+a.unformatted:hover {
+  text-decoration: underline;
 }
 
 .dotted-line__dark-gray {
@@ -1282,7 +1291,7 @@ header ul li a:visited {
   color: #404040;
 }
 #searchModalDialog .ais-SearchBox-input::placeholder {
-  color: #ffffffb7;
+  color: #a3a3a3;
 }
 #searchModalDialog .ais-SearchBox-input:focus {
   border-color: #143595;
@@ -1903,6 +1912,7 @@ a:visited {
   margin: 1rem auto;
   max-height: 1000px;
   transition: max-height 1.4s ease-out;
+  padding: 1rem;
 }
 
 @media screen and (max-width: 767px) {
@@ -1957,15 +1967,14 @@ a:visited {
   position: relative;
 }
 .courses-page__item .courses-page__item__image {
-  width: 200px;
-  height: 200px;
+  width: 250px !important;
+  height: 250px;
   object-fit: cover;
   object-position: center;
   margin: 1rem auto;
   max-width: 100%;
   display: block;
   border-radius: 100%;
-  background-color: #404040;
 }
 .courses-page__item h5 {
   font-weight: 800;

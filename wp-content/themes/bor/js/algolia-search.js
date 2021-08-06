@@ -3,34 +3,26 @@ const searchClient = algoliasearch(
   "65d958e57e130f9ab14bfa0dfa0123f1"
 );
 
-
-		
 initializeHeaderAlgolia();
-			
 
 function initializeHeaderAlgolia() {
-
   const search = instantsearch({
-    indexName: "dev_board-of-regents",
+    indexName: "generic-page-search",
     searchClient,
     searchFunction(helper) {
       // Ensure we only trigger a search when there's a query
-      if (helper.state.query) {
-        helper.search();
-      }
+      helper.search();
     },
   });
 
   search.addWidgets([
     instantsearch.widgets.searchBox({
       container: "#algoliaSearch",
+      placeholder: "Begin typing to search...",
     }),
 
-    instantsearch.widgets.refinementList({
-      container: "#tags-list",
-      attribute: "tags",
-      limit: 5,
-      showMore: true,
+    instantsearch.widgets.configure({
+      attributesToSnippet: ["details"]
     }),
 
     instantsearch.widgets.hits({
@@ -38,16 +30,19 @@ function initializeHeaderAlgolia() {
       templates: {
         item: `
           <article>
-            <a href="{{ url }}">
+          
+            <a class="unformatted" href="{{ url_params }}">
+            <h3>
             <strong>
               {{#helpers.highlight}}
               { "attribute": "title", "highlightedTagName": "mark" }
               {{/helpers.highlight}}
             </strong>
+            </h3>
             </a>
-            {{#content}}
-            <p>{{#helpers.snippet}}{ "attribute": "content", "highlightedTagName": "mark" }{{/helpers.snippet}}</p>
-            {{/content}}
+            {{#details}}
+            <div class="my-3">...{{#helpers.snippet}}{ "attribute": "details", "highlightedTagName": "mark" }{{/helpers.snippet}}...</div>
+            {{/details}}
           </article>
           `,
       },

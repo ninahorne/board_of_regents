@@ -222,6 +222,11 @@ section {
   outline: none;
   border: none;
 }
+a.cta {
+  line-height: 66px;
+  color: white !important;
+  display: block;
+}
 
 .cta--center {
   display: block;
@@ -251,6 +256,9 @@ section {
 a.unformatted {
   text-decoration: none;
   color: inherit;
+  &:hover{
+    text-decoration: underline;
+  }
 }
 .dotted-line__dark-gray {
   border-bottom: 1px dotted $dark-gray;

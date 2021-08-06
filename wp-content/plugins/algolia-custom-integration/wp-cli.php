@@ -230,6 +230,129 @@ class Algolia_Command
 
         WP_CLI::success("$count fields of study indexed in Algolia");
     }
+    public function index_generic_page_search($args, $assoc_args)
+    {
+        global $algolia;
+        $index = $algolia->initIndex('generic-page-search');
+
+        $index->clearObjects()->wait();
+
+        $paged = 1;
+        $count = 0;
+
+
+        $fields_response = new WP_Query([
+            'posts_per_page' => 1000,
+            'paged' => $paged,
+            'post_type' => 'course'
+        ]);
+
+        if (!$fields_response->have_posts()) {
+            return;
+        }
+
+        $records = [];
+
+        $fields = $fields_response->posts;
+
+        foreach ($fields as $post) {
+            global $wpdb;
+
+            $querystr = "
+                    SELECT *
+                    FROM $wpdb->postmeta 
+                    WHERE post_id LIKE $post->ID 
+                ";
+            $post_metas = $wpdb->get_results($querystr, OBJECT);
+
+
+            foreach ($post_metas as $meta) {
+
+                $key = $meta->meta_key;
+                $substring = substr($key, 0, 1);
+                $record['objectID'] = $post->ID;
+
+                $value = $meta->meta_value;
+
+                if($key == "career_cluster") {
+                    $record['title'] = $value;
+                }
+                 if($key == 'details') {
+                    $record['details'] = str_replace('&nbsp;', ' ', $value);;
+                 }
+                 if($key == 'url-params') {
+                    $record['url_params'] = './index.php/fields-of-study?field=' . $value;
+
+                 }
+
+            }
+
+            $index->saveObject($record);
+            $count++;
+        }
+
+        $faqs_response = new WP_Query([
+            'posts_per_page' => 1000,
+            'paged' => $paged,
+            'post_type' => 'faq'
+        ]);
+
+        if (!$fields_response->have_posts()) {
+            return;
+        }
+
+        $records = [];
+
+        $faqs = $faqs_response->posts;
+
+        foreach ($faqs as $post) {
+            global $wpdb;
+
+            $querystr = "
+                    SELECT *
+                    FROM $wpdb->postmeta 
+                    WHERE post_id LIKE $post->ID 
+                ";
+            $post_metas = $wpdb->get_results($querystr, OBJECT);
+
+
+            foreach ($post_metas as $meta) {
+
+                $key = $meta->meta_key;
+                $substring = substr($key, 0, 1);
+                $record['objectID'] = $post->ID;
+
+                $value = $meta->meta_value;
+
+                if($key == "what_is_the_faq") {
+                    $record['title'] = $value;
+                    $record['url_params'] = './index.php/faqs?question=' . urlencode($value);
+
+                }
+                 if($key == 'what_is_the_answer') {
+                    $record['details'] = str_replace('&nbsp;', ' ', $value);
+                 }
+                 
+
+            }
+
+            $index->saveObject($record);
+            $count++;
+        }
+
+
+        if ($assoc_args['verbose']) {
+            WP_CLI::line('Sending batch');
+        }
+        if ($assoc_args['verbose']) {
+            WP_CLI::line('record length [' . count($records) . ']');
+        }
+
+        $paged++;
+
+
+        WP_CLI::success("$count generic search fields indexed in Algolia");
+    }
 }
 
 WP_CLI::add_command('algolia', 'Algolia_Command');

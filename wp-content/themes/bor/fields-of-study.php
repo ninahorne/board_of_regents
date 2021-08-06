@@ -19,13 +19,13 @@
         <div class="background__blue">
             <div class="flex-vertical-center">
                 <div class="fields-of-study__fixed-width">
-                <h1 class="text-center color-white">What dual enrollment courses do colleges and universities near you offer?</h1>
-                <p class="text-center color-white">
-                    Louisiana’s colleges and universities offer all sorts of courses to help high school students double up on credits.
-                </p>
-                <img src="<?php echo get_template_directory_uri(); ?>/images/courses-illustration.svg" alt="">
+                    <h1 class="text-center color-white">What dual enrollment courses do colleges and universities near you offer?</h1>
+                    <p class="text-center color-white">
+                        Louisiana’s colleges and universities offer all sorts of courses to help high school students double up on credits.
+                    </p>
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/courses-illustration.svg" alt="">
                 </div>
-          
+
             </div>
 
             <div class="container">
@@ -65,7 +65,7 @@
                                 $title = $value;
                             }
                             if ($key == 'image') {
-                                $image == $value;
+                                $image = $value;
                             }
                             if ($key == 'details') {
                                 $formattedString = str_replace('&nbsp;', '<br /><br />', $value);
@@ -78,10 +78,9 @@
                             }
                         }
 
-
                         echo '<div class="col-md-4">
                                 <div id="' . $course_html_id . '" class="courses-page__item">
-                                    <div class="courses-page__item__image"></div>
+                                    <img src="' . wp_get_attachment_image_src( $image, 'large' )[0] . '" class="courses-page__item__image" />
                                     <h5  class="text-center">' . $title . '</h5>
                                     <p onclick="changeParams(\'' . $url_params .  '\')" id="' . $button_html_id . '" data-bs-toggle="modal" data-bs-target="#' . $url_params . '" class="courses-page__more">
                                         <i class="fa fa-plus"></i> &nbsp;&nbsp;More Info 
@@ -129,7 +128,16 @@
 
         if (queryParams) {
             const id = queryParams.replace('?field=', '');
-            openModal(id);
+            const windowHeight = window.innerHeight;
+            window.scrollTo(
+                0, windowHeight
+            );
+            setTimeout(
+                () => {
+                    openModal(id);
+
+                }, 100
+            );
         }
     }
 
