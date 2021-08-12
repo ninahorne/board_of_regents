@@ -248,22 +248,54 @@ html {
   color: white;
   padding-bottom: 400px;
   overflow: hidden;
+  @include backgroundImage("../images/blue-section-background-01.svg");
+  background-size: auto;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+
+  .blue-section--brush-stroke {
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 769px;
+    width: 500px;
+  }
   &.blue-section--students {
-    @include backgroundImage("blue");
     .blue-section__image {
-      @include backgroundImage("../images/person-with-pencil-illustration.svg");
+      position: absolute;
+      height: 383px;
+      width: 402px;
+      right: 0px;
+      @include backgroundImage("../images/students-page-illustration.svg");
     }
   }
 }
-
-.blue-section__image {
-  position: absolute;
-  height: 350px;
-  width: 300px;
-  right: -40px;
-}
 @media screen and (max-width: 767px) {
-
+  .blue-section {
+    &.blue-section--students,
+    &.blue-section--families,
+    &.blue-section--counselors {
+      .blue-section__image {
+        position: relative;
+        width: 80%;
+        right: auto;
+        margin: 0 auto 2rem;
+        background-size: auto;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}
+// .blue-section__image {
+//   position: absolute;
+//   height: 350px;
+//   width: 300px;
+//   right: -40px;
+// }
+@media screen and (max-width: 767px) {
   .blue-section__image {
     position: relative;
     width: 250px;

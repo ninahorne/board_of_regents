@@ -55,8 +55,9 @@
                 <div class="row home-page__section-two__graphic">
                     <div class="col-lg-3  col-xl-2 offset-lg-1">
                         <div class="brush-stroke__wrapper">
-                            <div class="background__blue-brush-stroke">
-                                <div class="dummy"></div>
+                            <div class="home-page__step-one-illustration">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/step-one.svg" alt="">
+
                             </div>
 
                         </div>
@@ -71,8 +72,8 @@
                     </div>
                     <div class="col-lg-3 col-xl-2">
                         <div class="brush-stroke__wrapper">
-                            <div class="background__orange-brush-stroke">
-                                <div class="dummy"></div>
+                        <div class="home-page__step-one-illustration">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/step-two.svg" alt="">
 
                             </div>
                         </div>
@@ -88,8 +89,8 @@
                     </div>
                     <div class="col-lg-3 col-xl-2">
                         <div class="brush-stroke__wrapper">
-                            <div class="background__yellow-brush-stroke">
-                                <div class="dummy"></div>
+                        <div class="home-page__step-one-illustration">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/step-three.svg" alt="">
 
                             </div>
                         </div>

@@ -24,10 +24,11 @@
 }
 .students-page__blue-section__person-with-pencil {
   position: absolute;
-  @include backgroundImage("../images/person-with-pencil-illustration.svg");
+  @include backgroundImage("../images/students-page-illustration.svg");
   height: 350px;
   width: 300px;
   right: -40px;
+ 
 }
 
 .students-page__video {
@@ -39,16 +40,7 @@
   }
 }
 
-@media screen and (max-width: 767px) {
 
-  .students-page__blue-section__person-with-pencil {
-    position: relative;
-    width: 250px;
-    height: 250px;
-    right: auto;
-    margin: 0 auto 2rem;
-  }
-}
 
 .students-page__eligibility {
   @include backgroundImage("../images/large-yellow-brush-stroke.svg");

@@ -29,7 +29,6 @@ if ($college_link->num_rows > 0) {
     while ($row = $college_link->fetch_assoc()) {
 
 
-        // echo $row['meta_key'] . ' ' . $row['meta_value'] . '...';
         if ($row['meta_key'] == 'system') {
             $system = $row['meta_value'];
         }
@@ -66,7 +65,7 @@ if ($college_link->num_rows > 0) {
                     <div class="row">
                         <div class="col-lg-6">
                             <p>' . $departmentContactName . '</p>
-                            <a class="unformatted" href="mailto:' . $departmentContactEmail . '"><i class="far fa-envelope"></i>&nbsp;&nbsp;' . $departmentContactEmail . '</a>
+                            <a class="unformatted" href="mailto:' . $departmentContactEmail . '">' . $departmentContactEmail . '</a>
                         </div>' .
         '           <div class="col-lg-6">
                             <a target="_blank" class="d-block unformatted" href="' . $transferForm . '"><i class="fas fa-external-link-alt"></i>&nbsp;Request your transcript</a>'
