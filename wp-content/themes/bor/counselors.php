@@ -18,10 +18,11 @@
             </div>
         </div>
         <section class="blue-section blue-section--counselors">
+            <div class="blue-section__image"></div>
             <div class="flex-vertical-center">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-7">
+                        <div class="col-md-7">
                             <h1>Dual Enrollment links and resources, in one place.</h1>
                             <p>Check out these resources to help motivate and support the students you serve.</p>
                         </div>
@@ -36,7 +37,7 @@
                         <h1>Benefits of Duel Enrollment</h1>
                         <div class="counselors-page__benefit-item">
                             <div class="row">
-                                <div class="col-1">
+                                <div class="col-1 p-0">
                                     <img src="<?php echo get_template_directory_uri() ?>/images/school-light.svg" alt="">
                                 </div>
                                 <div class="col-11">
@@ -47,7 +48,7 @@
                         </div>
                         <div class="counselors-page__benefit-item">
                             <div class="row">
-                                <div class="col-1">
+                                <div class="col-1 p-0">
                                     <img src="<?php echo get_template_directory_uri() ?>/images/clock-light.svg" alt="">
 
                                 </div>
@@ -59,7 +60,7 @@
                         </div>
                         <div class="counselors-page__benefit-item">
                             <div class="row">
-                                <div class="col-1">
+                                <div class="col-1 p-0">
                                     <img src="<?php echo get_template_directory_uri() ?>/images/file-certificate-light.svg" alt="">
 
                                 </div>
@@ -71,7 +72,7 @@
                         </div>
                         <div class="counselors-page__benefit-item">
                             <div class="row">
-                                <div class="col-1">
+                                <div class="col-1 p-0">
                                     <img src="<?php echo get_template_directory_uri() ?>/images/swimmer-light.svg" alt="">
 
                                 </div>
@@ -83,7 +84,7 @@
                         </div>
                         <div class="counselors-page__benefit-item">
                             <div class="row">
-                                <div class="col-1">
+                                <div class="col-1 p-0">
                                     <img src="<?php echo get_template_directory_uri() ?>/images/share-all-light.svg" alt="">
 
                                 </div>
@@ -95,7 +96,7 @@
                         </div>
                         <div class="counselors-page__benefit-item">
                             <div class="row">
-                                <div class="col-1">
+                                <div class="col-1 p-0">
                                     <img src="<?php echo get_template_directory_uri() ?>/images/palette-light.svg" alt="">
 
                                 </div>
@@ -107,7 +108,7 @@
                         </div>
                         <div class="counselors-page__benefit-item">
                             <div class="row">
-                                <div class="col-1">
+                                <div class="col-1 p-0">
                                     <img src="<?php echo get_template_directory_uri() ?>/images/user-graduate-light.svg" alt="">
 
                                 </div>

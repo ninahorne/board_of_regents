@@ -8,7 +8,7 @@
 <?php include('header.php'); ?>
 <div id="content">
     <div id="faqs">
-        <div class="background__blue">
+        <div class="background__blue faq__background-brush-stroke">
             <div class="container">
                 <div class="p-2">
                     <h1 class="color-white">FAQs</h1>

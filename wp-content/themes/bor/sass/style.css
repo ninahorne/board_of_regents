@@ -2411,6 +2411,24 @@ html {
   background-size: cover;
   background-position: center;
 }
+.blue-section.blue-section--families .blue-section__image {
+  position: absolute;
+  height: 383px;
+  width: 366px;
+  right: 0px;
+  background-image: url("../images/families-page-illustration-01.svg");
+  background-size: cover;
+  background-position: center;
+}
+.blue-section.blue-section--counselors .blue-section__image {
+  position: absolute;
+  height: 303px;
+  width: 337px;
+  right: 0px;
+  background-image: url("../images/counselors-page-illustration-01.svg");
+  background-size: cover;
+  background-position: center;
+}
 
 @media screen and (max-width: 767px) {
   .blue-section.blue-section--students .blue-section__image, .blue-section.blue-section--families .blue-section__image, .blue-section.blue-section--counselors .blue-section__image {

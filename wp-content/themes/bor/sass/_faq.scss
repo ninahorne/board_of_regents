@@ -110,3 +110,23 @@
     color: $dark-gray;
   }
 }
+
+
+.faq__background-brush-stroke{
+  @include backgroundImage('../images/faq-brush-stroke.svg');
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+@media screen and (max-width: 1400px) {
+  .faq__background-brush-stroke{
+    background-position: 0px 160px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #faqs{
+    padding-top: 4rem;
+  }
+  
+}

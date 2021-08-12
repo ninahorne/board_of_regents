@@ -72,7 +72,7 @@
                     </div>
                     <div class="col-lg-3 col-xl-2">
                         <div class="brush-stroke__wrapper">
-                        <div class="home-page__step-one-illustration">
+                            <div class="home-page__step-one-illustration">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/step-two.svg" alt="">
 
                             </div>
@@ -89,7 +89,7 @@
                     </div>
                     <div class="col-lg-3 col-xl-2">
                         <div class="brush-stroke__wrapper">
-                        <div class="home-page__step-one-illustration">
+                            <div class="home-page__step-one-illustration">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/step-three.svg" alt="">
 
                             </div>
@@ -106,9 +106,9 @@
                 </div>
 
                 <div class="mt-4 mb-4">
-                    <button class="cta cta--center">
+                    <a style="width: 300px; max-width: 100%;" href="./index.php/faqs?question=how%20to%20apply" class="unformatted cta cta--center">
                         See Application Help &nbsp;&nbsp; <i class="fa fa-long-arrow-alt-right"></i>
-                    </button>
+                    </a>
                 </div>
 
             </div>

@@ -1462,6 +1462,11 @@ a:visited {
     margin-right: 0.5rem;
   }
 }
+@media screen and (max-width: 767px) {
+  .steps-to-enrollment .tab-content {
+    margin-top: 2rem;
+  }
+}
 /* Students Page */
 .students-page__banner {
   width: 100vw;
@@ -1779,13 +1784,13 @@ a:visited {
   margin-bottom: 0;
 }
 .useful-college-links__selected-result h2 {
-  font-size: clamp(22px, 25px, 25px);
+  font-size: 25px;
 }
 .useful-college-links__selected-result h3 {
   margin: 0.5rem auto;
 }
 .useful-college-links__selected-result p {
-  font-size: clamp(14px, 18px, 18px);
+  font-size: 18px;
 }
 .useful-college-links__selected-result .fa-external-link {
   font-size: 14px;
@@ -1814,6 +1819,11 @@ a:visited {
   100% {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+@media screen and (max-width: 767px) {
+  .useful-college-links__selected-result a, .useful-college-links__selected-result p {
+    font-size: 15px;
   }
 }
 .faq__categories {
@@ -1921,6 +1931,25 @@ a:visited {
   color: #404040;
 }
 
+.faq__background-brush-stroke {
+  background-image: url("../images/faq-brush-stroke.svg");
+  background-size: cover;
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+@media screen and (max-width: 1400px) {
+  .faq__background-brush-stroke {
+    background-position: 0px 160px;
+  }
+}
+@media screen and (max-width: 767px) {
+  #faqs {
+    padding-top: 4rem;
+  }
+}
 .courses-page__banner {
   width: 100vw;
   height: 300px;
@@ -2029,7 +2058,7 @@ a:visited {
   font-weight: 500;
   color: #ee7600;
   font-weight: 700;
-  font-size: clamp(16px, 20px, 20px);
+  font-size: 20px;
   margin-bottom: 1rem;
 }
 .faq-preview__question:hover {
@@ -2053,7 +2082,7 @@ a:visited {
 .faq-preview__answer a,
 .faq-preview__answer span,
 .faq-preview__answer p {
-  font-size: clamp(16px, 20px, 20px);
+  font-size: 20px;
 }
 .faq-preview__answer.faq-preview__answer--open {
   max-height: 1000px;
@@ -2068,6 +2097,18 @@ a:visited {
   margin-top: 2rem;
 }
 
+@media screen and (max-width: 767px) {
+  .faq-preview__answer li,
+.faq-preview__answer a,
+.faq-preview__answer span,
+.faq-preview__answer p {
+    font-size: 16px;
+  }
+
+  .faq-preview__question {
+    font-size: 16px;
+  }
+}
 .about-page__form-control input,
 .about-page__form-control select,
 .about-page__form-control textarea {
@@ -2258,6 +2299,24 @@ html {
   width: 402px;
   right: 0px;
   background-image: url("../images/students-page-illustration.svg");
+  background-size: cover;
+  background-position: center;
+}
+.blue-section.blue-section--families .blue-section__image {
+  position: absolute;
+  height: 383px;
+  width: 366px;
+  right: 0px;
+  background-image: url("../images/families-page-illustration-01.svg");
+  background-size: cover;
+  background-position: center;
+}
+.blue-section.blue-section--counselors .blue-section__image {
+  position: absolute;
+  height: 303px;
+  width: 337px;
+  right: 0px;
+  background-image: url("../images/counselors-page-illustration-01.svg");
   background-size: cover;
   background-position: center;
 }

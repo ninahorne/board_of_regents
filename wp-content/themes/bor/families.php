@@ -18,10 +18,11 @@
             </div>
         </div>
         <section class="blue-section blue-section--families">
+            <div class="blue-section__image"></div>
             <div class="flex-vertical-center">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-7">
+                        <div class="col-md-7">
                             <h1>Let’s help your student experience college early.</h1>
                             <p>With dual enrollment, students may begin accumulating college credits while still in high school, thus providing a smoother transition to college after high school graduation. Students also have the opportunity to complete college faster by earning college credits while still in high school.</p>
                         </div>

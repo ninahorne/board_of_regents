@@ -78,7 +78,7 @@
                             }
                         }
 
-                        echo '<div class="col-md-4">
+                        echo '<div class="col-lg-4 col-md-6">
                                 <div id="' . $course_html_id . '" class="courses-page__item">
                                     <img src="' . wp_get_attachment_image_src( $image, 'large' )[0] . '" class="courses-page__item__image" />
                                     <h5  class="text-center">' . $title . '</h5>

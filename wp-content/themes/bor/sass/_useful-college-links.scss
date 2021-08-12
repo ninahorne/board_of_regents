@@ -132,13 +132,13 @@
     // padding: 0;
   }
   h2 {
-    font-size: clamp(22px, 25px, 25px);
+    font-size: 25px;
   }
   h3 {
     margin: 0.5rem auto;
   }
   p {
-    font-size: clamp(14px, 18px, 18px);
+    font-size: 18px;
   }
   .fa-external-link {
     font-size: 14px;
@@ -169,5 +169,13 @@
     transform: translateY(0);
     opacity: 1;
 
+  }
+}
+@media screen and (max-width: 767px) {
+  
+  .useful-college-links__selected-result {
+    a, p {
+      font-size: 15px;
+    }
   }
 }

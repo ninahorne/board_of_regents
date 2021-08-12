@@ -119,7 +119,7 @@ $medium-dark-gray: #707070;
 @import "_counselors.scss";
 @import "useful-college-links";
 @import "_faq.scss";
-@import "fields-of-study.scss";
+@import "_fields-of-study.scss";
 @import "faq-preview.scss";
 @import "_about.scss";
 
@@ -270,6 +270,26 @@ html {
       width: 402px;
       right: 0px;
       @include backgroundImage("../images/students-page-illustration.svg");
+    }
+  }
+  &.blue-section--families {
+    .blue-section__image {
+      position: absolute;
+      height: 383px;
+      width: 366px;
+      right: 0px;
+      @include backgroundImage("../images/families-page-illustration-01.svg");
+    }
+  }
+  &.blue-section--counselors {
+    .blue-section__image {
+      position: absolute;
+
+      height: 303px;
+      width: 337px;
+
+      right: 0px;
+      @include backgroundImage("../images/counselors-page-illustration-01.svg");
     }
   }
 }
