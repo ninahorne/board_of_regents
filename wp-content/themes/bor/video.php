@@ -3,7 +3,7 @@
 <div class="ugb-video-wrapper">
 
   <a href="#">
-    <img class="video-poster" src="<?php echo get_template_directory_uri(); ?>/images/BoR-Video-poster.jpg" alt="">
+    <img class="video-poster" src="<?php echo get_template_directory_uri(); ?>/images/video-poster.png" alt="">
 
     <span class="ugb-play-button">
       <img src="<?php echo get_template_directory_uri(); ?>/images/play-button.svg" alt="">
