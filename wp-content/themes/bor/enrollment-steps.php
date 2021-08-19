@@ -3,10 +3,10 @@
         <h2>Steps to Dual Enrollment</h2>
         <div class="tabs d-flex align-items-start">
             <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <p class="nav-link active" id="v-pills-one-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">How to begin</p>
-                <p class="nav-link" id="v-pills-two-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">How to enroll</p>
-                <p class="nav-link" id="v-pills-three-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">How to get support</p>
-                <p class="nav-link" id="v-pills-four-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">How to finalize documentation</p>
+                <p class="nav-link active" id="v-pills-one-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">How to Begin</p>
+                <p class="nav-link" id="v-pills-two-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">How to Enroll</p>
+                <p class="nav-link" id="v-pills-three-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">How to Get Support</p>
+                <p class="nav-link" id="v-pills-four-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">How to Finalize Documentation</p>
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    <h2>Prepare for your course</h2>
+                    <h2>Prepare For Your Course</h2>
                     <p>Now that you’ve been admitted, check to see if there are any additional materials or textbooks that should be purchased. 
                         Most do not require any additional materials, but they do require your focus and preparation. 
                         Happy studying!</p>
@@ -89,8 +89,8 @@
                             </div>
                         </div>
                     </div>
-                    <h2>Heading</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <h2>Finalize Your Documentation</h2>
+                    <p>After you're done,  gather evidence of your hard work by getting your transcript.</p>
 
                 </div>
             </div>

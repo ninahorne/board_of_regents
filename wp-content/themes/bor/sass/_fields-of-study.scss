@@ -35,7 +35,10 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-
+    
+    &:hover{
+        cursor: pointer;
+    }
     .courses-page__item__image {
         width: 250px !important;
         height: 250px;
@@ -56,12 +59,21 @@
         color: $orange;
         font-size: 16px;
         margin: 1rem 0px;
+
+       
         i{
             font-size: 14px;
         }
 
         &:hover{
             cursor: pointer;
+            color: $trans-orange;
+
+            i {
+                color: $trans-orange;
+                transform: rotate(90deg);
+                transition: transform 0.2s ease-in-out;
+            }
         }
     }
      

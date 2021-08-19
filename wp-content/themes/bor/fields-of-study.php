@@ -23,7 +23,7 @@
                     <p class="text-center color-white">
                         Louisiana’s colleges and universities offer all sorts of courses to help high school students double up on credits.
                     </p>
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/courses-illustration.svg" alt="">
+                    <!-- <img src="<?php echo get_template_directory_uri(); ?>/images/courses-illustration.svg" alt=""> -->
                 </div>
 
             </div>
@@ -79,10 +79,10 @@
                         }
 
                         echo '<div class="col-lg-4 col-md-6">
-                                <div id="' . $course_html_id . '" class="courses-page__item">
+                                <div onclick="changeParams(\'' . $url_params .  '\')" id="' . $course_html_id . '"  data-bs-toggle="modal" data-bs-target="#' . $url_params . '" class="courses-page__item">
                                     <img src="' . wp_get_attachment_image_src( $image, 'large' )[0] . '" class="courses-page__item__image" />
                                     <h5  class="text-center">' . $title . '</h5>
-                                    <p onclick="changeParams(\'' . $url_params .  '\')" id="' . $button_html_id . '" data-bs-toggle="modal" data-bs-target="#' . $url_params . '" class="courses-page__more">
+                                    <p  id="' . $button_html_id . '"  class="courses-page__more">
                                         <i class="fa fa-plus"></i> &nbsp;&nbsp;More Info 
                                     </p>
                                     

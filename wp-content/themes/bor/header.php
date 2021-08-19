@@ -60,8 +60,8 @@
 			</nav> -->
 
 
-			<nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
-				<div class="container">
+			<nav class="navbar navbar-expand-md navbar-light" role="navigation">
+				<div class="container pb-0 pt-0">
 					<!-- Brand and toggle get grouped for better mobile display -->
 
 					<a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home">

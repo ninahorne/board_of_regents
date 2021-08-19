@@ -104,6 +104,7 @@ $blue: #143595;
 $dark-blue: #0b1f57;
 $dark-gray: #404040;
 $orange: #ee7600;
+$trans-orange: rgba(238, 118, 0, 0.85);
 $light-orange: #ffe9d37e;
 $medium-orange: #ee760080;
 $light-gray: #ffffffb7;
@@ -169,8 +170,15 @@ h1 {
     text-decoration: none;
     color: #ffffffdd;
     font-weight: 500;
+
+    &:hover{
+      color: #ffffff;
+
+    }
   }
 }
+
+
 @media screen and (max-width: 767px) {
   .secondary-navigation {
     height: auto;

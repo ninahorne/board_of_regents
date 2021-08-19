@@ -4,12 +4,11 @@
 }
 
 @media screen and (max-width: 767px) {
-    .faq-preview__wrapper {
-        padding: 2rem;
-        border-radius: 0px;
-        margin: 0rem -1rem;
-      }
-      
+  .faq-preview__wrapper {
+    padding: 2rem;
+    border-radius: 0px;
+    margin: 0rem -1rem;
+  }
 }
 .faq-preview__small-header {
   text-transform: uppercase;
@@ -58,17 +57,36 @@
   }
 }
 
-.faq-preview__view-all{
-    font-size: clamp(16px, 20px, 20px);
-    color: $dark-gray;
-    border-bottom: 2px solid $medium-orange;
-    font-weight: 600;
-    margin-top: 2rem;
+.faq-preview__view-all {
+  font-size: clamp(16px, 20px, 20px);
+  color: $dark-gray;
+  font-weight: 600;
+  margin-top: 2rem;
+  position: relative;
+  &:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin-top: 5px;
+    background-color: $trans-orange;
+    
+    background: linear-gradient(to left, $trans-orange 50%, $orange 50%) right;
+    background-size: 200%;
+    transition: 1s ease-out;
+  }
+
+  &:hover {
+    &:after {
+      background-position: left;
+    }
+  }
 }
+
 @media screen and (max-width: 767px) {
   .faq-preview__answer {
     li,
-    a, 
+    a,
     span,
     p {
       font-size: 16px;
@@ -76,5 +94,12 @@
   }
   .faq-preview__question {
     font-size: 16px;
+  }
+}
+
+
+.steps-to-enrollment {
+  .nav-link {
+    -webkit-appearance: none;
   }
 }

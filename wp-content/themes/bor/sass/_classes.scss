@@ -221,6 +221,9 @@ section {
   padding: 0 2rem;
   outline: none;
   border: none;
+  &:hover{
+    background-color: $trans-orange;
+  }
 }
 a.cta {
   line-height: 66px;
@@ -258,6 +261,11 @@ a.unformatted {
   color: inherit;
   &:hover{
     text-decoration: underline;
+  }
+  &.cta{
+    &:hover{
+      text-decoration: none;
+    }
   }
 }
 .dotted-line__dark-gray {

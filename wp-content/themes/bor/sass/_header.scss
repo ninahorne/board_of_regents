@@ -5,6 +5,10 @@ header {
     margin: 1rem 0;
   }
 
+  .navbar-collapse{
+    justify-content: space-evenly;
+
+  }
   ul {
     margin: 0px;
     li {
@@ -14,9 +18,22 @@ header {
         text-decoration: none;
         color: inherit;
         font-size: 17px;
+        position: relative;
+        &::after{
+          content: '';
+          width: 100%;
+          display: block;
+          height: 2px;
+          background-color: $dark-gray;
+          opacity: 0;
+        }
         &:hover {
           text-decoration: none;
           color: inherit;
+          &::after{
+            opacity: 1;
+            transition: opacity 0.5s ease-in;
+          }
         }
         &:visited {
           color: inherit;
