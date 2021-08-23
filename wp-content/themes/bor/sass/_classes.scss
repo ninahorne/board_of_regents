@@ -271,3 +271,10 @@ a.unformatted {
 .dotted-line__dark-gray {
   border-bottom: 1px dotted $dark-gray;
 }
+
+
+.cursor-pointer{
+  &:hover{
+    cursor: pointer;
+  }
+}

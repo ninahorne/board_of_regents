@@ -107,9 +107,9 @@
         .map(
           (item) =>
             `<div class="faq__result">
-                <div class="row">
+                <div onclick="toggleFAQ('${item.objectID}-FAQ')" class="row cursor-pointer">
                     <div class="col-11">
-                        <h3 onclick="toggleFAQ('${item.objectID}-FAQ')" class="faq__result__question">
+                        <h3  class="faq__result__question">
                             ${instantsearch.highlight({
                                 attribute: "what_is_the_faq",
                                 hit: item,
@@ -183,7 +183,7 @@
 
             faqCustomMenu({
                 container: document.querySelector('#faqTags'),
-                attribute: 'categories',
+                attribute: 'tags',
                 sortBy: ["name:asc"]
 
             }),

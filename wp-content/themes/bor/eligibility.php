@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="col-md-6">
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -37,7 +37,7 @@
 
                 </div>
                 <div class="col-md-6">
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -53,7 +53,7 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -69,7 +69,7 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -86,7 +86,7 @@
                 </div>
 
                 <div class="col-md-6">
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -102,7 +102,7 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -119,7 +119,7 @@
                 </div>
 
                 <div class="col-md-6">
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center student-eligibility__white-card__item--no-border">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -137,7 +137,7 @@
                 <div class="col-md-6">
 
 
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center student-eligibility__white-card__item--no-border">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -162,7 +162,7 @@
               <div class="row">
                 <div>
                   <h3>Non-technial Courses</h3>
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -174,7 +174,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -188,7 +188,7 @@
 
 
                   </div>
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -202,7 +202,7 @@
 
 
                   </div>
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -219,7 +219,7 @@
                 </div>
                 <div>
                   <h3>Technical Courses</h3>
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -233,7 +233,7 @@
 
 
                   </div>
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -247,7 +247,7 @@
 
 
                   </div>
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>
@@ -261,7 +261,7 @@
 
 
                   </div>
-                  <div class="student-eligibility__white-card__item">
+                  <div class="student-eligibility__white-card__item flex-center">
                     <div class="row">
                       <div class="col-2">
                         <i class="far fa-check-circle"></i>

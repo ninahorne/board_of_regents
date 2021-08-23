@@ -92,7 +92,9 @@ class Algolia_Command
         $posts_response = new WP_Query([
             'posts_per_page' => 1000,
             'paged' => $paged,
-            'post_type' => 'faq'
+            'post_type' => 'faq',
+            'orderby' => 'post_date',
+            'order' => 'ASC'
         ]);
 
         if (!$posts_response->have_posts()) {
@@ -112,13 +114,14 @@ class Algolia_Command
                     WHERE post_id LIKE $post->ID 
                 ";
             $post_metas = $wpdb->get_results($querystr, OBJECT);
-
+            $post_date = $post->post_date;
 
             foreach ($post_metas as $meta) {
 
                 $key = $meta->meta_key;
                 $substring = substr($key, 0, 1);
                 $record['objectID'] = $post->ID;
+                $record['post_date'] = $post->post_date;
 
                 if ($substring != "_") {
                     if ($assoc_args['verbose']) {
@@ -138,6 +141,37 @@ class Algolia_Command
                         }
 
                         $record['categories'] = $value;
+                    } else if ($key == 'tags') {
+                        $value = [];
+                        if (strpos($meta->meta_value, 'Credits')) {
+                            array_push($value, 'Credits');
+                        }
+                        if (strpos($meta->meta_value, 'Benefits of DE')) {
+                            array_push($value, 'Benefits of DE');
+                        }
+                        if (strpos($meta->meta_value, 'Dual Enrollment Basics')) {
+                            array_push($value, 'Dual Enrollment Basics');
+                        }
+                        if (strpos($meta->meta_value, 'Eligibility')) {
+                            array_push($value, 'Eligibility');
+                        }
+                        if (strpos($meta->meta_value, 'Applications')) {
+                            array_push($value, 'Applications');
+                        }
+                        if (strpos($meta->meta_value, 'Grades/GPA')) {
+                            array_push($value, 'Grades/GPA');
+                        }
+                        if (strpos($meta->meta_value, 'Cost')) {
+                            array_push($value, 'Cost');
+                        }
+                        if (strpos($meta->meta_value, 'TOPS')) {
+                            array_push($value, 'TOPS');
+                        }
+                        if (strpos($meta->meta_value, 'College Admissions')) {
+                            array_push($value, 'College Admissions');
+                        }
+
+                        $record['tags'] = $value;
                     } else {
                         $record[$meta->meta_key] = $meta->meta_value;
                     }
@@ -274,17 +308,15 @@ class Algolia_Command
 
                 $value = $meta->meta_value;
 
-                if($key == "career_cluster") {
+                if ($key == "career_cluster") {
                     $record['title'] = $value;
                 }
-                 if($key == 'details') {
+                if ($key == 'details') {
                     $record['details'] = str_replace('&nbsp;', ' ', $value);;
-                 }
-                 if($key == 'url-params') {
+                }
+                if ($key == 'url-params') {
                     $record['url_params'] = './index.php/fields-of-study?field=' . $value;
-
-                 }
-
+                }
             }
 
             $index->saveObject($record);
@@ -301,7 +333,6 @@ class Algolia_Command
             return;
         }
 
-        $records = [];
 
         $faqs = $faqs_response->posts;
 
@@ -324,16 +355,13 @@ class Algolia_Command
 
                 $value = $meta->meta_value;
 
-                if($key == "what_is_the_faq") {
+                if ($key == "what_is_the_faq") {
                     $record['title'] = $value;
                     $record['url_params'] = './index.php/faqs?question=' . urlencode($value);
-
                 }
-                 if($key == 'what_is_the_answer') {
+                if ($key == 'what_is_the_answer') {
                     $record['details'] = str_replace('&nbsp;', ' ', $value);
-                 }
-                 
-
+                }
             }
 
             $index->saveObject($record);
@@ -348,8 +376,55 @@ class Algolia_Command
             WP_CLI::line('record length [' . count($records) . ']');
         }
 
-        $paged++;
 
+        $college_links_response = new WP_Query([
+            'posts_per_page' => 1000,
+            'post_type' => 'college_link'
+        ]);
+
+        if (!$college_links_response->have_posts()) {
+            WP_CLI::line("no college links");
+
+            return;
+        }
+
+
+        $links = $college_links_response->posts;
+
+        foreach ($links as $post) {
+            global $wpdb;
+
+            $querystr = "
+                    SELECT *
+                    FROM $wpdb->postmeta 
+                    WHERE post_id LIKE $post->ID 
+                ";
+            $post_metas = $wpdb->get_results($querystr, OBJECT);
+
+
+            foreach ($post_metas as $meta) {
+
+                $key = $meta->meta_key;
+                $substring = substr($key, 0, 1);
+                $record['objectID'] = $post->ID;
+
+                $value = $meta->meta_value;
+
+                if ($key == "campus") {
+                    $record['title'] = $value;
+                    $record['url_params'] = './index.php/students?college=' . $value;
+                }
+
+
+                if ($key == 'notes') {
+                    $record['details'] = $value;
+                }
+                
+            }
+
+            $index->saveObject($record);
+            $count++;
+        }
 
         WP_CLI::success("$count generic search fields indexed in Algolia");
     }

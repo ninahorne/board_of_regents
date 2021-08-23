@@ -2,7 +2,7 @@
   .tabs {
     .nav-link {
       color: $dark-gray;
-      font-weight: 600;
+      font-light: 600;
       margin-bottom: 0px;
       font-size: 18px;
       position: relative;
@@ -84,5 +84,8 @@
 @media screen and (max-width: 767px) {
   .steps-to-enrollment .tab-content {
     margin-top: 2rem;
+  }
+  .steps-to-enrollment .tabs .nav-link{
+    font-size: 16px;
   }
 }

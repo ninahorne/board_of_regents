@@ -8,6 +8,13 @@
   }
 }
 
+@media screen and (max-width: 767px) {
+  .families-page__banner{
+    background-position: unset;
+
+  }
+  
+}
 .families-page__section-one {
   @include backgroundImage(
     "../images/board of regents_web graphics_parents page.svg"

@@ -3,10 +3,10 @@
         <h2>Steps to Dual Enrollment</h2>
         <div class="tabs d-flex align-items-start">
             <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <p class="nav-link active" id="v-pills-one-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">How to Begin</p>
-                <p class="nav-link" id="v-pills-two-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">How to Enroll</p>
-                <p class="nav-link" id="v-pills-three-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">How to Get Support</p>
-                <p class="nav-link" id="v-pills-four-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">How to Finalize Documentation</p>
+                <p class="nav-link active" id="v-pills-one-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"  role="tab" aria-controls="v-pills-home" aria-selected="true">How to Begin</p>
+                <p class="nav-link" id="v-pills-two-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">How to Enroll</p>
+                <p class="nav-link" id="v-pills-three-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages"  role="tab" aria-controls="v-pills-messages" aria-selected="false">How to Get Support</p>
+                <p class="nav-link" id="v-pills-four-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings"  role="tab" aria-controls="v-pills-settings" aria-selected="false">How to Finalize Documentation</p>
             </div>
         </div>
     </div>

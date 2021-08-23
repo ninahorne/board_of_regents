@@ -13,7 +13,11 @@
   }
 }
 
-
+@media screen and (max-width: 767px) {
+  .students-page__banner{
+    height: calc(100vh - 100px);
+  } 
+}
 .students-page__blue-section {
   background-color: $blue;
   @include backgroundImage("blue");
@@ -66,10 +70,14 @@
     margin: 0.5rem;
   }
   .student-eligibility__white-card__item {
-    padding: 1rem 0.5rem;
+    padding: 0.2rem;
     border-bottom: 1px dashed $dark-gray;
     margin: 0.5rem;
     height: 100%;
+
+   &.student-eligibility__white-card__item--no-border{
+     border: none;
+   }
   }
 }
 

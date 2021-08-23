@@ -8,12 +8,13 @@ function initialize(collegeLinks) {
   var mapOptions = {
     mapTypeId: "roadmap",
     mapId: "3b4f0b682ef60cbe",
+    disableDefaultUI: true,
+    zoomControl: true
   };
 
   // Display a map on the page
   map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   map.setTilt(45);
-
 
   // Loop through our array of markers & place each one on the map
   for (i = 0; i < colleges.length; i++) {
@@ -23,7 +24,7 @@ function initialize(collegeLinks) {
       position: position,
       map: map,
       title: colleges[i].campus,
-      icon: '../../wp-content/themes/bor/images/map-icon.svg'
+      icon: "../../wp-content/themes/bor/images/map-icon.svg",
     });
     markers.push(marker);
 
@@ -74,7 +75,6 @@ function initialize(collegeLinks) {
             map,
             shouldFocus: false,
           });
-
         };
       })(marker, i)
     );
@@ -82,7 +82,6 @@ function initialize(collegeLinks) {
     // Automatically center the map fitting all markers on the screen
     map.fitBounds(bounds);
   }
-
 
   // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
   var boundsListener = google.maps.event.addListener(
@@ -104,7 +103,8 @@ function changeMarker(lat, long, campus, system) {
 }
 
 function clickMarker(campus) {
+  console.log("click marker");
   var marker = markers.find((mark) => mark.title === campus);
-
+  console.log(marker);
   new google.maps.event.trigger(marker, "click");
 }

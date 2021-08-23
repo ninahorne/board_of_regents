@@ -1,4 +1,4 @@
-<section class="useful-college-links">
+<section id="usefulCollegeLinks" class="useful-college-links">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -37,6 +37,48 @@
 </section>
 
 <script>
+    var useful_links_search;
+    checkForCollegeQueryParams();
+
+    function checkForCollegeQueryParams() {
+        const queryParams = window.location.search;
+        console.log(queryParams);
+        if (queryParams) {
+            const college = decodeURI(queryParams.replace('?college=', ''));
+
+            const usefulCollegeLinksEl = document.getElementById('usefulCollegeLinks');
+            setTimeout(
+                () => {
+                    usefulCollegeLinksEl.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }, 100
+            )
+
+
+            setTimeout(
+                () => {
+                    const input = document.querySelector('#usefulCollegeLinksSearchBox .ais-SearchBox-input');
+                    console.log(input);
+                    input.value = college
+                    useful_links_search.helper.state.query = college;
+                    useful_links_search.helper.search();
+                    setTimeout(
+                        () => {
+                            const results = document.querySelector(`.ais-Hits label`);
+                            results.click();
+                        }, 100
+                    )
+
+
+
+                }, 2000
+
+            )
+
+        }
+    }
+
     function clearSelectedCollege() {
         const selectedCollege = document.querySelector('#selectedCollege');
         selectedCollege.innerHTML = '';
@@ -92,7 +134,7 @@
 
 
     function initializeUsefulLinkSearch() {
-        const useful_links_search = instantsearch({
+        useful_links_search = instantsearch({
             indexName: "useful-college-links",
             searchClient,
             searchFunction(helper) {
@@ -155,7 +197,7 @@
     }
 
     setTimeout(
-        ()=> {
+        () => {
             initializeUsefulLinkSearch();
 
         }, 1000
