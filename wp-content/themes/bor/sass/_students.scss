@@ -1,8 +1,7 @@
 /* Students Page */
 .students-page__banner {
   width: 100vw;
-  height: calc(80vh - 100px);
-  min-height: 500px;
+  height: 300px;
   @include backgroundImageWithGradient("../images/students-banner-2@2x.png");
   flex-direction: column;
   display: flex;
@@ -13,11 +12,7 @@
   }
 }
 
-@media screen and (max-width: 767px) {
-  .students-page__banner{
-    height: calc(100vh - 100px);
-  } 
-}
+
 .students-page__blue-section {
   background-color: $blue;
   @include backgroundImage("blue");

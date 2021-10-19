@@ -32,8 +32,8 @@
         </section>
         <section class="families-page__video">
             <?php include('video.php'); ?>
-
         </section>
+        <?php include('benefits.php') ?>
         <section class="students-page__enrollment-steps">
             <div class="container">
                 <?php include('enrollment-steps.php'); ?>
@@ -45,8 +45,10 @@
 
             <?php include('eligibility.php'); ?>
         </section>
+        <?php include('useful-college-links.php'); ?>
+
         <section>
-        <?php include('faq_preview.php'); ?>
+            <?php include('faq_preview.php'); ?>
 
         </section>
 

@@ -25,17 +25,17 @@
 						<div class="col-md-6">
 							<ul class="footer__nav-links">
 								<li class="bold color-white">Start here</li>
-								<li><a href="./students">Students</a></li>
-								<li><a href="./families">Families</a></li>
-								<li><a href="./counselors">Counselors</a></li>
+								<li><a href="./index.php/students">Students</a></li>
+								<li><a href="./index.php/families">Families</a></li>
+								<li><a href="./index.php/counselors">Counselors</a></li>
 							</ul>
 						</div>
 						<div class="col-md-6">
 							<ul class="footer__nav-links">
 								<li class="bold color-white">Useful Information</li>
-								<li><a href="./faqs">FAQs</a></li>
-								<li><a href="./fields-of-study">Fields of Study</a></li>
-								<li><a href="./about">About</a></li>
+								<li><a href="./index.php/faqs">FAQs</a></li>
+								<li><a href="./index.php/fields-of-study">Fields of Study</a></li>
+								<li><a href="./index.php/about">About</a></li>
 							</ul>
 						</div>
 					</div>

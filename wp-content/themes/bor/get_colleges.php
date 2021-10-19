@@ -5,11 +5,6 @@ $username = "root";
 $password = "";
 $dbname = "dual_enrollment";
 
-// $servername = "localhost";
-// $username = "wwgqa139_nina";
-// $password = "63442046";
-// $dbname = "wwgqa139_board-of-regents";
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection

@@ -13,16 +13,16 @@
                 <div class="py-5">
                     <div class="py-5">
                         <div class="row flex-column-reverse flex-md-row">
-                          
+
                             <div class="col-md-5">
                                 <?php echo do_shortcode('[wpforms id="207" title="true"]') ?>
                             </div>
                             <div class="col-md-7">
                                 <div class="px-3">
-                                    <h1 class="color-white">About Heading</h1>
-                                    <h3 class="color-white"> A smaller about heading</h3>
+                                    <h1 class="color-white">We want to hear from you!</h1>
+                                    <h3 class="color-white">Please provide your feedback.</h3>
                                     <p class="color-white">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                        Welcome to the first phase of the Louisiana Dual Enrollment Portal! We appreciate any feedback you can provide in the box provided. Your feedback will help us improve on future website updates. For specific questions regarding Dual Enrollment, not answered in this portal, please contact the Louisiana Department of Education or the Louisiana Board of Regents at the contact infornation provided.
                                     </p>
                                 </div>
 

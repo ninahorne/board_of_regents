@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h1>Welcome to Louisiana’s Dual Enrollment resource.</h1>
-                        <p>The Board of Regents of Louisiana has developed this information to help students, families, and counselors access dual enrollment opportunities throughout the state. We’re glad you’re here!</p>
+                        <p>The Louisiana Board of Regents has developed this information to help students, families, and counselors access dual enrollment opportunities throughout the state. We’re glad you’re here!</p>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
     </section>
     <section>
         <div class="container">
-            <h1 class="text-center">How does duel enrollment work?</h1>
+            <h1 class="text-center">How does dual enrollment work?</h1>
             <div class="mt-4 mb-4">
                 <div class="row home-page__section-two__graphic">
                     <div class="col-lg-3  col-xl-2 offset-lg-1">

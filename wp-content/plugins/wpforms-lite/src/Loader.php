@@ -46,6 +46,7 @@ class Loader {
 		$this->populate_smart_tags();
 		$this->populate_logger();
 		$this->populate_education();
+		$this->populate_robots();
 	}
 
 	/**
@@ -125,6 +126,9 @@ class Loader {
 			[
 				'name' => 'Admin\Pages\Addons',
 				'id'   => 'addons_page',
+			],
+			[
+				'name' => 'Forms\Fields\Richtext\EntryViewContent',
 			]
 		);
 	}
@@ -141,6 +145,9 @@ class Loader {
 			[
 				'name' => 'Admin\Builder\Help',
 				'id'   => 'builder_help',
+			],
+			[
+				'name' => 'Admin\Builder\Shortcuts',
 			],
 			[
 				'name' => 'Admin\Builder\TemplatesCache',
@@ -286,6 +293,7 @@ class Loader {
 			'Builder\Payments',
 			'Builder\DidYouKnow',
 			'Builder\Geolocation',
+			'Builder\Confirmations',
 			'Admin\DidYouKnow',
 			'Admin\Settings\Integrations',
 			'Admin\Settings\Geolocation',
@@ -301,5 +309,18 @@ class Loader {
 				]
 			);
 		}
+	}
+
+	/**
+	 * Populate robots loaded class.
+	 *
+	 * @since 1.7.0
+	 */
+	private function populate_robots() {
+
+		$this->classes[] = [
+			'name' => 'Robots',
+			'run'  => 'hooks',
+		];
 	}
 }

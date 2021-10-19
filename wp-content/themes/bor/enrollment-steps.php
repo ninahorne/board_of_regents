@@ -17,7 +17,7 @@
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-one-tab">
                     <div class="row">
                         <div class="col-6">
-                            <p class="large-number">01</p>
+                            <p class="large-number">1</p>
 
                         </div>
                         <div class="col-6">
@@ -39,7 +39,7 @@
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-two-tab">
                     <div class="row">
                         <div class="col-6">
-                            <p class="large-number">02</p>
+                            <p class="large-number">2</p>
 
                         </div>
                         <div class="col-6">
@@ -59,7 +59,7 @@
                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-three-tab">
                     <div class="row">
                         <div class="col-6">
-                            <p class="large-number">03</p>
+                            <p class="large-number">3</p>
 
                         </div>
                         <div class="col-6">

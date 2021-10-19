@@ -38,7 +38,9 @@
 
 <script>
     var useful_links_search;
-    checkForCollegeQueryParams();
+    window.addEventListener('DOMContentLoaded', initializeMapData)
+    window.addEventListener('DOMContentLoaded', initializeUsefulLinkSearch);
+    window.addEventListener('DOMContentLoaded', checkForCollegeQueryParams);
 
     function checkForCollegeQueryParams() {
         const queryParams = window.location.search;
@@ -98,20 +100,28 @@
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
-            const myObj = JSON.parse(this.responseText);
-            console.log(myObj);
-            initialize(myObj);
+            if (this.responseText) {
+                console.log(this.responseText);
+                const myObj = JSON.parse(this.responseText);
+                console.log(myObj);
+                initialize(myObj);
+            }
+
 
             // const selectedCollege = document.querySelector('#selectedCollege');
             // selectedCollege.innerHTML = this.responseText;
         };
 
+        try {
+            xhttp.open("GET", "../../wp-content/themes/bor/get_colleges.php");
+            xhttp.send();
+        } catch {
+            console.log('error');
+        }
 
-        xhttp.open("GET", "../../wp-content/themes/bor/get_colleges.php");
-        xhttp.send();
     };
 
-    initializeMapData();
+
 
     function onClick(objectId, lat, long, campus, system) {
         hideResults();
@@ -196,10 +206,5 @@
         useful_links_search.start();
     }
 
-    setTimeout(
-        () => {
-            initializeUsefulLinkSearch();
 
-        }, 1000
-    )
 </script>

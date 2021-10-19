@@ -12,7 +12,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-7">
-            <h1>Earn college & high school credit at the same time with Dual Enrollment.</h1>
+            <h1>Information for Students</h1>
 
           </div>
         </div>

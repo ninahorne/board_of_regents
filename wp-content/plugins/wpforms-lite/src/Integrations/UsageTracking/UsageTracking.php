@@ -27,6 +27,15 @@ class UsageTracking implements IntegrationInterface {
 	 */
 	public function allow_load() {
 
+		/**
+		 * Whether the Usage Tracking code is allowed to be loaded.
+		 *
+		 * Description.
+		 *
+		 * @since 1.6.1
+		 *
+		 * @param bool $var Boolean value.
+		 */
 		return (bool) apply_filters( 'wpforms_usagetracking_is_allowed', true );
 	}
 
@@ -39,6 +48,15 @@ class UsageTracking implements IntegrationInterface {
 	 */
 	public function is_enabled() {
 
+		/**
+		 * Whether the Usage Tracking is enabled.
+		 *
+		 * Description.
+		 *
+		 * @since 1.6.1
+		 *
+		 * @param bool $var Boolean value taken from the DB.
+		 */
 		return (bool) apply_filters( 'wpforms_integrations_usagetracking_is_enabled', wpforms_setting( self::SETTINGS_SLUG ) );
 	}
 
@@ -87,12 +105,12 @@ class UsageTracking implements IntegrationInterface {
 	 */
 	public function settings_misc_option( $settings ) {
 
-		$settings['misc'][ self::SETTINGS_SLUG ] = array(
+		$settings['misc'][ self::SETTINGS_SLUG ] = [
 			'id'   => self::SETTINGS_SLUG,
 			'name' => esc_html__( 'Allow Usage Tracking', 'wpforms-lite' ),
 			'desc' => esc_html__( 'By allowing us to track usage data, we can better help you, as we will know which WordPress configurations, themes, and plugins we should test.', 'wpforms-lite' ),
 			'type' => 'checkbox',
-		);
+		];
 
 		return $settings;
 	}
@@ -344,7 +362,7 @@ class UsageTracking implements IntegrationInterface {
 		$integrations = array_filter( $integrations );
 
 		if ( count( $integrations ) > 0 ) {
-			$integrations = call_user_func_array( 'array_merge', $integrations );
+			$integrations = call_user_func_array( 'array_merge', array_values( $integrations ) );
 		}
 
 		return array_count_values( $integrations );
@@ -384,7 +402,7 @@ class UsageTracking implements IntegrationInterface {
 		$payments = array_filter( $payments );
 
 		if ( count( $payments ) > 0 ) {
-			$payments = call_user_func_array( 'array_merge', $payments );
+			$payments = call_user_func_array( 'array_merge', array_values( $payments ) );
 		}
 
 		return array_count_values( $payments );

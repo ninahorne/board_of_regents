@@ -14,7 +14,7 @@
             <div class="student-eligibility__white-card d-none d-md-block">
               <div class="row">
                 <div class="col-md-6">
-                  <h3>Non-technial Courses</h3>
+                  <h3>Non-technical Courses</h3>
 
                 </div>
                 <div class="col-md-6">

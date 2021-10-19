@@ -5,10 +5,6 @@ $username = "root";
 $password = "";
 $dbname = "dual_enrollment";
 
-// $servername = "localhost";
-// $username = "wwgqa139_nina";
-// $password = "63442046";
-// $dbname = "wwgqa139_board-of-regents";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -62,8 +58,8 @@ if ($college_link->num_rows > 0) {
             <div class="row">
                 <div class="col-md-5">
                     <h2>' . $campus . '</h2>
-                    <a target="_blank" class="unformatted" href="' . $dualEnrollmentApplication . '"><i class="fas fa-external-link-alt"></i>&nbsp;Go to Dual Enrollment Application</a>
-
+                    <a target="_blank" class="unformatted" href="' . $dualEnrollmentApplication . '"><i class="fas fa-external-link-alt"></i>&nbsp;Go to Dual Enrollment Application*</a>
+                    <p class="footnote">*Note: Some postsecondary institutions require account creation for application.<p>
                 </div>
                 <div class="col-md-7">
                     <h3>Dual Enrollment Contact</h3>
@@ -73,7 +69,7 @@ if ($college_link->num_rows > 0) {
                             <a class="unformatted" href="mailto:' . $departmentContactEmail . '">' . $departmentContactEmail . '</a>
                         </div>' .
         '           <div class="col-lg-6">
-                            <a target="_blank" class="d-block unformatted" href="' . $transferForm . '"><i class="fas fa-external-link-alt"></i>&nbsp;Request your transcript</a>'
+                            <a target="_blank" class="d-block unformatted" href="' . $transferForm . '"><i class="fas fa-external-link-alt"></i>&nbsp;Request information on transcript/transfer</a>'
                             . (isset($registrarEmail) ? '<a class="unformatted" href="mailto:' . $registrarEmail . '"><i class="far fa-envelope"></i>&nbsp;&nbsp;Contact the Registrar </a>' : '') . '
                             
                         </div>' . '

@@ -35,7 +35,7 @@ class DefaultThemes implements IntegrationInterface {
 	private $current_theme;
 
 	/**
-	 * Determinate default theme.
+	 * Determine if WordPress default theme is used.
 	 *
 	 * @since 1.6.6
 	 *
@@ -53,7 +53,7 @@ class DefaultThemes implements IntegrationInterface {
 	}
 
 	/**
-	 * Allow load integration.
+	 * Indicate if current integration is allowed to load.
 	 *
 	 * @since 1.6.6
 	 *
@@ -67,7 +67,7 @@ class DefaultThemes implements IntegrationInterface {
 	}
 
 	/**
-	 * Load integration.
+	 * Load an integration.
 	 *
 	 * @since 1.6.6
 	 */
@@ -87,7 +87,7 @@ class DefaultThemes implements IntegrationInterface {
 	}
 
 	/**
-	 * Load hooks for the Twenty Twenty theme.
+	 * Hooks for the Twenty Twenty theme.
 	 *
 	 * @since 1.6.6
 	 */
@@ -97,25 +97,27 @@ class DefaultThemes implements IntegrationInterface {
 	}
 
 	/**
-	 * Load hooks for the Twenty Twenty-One theme.
+	 * Hooks for the Twenty Twenty-One theme.
 	 *
 	 * @since 1.6.6
 	 */
 	private function tt1_hooks() {
 
-		if ( wpforms_setting( 'disable-css' ) === '1' ) {
+		$form_styling = wpforms_setting( 'disable-css', '1' );
+
+		if ( $form_styling === '1' ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'tt1_multiple_fields_fix' ], 11 );
 			add_action( 'wp_enqueue_scripts', [ $this, 'tt1_dropdown_fix' ], 11 );
 		}
 
-		if ( wpforms_setting( 'disable-css' ) === '2' ) {
+		if ( $form_styling === '2' ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'tt1_base_style_fix' ], 11 );
 		}
 	}
 
 
 	/**
-	 * Apply fix for checkboxes and radio fields in the Twenty Twenty-One theme.
+	 * Apply fix for Checkboxes and Radio fields in the Twenty Twenty-One theme.
 	 *
 	 * @since 1.6.6
 	 */
@@ -123,7 +125,7 @@ class DefaultThemes implements IntegrationInterface {
 
 		wp_add_inline_style(
 			'twenty-twenty-one-style',
-			/** @lang CSS */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
+			// language=CSS PhpStorm.
 			'@supports (-webkit-appearance: none) or (-moz-appearance: none) {
 				div.wpforms-container-full .wpforms-form input[type=checkbox] {
 					-webkit-appearance: checkbox;
@@ -142,7 +144,7 @@ class DefaultThemes implements IntegrationInterface {
 	}
 
 	/**
-	 * Apply fix for dropdown field arrow, when it disappeared from select in the Twenty Twenty-One theme.
+	 * Apply fix for Dropdown field arrow, when it disappeared from select in the Twenty Twenty-One theme.
 	 *
 	 * @since 1.6.8
 	 */
@@ -150,8 +152,8 @@ class DefaultThemes implements IntegrationInterface {
 
 		wp_add_inline_style(
 			'twenty-twenty-one-style',
-			/** @lang CSS */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
-			'div.wpforms-container-full .wpforms-form select {
+			// language=CSS PhpStorm.
+			'div.wpforms-container-full form.wpforms-form select {
 				background-image: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'10\' height=\'10\' fill=\'%2328303d\'><polygon points=\'0,0 10,0 5,5\'/></svg>");
 				background-repeat: no-repeat;
 				background-position: right var(--form--spacing-unit) top 60%;
@@ -160,7 +162,7 @@ class DefaultThemes implements IntegrationInterface {
 	}
 
 	/**
-	 * Apply fix for checkboxes and radio fields width in the Twenty Twenty-One theme, when the user uses only base styles.
+	 * Apply fix for Checkboxes and Radio fields width in the Twenty Twenty-One theme, when the user uses only base styles.
 	 *
 	 * @since 1.6.8
 	 */
@@ -168,7 +170,7 @@ class DefaultThemes implements IntegrationInterface {
 
 		wp_add_inline_style(
 			'twenty-twenty-one-style',
-			/** @lang CSS */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
+			// language=CSS PhpStorm.
 			'.wpforms-container .wpforms-field input[type=checkbox],
 			.wpforms-container .wpforms-field input[type=radio] {
 				width: 25px;
@@ -182,7 +184,7 @@ class DefaultThemes implements IntegrationInterface {
 	}
 
 	/**
-	 * Apply resize-fix for iframe HTML element, when the next page was clicked in the Twenty Twenty theme.
+	 * Apply resize fix for iframe HTML element, when the next page was clicked in the Twenty Twenty theme.
 	 *
 	 * @since 1.6.6
 	 */
@@ -190,7 +192,7 @@ class DefaultThemes implements IntegrationInterface {
 
 		wp_add_inline_script(
 			'twentytwenty-js',
-			/** @lang JavaScript */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
+			// language=JavaScript PhpStorm.
 			'window.addEventListener( "load", function() {
 
 				if ( typeof jQuery === "undefined" ) {
@@ -204,6 +206,11 @@ class DefaultThemes implements IntegrationInterface {
 					}
 	
 					twentytwenty.intrinsicRatioVideos.makeFit();
+				} );
+
+				jQuery( document ).on( "wpformsRichTextEditorInit", function( e, editor ) { 
+				
+					jQuery( editor.container ).find( "iframe" ).addClass( "intrinsic-ignore" );
 				} );
 			} );'
 		);
