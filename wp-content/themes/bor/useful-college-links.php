@@ -44,7 +44,6 @@
 
     function checkForCollegeQueryParams() {
         const queryParams = window.location.search;
-        console.log(queryParams);
         if (queryParams) {
             const college = decodeURI(queryParams.replace('?college=', ''));
 
@@ -101,9 +100,7 @@
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.responseText) {
-                console.log(this.responseText);
                 const myObj = JSON.parse(this.responseText);
-                console.log(myObj);
                 initialize(myObj);
             }
 

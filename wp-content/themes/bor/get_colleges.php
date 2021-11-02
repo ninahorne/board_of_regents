@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 
-$sql = "SELECT * FROM `wp_posts` WHERE post_type='college_link'";
+$sql = "SELECT * FROM `wp_posts` WHERE post_type='college_link' LIMIT 28";
 $posts = $conn->query($sql);
 
 $college_links = [];

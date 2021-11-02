@@ -1,6 +1,7 @@
 .useful-college-links {
   background-color: $blue;
   color: white;
+
 }
 
 #map_wrapper {
@@ -145,11 +146,12 @@
     position: relative;
     bottom: 2px;
   }
-  a, p {
-    font-size:  16px;
-    word-break: break-all;
+  a,
+  p {
+    font-size: 16px;
+    word-break: break-word;
   }
-  a:hover{
+  a:hover {
     text-decoration: underline;
     * {
       text-decoration: underline;
@@ -162,25 +164,24 @@
     transform: translateY(100%);
     opacity: 0;
   }
-  80%{
+  80% {
     opacity: 1;
   }
   100% {
     transform: translateY(0);
     opacity: 1;
-
   }
 }
 @media screen and (max-width: 767px) {
-  
   .useful-college-links__selected-result {
-    a, p {
+    a,
+    p {
       font-size: 15px;
     }
   }
 }
 
-#usefulCollegeLinksSearchBox{
+#usefulCollegeLinksSearchBox {
   * {
     -webkit-appearance: none;
   }

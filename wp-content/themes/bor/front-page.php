@@ -33,14 +33,14 @@
                         Dual enrollment courses are much more affordable than college
                         credits, so they save money as well as time.
                     </p>
-                    <a style="max-width: 210px;" href="./index.php/faqs?question=What%20is%20Dual%20Enrollment%20and%20why%20is%20it%20beneficial%3F%20" class="cta unformatted">
+                    <a style="max-width: 210px;" href="./index.php/faqs" class="cta unformatted">
                         Learn more &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
                     </a>
                 </div>
                 <div class="col-md-6">
                     <div class="flex-center">
                         <div class="background__blue-brush-stroke">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/students.png" alt="">
+                            <img  src="<?php echo get_template_directory_uri(); ?>/images/students.png" alt="">
                         </div>
                     </div>
                 </div>

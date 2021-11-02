@@ -2,11 +2,12 @@
   .tabs {
     .nav-link {
       color: $dark-gray;
-      font-light: 600;
       margin-bottom: 0px;
       font-size: 18px;
       position: relative;
-
+      &:hover{
+        cursor: pointer;
+      }
       &::before {
         content: "";
         display: inline-block;

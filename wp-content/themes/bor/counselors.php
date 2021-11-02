@@ -32,6 +32,9 @@
         </section>
         <div class="shifted-up">
             <?php include('benefits.php') ?>
+
+        </div>
+        <section>
             <section class="students-page__section-three">
                 <div class="container">
                     <div class="d-md-block d-none">
@@ -78,11 +81,9 @@
             <section>
                 <?php include('useful-college-links.php') ?>
             </section>
-            <section>
-                <?php include('faq_preview.php') ?>
+            <?php include('faq_preview.php') ?>
 
-            </section>
-        </div>
+        </section>
 
     </div>
 

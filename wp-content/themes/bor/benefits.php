@@ -87,7 +87,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <a href="#" class="cta unformatted color-white d-block">Download Flyer &nbsp;<i class="fa fa-long-arrow-alt-right"></i></a>
+                                <a href="<?php echo get_template_directory_uri(); ?>/images/benefits-of-dual-enrollment-flyer.pdf" target='_blank' class="cta unformatted color-white d-block">Download Flyer &nbsp;<i class="fa fa-long-arrow-alt-right"></i></a>
 
                             </div>
                         </div>

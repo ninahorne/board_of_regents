@@ -1,8 +1,10 @@
 /* Students Page */
 .students-page__banner {
+  @include backgroundImageWithGradient("../images/students-banner.jpg");
+
   width: 100vw;
   height: 300px;
-  @include backgroundImageWithGradient("../images/students-banner-2@2x.png");
+  background-position-y: 30%;
   flex-direction: column;
   display: flex;
   justify-content: flex-end;
@@ -12,6 +14,13 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .students-page__banner {
+    @include backgroundImageWithGradient(
+      "../images/students-banner--mobile.jpg"
+    );
+  }
+}
 
 .students-page__blue-section {
   background-color: $blue;
@@ -27,7 +36,6 @@
   height: 350px;
   width: 300px;
   right: -40px;
- 
 }
 
 .students-page__video {
@@ -38,8 +46,6 @@
     margin: -300px 2rem 2rem 2rem;
   }
 }
-
-
 
 .students-page__eligibility {
   @include backgroundImage("../images/large-yellow-brush-stroke.svg");
@@ -70,9 +76,9 @@
     margin: 0.5rem;
     height: 100%;
 
-   &.student-eligibility__white-card__item--no-border{
-     border: none;
-   }
+    &.student-eligibility__white-card__item--no-border {
+      border: none;
+    }
   }
 }
 

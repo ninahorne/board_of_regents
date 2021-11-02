@@ -16,7 +16,8 @@
 	<div class="site-info">
 		<div class="container">
 
-			<p class="footer__title">Get in touch. <span class="bold">Call <a href="tel:2253424253">225.342.4253</a></span> or <span class="bold">email <a href="mailto:dualenrollment@laregents.edu">dualenrollment@laregents.edu.</a></span></p>
+			<p class="footer__title">Get in touch. <span class="bold">Call <a href="tel:2253424253">225.342.4253</a></span> or <span class="
+			bold">email <a href="mailto:dualenrollment@laregents.edu">dualenrollment@laregents.edu.</a></span></p>
 
 			<hr />
 			<div class="row">
@@ -25,6 +26,7 @@
 						<div class="col-md-6">
 							<ul class="footer__nav-links">
 								<li class="bold color-white">Start here</li>
+								<li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
 								<li><a href="./index.php/students">Students</a></li>
 								<li><a href="./index.php/families">Families</a></li>
 								<li><a href="./index.php/counselors">Counselors</a></li>

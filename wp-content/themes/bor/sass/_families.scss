@@ -1,7 +1,7 @@
 .families-page__banner {
   width: 100vw;
   height: 300px;
-  @include backgroundImageWithGradient("../images/parents-banner@2x.png");
+  @include backgroundImageWithGradient("../images/families-banner.jpg");
 
   h1 {
     color: white;
@@ -9,11 +9,11 @@
 }
 
 @media screen and (max-width: 767px) {
-  .families-page__banner{
-    background-position: unset;
-
+  .families-page__banner {
+    @include backgroundImageWithGradient(
+      "../images/families-banner--mobile.jpg"
+    );
   }
-  
 }
 .families-page__section-one {
   @include backgroundImage(
@@ -23,8 +23,7 @@
   color: white;
 }
 
-
-.families-page__video{
+.families-page__video {
   margin-top: -300px;
 }
 @media screen and (max-width: 1024px) {
@@ -36,5 +35,4 @@
   .families-page__section-one {
     height: 500px;
   }
- 
 }

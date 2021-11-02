@@ -149,7 +149,7 @@ h1 {
   height: calc(100vh - 100px);
   min-height: 500px;
   @include backgroundImageWithGradient(
-    "../images/dual-enrollment-home-banner-1@2x.png"
+    "../images/dual-enrollment-home-banner.jpg"
   );
   display: flex;
   align-items: center;
@@ -159,10 +159,18 @@ h1 {
     color: white;
   }
 }
-
+img {
+  content-visibility: auto;
+}
 @media screen and (max-width: 767px) {
   .front-page__full-width-image {
+    @include backgroundImageWithGradient(
+      "../images/dual-enrollment-home-banner--mobile.jpg"
+    );
     align-items: flex-end;
+    height: calc(100vh - 143px);
+    background-position: left center;
+   
   }
 }
 
