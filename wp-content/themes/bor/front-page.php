@@ -15,6 +15,7 @@
         <?php include('secondary-navigation.php'); ?>
 
     </div>
+
     <section>
         <div class="container">
             <div class="row">
@@ -40,8 +41,41 @@
                 <div class="col-md-6">
                     <div class="flex-center">
                         <div class="background__blue-brush-stroke">
-                            <img  src="<?php echo get_template_directory_uri(); ?>/images/students.png" alt="">
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/students.png" alt="">
                         </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="flex-center">
+                        <div class="background__blue-brush-stroke mt-5">
+                            <img style="max-width: 430px" src="<?php echo get_template_directory_uri(); ?>/images/art.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h1 class="text-lg-right"">What kinds of courses are offered?</h1>
+                    <p class="text-lg-right">
+                        Courses are available for scientists, mechanics, writers, film producers,
+                        lawyers, musicians, artists, doctors, and much, much more. College and university
+                        campuses offer exciting facilities and equipment to practice hands on learning and
+                        real-world application. Dual enrollment courses taken at a student’s own high school
+                        (which is also possible) conveniently offer courses across English, math, science, history,
+                        art, and technology subjects. Browse your options here.
+                    </p>
+                    <div class="d-flex flex-lg-row flex-md-column">
+                        <a style="max-width: 210px; margin: 1rem 1rem 1rem 0rem;" href="./index.php/courses" class="cta unformatted">
+                            Courses &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
+                        </a>
+                        <a style="max-width: 240px; margin: 1rem 1rem 1rem 0rem;" href="./index.php/fields-of-study" class="cta unformatted">
+                            Fields of Study &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>

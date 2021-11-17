@@ -135,6 +135,7 @@ a {
 @import "_fields-of-study.scss";
 @import "faq-preview.scss";
 @import "_about.scss";
+@import "_eligibility.scss";
 
 h1 {
   font-weight: 900;
@@ -170,7 +171,6 @@ img {
     align-items: flex-end;
     height: calc(100vh - 143px);
     background-position: left center;
-   
   }
 }
 
@@ -401,4 +401,36 @@ input[type="search"] {
   font-size: 10px !important;
   font-style: italic;
   margin-top: 5px;
+}
+
+.page__banner {
+  width: 100vw;
+  height: 500px;
+  background-position-y: 30%;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-end;
+  h1 {
+    color: white;
+    margin-bottom: 120px;
+  }
+
+  &.page__banner--info {
+    @include backgroundImageWithGradient("../images/students-banner.jpg");
+
+    @media screen and (max-width: 768px) {
+      @include backgroundImageWithGradient(
+        "../images/students-banner--mobile.jpg"
+      );
+    }
+  }
+
+  &.page__banner--apply {
+    @include backgroundImageWithGradient("../images/counselors-banner.jpg");
+    @media screen and (max-width: 767px) {
+      .counselors-page__banner {
+        background-position: 20% 80%;
+      }
+    }
+  }
 }

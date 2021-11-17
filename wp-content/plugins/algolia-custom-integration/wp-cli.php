@@ -80,7 +80,7 @@ class Algolia_Command
         $index = $algolia->initIndex('faqs');
         $index->setSettings([
             'attributesForFaceting' => [
-                "categories"
+                "tags"
             ]
         ]);
         $index->clearObjects()->wait();
@@ -412,7 +412,7 @@ class Algolia_Command
 
                 if ($key == "campus") {
                     $record['title'] = $value;
-                    $record['url_params'] = './index.php/students?college=' . $value;
+                    $record['url_params'] = './index.php/contact?college=' . $value;
                 }
 
 

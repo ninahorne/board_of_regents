@@ -1,5 +1,20 @@
 == Changelog ==
 
+= 1.7.1.1 =
+- Fixed: Email address validation against allowlist or denylist always fails.
+
+= 1.7.1 =
+- Changed: Improved translations by removing confusion if non-translatable placeholders are used.
+- Changed: Improved support for WordPress Core UI colors and admin themes in the admin bar menu.
+- Changed: Improved display of empty and hidden field labels in Form Builder preview.
+- Changed: Field helper notification in the Form Builder now can be dismissed.
+- Changed: Improved and standardized look of classic and modern Dropdown field across Form Builder, admin area, and frontend.
+- Fixed: Strip slashes from Paragraph Text field when the value is dynamically populated.
+- Fixed: SMTP settings page linked to Setup Wizard even when SMTP settings are already configured.
+- Fixed: Notifications count in the admin bar is misaligned.
+- Fixed: Field helper notification in the Form Builder overlaps and blocks Duplicate and Delete actions when hovered.
+- Fixed: Non-latin (Punycode) email addresses are not converted for display in email suggestion hints.
+
 = 1.7.0 =
 - Added: Uncanny Automator integration.
 - Changed: Updated jQuery Validation library to v1.9.3.

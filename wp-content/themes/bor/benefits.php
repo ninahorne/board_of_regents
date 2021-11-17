@@ -1,4 +1,4 @@
-<section class="counselors-page__benefits__wrapper">
+<section class="counselors-page__benefits__wrapper background__blue mt-5 mb-5">
                 <div class="container">
                     <div class="counselors-page__benefits">
                         <h1 class="mt-0">Benefits of Dual Enrollment</h1>

@@ -585,12 +585,6 @@ class WPForms_Field_Email extends WPForms_Field {
 	 */
 	public function ajax_check_restricted_email() {
 
-		$token = wpforms()->get( 'token' );
-
-		if ( ! $token || ! $token->verify( filter_input( INPUT_POST, 'token', FILTER_SANITIZE_STRING ) ) ) {
-			wp_send_json_error();
-		}
-
 		$form_id  = filter_input( INPUT_POST, 'form_id', FILTER_SANITIZE_NUMBER_INT );
 		$field_id = filter_input( INPUT_POST, 'field_id', FILTER_SANITIZE_NUMBER_INT );
 		$email    = filter_input( INPUT_POST, 'email', FILTER_SANITIZE_STRING );

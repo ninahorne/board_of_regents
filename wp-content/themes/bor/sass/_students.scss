@@ -3,7 +3,7 @@
   @include backgroundImageWithGradient("../images/students-banner.jpg");
 
   width: 100vw;
-  height: 300px;
+  height: 500px;
   background-position-y: 30%;
   flex-direction: column;
   display: flex;
@@ -47,63 +47,5 @@
   }
 }
 
-.students-page__eligibility {
-  @include backgroundImage("../images/large-yellow-brush-stroke.svg");
-  background-repeat: no-repeat;
-}
 
-.student-eligibility__white-card {
-  background-color: white;
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: 13px 23px 19px #00000008;
-  i {
-    color: $orange;
-    margin-right: 1rem;
-    font-size: 25px;
-  }
-  h5 {
-    display: inline;
-    font-size: 1rem;
-  }
-  h3 {
-    padding: 1rem 0.5rem;
-    margin: 0.5rem;
-  }
-  .student-eligibility__white-card__item {
-    padding: 0.2rem;
-    border-bottom: 1px dashed $dark-gray;
-    margin: 0.5rem;
-    height: 100%;
 
-    &.student-eligibility__white-card__item--no-border {
-      border: none;
-    }
-  }
-}
-
-// @media screen and (max-width: 1024px) {
-//   .students-page__eligibility {
-//     height: 800px;
-//   }
-//   .student-eligibility__white-card {
-//     padding: 1rem;
-//   }
-// }
-
-@media screen and (max-width: 1024px) {
-  .students-page__eligibility {
-    height: auto;
-    margin-bottom: 0;
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-  .student-eligibility__white-card {
-    .student-eligibility__white-card__item {
-      height: auto;
-      h5 {
-        font-size: 1rem;
-      }
-    }
-  }
-}

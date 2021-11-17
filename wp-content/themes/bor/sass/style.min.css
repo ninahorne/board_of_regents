@@ -1431,6 +1431,10 @@ a:visited {
     display: block;
   }
 }
+.steps-to-enrollment {
+  margin: 4rem auto;
+  max-width: 90%;
+}
 .steps-to-enrollment .tabs .nav-link {
   color: #404040;
   margin-bottom: 0px;
@@ -1522,7 +1526,7 @@ a:visited {
   background-size: cover;
   background-position: center;
   width: 100vw;
-  height: 300px;
+  height: 500px;
   background-position-y: 30%;
   flex-direction: column;
   display: flex;
@@ -1570,60 +1574,9 @@ a:visited {
     margin: -300px 2rem 2rem 2rem;
   }
 }
-.students-page__eligibility {
-  background-image: url("../images/large-yellow-brush-stroke.svg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.student-eligibility__white-card {
-  background-color: white;
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: 13px 23px 19px #00000008;
-}
-.student-eligibility__white-card i {
-  color: #ee7600;
-  margin-right: 1rem;
-  font-size: 25px;
-}
-.student-eligibility__white-card h5 {
-  display: inline;
-  font-size: 1rem;
-}
-.student-eligibility__white-card h3 {
-  padding: 1rem 0.5rem;
-  margin: 0.5rem;
-}
-.student-eligibility__white-card .student-eligibility__white-card__item {
-  padding: 0.2rem;
-  border-bottom: 1px dashed #404040;
-  margin: 0.5rem;
-  height: 100%;
-}
-.student-eligibility__white-card .student-eligibility__white-card__item.student-eligibility__white-card__item--no-border {
-  border: none;
-}
-
-@media screen and (max-width: 1024px) {
-  .students-page__eligibility {
-    height: auto;
-    margin-bottom: 0;
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-
-  .student-eligibility__white-card .student-eligibility__white-card__item {
-    height: auto;
-  }
-  .student-eligibility__white-card .student-eligibility__white-card__item h5 {
-    font-size: 1rem;
-  }
-}
 .families-page__banner {
   width: 100vw;
-  height: 300px;
+  height: 500px;
   background-image: linear-gradient(90deg, #0000009a 0%, #00000036 67%, #00000000 100%), url("../images/families-banner.jpg");
   background-size: cover;
   background-position: center;
@@ -1663,10 +1616,11 @@ a:visited {
 }
 .counselors-page__banner {
   width: 100vw;
-  height: 300px;
+  height: 500px;
   background-image: linear-gradient(90deg, #0000009a 0%, #00000036 67%, #00000000 100%), url("../images/counselors-banner.jpg");
   background-size: cover;
   background-position: center;
+  background-position: center 72%;
 }
 .counselors-page__banner h1 {
   color: white;
@@ -2266,6 +2220,57 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   margin: 0 auto !important;
 }
 
+.eligibility {
+  background-image: url("../images/large-yellow-brush-stroke.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 1024px) {
+  .eligibility {
+    height: auto;
+    margin-bottom: 0;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .white-card .white-card__item {
+    height: auto;
+  }
+  .white-card .white-card__item h5 {
+    font-size: 1rem;
+  }
+}
+.white-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 13px 23px 19px #00000008;
+}
+.white-card i {
+  color: #ee7600;
+  margin-right: 1rem;
+  font-size: 25px;
+}
+.white-card h5 {
+  display: inline;
+  font-size: 1rem;
+}
+.white-card h3 {
+  padding: 1rem 0.5rem;
+  margin: 0.5rem;
+}
+.white-card .white-card__item {
+  padding: 0.2rem;
+  border-bottom: 1px dashed #404040;
+  margin: 0.5rem;
+  height: 100%;
+}
+.white-card .white-card__item.white-card__item--no-border {
+  border: none;
+}
+
 h1 {
   font-weight: 900;
 }
@@ -2513,4 +2518,39 @@ input[type=search] {
   font-size: 10px !important;
   font-style: italic;
   margin-top: 5px;
+}
+
+.page__banner {
+  width: 100vw;
+  height: 500px;
+  background-position-y: 30%;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-end;
+}
+.page__banner h1 {
+  color: white;
+  margin-bottom: 120px;
+}
+.page__banner.page__banner--info {
+  background-image: linear-gradient(90deg, #0000009a 0%, #00000036 67%, #00000000 100%), url("../images/students-banner.jpg");
+  background-size: cover;
+  background-position: center;
+}
+@media screen and (max-width: 768px) {
+  .page__banner.page__banner--info {
+    background-image: linear-gradient(90deg, #0000009a 0%, #00000036 67%, #00000000 100%), url("../images/students-banner--mobile.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+}
+.page__banner.page__banner--apply {
+  background-image: linear-gradient(90deg, #0000009a 0%, #00000036 67%, #00000000 100%), url("../images/counselors-banner.jpg");
+  background-size: cover;
+  background-position: center;
+}
+@media screen and (max-width: 767px) {
+  .page__banner.page__banner--apply .counselors-page__banner {
+    background-position: 20% 80%;
+  }
 }/*# sourceMappingURL=style.min.css.map */

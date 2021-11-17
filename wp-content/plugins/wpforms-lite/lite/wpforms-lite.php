@@ -499,7 +499,7 @@ class WPForms_Lite {
 				<?php
 				printf(
 					wp_kses( /* translators: %s - star icons. */
-						__( 'We know that you will truly love WPForms. It has over 9000+ five star ratings (%s) and is active on over 4 million websites.', 'wpforms-lite' ),
+						__( 'We know that you will truly love WPForms. It has over 9000+ five star ratings (%s) and is active on over 5 million websites.', 'wpforms-lite' ),
 						[
 							'i' => [
 								'class'       => [],

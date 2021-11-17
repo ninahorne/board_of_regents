@@ -183,6 +183,12 @@ function wpb_custom_new_menu()
 			')
 		)
 	);
+	register_nav_menus(
+		array(
+			'front-page' => __('Front Page
+			')
+		)
+	);
 }
 add_action('init', 'wpb_custom_new_menu');
 /**
