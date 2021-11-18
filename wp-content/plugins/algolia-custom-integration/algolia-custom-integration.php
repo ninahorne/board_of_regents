@@ -20,3 +20,12 @@ global $algolia;
 
 $algolia = \Algolia\AlgoliaSearch\SearchClient::create("L1FLYTXGGK", "03caa5e233bd994477a0d3416be67e70");
 
+add_action('admin_menu', 'test_plugin_setup_menu');
+ 
+function test_plugin_setup_menu(){
+    add_menu_page( 'Algolia Search', 'Algolia Search', 'manage_options', 'algolia-search', 'algolia_init' );
+}
+ 
+function algolia_init(){
+    echo "<h1>Algolia Search</h1>";
+}

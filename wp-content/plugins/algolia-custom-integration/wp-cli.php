@@ -41,13 +41,20 @@ class Algolia_Command
                 ";
             $post_metas = $wpdb->get_results($querystr, OBJECT);
 
+            $lat = 0;
+            $lng = 0;
 
             foreach ($post_metas as $meta) {
 
                 $key = $meta->meta_key;
                 $substring = substr($key, 0, 1);
                 $record['objectID'] = $post->ID;
-
+                if($key == 'latitude'){
+                    $lat = $meta->meta_value;
+                }
+                if($key == 'longitude'){
+                    $lng = $meta->meta_value;
+                }
                 if ($substring != "_") {
                     if ($assoc_args['verbose']) {
 
@@ -56,7 +63,8 @@ class Algolia_Command
                     $record[$meta->meta_key] = $meta->meta_value;
                 }
             }
-
+            $record['_geoloc']['lat'] = $lat;
+            $record['_geoloc']['lng'] = $lng;
             $index->saveObject($record);
             $count++;
         }
