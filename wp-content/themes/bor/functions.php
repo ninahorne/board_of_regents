@@ -251,3 +251,11 @@ function algolia_load_assets()
 }
 add_action('wp_enqueue_scripts', 'algolia_load_assets');
 wp_enqueue_style('algolia-theme', get_template_directory_uri() . '/satellite-min.css');
+
+/** Allow SVG Upload */
+function enable_svg_upload( $upload_mimes ) {
+    $upload_mimes['svg'] = 'image/svg+xml';
+    $upload_mimes['svgz'] = 'image/svg+xml';
+    return $upload_mimes;
+}
+add_filter( 'upload_mimes', 'enable_svg_upload', 10, 1 );
