@@ -1,6 +1,5 @@
 {
     "require": {
-        "algolia/algoliasearch-client-php": "^3.0",
         "sleiman/airtable-php": "^2.4"
     }
 }

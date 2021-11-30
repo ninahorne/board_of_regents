@@ -12,6 +12,10 @@ class ComposerStaticInit9a3e3397a9b065b16ecbeef7d041b513
     );
 
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'TANIOS\\Airtable\\' => 16,
+        ),
         'P' => 
         array (
             'Psr\\SimpleCache\\' => 16,
@@ -25,6 +29,10 @@ class ComposerStaticInit9a3e3397a9b065b16ecbeef7d041b513
     );
 
     public static $prefixDirsPsr4 = array (
+        'TANIOS\\Airtable\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sleiman/airtable-php/src',
+        ),
         'Psr\\SimpleCache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
@@ -43,6 +51,16 @@ class ComposerStaticInit9a3e3397a9b065b16ecbeef7d041b513
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'S' => 
+        array (
+            'Stiphle' => 
+            array (
+                0 => __DIR__ . '/..' . '/davedevelopment/stiphle/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -52,6 +70,7 @@ class ComposerStaticInit9a3e3397a9b065b16ecbeef7d041b513
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit9a3e3397a9b065b16ecbeef7d041b513::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit9a3e3397a9b065b16ecbeef7d041b513::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit9a3e3397a9b065b16ecbeef7d041b513::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit9a3e3397a9b065b16ecbeef7d041b513::$classMap;
 
         }, null, ClassLoader::class);
