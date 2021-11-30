@@ -104,9 +104,6 @@
                 initialize(myObj);
             }
 
-
-            // const selectedCollege = document.querySelector('#selectedCollege');
-            // selectedCollege.innerHTML = this.responseText;
         };
 
         try {
@@ -142,7 +139,7 @@
 
     function initializeUsefulLinkSearch() {
         useful_links_search = instantsearch({
-            indexName: "useful-college-links",
+            indexName: "college",
             searchClient,
             searchFunction(helper) {
                 // Ensure we only trigger a search when there's a query
@@ -158,25 +155,25 @@
                 hits,
                 widgetParams
             } = renderOptions;
-
+            console.log(hits);
             widgetParams.container.innerHTML = `
-    <form class="ais-Hits" method="POST">
-      ${hits
-        .map(
-          (item) =>
-            `<label onclick="clickMarker( \`${
-              item.campus
-            }\`)" class="useful-college-links__search-result">
-              ${instantsearch.highlight({ attribute: "campus", hit: item })}
-            </label>
-            <input class="d-none" type="radio" name="postID" value="${
-              item.objectID
-            }" />
-            `
-        )
-        .join("")}
-    </form>
-  `;
+            <form class="ais-Hits" method="POST">
+            ${hits
+                .map(
+                (item) =>
+                    `<label onclick="clickMarker( \`${
+                    item.campus
+                    }\`)" class="useful-college-links__search-result">
+                    ${instantsearch.highlight({ attribute: "campus", hit: item })}
+                    </label>
+                    <input class="d-none" type="radio" name="postID" value="${
+                    item.objectID
+                    }" />
+                    `
+                )
+                .join("")}
+            </form>
+     `;
         };
 
         // Create the custom widget
