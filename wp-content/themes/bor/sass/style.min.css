@@ -2271,6 +2271,19 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   border: none;
 }
 
+.page__title {
+  color: white;
+}
+
+.horizontal-line {
+  border-top: 1px solid #ffffffb7;
+}
+
+.ais-GeoSearch-map {
+  height: 500px;
+  /* You can change this height */
+}
+
 h1 {
   font-weight: 900;
 }

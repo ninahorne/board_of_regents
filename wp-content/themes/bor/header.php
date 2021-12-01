@@ -111,9 +111,6 @@
 					<div class="modal-header">
 						<div id="algoliaSearch"></div>
 						<i onclick="closeHeaderSearchModal()" class="far fa-times-circle"></i>
-
-						<!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
 					</div>
 					<div style="height: 400px; overflow-y: scroll" class="modal-body">
 						<div id="hits"></div>

@@ -1491,7 +1491,8 @@ a:visited {
   }
 }
 .steps-to-enrollment {
-  margin: 4rem 0;
+  margin: 4rem auto;
+  max-width: 90%;
 }
 .steps-to-enrollment .tabs .nav-link {
   color: #404040;
@@ -2421,6 +2422,10 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 }
 .white-card .white-card__item.white-card__item--no-border {
   border: none;
+}
+
+.page__title {
+  color: white;
 }
 
 h1 {

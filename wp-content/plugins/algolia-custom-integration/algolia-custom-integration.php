@@ -357,7 +357,6 @@ function index_fields_of_study_in_algolia()
     $paged++;
 
     return 'Indexed ' . $count . ' Fields of Study in Algolia';
-
 }
 
 function index_generic_page_search_in_algolia()
@@ -509,11 +508,70 @@ function index_generic_page_search_in_algolia()
     // TODO add courses to generic page search
     // TODO make return message more meaningful
     return 'Indexed sitewide search.';
-
 }
-function index_courses_in_algolia(){
+function index_courses_in_algolia()
+{
+    global $algolia;
+    $index = $algolia->initIndex('courses');
+    $index->setSettings([
+        'attributesForFaceting' => [
+            "institution", // Let Algolia know we want to filter by these categories
+            "institution",
+            "modality"
+        ],
+        // TODO customize these
+        'searchableAttributes' => [
+            'name',
+            'city',
+            'country',
+            'iata_code'
+          ],
+          // TODO find out what this means
+          'customRanking' =>['geo']
+    ]);
+    $index->clearObjects()->wait();
+
+    $cc_args = array(
+        'posts_per_page'   => -1,
+        'post_type'        => 'college-courses'
+    );
+    $cc_query = new WP_Query($cc_args);
+
+    $courses = $cc_query->posts;
+    $count = 0;
+    foreach ($courses as $course) {
+        global $wpdb;
+        $querystr = "
+        SELECT *
+        FROM $wpdb->postmeta 
+        WHERE post_id LIKE $course->ID 
+    ";
+        $post_metas = $wpdb->get_results($querystr, OBJECT);
+
+        foreach ($post_metas as $meta) {
+
+            $key = $meta->meta_key;
+            $substring = substr($key, 0, 1);
+            $record['objectID'] = $course->ID;
+
+            if ($substring != "_") {
+                $record[$meta->meta_key] = $meta->meta_value;
+            }
+        }
+
+        $college = get_college_by_abbrev($record['institution']);
+        if ($college[0]) {
+            $lat = $college[0]->latitude;
+            $lng = $college[0]->longitude;
+            $record['_geoloc']['lat'] = $lat;
+            $record['_geoloc']['lng'] = $lng;
+        }
+
+        $index->saveObject($record);
+        $count++;
+    }
+
     return 'Function not implemented yet';
-    
 }
 
 /**
@@ -567,7 +625,4 @@ function algolia_init()
     if ($_POST['algolia_page_search']) {
         index_generic_page_search_in_algolia();
     };
-
-
-
 }

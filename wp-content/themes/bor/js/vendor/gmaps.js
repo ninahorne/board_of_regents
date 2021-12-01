@@ -103,7 +103,6 @@ function changeMarker(lat, long, campus, system) {
 }
 
 function clickMarker(campus) {
-  console.log("click marker");
   var marker = markers.find((mark) => mark.title === campus);
   console.log(marker);
   new google.maps.event.trigger(marker, "click");

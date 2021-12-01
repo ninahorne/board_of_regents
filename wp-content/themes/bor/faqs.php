@@ -64,8 +64,6 @@
             faqs_search.helper.state.query = decodedFAQ;
             faqs_search.helper.search();
             clearParams();
-
-
         }
     }
  
@@ -79,8 +77,6 @@
     
 
     function initializeAlgolia() {
-
-
         faqs_search = instantsearch({
             indexName: "faqs",
             searchClient,
@@ -90,7 +86,6 @@
                 clearTimeout(openFirstResultTimer);
                 helper.search();
                 openFirstResult();
-
             },
         });
 
@@ -100,7 +95,6 @@
                 hits,
                 widgetParams
             } = renderOptions;
-
             widgetParams.container.innerHTML = `
     
       ${hits
@@ -215,6 +209,5 @@
     }
     function clearParams(params) {
         window.history.replaceState(null, null, '?');
-
     }
 </script>
