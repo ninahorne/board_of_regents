@@ -512,6 +512,8 @@ function index_generic_page_search_in_algolia()
 function index_courses_in_algolia()
 {
     // TODO make modality an array
+    // TODO add CIP code image to courses
+    
     global $algolia;
     $index = $algolia->initIndex('courses');
     $index->setSettings([

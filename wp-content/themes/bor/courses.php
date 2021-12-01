@@ -92,7 +92,9 @@
                         <div class="results__heading">
                             <h2 class="page__title">Search Results</h2>
                             <div id="sortBy"></div>
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/search-illustration.svg" alt="">
                         </div>
+                        <hr class="results__hr">
                         <div id="coursesHits">
                         </div>
                         <div id="pagination"></div>
@@ -108,7 +110,7 @@
     let courses_search;
     let zipCode;
     let aroundRadius = 50;
-    let latLngCenter;
+    let algLatLng;
     let geocoder = new google.maps.Geocoder();
 
     const zipCodeInput = document.querySelector('#zipCode');
@@ -134,6 +136,31 @@
 
     })
 
+    function getDistanceInMiles(item) {
+        if (algLatLng) {
+            const itemLatLng = item._geoloc;
+            const [lat, lng] = algLatLng.split(',');
+            const userLatLng = {
+                lat: parseFloat(lat),
+                lng: parseFloat(lng)
+            };
+            const miles = getDistanceBetweenTwoPointsInMiles(itemLatLng, userLatLng);
+            return miles;
+        }
+
+
+    }
+
+    function getDistanceBetweenTwoPointsInMiles(mk1, mk2) {
+        let R = 3958.8; // Radius of the Earth in miles
+        let rlat1 = mk1.lat * (Math.PI / 180); // Convert degrees to radians
+        let rlat2 = mk2.lat * (Math.PI / 180); // Convert degrees to radians
+        let difflat = rlat2 - rlat1; // Radian difference (latitudes)
+        let difflon = (mk2.lng - mk1.lng) * (Math.PI / 180); // Radian difference (longitudes)
+
+        let d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat / 2) * Math.sin(difflat / 2) + Math.cos(rlat1) * Math.cos(rlat2) * Math.sin(difflon / 2) * Math.sin(difflon / 2)));
+        return Math.round(d);
+    }
 
     function setQueryForAroundRadius(e) {
         const miles = parseInt(e.target.value)
@@ -144,8 +171,8 @@
 
     function setQueryForAroundLatLng(e) {
         const zipCode = e.target.value;
-        var lat = '';
-        var lng = '';
+        let lat = '';
+        let lng = '';
         if (zipCode) {
             geocoder.geocode({
                 address: zipCode
@@ -153,10 +180,10 @@
                 if (status == google.maps.GeocoderStatus.OK) {
                     lat = results[0].geometry.location.lat();
                     lng = results[0].geometry.location.lng();
-                    const algLatLng = `${lat}, ${lng}`;
+                    algLatLng = `${lat}, ${lng}`;
 
                     courses_search.helper.setQueryParameter('aroundLatLng', algLatLng);
-                    courses_search.helper.setQueryParameter('aroundRadius', getMetersFromMiles(20));
+                    courses_search.helper.setQueryParameter('aroundRadius', getMetersFromMiles(parseInt(distanceSlider.value)));
                     courses_search.helper.search();
 
                 }
@@ -235,8 +262,19 @@
                 ${hits
                 .map(
                 (item) => {
+                    return  `<div class='results__course'>
+                        <div class="results__image">
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/placeholder.svg" />
+                        </div>
+                        <div class="results__info">
+                            <p class="results__distance ${document.querySelector('#zipCode').value ? '' : 'hidden'}"><img src="<?php echo get_template_directory_uri(); ?>/images/biking-solid.svg" />&nbsp; ${getDistanceInMiles(item)} miles from ${document.querySelector('#zipCode').value} </p>
+                            <p>${item.course_full_title}</p>
+                        </div>
+                        <div class="results__chevron">
+                            >
+                         </div>
+                    </div>`
 
-                    return `Course: ${item.course_full_title}`;
                 }).join("")}`;
         };
 
@@ -281,8 +319,7 @@
             }),
             instantsearch.widgets.sortBy({
                 container: '#sortBy',
-                items: [
-                    {
+                items: [{
                         label: 'Default',
                         value: 'courses'
                     },
@@ -291,15 +328,15 @@
                         value: 'courses_full_title_asc'
                     },
                     {
-                        label: 'Price (Lowest to Highest)',
+                        label: 'Price (asc)',
                         value: 'courses_cost_per_course_asc'
                     },
                     {
-                        label: 'Price (Highest to Lowest)',
+                        label: 'Price (desc)',
                         value: 'courses_cost_per_course_desc'
                     },
 
-                
+
                 ],
             }),
             coursesCustomHits({
