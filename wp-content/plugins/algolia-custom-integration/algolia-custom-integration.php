@@ -513,7 +513,7 @@ function index_courses_in_algolia()
 {
     // TODO make modality an array
     // TODO add CIP code image to courses
-    
+    // TODO mark items as "upcoming semester"
     global $algolia;
     $index = $algolia->initIndex('courses');
     $index->setSettings([

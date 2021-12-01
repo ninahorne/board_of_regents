@@ -111,7 +111,17 @@ $medium-orange: #ee760080;
 $light-gray: #ffffffb7;
 $medium-gray: #a3a3a3;
 $medium-dark-gray: #707070;
+$yellow: #ffee00;
+$green: #0C9418;
+$iconBackgroundGray: #F2F2F2;
 
+@mixin label($color) {
+  background-color: $color;
+  border-radius: 36px;
+  padding: 0.5rem 1rem;
+  font-size: 14px;
+  font-weight: 600;
+}
 body {
   width: 100vw;
   max-width: 100vw;
@@ -138,6 +148,7 @@ a {
 @import "_about.scss";
 @import "_eligibility.scss";
 @import "_courses.scss";
+
 
 h1 {
   font-weight: 900;

@@ -194,9 +194,13 @@
   display: flex;
   background-color: white;
   border-radius: 5px;
-  padding: 2rem;
+  padding: 2rem 0.5rem;
   margin: 1rem 0;
   border: 1px solid $medium-gray;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   .results__image {
     display: flex;
@@ -204,9 +208,19 @@
     align-items: center;
     justify-content: center;
     flex: 0 0 25%;
+
+    .results__image__background {
+      background-color: $iconBackgroundGray;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
   .results__info {
-    flex: 0 0 50%;
+    flex: 0 0 60%;
 
     .results__distance {
       display: flex;
@@ -214,12 +228,33 @@
       font-size: 12px;
       color: $dark-blue;
       margin-bottom: 0;
+      &.hidden {
+        display: none;
+      }
+    }
+    .results__title {
+      margin-bottom: 0;
+    }
+    .results__description {
+      font-weight: 400;
+      font-size: 14px;
+    }
+
+    label {
+      @include label($yellow);
+      font-size: 12px;
+      &.green {
+        @include label($green);
+        font-size: 12px;
+
+        color: white;
+      }
     }
   }
   .results__chevron {
-    flex: 0 0 25%;
+    flex: 0 0 15%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
   }
   p {
@@ -227,6 +262,57 @@
     font-weight: 700;
   }
 }
-.hidden {
-  display: none !important;
+
+.results__empty {
+  height: 300px;
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h4 {
+    text-align: center;
+  }
+}
+
+.results__footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.results__share {
+  display: flex;
+}
+
+@mixin shareIcon() {
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0rem 0.2rem;
+}
+
+.results__icon {
+  @include shareIcon();
+}
+
+.course__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  p {
+    color: white;
+    font-size: 14px;
+    text-align: center;
+  }
+}
+#courses {
+  .cta {
+    text-align: center;
+  }
 }

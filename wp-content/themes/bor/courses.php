@@ -7,7 +7,7 @@
 <?php include('header.php'); ?>
 <div id="content">
     <div class="background__blue">
-        <div class="container">
+        <div id="courses" class="container">
             <div class="p-2">
                 <h1 class="color-white">Courses Search</h1>
                 <div class="row">
@@ -45,7 +45,8 @@
                                     <div class="refinements__select">
                                         <div id="institutionsLabel" class="refinements__label">
                                             <p>All Institutions</p>
-                                            <span>x</span>
+                                            <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
+
                                         </div>
                                         <div id="institutionsDropdown" class="refinements__dropdown">
                                             <div id="institutionMenu"></div>
@@ -59,7 +60,8 @@
                                                 <p>Subject Areas</p> &nbsp;
                                                 <span>Ex: Human Services, Marketing</span>
                                             </div>
-                                            <span>x</span>
+                                            <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
+
                                         </div>
                                         <div id="subjectAreasDropdown" class="refinements__dropdown">
                                             <div id="subjectAreasMenu"></div>
@@ -73,7 +75,7 @@
                                                 <p>Type</p> &nbsp;
                                                 <span>Ex: College - On Campus</span>
                                             </div>
-                                            <span>x</span>
+                                            <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
                                         </div>
                                         <div id="typeDropdown" class="refinements__dropdown">
                                             <div id="typeMenu"></div>
@@ -97,9 +99,79 @@
                         <hr class="results__hr">
                         <div id="coursesHits">
                         </div>
-                        <div id="pagination"></div>
+                        <div class="results__footer">
+                            <div id="pagination"></div>
+                            <div class="results__share">
+                                <!-- <p>Share these results </p> -->
+                                <div class="results__icon">
+
+                                    <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
+
+                                </div>
+                                <div class="results__icon">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/images/file-pdf-solid.svg" alt="">
+
+                                </div>
+                                <div class="results__icon">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/images/file-csv-solid.svg" alt="">
+
+                                </div>
+                                <div class="results__icon">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/images/qrcode-solid.svg" alt="">
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="p-5">
+                    <h2 class="page__title text-center">Have more questions about courses?</h2>
+                    <h2 class="page__title text-center">Try these resources.</h2>
+                    <div class="row pt-5">
+                        <div class="col-sm-4">
+                            <div class="course__links">
+                                <p>See how courses transfer <br /> between institutions.
+                                </p>
+
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="course__links">
+                                <p>All your <br /> questions answered.
+                                </p>
+                          
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="course__links">
+                                <p>See what types of careers <br /> each field of study may lead to.
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a style=" margin: 1rem 1rem 1rem 0rem;" href="./index.php/courses" class="cta unformatted">
+                                Articulation Matrix &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
+                            </a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a style=" margin: 1rem 1rem 1rem 0rem;" href="./index.php/faqs" class="cta unformatted">
+                                FAQs &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
+                            </a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a style=" margin: 1rem 1rem 1rem 0rem;" href="./index.php/fields-of-study" class="cta unformatted">
+                                Fields of Study &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -244,6 +316,7 @@
         courses_search = instantsearch({
             indexName: "courses",
             searchClient,
+            hitsPerPage: 4,
             aroundRadius: getMetersFromMiles(50),
             searchFunction(helper) {
                 helper.search();
@@ -259,35 +332,50 @@
             } = renderOptions;
 
             widgetParams.container.innerHTML = `
-                ${hits
+                ${hits.length  ? hits
                 .map(
                 (item) => {
                     return  `<div class='results__course'>
                         <div class="results__image">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/placeholder.svg" />
+                            <div class="results__image__background">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/placeholder.svg" />
+                            </div>
                         </div>
                         <div class="results__info">
                             <p class="results__distance ${document.querySelector('#zipCode').value ? '' : 'hidden'}"><img src="<?php echo get_template_directory_uri(); ?>/images/biking-solid.svg" />&nbsp; ${getDistanceInMiles(item)} miles from ${document.querySelector('#zipCode').value} </p>
-                            <p>${item.course_full_title}</p>
+                            <p class="results__title">${item.course_full_title}</p>
+                            <p class="results__description">${item.description.substring(0,100)}</p>
+
+                                <label>${item.semester}</label>
+                                <label>Subject Area</label>
+                                <label class="green">Cost: $${item.cost_per_course}</label>
                         </div>
                         <div class="results__chevron">
-                            >
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/chevron-right-regular.svg" />
                          </div>
                     </div>`
 
-                }).join("")}`;
+                }).join("") : ` < div class = 'results__empty' >
+                <
+                h4 > No results match your query. < /h4> </div >
+                `
+            
+            }`;
+
         };
 
         // Create the custom widget
         const coursesCustomHits = instantsearch.connectors.connectHits(renderHits);
 
-
+        // TODO add clear zipCode
 
 
         const latLng = new google.maps.LatLng(30.4515, -91.1871);
 
         courses_search.addWidgets([
-
+            instantsearch.widgets.configure({
+                hitsPerPage: 4
+            }),
             instantsearch.widgets.searchBox({
                 container: "#coursesSearchBox",
                 placeholder: "Search",

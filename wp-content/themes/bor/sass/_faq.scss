@@ -4,11 +4,7 @@
   border-radius: 15px;
 
   label {
-    background-color: #ffee00;
-    border-radius: 36px;
-    padding: 0.5rem 1rem;
-    font-size: 14px;
-    font-weight: 600;
+    @include label($yellow);
   }
 
   h6 {
@@ -89,7 +85,6 @@
     max-height: 100000px;
     padding: 1rem;
     transition: max-height 1.4s ease-out;
-
   }
 }
 
@@ -112,15 +107,14 @@
   }
 }
 
-
-.faq__background-brush-stroke{
-  @include backgroundImage('../images/faq-brush-stroke.svg');
+.faq__background-brush-stroke {
+  @include backgroundImage("../images/faq-brush-stroke.svg");
   background-size: 50%;
   background-repeat: no-repeat;
   background-position: left top;
 }
 @media screen and (max-width: 1400px) {
-  .faq__background-brush-stroke{
+  .faq__background-brush-stroke {
     background-position: 0px 160px;
   }
 }
