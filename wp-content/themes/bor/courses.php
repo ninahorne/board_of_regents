@@ -13,11 +13,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="courses__search">
-                            <div class="faq__categories">
-                                <div class="m-2">
-                                    <div id="coursesTags"></div>
-
-                                </div>
+                            <div class="course__categories">
                                 <div>
                                     <h3>Search by Keyword</h3>
                                     <div id="coursesSearchBox"></div>
@@ -33,9 +29,59 @@
                                         </div>
                                         <div class="col-6">
                                             <input id="zipCode" type="text" placeholder="Enter Zipcode">
+                                            <a id="currentPosition" class="distance__location" href="">Current location <img src="<?php echo get_template_directory_uri(); ?>/images/location-light.svg"></a>
                                         </div>
                                     </div>
+                                    <div class="distance__slider">
+                                        <input id="distanceSlider" class="slider" step="25" type="range" min="0" max="100" value="50">
+                                        <div class="slider__values">
+                                            <p>0</p>
+                                            <p>25</p>
+                                            <p>50</p>
+                                            <p>75</p>
+                                            <p>100</p>
+                                        </div>
+                                    </div>
+                                    <div class="refinements__select">
+                                        <div id="institutionsLabel" class="refinements__label">
+                                            <p>All Institutions</p>
+                                            <span>x</span>
+                                        </div>
+                                        <div id="institutionsDropdown" class="refinements__dropdown">
+                                            <div id="institutionMenu"></div>
 
+                                        </div>
+
+                                    </div>
+                                    <div class="refinements__select">
+                                        <div id="subjectAreasLabel" class="refinements__label">
+                                            <div class="refinements__title">
+                                                <p>Subject Areas</p> &nbsp;
+                                                <span>Ex: Human Services, Marketing</span>
+                                            </div>
+                                            <span>x</span>
+                                        </div>
+                                        <div id="subjectAreasDropdown" class="refinements__dropdown">
+                                            <div id="subjectAreasMenu"></div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="refinements__select">
+                                        <div id="typeLabel" class="refinements__label">
+                                            <div class="refinements__title">
+                                                <p>Type</p> &nbsp;
+                                                <span>Ex: College - On Campus</span>
+                                            </div>
+                                            <span>x</span>
+                                        </div>
+                                        <div id="typeDropdown" class="refinements__dropdown">
+                                            <div id="typeMenu"></div>
+
+                                        </div>
+
+                                    </div>
+                                    <hr>
                                 </div>
                             </div>
                         </div>
@@ -43,8 +89,10 @@
                     </div>
 
                     <div class="col-md-7">
-                        <div id="geo-search"></div>
-
+                        <div class="results__heading">
+                            <h2 class="page__title">Search Results</h2>
+                            <div id="sortBy"></div>
+                        </div>
                         <div id="coursesHits">
                         </div>
                         <div id="pagination"></div>
@@ -64,9 +112,37 @@
     let geocoder = new google.maps.Geocoder();
 
     const zipCodeInput = document.querySelector('#zipCode');
-    zipCodeInput.addEventListener('change', (e) => setQueryForGeoLoc(e))
+    zipCodeInput.addEventListener('change', (e) => setQueryForAroundLatLng(e))
+    const distanceSlider = document.querySelector('#distanceSlider');
+    distanceSlider.addEventListener('change', (e) => setQueryForAroundRadius(e))
+    const currentPosition = document.querySelector('#currentPosition');
+    currentPosition.addEventListener('click', (e) => getCurrentLocation(e))
 
-    function setQueryForGeoLoc(e) {
+    const institutionsLabel = document.querySelector('#institutionsLabel');
+    const institutionsDropdown = document.querySelector("#institutionsDropdown");
+    institutionsLabel.addEventListener('click', () => {
+        institutionsDropdown.classList.toggle('open');
+        institutionsLabel.classList.toggle('open');
+
+    });
+
+    const typeLabel = document.querySelector('#typeLabel');
+    const typeDropdown = document.querySelector("#typeDropdown");
+    typeLabel.addEventListener('click', () => {
+        typeLabel.classList.toggle('open');
+        typeDropdown.classList.toggle('open');
+
+    })
+
+
+    function setQueryForAroundRadius(e) {
+        const miles = parseInt(e.target.value)
+        const meters = getMetersFromMiles(miles) || 1;
+        courses_search.helper.setQueryParameter('aroundRadius', meters);
+        courses_search.helper.search();
+    }
+
+    function setQueryForAroundLatLng(e) {
         const zipCode = e.target.value;
         var lat = '';
         var lng = '';
@@ -78,7 +154,7 @@
                     lat = results[0].geometry.location.lat();
                     lng = results[0].geometry.location.lng();
                     const algLatLng = `${lat}, ${lng}`;
-                    console.log({algLatLng})
+
                     courses_search.helper.setQueryParameter('aroundLatLng', algLatLng);
                     courses_search.helper.setQueryParameter('aroundRadius', getMetersFromMiles(20));
                     courses_search.helper.search();
@@ -90,20 +166,16 @@
 
 
     }
-    
-    function getMetersFromMiles(miles){
-        return Math.ceil(miles * 1609.34);
-    }
 
-    function calculateDistanceBetweenPoints(latLngA, latLngB) {
-        google.maps.geometry.spherical.computeDistanceBetween(latLngA, latLngB);
+    function getMetersFromMiles(miles) {
+        return Math.ceil(miles * 1609.34);
     }
 
     function getMilesFromKilometers(km) {
         return km * 0.621371;
     }
 
-    function getZipCodeFromLatLng(p) {
+    function getZipCodeFromLatLngAndTriggerChange(p) {
         const lat = p.coords.latitude;
         const lng = p.coords.longitude;
         latLngCenter = new google.maps.LatLng(lat, lng);
@@ -132,20 +204,26 @@
         courses_search.helper.search();
     }
 
+    function getCurrentLocation(e) {
+        e.preventDefault();
+        navigator.geolocation.getCurrentPosition(getZipCodeFromLatLngAndTriggerChange);
+
+    }
+
     function initializeAlgolia() {
 
-        // navigator.geolocation.getCurrentPosition(getZipCodeFromLatLng);
         const index = searchClient.initIndex('courses');
 
         courses_search = instantsearch({
             indexName: "courses",
             searchClient,
+            aroundRadius: getMetersFromMiles(50),
             searchFunction(helper) {
-                console.log('here');
                 helper.search();
             },
         });
 
+        // TODO initilze aroundRadius
         // Create the render function
         const renderHits = (renderOptions, isFirstRender) => {
             const {
@@ -166,41 +244,9 @@
         const coursesCustomHits = instantsearch.connectors.connectHits(renderHits);
 
 
-        // Create the render function
-        // TODO create render menu
-        const renderMenu = (renderOptions, isFirstRender) => {
-            const {
-                items,
-                refine
-            } = renderOptions;
 
-            const container = document.querySelector('#coursesTags');
-            container.innerHTML = `
-                <div class="row">
-                    ${items.map(item => `
-                                return <p>${item}</p>`
-                            )
-                            .join('')}
-
-                 </div>`;
-
-        };
 
         const latLng = new google.maps.LatLng(30.4515, -91.1871);
-        // var placesWidget = {
-        //   init: function(opts) {
-        //     var autocomplete = new google.maps.places.Autocomplete(/* ... */);
-        //     autocomplete.addListener('place_changed', onPlaceChanged);
-
-        //     function onPlaceChanged() {
-        //       var location = autocomplete.getPlace().geometry.location;
-        //       var lat = location.lat();
-        //       var lng = location.lng();
-        //       opts.helper.setQueryParameter('aroundLatLng', lat + ',' + lng);
-        //       opts.helper.search();
-        //     }
-        //   }
-        // };
 
         courses_search.addWidgets([
 
@@ -212,7 +258,50 @@
             instantsearch.widgets.pagination({
                 container: '#pagination',
             }),
+            instantsearch.widgets.refinementList({
+                container: document.querySelector('#institutionMenu'),
+                attribute: 'institution',
+                title: 'All Institutions',
+                sortBy: ["name:asc"]
+            }),
+            instantsearch.widgets.refinementList({
+                container: document.querySelector('#institutionMenu'),
+                attribute: 'institution',
+                sortBy: ["name:asc"]
+            }),
+            // instantsearch.widgets.refinementList({
+            //     container: document.querySelector('#subjectAreaMenu'),
+            //     attribute: 'subjectArea',
+            //     sortBy: ["name:asc"]
+            // }),
+            instantsearch.widgets.refinementList({
+                container: document.querySelector('#typeMenu'),
+                attribute: 'modality',
+                sortBy: ["name:asc"]
+            }),
+            instantsearch.widgets.sortBy({
+                container: '#sortBy',
+                items: [
+                    {
+                        label: 'Default',
+                        value: 'courses'
+                    },
+                    {
+                        label: 'A-Z',
+                        value: 'courses_full_title_asc'
+                    },
+                    {
+                        label: 'Price (Lowest to Highest)',
+                        value: 'courses_cost_per_course_asc'
+                    },
+                    {
+                        label: 'Price (Highest to Lowest)',
+                        value: 'courses_cost_per_course_desc'
+                    },
 
+                
+                ],
+            }),
             coursesCustomHits({
                 container: document.querySelector("#coursesHits"),
             }),

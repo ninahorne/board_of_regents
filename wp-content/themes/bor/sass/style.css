@@ -577,7 +577,6 @@ input[type=password],
 input[type=search],
 input[type=number],
 input[type=tel],
-input[type=range],
 input[type=date],
 input[type=month],
 input[type=week],
@@ -598,7 +597,6 @@ input[type=password]:focus,
 input[type=search]:focus,
 input[type=number]:focus,
 input[type=tel]:focus,
-input[type=range]:focus,
 input[type=date]:focus,
 input[type=month]:focus,
 input[type=week]:focus,
@@ -2426,6 +2424,54 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 
 .page__title {
   color: white;
+}
+
+.horizontal-line {
+  border-top: 1px solid #ffffffb7;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: rgba(238, 118, 0, 0.85);
+  outline: none;
+  -webkit-transition: 0.2s;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+  margin: 2rem auto 1rem;
+  border: none !important;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #ee7600;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #ee7600;
+  cursor: pointer;
+}
+
+.slider__values {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.slider__values p {
+  font-size: 12px;
 }
 
 h1 {
