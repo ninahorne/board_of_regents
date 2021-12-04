@@ -251,3 +251,5 @@ function algolia_load_assets()
 }
 add_action('wp_enqueue_scripts', 'algolia_load_assets');
 wp_enqueue_style('algolia-theme', get_template_directory_uri() . '/satellite-min.css');
+
+// TODO include 301 redirects for single post types
