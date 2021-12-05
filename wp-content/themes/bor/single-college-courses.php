@@ -45,7 +45,7 @@
                         <div class="course__details">
                             <div class="course__detail">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/money-check-edit-alt-light.svg" alt="" />
-                                <p> Credit Hours:&nbsp;$<?php echo the_field('number_of_credit_hours') ?></p>
+                                <p> Credit Hours:&nbsp;<?php echo the_field('number_of_credit_hours') ?></p>
                             </div>
 
                             <?php
@@ -84,16 +84,14 @@
                         </div>
                     </div>
 
-                    <div class="tab-content">
+                    <div class="tab-content" style="max-width: 800px">
                         <div class="tab-pane fade show active" id="v-pills-prerequisites" role="tabpanel" aria-labelledby="v-pills-one-tab">
-                            <?php
-                            if (the_field('coures_prerequisite')) {
-                                echo
-                                "<h2><?php the_field('coures_prerequisite'); ?></h2>";
-                            } else {
-                                echo '<p>There are no prerequisites for this course.';
-                            }
-                            ?>
+                            <?php if (get_field('coures_prerequisite')) : ?>
+                                <h2 class='mb-4'><?php the_field('coures_prerequisite'); ?></h2>
+                            <?php endif; ?>
+                            <?php if (!get_field('coures_prerequisite')) : ?>
+                                <p>There are no prerequisites for this course.</p>
+                            <?php endif; ?>
 
                             <p class="course__prereq">
                                 A prerequisite is a course that a student must take before enrolling in a given course. To enroll

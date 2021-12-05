@@ -2583,6 +2583,15 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   text-align: center;
 }
 
+.results__link {
+  text-decoration: none;
+  color: #404040;
+}
+.results__link:hover {
+  text-decoration: none;
+  color: #404040;
+}
+
 .course__row {
   display: flex;
   justify-content: space-between;

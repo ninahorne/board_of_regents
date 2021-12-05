@@ -140,7 +140,7 @@
                             <div class="course__links">
                                 <p>All your <br /> questions answered.
                                 </p>
-                          
+
                             </div>
 
                         </div>
@@ -335,7 +335,7 @@
                 ${hits.length  ? hits
                 .map(
                 (item) => {
-                    return  `<div class='results__course'>
+                    return  `<a class='results__link' href='${item.url}'><div class='results__course'>
                         <div class="results__image">
                             <div class="results__image__background">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/placeholder.svg" />

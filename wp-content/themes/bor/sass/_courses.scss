@@ -316,3 +316,13 @@
     text-align: center;
   }
 }
+
+
+.results__link{
+  text-decoration: none;
+  color: $dark-gray;
+  &:hover{
+    text-decoration: none;
+    color: $dark-gray;
+  }
+}

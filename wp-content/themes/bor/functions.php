@@ -255,9 +255,48 @@ wp_enqueue_style('algolia-theme', get_template_directory_uri() . '/satellite-min
 // TODO include 301 redirects for single post types
 
 /** Allow SVG Upload */
-function enable_svg_upload( $upload_mimes ) {
-    $upload_mimes['svg'] = 'image/svg+xml';
-    $upload_mimes['svgz'] = 'image/svg+xml';
-    return $upload_mimes;
+function enable_svg_upload($upload_mimes)
+{
+	$upload_mimes['svg'] = 'image/svg+xml';
+	$upload_mimes['svgz'] = 'image/svg+xml';
+	return $upload_mimes;
 }
-add_filter( 'upload_mimes', 'enable_svg_upload', 10, 1 );
+add_filter('upload_mimes', 'enable_svg_upload', 10, 1);
+
+/** Since we are sycing with AirTable, remove Colleges and Courses from Dashboard menu */
+function bor_remove_menu_items()
+{
+	remove_menu_page('edit.php?post_type=college');
+	remove_menu_page('edit.php?post_type=college-courses');
+}
+add_action('admin_menu', 'bor_remove_menu_items');
+
+/** Redirect form single post type for CIP Codes, Colleges, and Fields of Study */
+function redirect_faq_single()
+{
+	if (is_singular('faq')) {
+		wp_redirect(get_home_url(), 301);
+	}
+}
+function redirect_cip_codes_single()
+{
+	if (is_singular('cip_codes')) {
+		wp_redirect( get_home_url(), 301);
+	}
+}
+function redirect_field_of_study_single()
+{
+	if (is_singular('field-of-study')) {
+		wp_redirect(get_home_url(), 301);
+	}
+}
+function redirect_college_single()
+{
+	if (is_singular('college')) {
+		wp_redirect(get_home_url(), 301);
+	}
+}
+add_action('template_redirect', 'redirect_faq_single');
+add_action('template_redirect', 'redirect_cip_codes_single');
+add_action('template_redirect', 'redirect_field_of_study_single');
+add_action('template_redirect', 'redirect_college_single');

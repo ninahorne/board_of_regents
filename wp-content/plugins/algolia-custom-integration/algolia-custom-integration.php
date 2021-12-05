@@ -27,8 +27,9 @@ add_action('admin_menu', 'plugin_setup_menu');
  */
 function plugin_setup_menu()
 {
-    add_menu_page('Algolia Search', 'Algolia Search', 'manage_options', 'algolia-search', 'algolia_init');
+    add_menu_page('Dual Enrollment Data', 'Dual Enrollment Data', 'manage_options', 'dual-enrollment-data', 'dual_enrollment_init');
 }
+
 /**
  * Deletes current courses in the DB, and fetches courses from 
  * Course AirTable https://airtable.com/appYWq35ZeV7QE3QG/tblOyRDVaO09F802t/viw5LelXpFetJfvuP?blocks=hide
@@ -64,16 +65,75 @@ function sync_courses_airtable_with_wp_db()
 
     print_r('Added ' . $i . ' courses to the WP DB. ');
 }
+/**
+ * Deletes current 'colleges' in the DB, and fetches colleges from 
+ * College AirTable https://airtable.com/appYWq35ZeV7QE3QG/tblOyRDVaO09F802t/viw5LelXpFetJfvuP?blocks=hide
+ * and add them to WP DB as 'college-courses' post type
+ */
+function sync_colleges_airtable_with_wp_db()
+{
+    delete_current_colleges_in_wp_db();
+
+
+    $airtable = new Airtable(array(
+        'api_key' => 'keyOScHBLXWZxH8EU',
+        'base'    => 'appYWq35ZeV7QE3QG'
+    ));
+
+    $request = $airtable->getContent('CAMPUSES 12.1.21.V1');
+    $i = 0;
+
+    /**
+     * Loop through records in AirTable
+     * and create course in WP DB
+     */
+    do {
+        $response = $request->getResponse();
+        $records = $response['records'];
+        foreach ($records as $record) {
+            add_college_to_wp_db($record);
+            $i++;
+        }
+    } while ($request = $response->next());
+
+    print_r('Added ' . $i . ' colleges to the WP DB. ');
+}
+
+function add_college_to_wp_db($record)
+{
+    $fields = $record->fields;
+    $id = wp_insert_post(array(
+        'post_title' => $fields->{'CAMPUS'},
+        'post_type' => 'college',
+        'post_status' => 'publish'
+    ));
+    add_post_meta($id, 'campus', $fields->CAMPUS);
+    add_post_meta($id, 'system', $fields->SYSTEM);
+    add_post_meta($id, 'person_completing_form', $fields->{'Person Completing Form'});
+    add_post_meta($id, 'general_de_info_link', $fields->{'General DE INFO LINK'});
+    add_post_meta($id, 'courses_link', $fields->{'Courses Link'});
+    add_post_meta($id, 'duel_enrollment_application', $fields->{'Dual Enrollment Application'});
+    add_post_meta($id, 'department_contact_email', $fields->{'Department Contacts'});
+    add_post_meta($id, 'department_contact_name_', $fields->{'Department Contact Name'});
+    add_post_meta($id, 'registrar_name', $fields->{'Registrar Name'});
+    add_post_meta($id, 'registrar_contact_information', $fields->{'Registrar Contact Information'});
+    add_post_meta($id, 'transfer_form', $fields->{'Transfer Form'});
+    add_post_meta($id, 'transfer_poc', $fields->{'Transfer POC'});
+    add_post_meta($id, 'transfer_poc_email', $fields->{'Transfer POC Contact'});
+    add_post_meta($id, 'notes', $fields->{'Notes'});
+    add_post_meta($id, 'latitude', $fields->{'Latitude'});
+    add_post_meta($id, 'longitude', $fields->{'Longitude'});
+
+
+
+}
 
 
 function add_course_to_wp_db($record)
 {
     $fields = $record->fields;
-    $fullTitle = $fields->{'Course Full Title'};
-    $institution = $fields->{'Institution'};
-    $abbrev = $fields->{'Course Abbreviation'};
-    $courseNumber = $fields->{'Course Number'};
-    $title = $fullTitle . ' at ' . $institution . ' (' . $abbrev . ' ' . $courseNumber . ')';
+    $fullTitle = ucwords(strtolower($fields->{'Course Full Title'}));
+    $title = $fields->ID;
     $id = wp_insert_post(array(
         'post_title' => $title,
         'post_type' => 'college-courses',
@@ -92,9 +152,9 @@ function add_course_to_wp_db($record)
     add_post_meta($id, 'restricted', $fields->{'Restricted (specify criteria)'});
     add_post_meta($id, 'corresponding_hs_course', $fields->{'Corresponding HS Course Number'});
     add_post_meta($id, 'general_education', $fields->{'General Ed'});
-    // TODO fix this spelling error
-    add_post_meta($id, 'coures_prerequisite', $fields->{'Course Prerequisite'});
+    add_post_meta($id, 'course_prerequisite', $fields->{'Course Prerequisite'});
     add_post_meta($id, 'cost_per_course', intval(substr($fields->{'Cost per Course'}, 1)));
+
 }
 
 
@@ -106,6 +166,15 @@ function delete_current_courses_in_wp_db()
     $deletePosts = $wpdb->get_results("DELETE FROM wp_posts WHERE post_type='college-courses'");
     $deletePostMeta = $wpdb->get_results("DELETE FROM wp_postmeta WHERE post_id NOT IN (SELECT id FROM wp_posts)");
 }
+function delete_current_colleges_in_wp_db()
+{
+
+    global $wpdb;
+
+    $deletePosts = $wpdb->get_results("DELETE FROM wp_posts WHERE post_type='college'");
+    $deletePostMeta = $wpdb->get_results("DELETE FROM wp_postmeta WHERE post_id NOT IN (SELECT id FROM wp_posts)");
+}
+
 
 function get_college_by_abbrev($abbrev)
 {
@@ -446,7 +515,6 @@ function index_generic_page_search_in_algolia()
         foreach ($post_metas as $meta) {
 
             $key = $meta->meta_key;
-            $substring = substr($key, 0, 1);
             $record['objectID'] = $post->ID;
 
             $value = $meta->meta_value;
@@ -506,34 +574,57 @@ function index_generic_page_search_in_algolia()
         $count++;
     }
 
-    // TODO add courses to generic page search
+    // Index Courses
+    $coursesQuery = new WP_Query([
+        'posts_per_page' => 1000,
+        'post_type' => 'college-courses'
+    ]);
+
+    $courses = $coursesQuery->posts;
+
+    foreach ($courses as $post) {
+        global $wpdb;
+
+        $querystr = "
+                SELECT *
+                FROM $wpdb->postmeta 
+                WHERE post_id LIKE $post->ID 
+            ";
+        $post_metas = $wpdb->get_results($querystr, OBJECT);
+
+
+        foreach ($post_metas as $meta) {
+            $key = $meta->meta_key;
+            $value = $meta->meta_value;
+            if($key == 'course_full_title') {
+                $record['title'] = $value;
+            }
+            if($key == 'description') {
+                $record['details'] = $value;
+            }
+        }
+        $record['objectID'] = $post->ID;
+        $record['url_params'] = './index.php/college-courses/' . $post->post_name;
+        $index->saveObject($record);
+        $count++;
+    }
+
     // TODO make return message more meaningful
     return 'Indexed sitewide search.';
 }
 function index_courses_in_algolia()
 {
-    // TODO make modality an array
     // TODO add CIP code image to courses
     // TODO mark items as "upcoming semester"
-    // TODO title case course title
-    // TODO add url 'courses/title
     global $algolia;
     $index = $algolia->initIndex('courses');
     $index->setSettings([
         'attributesForFaceting' => [
-            "institution", // Let Algolia know we want to filter by these categories
             "institution",
             "modality"
+            // TODO add subject area
         ],
-        // TODO customize these
-        'searchableAttributes' => [
-            'name',
-            'city',
-            'country',
-            'iata_code'
-          ],
-          // TODO find out what this means
-          'customRanking' =>['geo']
+
     ]);
     $index->clearObjects()->wait();
 
@@ -557,9 +648,17 @@ function index_courses_in_algolia()
         foreach ($post_metas as $meta) {
 
             $key = $meta->meta_key;
+            $value = $meta->meta_value;
             $substring = substr($key, 0, 1);
             $record['objectID'] = $course->ID;
-
+            if ($key == 'modality') {
+                $pieces = explode(",", $value);
+                $modality = [];
+                foreach ($pieces as $piece) {
+                    $modality = $piece;
+                }
+                $record['modality'] = $modality;
+            }
             if ($substring != "_") {
                 $record[$meta->meta_key] = $meta->meta_value;
             }
@@ -572,7 +671,7 @@ function index_courses_in_algolia()
             $record['_geoloc']['lat'] = $lat;
             $record['_geoloc']['lng'] = $lng;
         }
-
+        $record['url'] = './index.php/college-courses/' . $course->post_name;
         $index->saveObject($record);
         $count++;
     }
@@ -583,7 +682,7 @@ function index_courses_in_algolia()
 /**
  * Initialize the Algolia Plugin Main page
  */
-function algolia_init()
+function dual_enrollment_init()
 {
 
     // Courses Section
@@ -593,7 +692,9 @@ function algolia_init()
     <a target='_blank' href='https://airtable.com/appYWq35ZeV7QE3QG/tblOyRDVaO09F802t/viw5LelXpFetJfvuP?blocks=hide'> View AirTable </a>
     <div>
     <form method='post'>
-        <button type='submit' name='courses' value='courses'>Sync Coures Data with AirTable</button>
+        <button type='submit' name='courses' value='courses'>Sync Courses Data with AirTable</button>
+        <button type='submit' name='colleges' value='courses'>Sync Colleges Data with AirTable</button>
+
     </form>
     </div>
     
@@ -601,6 +702,9 @@ function algolia_init()
 
     if ($_POST['courses']) {
         sync_courses_airtable_with_wp_db();
+    };
+    if ($_POST['colleges']) {
+        sync_colleges_airtable_with_wp_db();
     };
 
 
