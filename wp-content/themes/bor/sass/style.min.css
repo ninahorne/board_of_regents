@@ -401,6 +401,7 @@ h4,
 h5,
 h6 {
   clear: both;
+  font-weight: 600;
 }
 
 p {
@@ -2290,7 +2291,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   outline: none;
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
-  margin: 2rem auto 1rem;
+  margin: 2rem fit-content 1rem;
   border: none !important;
 }
 
@@ -2341,6 +2342,9 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 
 .distance__slider {
   margin-bottom: 2rem;
+}
+.distance__slider label {
+  font-size: 14px;
 }
 
 .distance__location {
@@ -2436,9 +2440,15 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 .results__heading {
   display: flex;
   align-items: end;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  justify-content: space-between;
 }
 .results__heading h2 {
   margin-bottom: 1.5rem;
+}
+.results__heading img {
+  margin: 0 auto;
 }
 
 #sortBy {
@@ -2460,7 +2470,9 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 }
 
 .results__course {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 2fr;
   background-color: white;
   border-radius: 5px;
   padding: 2rem 0.5rem;
@@ -2471,11 +2483,12 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   cursor: pointer;
 }
 .results__course .results__image {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 0 0 25%;
 }
 .results__course .results__image .results__image__background {
   background-color: #F2F2F2;
@@ -2486,8 +2499,45 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   align-items: center;
   justify-content: center;
 }
-.results__course .results__info {
-  flex: 0 0 60%;
+@media screen and (max-width: 567px) {
+  .results__course .results__image .results__image__background {
+    width: 80px;
+    height: 80px;
+  }
+}
+@media screen and (max-width: 567px) {
+  .results__course .results__image {
+    grid-row-end: 1;
+  }
+  .results__course .results__image .results__image__background {
+    width: 50px;
+    height: 50px;
+  }
+}
+.results__course .results__info.first {
+  grid-row-start: 1;
+  grid-row-end: 1;
+  grid-column-start: 2;
+  grid-column-end: 2;
+  display: flex;
+  align-items: center;
+}
+@media screen and (max-width: 567px) {
+  .results__course .results__info.first {
+    grid-column-end: 4;
+  }
+}
+.results__course .results__info.second {
+  grid-row-start: 2;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 2;
+}
+@media screen and (max-width: 567px) {
+  .results__course .results__info.second {
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
 }
 .results__course .results__info .results__distance {
   display: flex;
@@ -2501,12 +2551,20 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 }
 .results__course .results__info .results__title {
   margin-bottom: 0;
+  font-weight: 700;
 }
 .results__course .results__info .results__description {
   font-weight: 400;
   font-size: 14px;
 }
+@media screen and (max-width: 567px) {
+  .results__course .results__info .results__description {
+    padding: 1rem 0;
+    flex-wrap: wrap;
+  }
+}
 .results__course .results__info label {
+  margin: 0.5rem 0;
   background-color: #ffee00;
   border-radius: 36px;
   padding: 0.5rem 1rem;
@@ -2524,10 +2582,17 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   color: white;
 }
 .results__course .results__chevron {
-  flex: 0 0 15%;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 3;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media screen and (max-width: 567px) {
+  .results__course .results__chevron {
+    display: none;
+  }
 }
 .results__course p {
   font-size: 20px;
@@ -2550,10 +2615,40 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 .results__footer {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .results__share {
   display: flex;
+  margin: 1rem 0;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 567px) {
+  .results__share {
+    flex: 1 0 100%;
+    padding: 1rem;
+    border: 1px solid rgba(225, 225, 225, 0.6);
+    border-radius: 5px;
+  }
+}
+
+.results__share-text {
+  color: white;
+  margin: 0;
+}
+@media screen and (max-width: 567px) {
+  .results__share-text {
+    flex: 1 0 100%;
+    padding: 1rem;
+    text-align: center;
+    font-size: 28px;
+  }
+}
+
+.pagination {
+  margin: 1rem 0;
 }
 
 .results__icon {
@@ -2566,12 +2661,22 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   border-radius: 50%;
   margin: 0rem 0.2rem;
 }
+@media screen and (max-width: 567px) {
+  .results__icon {
+    width: 50px;
+    height: 50px;
+  }
+  .results__icon img {
+    width: 22px;
+  }
+}
 
 .course__links {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin: 2rem 0;
 }
 .course__links p {
   color: white;
@@ -2581,6 +2686,10 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 
 #courses .cta {
   text-align: center;
+}
+#courses .ais-Pagination-list {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .results__link {
@@ -2592,11 +2701,49 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   color: #404040;
 }
 
+.search__zip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+.search__zip input {
+  max-width: 100%;
+}
+.search__zip span {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+}
+.search__zip span:hover {
+  cursor: pointer;
+}
+.search__zip span.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 567px) {
+  .align-sm-center {
+    display: flex;
+    align-items: center;
+  }
+}
 .course__row {
   display: flex;
   justify-content: space-between;
   padding: 3rem 0;
   align-items: center;
+}
+@media screen and (max-width: 768px) {
+  .course__row {
+    padding: 0;
+  }
+  .course__row .cta {
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    margin-left: 0;
+  }
 }
 
 .course__share {
@@ -2610,6 +2757,11 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   font-weight: 700;
   color: white;
   margin: 0 1rem 0 0;
+}
+@media screen and (max-width: 567px) {
+  .course__share p {
+    font-size: 12px;
+  }
 }
 
 .course__column {
@@ -2649,6 +2801,17 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   margin: 0 0 0 1rem;
   font-size: 16px;
 }
+@media screen and (max-width: 991px) {
+  .course__detail {
+    flex: 0 0 50%;
+    margin-left: 0;
+    margin-right: 0;
+    justify-content: flex-start;
+  }
+  .course__detail p {
+    font-size: 14px;
+  }
+}
 
 .courses__tabs .nav-link {
   background-color: white;
@@ -2658,6 +2821,9 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   font-weight: 600;
   border-bottom: 1px solid #a3a3a3;
   padding: 1rem 2rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 .courses__tabs .nav-link:hover {
   cursor: pointer;
@@ -2666,6 +2832,13 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   color: #ee7600;
   border-bottom: 3px solid #ee7600;
   background-color: white;
+}
+@media screen and (max-width: 768px) {
+  .courses__tabs .nav-link {
+    font-size: 14px;
+    padding: 1rem;
+    flex: 1 0 0;
+  }
 }
 .courses__tabs .tab-content {
   padding: 0rem 2rem;
@@ -2691,12 +2864,34 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   padding: 1rem 0;
 }
 
+#singleCourse .background__blue {
+  padding: 2rem;
+}
+@media screen and (max-width: 567px) {
+  #singleCourse .background__blue {
+    padding: 1rem;
+  }
+}
 #singleCourse .background__orange-brush-stroke {
   position: relative;
   top: 50px;
 }
+@media screen and (max-width: 991px) {
+  #singleCourse .background__orange-brush-stroke {
+    top: unset;
+    width: 500px;
+    margin: 3rem auto;
+    max-width: 100%;
+  }
+}
 #singleCourse .background__white {
   min-height: 500px;
+  padding: 1rem 0;
+}
+@media screen and (max-width: 768px) {
+  #singleCourse .background__white {
+    padding: 0.5rem 0 0 0;
+  }
 }
 
 h1 {

@@ -41,27 +41,22 @@
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/calendar-alt-light.svg" alt="" />
                                 <p><?php the_field('semester') ?></p>
                             </div>
-                        </div>
-                        <div class="course__details">
                             <div class="course__detail">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/money-check-edit-alt-light.svg" alt="" />
                                 <p> Credit Hours:&nbsp;<?php echo the_field('number_of_credit_hours') ?></p>
                             </div>
-
-                            <?php
-                            if (get_field('general_education')[0] == 'Yes') {
-                                echo '<div class="course__detail">
-                            <img src="' . get_template_directory_uri() . '/images/school-light.svg" alt="" />
-                            <p>General Education Course</p>
-                        </div>';
-                            };
-                            if (the_field("satellite_campus")) {
-                                echo '<div class="course__detail">
-                            <img src="' . get_template_directory_uri() . '/images/school-light.svg" alt="" />
-                            <p>Satellite Campus:&nbsp;' . the_field('satellite_campus') . '</p>
-                        </div>';
-                            };
-                            ?>
+                            <?php if (get_field('general_education')) : ?>
+                                <div class="course__detail">
+                                    <img src="' . get_template_directory_uri() . '/images/school-light.svg" alt="" />
+                                    <p>General Education Course</p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (get_field('satellite_campus')) : ?>
+                                <div class="course__detail">
+                                    <img src="<?php echo get_template_directory_uri()?>/images/school-light.svg" alt="" />
+                                    <p>Satellite Campus: <br /> <?php the_field('satellite_campus') ?></p>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -72,7 +67,7 @@
                 </div>
             </div>
         </div>
-        <div class="background__white p-5">
+        <div class="background__white">
             <div class="courses__tabs">
                 <div class="container">
 

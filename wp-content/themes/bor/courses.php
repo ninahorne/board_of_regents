@@ -11,7 +11,7 @@
             <div class="p-2">
                 <h1 class="color-white">Courses Search</h1>
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-lg-5">
                         <div class="courses__search">
                             <div class="course__categories">
                                 <div>
@@ -28,11 +28,16 @@
                                             <h6>Distance</h6>
                                         </div>
                                         <div class="col-6">
-                                            <input id="zipCode" type="text" placeholder="Enter Zipcode">
+                                            <div class="search__zip">
+                                                <input id="zipCode" type="text" placeholder="Enter Zipcode">
+                                                <span class="hidden">&times;</span>
+                                            </div>
                                             <a id="currentPosition" class="distance__location" href="">Current location <img src="<?php echo get_template_directory_uri(); ?>/images/location-light.svg"></a>
+
                                         </div>
                                     </div>
                                     <div class="distance__slider">
+                                        <label for="distanceSlider">Radius (in miles)</label>
                                         <input id="distanceSlider" class="slider" step="25" type="range" min="0" max="100" value="50">
                                         <div class="slider__values">
                                             <p>0</p>
@@ -90,7 +95,7 @@
 
                     </div>
 
-                    <div class="col-md-7">
+                    <div class="col-lg-7">
                         <div class="results__heading">
                             <h2 class="page__title">Search Results</h2>
                             <div id="sortBy"></div>
@@ -102,11 +107,8 @@
                         <div class="results__footer">
                             <div id="pagination"></div>
                             <div class="results__share">
-                                <!-- <p>Share these results </p> -->
                                 <div class="results__icon">
-
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
-
                                 </div>
                                 <div class="results__icon">
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/file-pdf-solid.svg" alt="">
@@ -121,6 +123,8 @@
 
                                 </div>
                             </div>
+                            <h6 class="results__share-text">Share these results</h6>
+
                         </div>
                     </div>
                 </div>
@@ -128,48 +132,38 @@
                     <h2 class="page__title text-center">Have more questions about courses?</h2>
                     <h2 class="page__title text-center">Try these resources.</h2>
                     <div class="row pt-5">
-                        <div class="col-sm-4">
+                        <div class="col-lg-4">
                             <div class="course__links">
                                 <p>See how courses transfer <br /> between institutions.
                                 </p>
-
+                                <a style=" margin: 1rem 1rem 1rem 0rem;" href="./index.php/courses" class="cta unformatted">
+                                    Articulation Matrix &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
+                                </a>
                             </div>
 
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-lg-4">
                             <div class="course__links">
                                 <p>All your <br /> questions answered.
                                 </p>
-
+                                <a style=" margin: 1rem 1rem 1rem 0rem;" href="./index.php/faqs" class="cta unformatted">
+                                    FAQs &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
+                                </a>
                             </div>
 
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-lg-4">
                             <div class="course__links">
                                 <p>See what types of careers <br /> each field of study may lead to.
                                 </p>
-
+                                <a style=" margin: 1rem 1rem 1rem 0rem;" href="./index.php/fields-of-study" class="cta unformatted">
+                                    Fields of Study &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
+                                </a>
                             </div>
 
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a style=" margin: 1rem 1rem 1rem 0rem;" href="./index.php/courses" class="cta unformatted">
-                                Articulation Matrix &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
-                            </a>
-                        </div>
-                        <div class="col-sm-4">
-                            <a style=" margin: 1rem 1rem 1rem 0rem;" href="./index.php/faqs" class="cta unformatted">
-                                FAQs &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
-                            </a>
-                        </div>
-                        <div class="col-sm-4">
-                            <a style=" margin: 1rem 1rem 1rem 0rem;" href="./index.php/fields-of-study" class="cta unformatted">
-                                Fields of Study &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
-                            </a>
-                        </div>
-                    </div>
+
                 </div>
 
             </div>
@@ -206,7 +200,17 @@
         typeLabel.classList.toggle('open');
         typeDropdown.classList.toggle('open');
 
-    })
+    });
+
+    const times = document.querySelector(".search__zip span");
+    times.addEventListener('click', clearZipCode);
+
+    function clearZipCode() {
+        zipCodeInput.value = '';
+        // Trigger the event
+        var event = new Event('change');
+        zipCodeInput.dispatchEvent(event);
+    }
 
     function getDistanceInMiles(item) {
         if (algLatLng) {
@@ -258,9 +262,15 @@
                     courses_search.helper.setQueryParameter('aroundRadius', getMetersFromMiles(parseInt(distanceSlider.value)));
                     courses_search.helper.search();
 
+                    const times = document.querySelector(".search__zip span");
+                    times.classList.remove("hidden");
                 }
             });
 
+        } else {
+            initQueries();
+            const times = document.querySelector(".search__zip span");
+            times.classList.add("hidden");
         }
 
 
@@ -323,7 +333,6 @@
             },
         });
 
-        // TODO initilze aroundRadius
         // Create the render function
         const renderHits = (renderOptions, isFirstRender) => {
             const {
@@ -341,24 +350,25 @@
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/placeholder.svg" />
                             </div>
                         </div>
-                        <div class="results__info">
+                        <div class="results__info first">
                             <p class="results__distance ${document.querySelector('#zipCode').value ? '' : 'hidden'}"><img src="<?php echo get_template_directory_uri(); ?>/images/biking-solid.svg" />&nbsp; ${getDistanceInMiles(item)} miles from ${document.querySelector('#zipCode').value} </p>
                             <p class="results__title">${item.course_full_title}</p>
+                            
+                        </div>
+                        <div class="results__info second">
                             <p class="results__description">${item.description.substring(0,100)}</p>
 
-                                <label>${item.semester}</label>
-                                <label>Subject Area</label>
-                                <label class="green">Cost: $${item.cost_per_course}</label>
+                            <label>${item.semester}</label>
+                            <label>Subject Area</label>
+                            <label class="green">Cost: $${item.cost_per_course}</label>
                         </div>
+                        
                         <div class="results__chevron">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/chevron-right-regular.svg" />
                          </div>
                     </div>`
 
-                }).join("") : ` < div class = 'results__empty' >
-                <
-                h4 > No results match your query. < /h4> </div >
-                `
+                }).join("") : "<div class = 'results__empty'><h4> No results match your query. </h4> </div>"};
             
             }`;
 
@@ -395,11 +405,7 @@
                 attribute: 'institution',
                 sortBy: ["name:asc"]
             }),
-            // instantsearch.widgets.refinementList({
-            //     container: document.querySelector('#subjectAreaMenu'),
-            //     attribute: 'subjectArea',
-            //     sortBy: ["name:asc"]
-            // }),
+
             instantsearch.widgets.refinementList({
                 container: document.querySelector('#typeMenu'),
                 attribute: 'modality',
@@ -435,6 +441,17 @@
 
 
         courses_search.start();
+        initQueries();
+
+
+
+    }
+
+    function initQueries() {
+        $fiftyMeters = getMetersFromMiles(50);
+        courses_search.helper.setQueryParameter('aroundLatLng', '30.4515,-91.1871');
+        courses_search.helper.setQueryParameter('aroundRadius', $fiftyMeters);
+        courses_search.helper.search();
 
     }
 </script>

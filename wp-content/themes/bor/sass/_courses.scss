@@ -15,7 +15,7 @@
   outline: none;
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
-  margin: 2rem auto 1rem;
+  margin: 2rem fit-content 1rem;
   border: none !important;
 }
 
@@ -66,6 +66,9 @@
 
 .distance__slider {
   margin-bottom: 2rem;
+  label {
+    font-size: 14px;
+  }
 }
 
 .distance__location {
@@ -167,8 +170,15 @@
 .results__heading {
   display: flex;
   align-items: end;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+
+  justify-content: space-between;
   h2 {
     margin-bottom: 1.5rem;
+  }
+  img {
+    margin: 0 auto;
   }
 }
 
@@ -191,7 +201,9 @@
 }
 
 .results__course {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 2fr;
   background-color: white;
   border-radius: 5px;
   padding: 2rem 0.5rem;
@@ -203,11 +215,12 @@
   }
 
   .results__image {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex: 0 0 25%;
 
     .results__image__background {
       background-color: $iconBackgroundGray;
@@ -217,11 +230,44 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      @media screen and (max-width: 567px) {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    @media screen and (max-width: 567px) {
+      grid-row-end: 1;
+      .results__image__background {
+        width: 50px;
+        height: 50px;
+      }
     }
   }
   .results__info {
-    flex: 0 0 60%;
+    &.first {
+      grid-row-start: 1;
+      grid-row-end: 1;
+      grid-column-start: 2;
+      grid-column-end: 2;
+      display: flex;
+      align-items: center;
 
+      @media screen and (max-width: 567px) {
+        grid-column-end: 4;
+      }
+    }
+    &.second {
+      grid-row-start: 2;
+      grid-row-end: 2;
+      grid-column-start: 2;
+      grid-column-end: 2;
+
+      @media screen and (max-width: 567px) {
+        grid-column-start: 1;
+        grid-column-end: 4;
+      }
+    }
     .results__distance {
       display: flex;
       align-items: center;
@@ -234,13 +280,19 @@
     }
     .results__title {
       margin-bottom: 0;
+      font-weight: 700;
     }
     .results__description {
       font-weight: 400;
       font-size: 14px;
+      @media screen and (max-width: 567px) {
+        padding: 1rem 0;
+        flex-wrap: wrap;
+      }
     }
 
     label {
+      margin: 0.5rem 0;
       @include label($yellow);
       font-size: 12px;
       &.green {
@@ -252,10 +304,16 @@
     }
   }
   .results__chevron {
-    flex: 0 0 15%;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 3;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: 567px) {
+      display: none;
+    }
   }
   p {
     font-size: 20px;
@@ -279,10 +337,36 @@
 .results__footer {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .results__share {
   display: flex;
+  margin: 1rem 0;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 567px) {
+    flex: 1 0 100%;
+    padding: 1rem;
+    border: 1px solid rgba(225, 225, 225, 0.6);
+    border-radius: 5px;
+  }
+}
+
+.results__share-text {
+  color: white;
+  margin: 0;
+  @media screen and (max-width: 567px) {
+    flex: 1 0 100%;
+    padding: 1rem;
+    text-align: center;
+    font-size: 28px;
+  }
+}
+.pagination {
+  margin: 1rem 0;
 }
 
 @mixin shareIcon() {
@@ -298,6 +382,13 @@
 
 .results__icon {
   @include shareIcon();
+  @media screen and (max-width: 567px) {
+    width: 50px;
+    height: 50px;
+    img {
+      width: 22px;
+    }
+  }
 }
 
 .course__links {
@@ -305,6 +396,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin: 2rem 0;
   p {
     color: white;
     font-size: 14px;
@@ -315,14 +407,47 @@
   .cta {
     text-align: center;
   }
+
+  .ais-Pagination-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
-
-.results__link{
+.results__link {
   text-decoration: none;
   color: $dark-gray;
-  &:hover{
+  &:hover {
     text-decoration: none;
     color: $dark-gray;
+  }
+}
+
+.search__zip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+
+  input {
+    max-width: 100%;
+  }
+  span {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    &:hover {
+      cursor: pointer;
+    }
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .align-sm-center {
+    display: flex;
+    align-items: center;
   }
 }
