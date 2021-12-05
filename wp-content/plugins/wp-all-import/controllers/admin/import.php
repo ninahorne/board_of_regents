@@ -150,7 +150,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 
 		if ( $id ) { // update requested but corresponding import is not found
 			if ( $import->getById($id)->isEmpty() ) {
-				if ( ! empty($_GET['deligate']) and $_GET['deligate'] == 'wpallexport' ) {
+				if ( ! empty($_GET['deligate']) and sanitize_key($_GET['deligate']) == 'wpallexport' ) {
 					wp_redirect(add_query_arg('pmxi_nt', array('error' => urlencode(__('The import associated with this export has been deleted.', 'wp_all_import_plugin')), 'updated' => urlencode(__('Please re-run your export by clicking Run Export on the All Export -> Manage Exports page. Then try your import again.', 'wp_all_import_plugin'))), remove_query_arg('id', $this->baseUrl))); die();
 				} else {
 					wp_redirect(add_query_arg('pmxi_nt', array('error' => urlencode(__('This import has been deleted.', 'wp_all_import_plugin'))), remove_query_arg('id', $this->baseUrl))); die();

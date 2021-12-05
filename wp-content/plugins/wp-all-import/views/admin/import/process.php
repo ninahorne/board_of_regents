@@ -28,20 +28,20 @@
 				<span id="left_progress"><?php _e('Time Elapsed', 'wp_all_import_plugin');?> <span id="then">00:00:00</span></span>
 				<span id="right_progress">
                     <div class="progress_processed">
-                        <span><?php _e('Processed', 'wp_all_import_plugin');?> <span class="processed_count"><?php echo ($update_previous->created + $update_previous->updated + $update_previous->skipped); ?></span> <?php _e('of', 'wp_all_import_plugin');?> <span id="of"><?php echo $update_previous->count; ?></span> <?php _e('records', 'wp_all_import_plugin');?></span>
+                        <span><?php _e('Processed', 'wp_all_import_plugin');?> <span class="processed_count"><?php echo ($update_previous->created + $update_previous->updated + $update_previous->skipped); ?></span> <?php _e('of', 'wp_all_import_plugin');?> <span id="of"><?php echo esc_html($update_previous->count); ?></span> <?php _e('records', 'wp_all_import_plugin');?></span>
                     </div>
                     <div class="progress_details">
                         <span class="progress_details_item created_count" <?php if (empty($update_previous->created)): ?>style="display:none;"<?php endif; ?>>
-                            <?php _e('Created','wp_all_import_plugin');?> <span class="created_records_count"><?php echo $update_previous->created; ?></span>
+                            <?php _e('Created','wp_all_import_plugin');?> <span class="created_records_count"><?php echo esc_html($update_previous->created); ?></span>
                         </span>
                         <span class="progress_details_item deleted_count" <?php if (empty($update_previous->created)): ?>style="display:none;"<?php endif; ?>>
-                            <?php _e('Deleted','wp_all_import_plugin');?> <span class="deleted_records_count"><?php echo $update_previous->deleted; ?></span>
+                            <?php _e('Deleted','wp_all_import_plugin');?> <span class="deleted_records_count"><?php echo esc_html($update_previous->deleted); ?></span>
                         </span>
                         <span class="progress_details_item updated_count" <?php if (empty($update_previous->created)): ?>style="display:none;"<?php endif; ?>>
-                            <?php _e('Updated','wp_all_import_plugin');?> <span class="updated_records_count"><?php echo $update_previous->updated; ?></span>
+                            <?php _e('Updated','wp_all_import_plugin');?> <span class="updated_records_count"><?php echo esc_html($update_previous->updated); ?></span>
                         </span>
                         <span class="progress_details_item skipped_count" <?php if (empty($update_previous->skipped)): ?>style="display:none;"<?php endif; ?>>
-                            <?php _e('Skipped','wp_all_import_plugin');?> <span class="skipped_records_count"><?php echo $update_previous->skipped; ?></span>
+                            <?php _e('Skipped','wp_all_import_plugin');?> <span class="skipped_records_count"><?php echo esc_html($update_previous->skipped); ?></span>
                         </span>
                     </div>
                 </span>
@@ -126,7 +126,7 @@
 	</fieldset>	
 
 	<input type="hidden" class="count_failures" value="0"/>
-	<input type="hidden" class="records_per_request" value="<?php echo $update_previous->options['records_per_request']; ?>"/>
+	<input type="hidden" class="records_per_request" value="<?php echo esc_attr($update_previous->options['records_per_request']); ?>"/>
 	<span id="wpallimport-error-terminated" style="display:none;">
 		<div class="wpallimport-content-section" style="display:block; position: relative;">
 			<div class="wpallimport-notify-wrapper">
@@ -192,9 +192,9 @@
 	$('#status').each(function () {
 
 		var then = $('#then');		
-		start_date = wpai_moment().sod();		
+		start_date = moment().startOf('day');
 		update = function(){
-			var duration = wpai_moment.duration({'seconds' : 1});
+			var duration = moment.duration({'seconds' : 1});
 			start_date.add(duration); 
 			
 			if ($('#process_notice').is(':visible') && ! $('.wpallimport-modal-message').is(':visible')){
@@ -228,7 +228,7 @@
 
 	<?php if ( $ajax_processing ): ?>
 
-		var import_id = '<?php echo $update_previous->id; ?>';		
+		var import_id = '<?php echo intval($update_previous->id); ?>';
 
 		function parse_element(failures){			
 			
@@ -351,7 +351,7 @@
 
 						var request = {
 							action:'import_failed',			
-							id: '<?php echo $update_previous->id; ?>',
+							id: '<?php echo intval($update_previous->id); ?>',
 							security: wp_all_import_security
 					    };	
 
@@ -400,7 +400,7 @@
 
 					var request = {
 						action:'import_failed',			
-						id: '<?php echo $update_previous->id; ?>',
+						id: '<?php echo intval($update_previous->id); ?>',
 						security: wp_all_import_security						
 				    };	
 

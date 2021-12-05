@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WPForms Lite 1.7.1.1\n"
+"Project-Id-Version: WPForms Lite 1.7.1.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpforms-lite\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-11-11T11:19:29+00:00\n"
+"POT-Creation-Date: 2021-11-18T10:54:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: wpforms-lite\n"
@@ -6443,20 +6443,20 @@ msgstr ""
 msgid "For form testing tips, check out our <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">complete guide!</a>"
 msgstr ""
 
-#: src/Forms/Token.php:222
+#: src/Forms/Token.php:223
 msgid "This page isn't loading JavaScript properly, and the form will not be able to submit."
 msgstr ""
 
-#: src/Forms/Token.php:234
+#: src/Forms/Token.php:235
 msgid "Form token is invalid. Please refresh the page."
 msgstr ""
 
-#: src/Forms/Token.php:260
+#: src/Forms/Token.php:261
 msgid "The form was unable to submit. Please contact the site administrator."
 msgstr ""
 
 #. translators: placeholders are links.
-#: src/Forms/Token.php:282
+#: src/Forms/Token.php:283
 msgid "Please check out our %1$stroubleshooting guide%2$s for details on resolving this issue."
 msgstr ""
 

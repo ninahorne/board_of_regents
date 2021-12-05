@@ -12,8 +12,8 @@ $custom_type = get_post_type_object( $post_type );
 				<table class="form-table" style="max-width:none;">
 					<tr>
 						<td>					
-							<input type="hidden" name="encoding" value="<?php echo ($this->isWizard) ? PMXI_Plugin::$session->encoding : $post['encoding']; ?>"/>
-							<input type="hidden" name="delimiter" value="<?php echo ($this->isWizard) ? PMXI_Plugin::$session->is_csv : $post['delimiter']; ?>"/>
+							<input type="hidden" name="encoding" value="<?php echo ($this->isWizard) ? esc_attr(PMXI_Plugin::$session->encoding) : esc_attr($post['encoding']); ?>"/>
+							<input type="hidden" name="delimiter" value="<?php echo ($this->isWizard) ? esc_attr(PMXI_Plugin::$session->is_csv) : esc_attr($post['delimiter']); ?>"/>
 
 							<?php $is_support_post_format = ( current_theme_supports( 'post-formats' ) && post_type_supports( $post_type, 'post-formats' ) ) ? true : false; ?>
 							
@@ -157,8 +157,8 @@ $custom_type = get_post_type_object( $post_type );
 										foreach ($post_formats[0] as $post_format) {
 											?>
 											<div class="input">
-												<input type="radio" id="post_format_<?php echo $post_format; ?>" name="post_format" value="<?php echo $post_format; ?>" <?php echo $post_format == $post['post_format'] ? 'checked="checked"' : '' ?> />
-												<label for="post_format_<?php echo $post_format; ?>"><?php _e( ucfirst($post_format), 'wp_all_import_plugin') ?></label>
+												<input type="radio" id="post_format_<?php echo esc_attr($post_format); ?>" name="post_format" value="<?php echo esc_attr($post_format); ?>" <?php echo $post_format == $post['post_format'] ? 'checked="checked"' : '' ?> />
+												<label for="post_format_<?php echo esc_attr($post_format); ?>"><?php _e( ucfirst($post_format), 'wp_all_import_plugin') ?></label>
 											</div>
 											<?php
 										}

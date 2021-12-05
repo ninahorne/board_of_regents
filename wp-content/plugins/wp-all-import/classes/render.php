@@ -47,10 +47,10 @@ if ( ! class_exists('PMXI_Render')){
 				$path .= "[$ind]";
 			}		
 			
-			echo '<div class="xml-element csv_element lvl-' . $lvl . ' lvl-mod4-' . ($lvl % 4) . '" title="' . $path . '">';
+			echo '<div class="xml-element csv_element lvl-' . $lvl . ' lvl-mod4-' . ($lvl % 4) . '" title="' . esc_attr($path) . '">';
 			if ($el->hasChildNodes()) {
 				$is_render_collapsed = $ind > 1;			
-				if ($lvl) echo '<div class="csv-tag opening"><span class="csv-tag-name">' . $el->nodeName . '</span>'; echo '</div>';
+				if ($lvl) echo '<div class="csv-tag opening"><span class="csv-tag-name">' . esc_html($el->nodeName) . '</span>'; echo '</div>';
 				if (1 == $el->childNodes->length and $el->childNodes->item(0) instanceof DOMText) {
 					$child = $el->childNodes->item(0);
 					if (!empty($child->wholeText)){
@@ -247,10 +247,10 @@ if ( ! class_exists('PMXI_Render')){
 			<ul id="menu-<?php echo str_replace('/', '-', esc_attr($path)); ?>" class="ui-helper-hidden">
 				<?php foreach ($el->attributes as $attr) : if ( empty($attr->value) ) continue; ?>
 			    <li data-command="action1" title="<?php echo esc_attr($path . '[@'. $attr->nodeName .' = "' . esc_attr($attr->value) . '"]'); ?>">
-			    	<a href="#"><?php echo $path . '[@'. $attr->nodeName .' = "' . esc_attr($attr->value) . '"]'; ?></a>
+			    	<a href="#"><?php echo esc_html($path) . '[@'. $attr->nodeName .' = "' . esc_attr($attr->value) . '"]'; ?></a>
 			    </li>
 			    <li data-command="action2" title="<?php echo esc_attr($path . '[@'. $attr->nodeName .'[contains(.,"' . esc_attr($attr->value) . '")]]'); ?>">
-			    	<a href="#"><?php echo $path . '[@'. $attr->nodeName .'[contains(.,"' . esc_attr($attr->value) . '")]]'; ?></a>
+			    	<a href="#"><?php echo esc_html($path) . '[@'. $attr->nodeName .'[contains(.,"' . esc_attr($attr->value) . '")]]'; ?></a>
 			    </li>
 				<?php endforeach; ?>
 				<?php 
@@ -299,8 +299,8 @@ if ( ! class_exists('PMXI_Render')){
 							array_pop($pathArgs);		
 							$vpath = esc_attr(implode('/', $pathArgs) . '/' . $parentNode->nodeName . '[contains('. $altNode->nodeName .',"' . esc_attr($altNodeText->wholeText) . '")]/' . $el->nodeName);				
 							?>
-							<li data-command="action3" title="<?php echo $vpath; ?>">
-						    	<a href="#"><?php echo $vpath; ?></a>
+							<li data-command="action3" title="<?php echo esc_attr($vpath); ?>">
+						    	<a href="#"><?php echo esc_html($vpath); ?></a>
 						    </li>						
 						    <?php
 

@@ -508,23 +508,25 @@ if ( !function_exists( "wpie_import_post_mapping_fields" ) ) {
                                                 </div>
                                         </div>
                                 <?php } ?>
-                                <?php if ( 'page' == $wpie_import_type ) { ?>
-                                        <div class="wpie_field_mapping_container_element  wpie_field_mapping_data_option">
-                                                <div class="wpie_field_mapping_inner_title"><?php echo esc_html( $wpie_import_type_title . " " . __( 'Parent', 'wp-import-export-lite' ) ); ?></div>
+
+                                <div class="wpie_field_mapping_container_element  wpie_field_mapping_data_option">
+                                        <div class="wpie_field_mapping_inner_title"><?php echo esc_html( $wpie_import_type_title . " " . __( 'Parent', 'wp-import-export-lite' ) ); ?></div>
+                                        <?php if ( 'page' == $wpie_import_type ) { ?>
                                                 <div class="wpie_field_mapping_other_option_wrapper">
-                                                        <input type="radio" class="wpie_radio wpie_field_mapping_other_option_radio wpie_item_parent wpie_item_parent_manually" checked="checked" name="wpie_item_parent" id="wpie_item_parent" value="manually"/>
+                                                        <input type="radio" class="wpie_radio wpie_field_mapping_other_option_radio wpie_item_parent wpie_item_parent_manually" name="wpie_item_parent" id="wpie_item_parent" value="manually"/>
                                                         <label for="wpie_item_parent" class="wpie_radio_label"><?php esc_html_e( 'Select page parent', 'wp-import-export-lite' ); ?></label>
                                                         <div class="wpie_field_mapping_option_wrapper" style="display: block;">
                                                                 <?php wp_dropdown_pages( array( 'post_type' => 'page', 'selected' => '', 'class' => 'wpie_content_data_select', 'name' => 'wpie_item_parent_data', 'show_option_none' => __( '(no parent)', 'wp-import-export-lite' ), 'sort_column' => 'menu_order, post_title', 'number' => 500 ) ); ?>
                                                         </div>
                                                 </div>
-                                                <div class="wpie_field_mapping_other_option_wrapper">
-                                                        <input type="radio" class="wpie_radio wpie_field_mapping_other_option_radio wpie_item_parent wpie_item_parent_as_specified" name="wpie_item_parent" id="wpie_item_parent_as_specified" value="as_specified"/>
-                                                        <label for="wpie_item_parent_as_specified" class="wpie_radio_label"><?php esc_html_e( 'As specified', 'wp-import-export-lite' ); ?></label>
-                                                        <div class="wpie_radio_container wpie_as_specified_wrapper"><input type="text" class="wpie_content_data_input wpie_item_parent_as_specified_data" name="wpie_item_parent_as_specified_data" value=""/></div>
-                                                </div>
+                                        <?php } ?>
+                                        <div class="wpie_field_mapping_other_option_wrapper">
+                                                <input type="radio" class="wpie_radio wpie_field_mapping_other_option_radio wpie_item_parent wpie_item_parent_as_specified" checked="checked" name="wpie_item_parent" id="wpie_item_parent_as_specified" value="as_specified"/>
+                                                <label for="wpie_item_parent_as_specified" class="wpie_radio_label"><?php esc_html_e( 'As specified', 'wp-import-export-lite' ); ?></label>
+                                                <div class="wpie_radio_container wpie_as_specified_wrapper"><input type="text" class="wpie_content_data_input wpie_item_parent_as_specified_data" name="wpie_item_parent_as_specified_data" value=""/></div>
                                         </div>
-                                <?php } ?>
+                                </div>
+
                                 <div class="wpie_field_mapping_container_element">
                                         <div class="wpie_field_mapping_inner_title"><?php esc_html_e( 'Menu Order', 'wp-import-export-lite' ); ?></div>
                                         <div class="wpie_field_mapping_other_option_wrapper">

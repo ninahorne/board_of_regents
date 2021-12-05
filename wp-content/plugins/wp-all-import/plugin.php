@@ -3,7 +3,7 @@
 Plugin Name: WP All Import
 Plugin URI: http://www.wpallimport.com/wordpress-xml-csv-import/?utm_source=import-plugin-free&utm_medium=wp-plugins-page&utm_campaign=upgrade-to-pro
 Description: The most powerful solution for importing XML and CSV files to WordPress. Create Posts and Pages with content from any XML or CSV file. A paid upgrade to WP All Import Pro is available for support and additional features.
-Version: 3.6.3
+Version: 3.6.4
 Author: Soflyy
 */
 
@@ -25,7 +25,7 @@ define('WP_ALL_IMPORT_ROOT_URL', rtrim(plugin_dir_url(__FILE__), '/'));
  */
 define('WP_ALL_IMPORT_PREFIX', 'pmxi_');
 
-define('PMXI_VERSION', '3.6.3');
+define('PMXI_VERSION', '3.6.4');
 
 define('PMXI_EDITION', 'free');
 
@@ -661,7 +661,9 @@ final class PMXI_Plugin {
 		if ('' === $page) {
 			if ( ! is_null(self::$buffer)) {
 				echo '<div class="wrap">';
-				echo self::$buffer;
+
+                echo self::$buffer;
+
 				do_action('pmxi_action_after');
 				echo '</div>';
 			} elseif ( ! is_null(self::$buffer_callback)) {
@@ -780,7 +782,7 @@ final class PMXI_Plugin {
 
 		if (function_exists('is_multisite') && is_multisite()) {
 	        // check if it is a network activation - if so, run the activation function for each blog id
-	        if (isset($_GET['networkwide']) && ($_GET['networkwide'] == 1)) {
+	        if (isset($_GET['networkwide']) && (intval($_GET['networkwide']) == 1)) {
 	            $old_blog = $wpdb->blogid;
 	            // Get all blog ids
 	            $blogids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
@@ -909,7 +911,7 @@ final class PMXI_Plugin {
 
 		if (function_exists('is_multisite') && is_multisite()) {
 	        // check if it is a network activation - if so, run the activation function for each blog id
-	        if (isset($_GET['networkwide']) && ($_GET['networkwide'] == 1)) {
+	        if (isset($_GET['networkwide']) && (intval($_GET['networkwide']) == 1)) {
 	            $old_blog = $wpdb->blogid;
 	            // Get all blog ids
 	            $blogids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");

@@ -22,7 +22,7 @@
 				<?php foreach ($templates as $t): ?>
 					<tr>
 						<td>
-							<label class="selectit" for="template-<?php echo $t->id ?>"><input id="template-<?php echo $t->id ?>" type="checkbox" name="templates[]" value="<?php echo $t->id ?>" /> <?php echo $t->name ?></label>
+							<label class="selectit" for="template-<?php echo esc_attr($t->id); ?>"><input id="template-<?php echo esc_attr($t->id); ?>" type="checkbox" name="templates[]" value="<?php echo esc_attr($t->id); ?>" /> <?php echo esc_html($t->name); ?></label>
 						</td>				
 					</tr>
 				<?php endforeach ?>

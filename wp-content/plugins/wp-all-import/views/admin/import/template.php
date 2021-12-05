@@ -109,7 +109,7 @@
 
 				<?php endif; ?>
 
-				<input type="hidden" name="custom_type" value="<?php echo $post['custom_type']; ?>"/>
+				<input type="hidden" name="custom_type" value="<?php echo esc_attr($post['custom_type']); ?>"/>
 				<input type="hidden" name="type" value="<?php echo ($post['custom_type'] == 'page') ? 'page' : 'post'; ?>"/>										
 					
 				<?php									
@@ -203,7 +203,7 @@
 						<select name="load_template" id="load_template">
 							<option value=""><?php _e('Load Template...', 'wp_all_import_plugin') ?></option>
 							<?php foreach ($templates->getBy()->convertRecords() as $t): ?>
-								<option value="<?php echo $t->id ?>"><?php echo $t->name ?></option>
+								<option value="<?php echo esc_attr($t->id); ?>"><?php echo esc_html($t->name); ?></option>
 							<?php endforeach ?>
 						</select>
 					</div>

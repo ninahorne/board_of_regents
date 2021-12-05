@@ -9,6 +9,3 @@
 
 ?>
 <h1>this page</h1>
-<script>
-	window.location = '/';
-</script>

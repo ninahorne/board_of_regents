@@ -53,7 +53,7 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 					number_format_i18n(($pagenum - 1) * $perPage + 1),
 					number_format_i18n(min($pagenum * $perPage, $list->total())),
 					number_format_i18n($list->total()),
-					$page_links
+					wp_kses_post($page_links)
 				) ?>
 			</div>
 		<?php endif ?>
@@ -81,7 +81,7 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 				}
 				else $col_html .= '<th scope="col" class="column-' . $column_id . '">' . $column_display_name . '</th>';
 			}
-			echo $col_html;
+			echo wp_kses_post($col_html);
 			?>
 		</tr>
 		</thead>
@@ -90,7 +90,7 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 			<th class="manage-column column-cb check-column" scope="col">
 				<input type="checkbox" />
 			</th>
-			<?php echo $col_html; ?>
+			<?php echo wp_kses_post($col_html); ?>
 		</tr>
 		</tfoot>
 		<tbody id="the-pmxi-admin-import-list" class="list:pmxi-admin-imports">
@@ -104,9 +104,9 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 			?>
 			<?php foreach ($list as $item): ?>
 				<?php $class = ('alternate' == $class) ? '' : 'alternate'; ?>
-				<tr class="<?php echo $class; ?>" valign="middle">					
+				<tr class="<?php echo esc_attr($class); ?>" valign="middle">
 					<th scope="row" class="check-column">
-						<input type="checkbox" id="item_<?php echo $item['id'] ?>" name="items[]" value="<?php echo esc_attr($item['id']) ?>" />
+						<input type="checkbox" id="item_<?php echo esc_attr($item['id']) ?>" name="items[]" value="<?php echo esc_attr($item['id']) ?>" />
 					</th>
 					<?php foreach ($columns as $column_id => $column_display_name): ?>
 						<?php
@@ -114,7 +114,7 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 							case 'id':
 								?>
 								<th valign="top" scope="row">
-									<?php echo $item['id'] ?>
+									<?php echo esc_html($item['id']) ?>
 								</th>
 								<?php
 								break;
@@ -159,10 +159,10 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 												}
 											}
 											?>
-											<em><a href="<?php echo add_query_arg(array('id' => $item['id'], 'action' => 'feed', '_wpnonce' => wp_create_nonce( '_wpnonce-download_feed' )), $this->baseUrl); ?>" class="wp_all_import_show_path" rel="<?php echo $item['path']; ?>"><?php echo preg_replace('%.*wp-content/%', 'wp-content/', $path); ?></a></em>
+											<em><a href="<?php echo add_query_arg(array('id' => $item['id'], 'action' => 'feed', '_wpnonce' => wp_create_nonce( '_wpnonce-download_feed' )), $this->baseUrl); ?>" class="wp_all_import_show_path" rel="<?php echo esc_attr($item['path']); ?>"><?php echo preg_replace('%.*wp-content/%', 'wp-content/', $path); ?></a></em>
 										<?php elseif (in_array($item['type'], array('file'))):?>
 											<?php $item['path'] = wp_all_import_get_absolute_path($item['path']); ?>
-											<em><a href="<?php echo add_query_arg(array('id' => $item['id'], 'action' => 'feed', '_wpnonce' => wp_create_nonce( '_wpnonce-download_feed' )), $this->baseUrl); ?>" class="wp_all_import_show_path" rel="<?php echo $item['path']; ?>"><?php echo preg_replace('%.*wp-content/%', 'wp-content/', $item['path']); ?></a></em>
+											<em><a href="<?php echo add_query_arg(array('id' => $item['id'], 'action' => 'feed', '_wpnonce' => wp_create_nonce( '_wpnonce-download_feed' )), $this->baseUrl); ?>" class="wp_all_import_show_path" rel="<?php echo esc_attr($item['path']); ?>"><?php echo preg_replace('%.*wp-content/%', 'wp-content/', $item['path']); ?></a></em>
 										<?php else: ?>
 										<em><?php echo str_replace("\\", '/', preg_replace('%^(\w+://[^:]+:)[^@]+@%', '$1*****@', $item['path'])); ?></em>
 										<?php endif; ?>
@@ -195,11 +195,11 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 												switch ($key) {
 													default:
 														?>
-														<span class="<?php echo $action['class']; ?>">
+														<span class="<?php echo esc_attr($action['class']); ?>">
 															<?php if ( ! empty($action['url']) ): ?>
-															<a class="<?php echo $action['class']; ?>" href="<?php echo esc_url($action['url']); ?>"><?php echo $action['title']; ?></a>
+															<a class="<?php echo esc_attr($action['class']); ?>" href="<?php echo esc_url($action['url']); ?>"><?php echo esc_html($action['title']); ?></a>
 															<?php else: ?>
-															<span class="wpallimport-disabled"><?php echo $action['title']; ?></span>
+															<span class="wpallimport-disabled"><?php echo esc_html($action['title']); ?></span>
 															<?php endif; ?>
 														</span> <?php if ($ai != count($import_actions)): ?>|<?php endif; ?>
 														<?php
@@ -334,7 +334,7 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 	</table>
 
 	<div class="tablenav">
-		<?php if ($page_links): ?><div class="tablenav-pages"><?php echo $page_links_html ?></div><?php endif ?>
+		<?php if ($page_links): ?><div class="tablenav-pages"><?php echo wp_kses_post($page_links_html) ?></div><?php endif ?>
 
 		<div class="alignleft actions">
 			<select name="bulk-action2">

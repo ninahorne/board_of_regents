@@ -48,9 +48,15 @@ class WPIE_User_Import extends \wpie\import\engine\WPIE_Import_Engine {
 
                         if ( !empty( $roleData ) ) {
 
-                                $roleData = trim( $roleData, "|" );
+                                $separator = "|";
 
-                                $userRoles = empty( $roleData ) ? [] : explode( "|", $roleData );
+                                if ( strpos( $roleData, "|" ) === false && strpos( $roleData, "," ) !== false ) {
+                                        $separator = ",";
+                                }
+
+                                $roleData = trim( $roleData, $separator );
+
+                                $userRoles = empty( $roleData ) ? [] : explode( $separator, $roleData );
 
                                 $roles = $this->get_valid_roles( $userRoles );
 
@@ -175,7 +181,7 @@ class WPIE_User_Import extends \wpie\import\engine\WPIE_Import_Engine {
                 $this->process_log[ 'last_activity' ] = date( 'Y-m-d H:i:s' );
 
                 $wpdb->update( $wpdb->prefix . "wpie_template", array( 'last_update_date' => current_time( 'mysql' ),
-                        'process_log' => maybe_serialize( $this->process_log ) ), array(
+                        'process_log'      => maybe_serialize( $this->process_log ) ), array(
                         'id' => $this->wpie_import_id ) );
 
                 if ( $is_hashed_wp_password ) {
@@ -296,8 +302,8 @@ class WPIE_User_Import extends \wpie\import\engine\WPIE_Import_Engine {
                         $user_query = array(
                                 'meta_query' => array(
                                         0 => array(
-                                                'key' => $meta_key,
-                                                'value' => $meta_val,
+                                                'key'     => $meta_key,
+                                                'value'   => $meta_val,
                                                 'compare' => '='
                                         )
                                 )

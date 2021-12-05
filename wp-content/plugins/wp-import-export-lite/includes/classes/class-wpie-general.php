@@ -425,6 +425,8 @@ class WPIE_General {
 
                                 wp_enqueue_script( 'datatables-js', WPIE_JS_URL . '/jquery.dataTables.min.js', array( 'jquery' ), WPIE_PLUGIN_VERSION, true );
 
+                                wp_enqueue_script( 'datatables-ellipsis-js', WPIE_JS_URL . '/ellipsis.js', array( 'jquery', 'datatables-js' ), WPIE_PLUGIN_VERSION, true );
+
                                 wp_enqueue_script( 'editable-js', WPIE_JS_URL . '/editable.js', array( 'jquery' ), WPIE_PLUGIN_VERSION, true );
 
                                 wp_enqueue_script( 'dataTables.bootstrap5-js', WPIE_JS_URL . '/dataTables.bootstrap5.min.js', array( 'jquery', 'bootstrap-js' ), WPIE_PLUGIN_VERSION, true );
@@ -455,6 +457,8 @@ class WPIE_General {
                                 unset( $wpie_localize_script_data );
 
                                 wp_enqueue_script( 'datatables-js', WPIE_JS_URL . '/jquery.dataTables.min.js', array( 'jquery' ), WPIE_PLUGIN_VERSION, true );
+
+                                wp_enqueue_script( 'datatables-ellipsis-js', WPIE_JS_URL . '/ellipsis.js', array( 'jquery', 'datatables-js' ), WPIE_PLUGIN_VERSION, true );
 
                                 wp_enqueue_script( 'dataTables.bootstrap5-js', WPIE_JS_URL . '/dataTables.bootstrap5.min.js', array( 'jquery', 'bootstrap-js' ), WPIE_PLUGIN_VERSION, true );
 

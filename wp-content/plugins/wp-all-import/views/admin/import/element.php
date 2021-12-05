@@ -37,9 +37,9 @@
 					if ( ! empty($elements_cloud) and ! $is_csv ){												
 						foreach ($elements_cloud as $tag => $count){
 							?>
-							<a href="javascript:void(0);" rel="<?php echo $tag;?>" class="wpallimport-change-root-element <?php if (PMXI_Plugin::$session->source['root_element'] == $tag) echo 'selected';?>">
-								<span class="tag_name"><?php echo strtolower($tag); ?></span>
-								<span class="tag_count"><?php echo $count; ?></span>
+							<a href="javascript:void(0);" rel="<?php echo esc_attr($tag);?>" class="wpallimport-change-root-element <?php if (PMXI_Plugin::$session->source['root_element'] == $tag) echo 'selected';?>">
+								<span class="tag_name"><?php echo strtolower(esc_html($tag)); ?></span>
+								<span class="tag_count"><?php echo esc_html($count); ?></span>
 							</a>
 							<?php
 						}						
@@ -81,7 +81,7 @@
 									<label>
 										<?php _e("Set delimiter for CSV fields:", "pmxi_plugin"); ?>
 									</label>									
-									<input type="text" name="delimiter" value="<?php echo $is_csv;?>"/> 
+									<input type="text" name="delimiter" value="<?php echo esc_attr($is_csv);?>"/>
 									<input type="button" name="apply_delimiter" class="rad4" value="<?php _e('Apply', 'wp_all_import_plugin'); ?>"/>									
 								</div>							
 

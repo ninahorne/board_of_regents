@@ -132,10 +132,10 @@ $ext_tab_files = apply_filters( 'wpie_manage_export_tab_files', array() );
                                                                         <td class="wpie_log_data"><?php echo esc_html( $fileName ); ?></td>
                                                                         <td class="wpie_log_data"><?php echo empty( $newType ) ? "" : esc_html( ucwords( $newType ) ); ?></td>
                                                                         <td class="wpie_log_data">
-                                                                                <?php
-                                                                                echo esc_html( __( "Last run", 'wp-import-export-lite' ) . " : " . date_i18n( $date_time_format, strtotime( $last_update_date ) ) );
+                <?php
+                echo esc_html( __( "Last run", 'wp-import-export-lite' ) . " : " . date_i18n( $date_time_format, strtotime( $last_update_date ) ) );
 
-                                                                                ?>
+                ?>
                                                                                 <br /> 
                                                                                 <?php
                                                                                 echo esc_html( (isset( $process_log[ 'exported' ] ) ? $process_log[ 'exported' ] : 0 ) . " " . __( "Records Exported", 'wp-import-export-lite' ) );
@@ -149,7 +149,7 @@ $ext_tab_files = apply_filters( 'wpie_manage_export_tab_files', array() );
                                                                         </td>
                                                                         <td class = "wpie_log_data"><?php echo esc_html( date_i18n( $date_time_format, strtotime( $date ) ) );
 
-                                                                                ?></td>
+                                                                ?></td>
                                                                         <td class="wpie_log_data wpie_log_status"><?php echo esc_html( $process_status ); ?></td>
                                                                         <td class="wpie_log_data wpie_action_<?php echo esc_attr( $status ); ?>" >
                                                                                 <div class="wpie_log_action_btns wpie_delete_template_btn"><i class="fas fa-trash wpie_general_btn_icon wpie_data_tipso" data-tipso="<?php esc_attr_e( 'Delete', 'wp-import-export-lite' ); ?>" aria-hidden="true"></i></div>
@@ -159,34 +159,34 @@ $ext_tab_files = apply_filters( 'wpie_manage_export_tab_files', array() );
                                                                                 <div class="wpie_log_action_btns wpie_process_resume_btn"><i class="fas fa-play wpie_general_btn_icon wpie_data_tipso" data-tipso="<?php esc_attr_e( 'Resume', 'wp-import-export-lite' ); ?>" aria-hidden="true"></i></div>
                                                                         </td>
                                                                 </tr>
-                                                                <?php
-                                                                unset( $date, $id, $opration_type, $last_update_date, $process_log, $options, $fileName, $status, $process_status );
-                                                        }
+                <?php
+                unset( $date, $id, $opration_type, $last_update_date, $process_log, $options, $fileName, $status, $process_status );
+        }
 
-                                                        ?>
+        ?>
                                                 <?php } ?>
                                                 <tr class="<?php echo esc_attr( $is_empty_template ); ?> wpie_log_empty">
                                                         <td colspan="6">
                                                                 <div class="wpie_empty_records"><?php esc_html_e( 'No Templates Found', 'wp-import-export-lite' ); ?></div>
                                                         </td>
                                                 </tr>
-                                                <?php unset( $is_empty_template ); ?>
+<?php unset( $is_empty_template ); ?>
                                         </tbody>
                                 </table>
                         </div>
                 </div>
-                <?php
-                if ( !empty( $ext_tab_files ) ) {
+<?php
+if ( !empty( $ext_tab_files ) ) {
 
-                        foreach ( $ext_tab_files as $_file ) {
+        foreach ( $ext_tab_files as $_file ) {
 
-                                if ( file_exists( $_file ) ) {
-                                        include $_file;
-                                }
-                        }
+                if ( file_exists( $_file ) ) {
+                        include $_file;
                 }
+        }
+}
 
-                ?>
+?>
         </div>
 </div>
 <div class="wpie_doc_wrapper">

@@ -36,16 +36,16 @@
 									<p><?php _e('Editing this will change the post type of the posts processed by this import. Re-run the import for the changes to take effect.', 'wp_all_import_plugin');?></p> <br>
 								<?php endif; ?>
 									
-								<input type="hidden" name="custom_type" value="<?php echo $post['custom_type'];?>">
+								<input type="hidden" name="custom_type" value="<?php echo sanitize_key($post['custom_type']);?>">
 
 								<?php if ( 'taxonomies' == $post['custom_type'] ):?>
 									<div class="wp_all_import_change_taxonomy_type">
-										<input type="hidden" name="taxonomy_type" value="<?php echo $post['taxonomy_type'];?>">
+										<input type="hidden" name="taxonomy_type" value="<?php echo sanitize_key($post['taxonomy_type']);?>">
 										<select id="taxonomy_to_import">
 											<option value=""><?php _e('Select Taxonomy', 'wp_all_export_plugin'); ?></option>
 											<?php $options = wp_all_import_get_taxonomies(); ?>
 											<?php foreach ($options as $slug => $name):?>
-												<option value="<?php echo $slug;?>" <?php if ($post['taxonomy_type'] == $slug):?>selected="selected"<?php endif;?>><?php echo $name;?></option>
+												<option value="<?php echo esc_attr($slug);?>" <?php if ($post['taxonomy_type'] == $slug):?>selected="selected"<?php endif;?>><?php echo esc_html($name);?></option>
 											<?php endforeach;?>
 										</select>
 									</div>
@@ -174,7 +174,7 @@
                                             }
 
                                             ?>
-                                            <option value="<?php echo $cpt; ?>" data-imagesrc="<?php echo $img_to_echo; ?>" <?php if ( $custom_selected_post === true ):?>selected="selected"<?php else: if ( $cpt == $post['custom_type'] ):?>selected="selected"<?php endif; endif; ?>><?php echo $cpt_label; ?></option>
+                                            <option value="<?php echo esc_attr($cpt); ?>" data-imagesrc="<?php echo esc_attr($img_to_echo); ?>" <?php if ( $custom_selected_post === true ):?>selected="selected"<?php else: if ( $cpt == $post['custom_type'] ):?>selected="selected"<?php endif; endif; ?>><?php echo esc_html($cpt_label); ?></option>
                                             <?php
                                         }
 
@@ -243,7 +243,7 @@
 								<?php if ( ! empty($post['delimiter']) ): ?>
 								<h4><?php _e('CSV Delimiter', 'wp_all_import_plugin'); ?></h4>
 								<div class="input">
-									<input type="text" name="delimiter" value="<?php echo $post['delimiter']; ?>" style="width: 50px !important; font-size: 18px; color: #555; height: 50px; padding: 10px;"/>
+									<input type="text" name="delimiter" value="<?php echo esc_attr($post['delimiter']); ?>" style="width: 50px !important; font-size: 18px; color: #555; height: 50px; padding: 10px;"/>
 								</div>
 								<?php endif; ?>
 								<h4><?php _e('Downloads', 'wp_all_import_plugin'); ?></h4>

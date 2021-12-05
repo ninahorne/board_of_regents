@@ -17,9 +17,9 @@ if ( ! function_exists( 'wp_all_import_get_import_id' ) ) {
     
         if ( $import_id == 'new' ) {
             if ( isset( $_GET['import_id'] ) ) {
-                $import_id = $_GET['import_id'];
+                $import_id = intval($_GET['import_id']);
             } elseif ( isset( $_GET['id'] ) ) {
-                $import_id = $_GET['id'];
+                $import_id = intval($_GET['id']);
             }
         }
 

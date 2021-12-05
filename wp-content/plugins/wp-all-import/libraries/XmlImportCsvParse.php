@@ -77,7 +77,7 @@ class PMXI_CsvParser
 
         PMXI_Plugin::$csv_path = $options['filename'];
         
-        $this->xpath = (!empty($options['xpath']) ? $options['xpath'] : ((!empty($_POST['xpath'])) ? $_POST['xpath'] : '/node'));        
+        $this->xpath = (!empty($options['xpath']) ? $options['xpath'] : ((!empty($_POST['xpath'])) ? sanitize_text_field($_POST['xpath']) : '/node'));
             
         if ( ! empty($options['delimiter']) ){
             $this->delimiter = $options['delimiter'];    
@@ -964,9 +964,9 @@ class PMXI_CsvParser
         
         $import_id = 0;
 
-        if ( ! empty($_GET['id']) ) $import_id = $_GET['id'];
+        if ( ! empty($_GET['id']) ) $import_id = intval($_GET['id']);
 
-        if ( ! empty($_GET['import_id']) ) $import_id = $_GET['import_id'];        
+        if ( ! empty($_GET['import_id']) ) $import_id = intval($_GET['import_id']);
 
         $create_new_headers = false;
         $skip_x_rows = apply_filters('wp_all_import_skip_x_csv_rows', false, $import_id);

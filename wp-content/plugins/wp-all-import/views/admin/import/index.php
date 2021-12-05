@@ -58,12 +58,12 @@
 							</a>
 						</div>
 						
-						<input type="hidden" value="<?php echo $post['type']; ?>" name="type"/>
+						<input type="hidden" value="<?php echo esc_attr($post['type']); ?>" name="type"/>
 
 						<div class="wpallimport-upload-type-container" rel="upload_type">						
 							<div id="plupload-ui" class="wpallimport-file-type-options">
 					            <div>				                
-					                <input type="hidden" name="filepath" value="<?php echo $post['filepath'] ?>" id="filepath"/>
+					                <input type="hidden" name="filepath" value="<?php echo esc_attr($post['filepath']) ?>" id="filepath"/>
 					                <a id="select-files" href="javascript:void(0);" <?php if (empty($post['filepath'])):?>style="display:none;"<?php endif; ?> /><?php _e('Click here to select file from your computer...', 'wp_all_import_plugin'); ?></a>
 					                <div id="progressbar" class="wpallimport-progressbar">
 					                	<?php if (!empty($post['filepath'])):?>
@@ -223,7 +223,7 @@
                             <div class="wpallimport-upload-resource-step-two">
                                 <div class="wpallimport-choose-post-type">
 
-                                    <input type="hidden" name="wizard_type" value="<?php echo $post['wizard_type']; ?>"/>
+                                    <input type="hidden" name="wizard_type" value="<?php echo esc_attr($post['wizard_type']); ?>"/>
 
                                     <h2 style="margin-top:0;"><?php _e('Import data from this file into...', 'wp_all_import_plugin'); ?></h2>
 
@@ -380,7 +380,7 @@
 
                                                 ?>
 
-                                                <option value="<?php echo $cpt; ?>" data-imagesrc="<?php echo $img_to_echo; ?>" <?php if ( $custom_selected_post === true ):?>selected="selected"<?php else: if ( $cpt == $post['custom_type'] ):?>selected="selected"<?php endif; endif; ?>><?php echo $cpt_label; ?></option>
+                                                <option value="<?php echo esc_attr($cpt); ?>" data-imagesrc="<?php echo esc_attr($img_to_echo); ?>" <?php if ( $custom_selected_post === true ):?>selected="selected"<?php else: if ( $cpt == $post['custom_type'] ):?>selected="selected"<?php endif; endif; ?>><?php echo esc_html($cpt_label); ?></option>
                                                 <?php
                                             }
                                         }
@@ -484,7 +484,7 @@
 					</div>
 
 					<p class="wpallimport-submit-buttons">
-						<input type="hidden" name="custom_type" value="<?php echo $post['custom_type'];?>">
+						<input type="hidden" name="custom_type" value="<?php echo esc_attr($post['custom_type']);?>">
 						<input type="hidden" name="is_submitted" value="1" />
 						<input type="hidden" name="auto_generate" value="0" />
 

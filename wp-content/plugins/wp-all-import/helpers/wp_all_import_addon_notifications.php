@@ -1,7 +1,7 @@
 <?php
 if ( ! function_exists('wp_all_import_addon_notifications') ){
 	function wp_all_import_addon_notifications(){
-		if ( ! empty($_GET['page']) and preg_match('%(pmxi-admin)%i', $_GET['page']))
+		if ( ! empty($_GET['page']) and preg_match('%(pmxi-admin)%i', sanitize_key($_GET['page'])))
 		{
 			if ( ! function_exists( 'is_plugin_active' ) ) require_once ABSPATH . 'wp-admin/includes/plugin.php';
 

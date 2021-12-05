@@ -253,6 +253,7 @@ add_action('wp_enqueue_scripts', 'algolia_load_assets');
 wp_enqueue_style('algolia-theme', get_template_directory_uri() . '/satellite-min.css');
 
 // TODO include 301 redirects for single post types
+
 /** Allow SVG Upload */
 function enable_svg_upload( $upload_mimes ) {
     $upload_mimes['svg'] = 'image/svg+xml';

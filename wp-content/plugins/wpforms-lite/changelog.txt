@@ -1,9 +1,9 @@
 == Changelog ==
 
-= 1.7.1.1 =
-- Fixed: Email address validation against allowlist or denylist always fails.
+= 1.7.1.2 =
+- Fixed: Edge case when form tokens (anti-spam protection) failed verification at certain time of a new day.
 
-= 1.7.1 =
+= 1.7.1.1 =
 - Changed: Improved translations by removing confusion if non-translatable placeholders are used.
 - Changed: Improved support for WordPress Core UI colors and admin themes in the admin bar menu.
 - Changed: Improved display of empty and hidden field labels in Form Builder preview.

@@ -1021,6 +1021,10 @@ section {
   background-color: #143595;
 }
 
+.background__white {
+  background-color: white;
+}
+
 .background__orange-gradient {
   background: transparent linear-gradient(180deg, #ee76002c 0%, #ee78042b 0%, #f6a75a14 75%, #fcd0a500 100%) 0% 0% no-repeat padding-box;
 }
@@ -2577,6 +2581,113 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 
 #courses .cta {
   text-align: center;
+}
+
+.course__row {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem 0;
+  align-items: center;
+}
+
+.course__share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.course__share p {
+  font-family: "Arvo";
+  font-weight: 500;
+  font-weight: 700;
+  color: white;
+  margin: 0 1rem 0 0;
+}
+
+.course__column {
+  display: flex;
+  flex-direction: column;
+}
+
+.course__heading {
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.course__title {
+  color: white;
+  text-transform: none;
+}
+
+.course__description {
+  color: white;
+}
+
+.course__details {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.course__detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+.course__detail p {
+  color: white;
+  margin: 0 0 0 1rem;
+  font-size: 16px;
+}
+
+.courses__tabs .nav-link {
+  background-color: white;
+  color: #404040;
+  border-radius: 0;
+  font-size: 20px;
+  font-weight: 600;
+  border-bottom: 1px solid #a3a3a3;
+  padding: 1rem 2rem;
+}
+.courses__tabs .nav-link:hover {
+  cursor: pointer;
+}
+.courses__tabs .nav-link.active {
+  color: #ee7600;
+  border-bottom: 3px solid #ee7600;
+  background-color: white;
+}
+.courses__tabs .tab-content {
+  padding: 0rem 2rem;
+}
+
+.course__prereq {
+  font-size: 14px;
+}
+
+.course__cost {
+  display: flex;
+  color: #0C9418;
+  align-items: center;
+  justify-items: center;
+}
+.course__cost p {
+  margin: 0 0 0 1rem;
+  font-size: 35px;
+}
+
+.course__college {
+  max-width: 1000px;
+  padding: 1rem 0;
+}
+
+#singleCourse .background__orange-brush-stroke {
+  position: relative;
+  top: 50px;
+}
+#singleCourse .background__white {
+  min-height: 500px;
 }
 
 h1 {

@@ -3,8 +3,8 @@
 	$baseUrl  = $this->baseUrl;	
 ?>
 
-<input type="hidden" id="selected_post_type" value="<?php echo (!empty($post['custom_type'])) ? $post['custom_type'] : '';?>">
-<input type="hidden" id="selected_type" value="<?php echo (!empty($post['type'])) ? $post['type'] : '';?>">
+<input type="hidden" id="selected_post_type" value="<?php echo (!empty($post['custom_type'])) ? esc_attr($post['custom_type']) : '';?>">
+<input type="hidden" id="selected_type" value="<?php echo (!empty($post['type'])) ? esc_attr($post['type']) : '';?>">
 
 <div class="wpallimport-step-4">
 	

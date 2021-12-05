@@ -59,7 +59,9 @@ if ( ! class_exists('PMXI_Upload')){
 				$this->errors->add('form-validation', __('Uploaded file must be XML, CSV, ZIP, GZIP, GZ, JSON, SQL, TXT, DAT or PSV', 'wp_all_import_plugin'));
 			} elseif (preg_match('%\W(zip)$%i', trim(basename($this->file)))) {
 										
-				if (!class_exists('PclZip')) include_once(PMXI_Plugin::ROOT_DIR.'/libraries/pclzip.lib.php');
+				if (!class_exists('PclZip')) {
+					require_once ABSPATH . 'wp-admin/includes/class-pclzip.php';
+				}
 
 				$archive = new PclZip($this->file);
 			    if (($v_result_list = $archive->extract(PCLZIP_OPT_PATH, $this->uploadsPath, PCLZIP_OPT_REPLACE_NEWER)) == 0) {
@@ -308,7 +310,9 @@ if ( ! class_exists('PMXI_Upload')){
 					    if (!file_exists($tmpname)) $this->errors->add('form-validation', __('Failed upload ZIP archive', 'wp_all_import_plugin'));						
 					}
 
-					if (!class_exists('PclZip'))  include_once(PMXI_Plugin::ROOT_DIR.'/libraries/pclzip.lib.php');
+					if (!class_exists('PclZip'))  {
+						require_once ABSPATH . 'wp-admin/includes/class-pclzip.php';
+					}
 
 					$archive = new PclZip($tmpname);
 				    if (($v_result_list = $archive->extract(PCLZIP_OPT_PATH, $this->uploadsPath, PCLZIP_OPT_REPLACE_NEWER)) == 0) {

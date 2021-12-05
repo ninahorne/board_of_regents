@@ -92,6 +92,7 @@ function add_course_to_wp_db($record)
     add_post_meta($id, 'restricted', $fields->{'Restricted (specify criteria)'});
     add_post_meta($id, 'corresponding_hs_course', $fields->{'Corresponding HS Course Number'});
     add_post_meta($id, 'general_education', $fields->{'General Ed'});
+    // TODO fix this spelling error
     add_post_meta($id, 'coures_prerequisite', $fields->{'Course Prerequisite'});
     add_post_meta($id, 'cost_per_course', intval(substr($fields->{'Cost per Course'}, 1)));
 }
@@ -514,6 +515,8 @@ function index_courses_in_algolia()
     // TODO make modality an array
     // TODO add CIP code image to courses
     // TODO mark items as "upcoming semester"
+    // TODO title case course title
+    // TODO add url 'courses/title
     global $algolia;
     $index = $algolia->initIndex('courses');
     $index->setSettings([

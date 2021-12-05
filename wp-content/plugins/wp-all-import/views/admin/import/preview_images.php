@@ -23,7 +23,7 @@
 			?>
 			<p><?php _e('Click to test that your images are able to be accessed by WP All Import.', 'wp_all_import_plugin'); ?></p>
 
-			<a class="test_images" href="javascript:void(0);" style="margin-left:0;" rel="<?php echo $post[$get['slug'] . 'download_images']; ?>"><?php _e('Run Test', 'wp_all_import_plugin'); ?></a>
+			<a class="test_images" href="javascript:void(0);" style="margin-left:0;" rel="<?php echo esc_attr($post[$get['slug'] . 'download_images']); ?>"><?php _e('Run Test', 'wp_all_import_plugin'); ?></a>
 					
 			<?php			
 
@@ -68,7 +68,7 @@
 							$img = wp_all_import_filter_html_kses($img);
                             ?>
 
-							<li rel="<?php echo trim($img);?>"><?php echo trim(preg_replace('%.*/wp-content%', '/wp-content', $wp_uploads['basedir']) . DIRECTORY_SEPARATOR . PMXI_Plugin::FILES_DIRECTORY . DIRECTORY_SEPARATOR . trim($img)); ?></li>
+							<li rel="<?php echo esc_attr(trim($img));?>"><?php echo trim(preg_replace('%.*/wp-content%', '/wp-content', $wp_uploads['basedir']) . DIRECTORY_SEPARATOR . PMXI_Plugin::FILES_DIRECTORY . DIRECTORY_SEPARATOR . esc_html(trim($img))); ?></li>
 						
 						<?php endforeach; ?> 					
 					</ul>
@@ -80,7 +80,7 @@
 
 						$img_url = site_url() . preg_replace('%.*/wp-content%', '/wp-content', $wp_uploads['basedir']) . DIRECTORY_SEPARATOR . PMXI_Plugin::FILES_DIRECTORY . DIRECTORY_SEPARATOR . trim($img);
 						?>
-						<img src="<?php echo trim($img_url);?>" style="width:64px; margin:5px; vertical-align:top;"/>
+						<img src="<?php echo esc_url(trim($img_url));?>" style="width:64px; margin:5px; vertical-align:top;"/>
 						<?php
 					}
 
@@ -113,7 +113,7 @@
 
 							?>
 
-							<li rel="<?php echo $image_name;?>"><?php echo $image_name; ?></li>
+							<li rel="<?php echo esc_attr($image_name);?>"><?php echo esc_html($image_name); ?></li>
 						
 						<?php endforeach; ?> 					
 					</ul>
@@ -134,7 +134,7 @@
 						
 						$img_url = (empty($attch)) ? '' : trim(wp_get_attachment_url($attch->ID));
 						?>
-						<img src="<?php echo trim($img_url);?>" style="width:64px; margin:5px; vertical-align:top;"/>
+						<img src="<?php echo esc_url(trim($img_url));?>" style="width:64px; margin:5px; vertical-align:top;"/>
 						<?php
 					}
 
@@ -156,7 +156,7 @@
 								$img = wp_all_import_filter_html_kses($img);
                                 ?>
 								
-								<li rel="<?php echo trim($img); ?>"><a href="<?php echo trim($img); ?>" target="_blank"><?php echo trim($img); ?></a></li>
+								<li rel="<?php echo esc_attr(trim($img)); ?>"><a href="<?php echo esc_url(trim($img)); ?>" target="_blank"><?php echo esc_html(trim($img)); ?></a></li>
 							
 							<?php endforeach; ?>					
 						</ul>
@@ -166,7 +166,7 @@
 
                         ?>
 
-							<img src="<?php echo trim($img);?>" style="width:64px; margin:5px; vertical-align:top;"/>
+							<img src="<?php echo esc_url(trim($img));?>" style="width:64px; margin:5px; vertical-align:top;"/>
 						
 						<?php endforeach; ?>
 							

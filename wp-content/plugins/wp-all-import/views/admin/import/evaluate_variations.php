@@ -7,7 +7,7 @@
 </div>
 <div id="current_xml">
 	<div class="variations_tag">	
-		<input type="hidden" name="variations_tagno" value="<?php echo $tagno + 1 ?>" />
+		<input type="hidden" name="variations_tagno" value="<?php echo esc_attr($tagno) + 1 ?>" />
 		<div class="title">			
 			<div class="navigation">
 				<?php if ($tagno > 0): ?><a href="#variation_prev" class="previous_element">&nbsp;</a><?php else: ?><span class="previous_element">&nbsp;</span><?php endif ?>

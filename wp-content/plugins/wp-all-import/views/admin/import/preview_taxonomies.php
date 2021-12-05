@@ -20,7 +20,7 @@
 			foreach ($tax_hierarchical as $ctx => $terms_arr): 
 				$tax_info = get_taxonomy($ctx);			
 				?>
-				<p><?php echo $tax_info->labels->name; ?></p>
+				<p><?php echo esc_html($tax_info->labels->name); ?></p>
 				<?php						
 				if (!empty($terms_arr) and is_array($terms_arr)){
 					foreach ($terms_arr as $terms) {
@@ -57,14 +57,14 @@
 								}
 								if (!empty($term)) {
 									?>
-									<p><?php echo str_pad(trim($term), strlen(trim($term)) + $lvl, "-", STR_PAD_LEFT); ?></p>
+									<p><?php echo esc_html(str_pad(trim($term), strlen(trim($term)) + $lvl, "-", STR_PAD_LEFT)); ?></p>
 									<?php
 								}
 							}
 						}
 						else{
 							?>
-							<p><?php echo $terms_a; ?></p>
+							<p><?php echo esc_html($terms_a); ?></p>
 							<?php
 						}
 					}

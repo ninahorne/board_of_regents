@@ -151,7 +151,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 	}
 
 	public function get_template(){
-		$nonce = (!empty($_REQUEST['_wpnonce'])) ? $_REQUEST['_wpnonce'] : '';
+		$nonce = (!empty($_REQUEST['_wpnonce'])) ? wp_unslash($_REQUEST['_wpnonce']) : '';
 		if ( ! wp_verify_nonce( $nonce, '_wpnonce-download_template' ) ) {		    
 		    die( __('Security check', 'wp_all_import_plugin') ); 
 		} else {	
@@ -194,7 +194,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 	 */
 	public function bundle(){				
 
-		$nonce = (!empty($_REQUEST['_wpnonce'])) ? $_REQUEST['_wpnonce'] : '';
+		$nonce = (!empty($_REQUEST['_wpnonce'])) ? wp_unslash($_REQUEST['_wpnonce']) : '';
 		if ( ! wp_verify_nonce( $nonce, '_wpnonce-download_bundle' ) ) {		    
 		    die( __('Security check', 'wp_all_import_plugin') ); 
 		} else {
@@ -308,7 +308,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 	 */
 	public function cancel(){
 
-		$nonce = (!empty($_REQUEST['_wpnonce'])) ? $_REQUEST['_wpnonce'] : '';
+		$nonce = (!empty($_REQUEST['_wpnonce'])) ? wp_unslash($_REQUEST['_wpnonce']) : '';
 		if ( ! wp_verify_nonce( $nonce, '_wpnonce-cancel_import' ) ) {		    
 		    die( __('Security check', 'wp_all_import_plugin') ); 
 		} else {
@@ -516,7 +516,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 	 */
 	public function feed(){
 
-		$nonce = (!empty($_REQUEST['_wpnonce'])) ? $_REQUEST['_wpnonce'] : '';
+		$nonce = (!empty($_REQUEST['_wpnonce'])) ? wp_unslash($_REQUEST['_wpnonce']) : '';
 		if ( ! wp_verify_nonce( $nonce, '_wpnonce-download_feed' ) ) {		    
 		    die( __('Security check', 'wp_all_import_plugin') ); 
 		} else {			
