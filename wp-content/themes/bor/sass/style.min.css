@@ -2745,6 +2745,11 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
     margin-left: 0;
   }
 }
+@media screen and (max-width: 567px) {
+  .course__row .course__share p {
+    display: none;
+  }
+}
 
 .course__share {
   display: flex;
@@ -2786,14 +2791,20 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 }
 
 .course__details {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+@media screen and (max-width: 567px) {
+  .course__details {
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .course__detail {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   margin: 1rem;
 }
 .course__detail p {

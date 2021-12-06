@@ -181,6 +181,5 @@
     function changeParams(params) {
         window.history.replaceState(null, null, `?field=${params}`);
 
-        // document.location.search = `?field=${params}`;
     }
 </script>
