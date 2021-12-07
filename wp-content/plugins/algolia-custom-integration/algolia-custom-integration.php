@@ -123,6 +123,8 @@ function add_college_to_wp_db($record)
     add_post_meta($id, 'notes', $fields->{'Notes'});
     add_post_meta($id, 'latitude', $fields->{'Latitude'});
     add_post_meta($id, 'longitude', $fields->{'Longitude'});
+    add_post_meta($id, 'institution_url', $fields->{'Institution URL'});
+    
 
 }
 
@@ -155,7 +157,7 @@ function add_course_to_wp_db($record)
     add_post_meta($id, 'cost_per_course', intval(substr($fields->{'Cost per Course'}, 1)));
     $subjectArea = get_subject_area_by_name($fields->{'Course Subject'});
     if($subjectArea[0]) {
-        add_post_meta($id, 'image', wp_get_attachment_image_src($subjectArea[0]->image, 'large')[0]);
+        add_post_meta($id, 'image', wp_get_attachment_image_src($subjectArea[0]->image, 'medium')[0]);
     }
 
 }
@@ -689,8 +691,8 @@ function index_courses_in_algolia()
         }
         $subjectArea = get_subject_area_by_name($record['course_subject']);
         if($subjectArea[0]) {
-            $record['subject_area_image'] = wp_get_attachment_image_src($subjectArea[0]->image, 'large')[0];
-            $record['subject_area_icon'] = wp_get_attachment_image_src($subjectArea[0]->icon, 'large')[0];
+            $record['subject_area_image'] = wp_get_attachment_image_src($subjectArea[0]->image, 'medium')[0];
+            $record['subject_area_icon'] = wp_get_attachment_image_src($subjectArea[0]->icon, 'medium')[0];
         }
         $record['url'] = './index.php/college-courses/' . $course->post_name;
         $index->saveObject($record);

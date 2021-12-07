@@ -118,7 +118,7 @@
                                 $cc_args = array(
                                     'posts_per_page' => -1,
                                     'post_type' => 'college',
-                                    'meta_key' => 'abbreviation',
+                                    'meta_key' => 'campus',
                                     'meta_value' => $institution,
                                     'limit' => 1
                                 );
@@ -140,14 +140,14 @@
                                     </div>
                                     <div class="col-8">
                                         <a target="_blank" class="d-block unformatted" href="<?php echo get_field('transfer_form') ?>"><i class="fas fa-external-link-alt"></i>&nbsp;Request information on transcript/transfer</a>
-                                        <a class="unformatted" href="mailto:<?php echo get_field('registrar_contact_information') ?>"><i class="far fa-envelope"></i>&nbsp;&nbsp;Contact the registrat </a>
+                                        <a class="unformatted" href="mailto:<?php echo get_field('registrar_contact_information') ?>"><i class="far fa-envelope"></i>&nbsp;&nbsp;Contact the registrar </a>
 
                                     </div>
 
                                 </div>
                             </div>
                             <div class="mt-3">
-                                <a target="_blank" style='max-width: 285px;' href="<?php echo get_field('general_de_info_link', $post_id) ?>" class="cta unformatted">Visit College Website&nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i></a>
+                                <a target="_blank" style='max-width: 285px;' href="<?php echo get_field('institution_url', $post_id) ?>" class="cta unformatted">Visit College Website&nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i></a>
 
                             </div>
                         </div>
