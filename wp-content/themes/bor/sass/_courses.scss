@@ -203,7 +203,7 @@
 .results__course {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 1fr 2fr;
+  grid-template-rows: auto auto;
   background-color: white;
   border-radius: 5px;
   padding: 2rem 0.5rem;
@@ -251,7 +251,9 @@
       grid-column-start: 2;
       grid-column-end: 2;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: flex-end;
 
       @media screen and (max-width: 567px) {
         grid-column-end: 4;
@@ -358,7 +360,9 @@
 .results__share-text {
   color: white;
   margin: 0;
+  display: none;
   @media screen and (max-width: 567px) {
+    display: block;
     flex: 1 0 100%;
     padding: 1rem;
     text-align: center;
@@ -457,8 +461,35 @@
   border-radius: 2px;
   box-shadow: none;
 
-  &:checked{
+  &:checked {
     background-color: $checkbox-blue;
     border: none;
+  }
+}
+
+.filter__arrow {
+  display: none;
+
+  @media screen and (max-width: 567px) {
+    display: inline-block;
+  }
+}
+
+#filterToggle {
+  #filterOptions {
+    max-height: 100vh;
+  }
+  &.closed {
+    .filter__arrow {
+      transform: rotate(180deg);
+    }
+  }
+}
+#filterOptions {
+  &.closed {
+    @media screen and (max-width: 567px) {
+      max-height: 0;
+      overflow: hidden;
+    }
   }
 }

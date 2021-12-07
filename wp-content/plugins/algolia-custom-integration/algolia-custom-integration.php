@@ -709,7 +709,7 @@ function dual_enrollment_init()
     // Courses Section
     echo "
     <h1>Courses</h1>
-    <p>TODO: remind user to backup DB before updating couress </p>
+    <p>TODO: remind user to backup DB before updating coureses </p>
     <a target='_blank' href='https://airtable.com/appYWq35ZeV7QE3QG/tblOyRDVaO09F802t/viw5LelXpFetJfvuP?blocks=hide'> View AirTable </a>
     <div>
     <form method='post'>

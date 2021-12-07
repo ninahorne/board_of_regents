@@ -63,7 +63,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="background__orange-brush-stroke background__brush-stroke--large">
-                            <img class="m-1 " src="<?php  ?>" alt="">
+                            <img class="m-1 course__image" src="<?php the_field('image') ?>" alt="">
                         </div>
                     </div>
                 </div>

@@ -2472,7 +2472,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 .results__course {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 1fr 2fr;
+  grid-template-rows: auto auto;
   background-color: white;
   border-radius: 5px;
   padding: 2rem 0.5rem;
@@ -2520,7 +2520,9 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   grid-column-start: 2;
   grid-column-end: 2;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 @media screen and (max-width: 567px) {
   .results__course .results__info.first {
@@ -2637,9 +2639,11 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 .results__share-text {
   color: white;
   margin: 0;
+  display: none;
 }
 @media screen and (max-width: 567px) {
   .results__share-text {
+    display: block;
     flex: 1 0 100%;
     padding: 1rem;
     text-align: center;
@@ -2738,6 +2742,29 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   border: none;
 }
 
+.filter__arrow {
+  display: none;
+}
+@media screen and (max-width: 567px) {
+  .filter__arrow {
+    display: inline-block;
+  }
+}
+
+#filterToggle #filterOptions {
+  max-height: 100vh;
+}
+#filterToggle.closed .filter__arrow {
+  transform: rotate(180deg);
+}
+
+@media screen and (max-width: 567px) {
+  #filterOptions.closed {
+    max-height: 0;
+    overflow: hidden;
+  }
+}
+
 .course__row {
   display: flex;
   justify-content: space-between;
@@ -2820,7 +2847,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 .course__detail p {
   color: white;
   margin: 0 0 0 1rem;
-  font-size: 16px;
+  font-size: 14px;
 }
 @media screen and (max-width: 991px) {
   .course__detail {
@@ -2895,7 +2922,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 }
 #singleCourse .background__orange-brush-stroke {
   position: relative;
-  top: 50px;
+  top: 100px;
 }
 @media screen and (max-width: 991px) {
   #singleCourse .background__orange-brush-stroke {
@@ -2913,6 +2940,13 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   #singleCourse .background__white {
     padding: 0.5rem 0 0 0;
   }
+}
+
+.course__image {
+  width: 500px;
+  height: 500px;
+  border-radius: 100%;
+  max-width: 100%;
 }
 
 h1 {

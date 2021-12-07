@@ -21,74 +21,77 @@
 
                                 </div>
                                 <div class="mt-3 mb-3">
-                                    <h6>Filters</h6>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <h6>Distance</h6>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="search__zip">
-                                                <input id="zipCode" type="text" placeholder="Enter Zipcode">
-                                                <span class="hidden">&times;</span>
+                                    <h6 id="filterToggle"><img src="<?php echo get_template_directory_uri(); ?>/images/sliders-h-solid.svg">&nbsp;&nbsp;&nbsp;Filters&nbsp;&nbsp;&nbsp;<img class="filter__arrow" src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg"></h6>
+                                    <div id="filterOptions">
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h6>Distance</h6>
                                             </div>
-                                            <a id="currentPosition" class="distance__location" href="">Current location <img src="<?php echo get_template_directory_uri(); ?>/images/location-light.svg"></a>
+                                            <div class="col-6">
+                                                <div class="search__zip">
+                                                    <input id="zipCode" type="text" placeholder="Enter Zipcode">
+                                                    <span class="hidden">&times;</span>
+                                                </div>
+                                                <a id="currentPosition" class="distance__location" href="">Current location <img src="<?php echo get_template_directory_uri(); ?>/images/location-light.svg"></a>
 
-                                        </div>
-                                    </div>
-                                    <div class="distance__slider">
-                                        <label for="distanceSlider">Radius (in miles)</label>
-                                        <input id="distanceSlider" class="slider" step="25" type="range" min="0" max="100" value="50">
-                                        <div class="slider__values">
-                                            <p>0</p>
-                                            <p>25</p>
-                                            <p>50</p>
-                                            <p>75</p>
-                                            <p>100</p>
-                                        </div>
-                                    </div>
-                                    <div class="refinements__select">
-                                        <div id="institutionsLabel" class="refinements__label">
-                                            <p>All Institutions</p>
-                                            <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
-
-                                        </div>
-                                        <div id="institutionsDropdown" class="refinements__dropdown">
-                                            <div id="institutionMenu"></div>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="refinements__select">
-                                        <div id="subjectAreasLabel" class="refinements__label">
-                                            <div class="refinements__title">
-                                                <p>Subject Areas</p> &nbsp;
-                                                <span>Ex: Human Services, Marketing</span>
                                             </div>
-                                            <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
-
                                         </div>
-                                        <div id="subjectAreasDropdown" class="refinements__dropdown">
-                                            <div id="subjectAreasMenu"></div>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="refinements__select">
-                                        <div id="typeLabel" class="refinements__label">
-                                            <div class="refinements__title">
-                                                <p>Type</p> &nbsp;
-                                                <span>Ex: College - On Campus</span>
+                                        <div class="distance__slider">
+                                            <label for="distanceSlider">Radius (in miles)</label>
+                                            <input id="distanceSlider" class="slider" step="25" type="range" min="0" max="100" value="50">
+                                            <div class="slider__values">
+                                                <p>0</p>
+                                                <p>25</p>
+                                                <p>50</p>
+                                                <p>75</p>
+                                                <p>100</p>
                                             </div>
-                                            <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
                                         </div>
-                                        <div id="typeDropdown" class="refinements__dropdown">
-                                            <div id="typeMenu"></div>
+                                        <div class="refinements__select">
+                                            <div id="institutionsLabel" class="refinements__label">
+                                                <p>All Institutions</p>
+                                                <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
+
+                                            </div>
+                                            <div id="institutionsDropdown" class="refinements__dropdown">
+                                                <div id="institutionMenu"></div>
+
+                                            </div>
 
                                         </div>
+                                        <div class="refinements__select">
+                                            <div id="subjectAreasLabel" class="refinements__label">
+                                                <div class="refinements__title">
+                                                    <p>Subject Areas</p> &nbsp;
+                                                    <span>Ex: Human Services, Marketing</span>
+                                                </div>
+                                                <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
 
+                                            </div>
+                                            <div id="subjectAreasDropdown" class="refinements__dropdown">
+                                                <div id="subjectAreasMenu"></div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="refinements__select">
+                                            <div id="typeLabel" class="refinements__label">
+                                                <div class="refinements__title">
+                                                    <p>Type</p> &nbsp;
+                                                    <span>Ex: College - On Campus</span>
+                                                </div>
+                                                <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
+                                            </div>
+                                            <div id="typeDropdown" class="refinements__dropdown">
+                                                <div id="typeMenu"></div>
+
+                                            </div>
+
+                                        </div>
+                                        <hr>
                                     </div>
-                                    <hr>
+
                                 </div>
                             </div>
                         </div>
@@ -107,6 +110,7 @@
                         <div class="results__footer">
                             <div id="pagination"></div>
                             <div class="results__share">
+
                                 <div class="results__icon">
                                     <a href="mailto:?subject=LA Board of Regents - Dual Enrollment Courses&body=Check out these Louisiana Dual Enrollment Courses!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
                                         <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
@@ -124,8 +128,10 @@
                                 </div>
                             </div>
                             <h6 class="results__share-text">Share these results</h6>
-                            <div id="qrCode"></div>
+
                         </div>
+                        <div id="qrCode"></div>
+
                     </div>
                 </div>
                 <div class="p-5">
@@ -269,7 +275,7 @@
                         )}...</p>
 
                         <label>${item.semester}</label>
-                        <label>Subject Area</label>
+                        <label>${item.course_subject}</label>
                         <label class="green">Cost: $${
                           item.cost_per_course
                         }</label>
@@ -713,6 +719,16 @@
             results.push(...page_of_hits.hits);
         }
         return Promise.resolve(results);
+
+    }
+    // Show / Hide Filter
+    const filterToggle = document.querySelector('#filterToggle');
+    filterToggle.addEventListener('click', toggleFilter);
+    const filterOptions = document.querySelector('#filterOptions');
+    filterOptions.addEventListener('click', filterOptions);
+    function toggleFilter() {
+        filterToggle.classList.toggle('closed');
+        filterOptions.classList.toggle('closed');
     }
 </script>
 

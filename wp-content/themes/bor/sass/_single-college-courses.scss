@@ -74,7 +74,7 @@
   p {
     color: white;
     margin: 0 0 0 1rem;
-    font-size: 16px;
+    font-size: 14px;
   }
 
   @media screen and (max-width: 991px) {
@@ -151,7 +151,7 @@
   }
   .background__orange-brush-stroke {
     position: relative;
-    top: 50px;
+    top: 100px;
 
     @media screen and (max-width: 991px) {
       top: unset;
@@ -170,3 +170,9 @@
   }
 }
 
+.course__image {
+  width: 500px;
+  height: 500px;
+  border-radius: 100%;
+  max-width: 100%;
+}
