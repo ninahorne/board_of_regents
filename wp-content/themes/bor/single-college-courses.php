@@ -8,10 +8,12 @@
                     <div class="course__share">
                         <p>Share this course</p>
                         <div class="results__icon">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
+                            <a href="mailto:?subject=LA Dual Enrollment Course - <?php the_title() ?>&body=Check out this Louisiana Dual Enrollmnet Course: <?php the_title() ?>!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
+                                <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
+                            </a>
                         </div>
                         <div class="results__icon">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/file-pdf-solid.svg" alt="">
+                            <img id="pdfShare" onclick="generatePDF('<?php the_title(); ?>')" src="<?php echo get_template_directory_uri(); ?>/images/file-pdf-solid.svg" alt="">
                         </div>
                     </div>
                 </div>
@@ -53,7 +55,7 @@
                             <?php endif; ?>
                             <?php if (get_field('satellite_campus')) : ?>
                                 <div class="course__detail">
-                                    <img src="<?php echo get_template_directory_uri()?>/images/satellite-light.svg" alt="" />
+                                    <img src="<?php echo get_template_directory_uri() ?>/images/satellite-light.svg" alt="" />
                                     <p>Satellite Campus: <br /> <?php the_field('satellite_campus') ?></p>
                                 </div>
                             <?php endif; ?>
@@ -61,7 +63,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="background__orange-brush-stroke background__brush-stroke--large">
-                            <img class="m-1 " src="<?php echo get_template_directory_uri(); ?>/images/adolescent-psychology.png" alt="">
+                            <img class="m-1 " src="<?php  ?>" alt="">
                         </div>
                     </div>
                 </div>
@@ -157,3 +159,15 @@
     </div>
 </div>
 <?php include('footer.php') ?>
+<script>
+    function generatePDF(title) {
+        const course = document.querySelector('.background__orange-brush-stroke');
+        html2pdf().set({
+            margin: 5,
+            pagebreak: {
+                mode: ['css', 'legacy']
+            }
+        }).from(course).save(title);
+
+    }
+</script>

@@ -108,23 +108,23 @@
                             <div id="pagination"></div>
                             <div class="results__share">
                                 <div class="results__icon">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
+                                    <a href="mailto:?subject=LA Board of Regents - Dual Enrollment Courses&body=Check out these Louisiana Dual Enrollment Courses!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
+                                    </a>
                                 </div>
-                                <div class="results__icon">
+                                <div id='pdfShare' class="results__icon">
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/file-pdf-solid.svg" alt="">
-
                                 </div>
-                                <div class="results__icon">
+                                <div id='csvShare' class="results__icon">
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/file-csv-solid.svg" alt="">
 
                                 </div>
-                                <div class="results__icon">
+                                <div id='qrShare' class="results__icon">
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/qrcode-solid.svg" alt="">
-
                                 </div>
                             </div>
                             <h6 class="results__share-text">Share these results</h6>
-
+                            <div id="qrCode"></div>
                         </div>
                     </div>
                 </div>
@@ -170,6 +170,7 @@
 
         </div>
     </div>
+    <div id="shareResults"></div>
 </div>
 <script>
     // Globals
@@ -245,7 +246,7 @@
                       }'><div class='results__course'>
                     <div class="results__image">
                         <div class="results__image__background">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/placeholder.svg" />
+                            <img src="${item.subject_area_icon}" />
                         </div>
                     </div>
                     <div class="results__info first">
@@ -265,7 +266,7 @@
                         <p class="results__description">${item.description.substring(
                           0,
                           100
-                        )}</p>
+                        )}...</p>
 
                         <label>${item.semester}</label>
                         <label>Subject Area</label>
@@ -281,9 +282,7 @@
                     })
                     .join("")
                 : "<div class = 'results__empty'><h4> No results match your query. </h4> </div>"
-            };
-        
-        }`;
+            }`;
         };
 
         // Create the custom widget
@@ -345,8 +344,10 @@
             }),
         ]);
 
+
         courses_search.start();
     }
+
 
     function setInitialStateFromQueryParams() {
         const queryParamsString = window.location.search;
@@ -463,7 +464,10 @@
                         lat = results[0].geometry.location.lat();
                         lng = results[0].geometry.location.lng();
                         algLatLng = `${lat}, ${lng}`;
-                        console.log({lat,lng});
+                        console.log({
+                            lat,
+                            lng
+                        });
                         courses_search.helper.setQueryParameter("aroundLatLng", algLatLng);
                         courses_search.helper.setQueryParameter(
                             "aroundRadius",
@@ -581,6 +585,134 @@
 
     function getMilesFromMeters(meters) {
         return Math.ceil(meters / 1609.34);
+    }
+
+
+
+    const pdfShare = document.querySelector('#pdfShare');
+    pdfShare.addEventListener('click', generatePDF);
+    const csvShare = document.querySelector('#csvShare');
+    csvShare.addEventListener('click', generateCSV);
+    const qrShare = document.querySelector('#qrShare');
+    qrShare.addEventListener('click', generateQRCode);
+
+    function generateQRCode() {
+        new QRCode(document.getElementById("qrCode"), window.location.href);
+    }
+    async function generatePDF() {
+        const results = await getSearchResultsForSharing();
+        const html = convertResultsIntoHTML(results);
+        html2pdf().set({
+            margin: 5,
+            pagebreak: {
+                mode: ['css', 'legacy']
+            }
+        }).from(html).save('LA-Dual-Enrollment-Courses-Results');
+
+    }
+
+    async function generateCSV() {
+        const results = await getSearchResultsForSharing();
+        const csv = convertResultsIntoCSV(results);
+        let csvContent = "data:text/csv;charset=utf-8,";
+        csv.forEach(function(rowArray) {
+            let row = rowArray.join(",");
+            csvContent += row + "\r\n";
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "LA-Dual-Enrollment-Courses-Results.csv");
+        document.body.appendChild(link);
+        link.click();
+    }
+
+    function convertResultsIntoCSV(hits) {
+        const csv = [];
+        hits.forEach(
+            hit => {
+                const hitArray = [];
+                Object.keys(hit).forEach(
+                    key => {
+                        if (key === 'course_full_title' || key === 'description' || key === 'semester' || key === 'subjectArea' || key === 'cost_per_course')
+                            hitArray.push(hit[key]);
+                    }
+                )
+                csv.push(hitArray);
+            }
+        )
+        return csv;
+    }
+
+    function convertResultsIntoHTML(hits) {
+        const container = document.createElement('div');
+        const h2 = document.createElement('h2');
+        h2.innerText = "Louisiana Dual Enrollment Courses";
+        const ol = document.createElement('ol');
+        ol.style.padding = "3rem";
+        container.style.padding = "2rem";
+
+        hits.forEach(hit => {
+            const li = document.createElement('li');
+            const div = document.createElement('div');
+            const h3 = document.createElement('h3');
+            h3.innerText = `${hit.course_full_title} at ${hit.institution}`;
+            const h6 = document.createElement('h6');
+            h6.innerText = `${hit.semester} | Subject Area | Cost: $${hit.cost_per_course}`
+            const p = document.createElement('p');
+            p.innerText = hit.description;
+            li.style.pageBreakInside = 'avoid';
+            div.appendChild(h3);
+            div.appendChild(h6);
+            div.appendChild(p);
+            li.appendChild(div);
+            ol.appendChild(li);
+        });
+        container.appendChild(h2);
+        container.appendChild(ol);
+        return container;
+    }
+
+    async function getSearchResultsForSharing() {
+
+
+        const results = [];
+        const index = searchClient.initIndex('courses');
+        const queryParamsString = window.location.search;
+        const queryObject = getQueryParamsObjectFromString(queryParamsString);
+
+        const institution = queryObject["institution"] || '';
+        const modality = queryObject["modality"] || '';
+        const aroundRadius = queryObject["aroundRadius"];
+        const aroundLatLng = queryObject["aroundLatLng"];
+        const query = queryObject["query"];
+
+        let nbPages;
+        const hits = await index.search(query, {
+
+            aroundRadius: aroundRadius,
+            aroundLatLng: aroundLatLng,
+            facetFilters: [
+                `institution:${institution}`,
+                `modality:${modality}`,
+            ]
+        });
+
+        nbPages = hits.nbPages;
+
+
+        for (let i = 0; i < nbPages; i++) {
+            const page_of_hits = await index.search(query, {
+                page: i + 1,
+                aroundRadius: aroundRadius,
+                aroundLatLng: aroundLatLng,
+                facetFilters: [`institution:${institution}`, `modality:${modality}`, ]
+            });
+            let actHits = page_of_hits.hits;
+            results.push(...page_of_hits.hits);
+        }
+        return Promise.resolve(results);
     }
 </script>
 

@@ -451,3 +451,14 @@
     align-items: center;
   }
 }
+
+.ais-RefinementList-checkbox {
+  background-color: $checkbox-gray;
+  border-radius: 2px;
+  box-shadow: none;
+
+  &:checked{
+    background-color: $checkbox-blue;
+    border: none;
+  }
+}

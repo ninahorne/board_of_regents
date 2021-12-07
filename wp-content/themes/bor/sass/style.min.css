@@ -2728,6 +2728,16 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
     align-items: center;
   }
 }
+.ais-RefinementList-checkbox {
+  background-color: #e0e0e0;
+  border-radius: 2px;
+  box-shadow: none;
+}
+.ais-RefinementList-checkbox:checked {
+  background-color: rgba(19, 53, 149, 0.4);
+  border: none;
+}
+
 .course__row {
   display: flex;
   justify-content: space-between;

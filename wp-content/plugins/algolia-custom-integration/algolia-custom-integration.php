@@ -47,7 +47,7 @@ function sync_courses_airtable_with_wp_db()
         'base'    => 'appYWq35ZeV7QE3QG'
     ));
 
-    $request = $airtable->getContent('Imported table');
+    $request = $airtable->getContent('COURSES 12.1.21.V2');
     $i = 0;
 
     /**
@@ -124,15 +124,13 @@ function add_college_to_wp_db($record)
     add_post_meta($id, 'latitude', $fields->{'Latitude'});
     add_post_meta($id, 'longitude', $fields->{'Longitude'});
 
-
-
 }
 
 
 function add_course_to_wp_db($record)
 {
     $fields = $record->fields;
-    $fullTitle = ucwords(strtolower($fields->{'Course Full Title'}));
+    $fullTitle = $fields->{'Course Full Title'};
     $title = $fields->ID;
     $id = wp_insert_post(array(
         'post_title' => $title,
@@ -140,6 +138,7 @@ function add_course_to_wp_db($record)
         'post_status' => 'publish'
     ));
     add_post_meta($id, 'course_full_title', $fullTitle);
+    add_post_meta($id, 'course_subject', $fields->{'Course Subject'});
     add_post_meta($id, 'semester', $fields->{'Semester'});
     add_post_meta($id, 'course_number', $fields->{'Course Number'});
     add_post_meta($id, 'course_abbreviation', $fields->{'Course Abbreviation'});
@@ -149,11 +148,15 @@ function add_course_to_wp_db($record)
     add_post_meta($id, 'institution', $fields->{'Institution'});
     add_post_meta($id, 'satellite_campus', $fields->{'Satellite Campus'});
     add_post_meta($id, 'modality', $fields->{'Modality'});
-    add_post_meta($id, 'restricted', $fields->{'Restricted (specify criteria)'});
+    add_post_meta($id, 'restricted', $fields->{'Restricted'});
     add_post_meta($id, 'corresponding_hs_course', $fields->{'Corresponding HS Course Number'});
     add_post_meta($id, 'general_education', $fields->{'General Ed'});
     add_post_meta($id, 'course_prerequisite', $fields->{'Course Prerequisite'});
     add_post_meta($id, 'cost_per_course', intval(substr($fields->{'Cost per Course'}, 1)));
+    $subjectArea = get_subject_area_by_name($fields->{'Course Subject'});
+    if($subjectArea[0]) {
+        add_post_meta($id, 'image', wp_get_attachment_image_src($subjectArea[0]->image, 'large')[0]);
+    }
 
 }
 
@@ -175,13 +178,27 @@ function delete_current_colleges_in_wp_db()
     $deletePostMeta = $wpdb->get_results("DELETE FROM wp_postmeta WHERE post_id NOT IN (SELECT id FROM wp_posts)");
 }
 
+function get_subject_area_by_name($name)
+{
+    $cc_args = array(
+        'posts_per_page'   => -1,
+        'post_type'        => 'cip_codes',
+        'meta_key'         => 'name',
+        'meta_value'       => $name,
+        'limit'            => 1
+    );
+    $cc_query = new WP_Query($cc_args);
+
+    return $cc_query->posts;
+}
+
 
 function get_college_by_abbrev($abbrev)
 {
     $cc_args = array(
         'posts_per_page'   => -1,
         'post_type'        => 'college',
-        'meta_key'         => 'abbreviation',
+        'meta_key'         => 'campus',
         'meta_value'       => $abbrev,
         'limit'            => 1
     );
@@ -614,7 +631,6 @@ function index_generic_page_search_in_algolia()
 }
 function index_courses_in_algolia()
 {
-    // TODO add CIP code image to courses
     // TODO mark items as "upcoming semester"
     global $algolia;
     $index = $algolia->initIndex('courses');
@@ -671,12 +687,17 @@ function index_courses_in_algolia()
             $record['_geoloc']['lat'] = $lat;
             $record['_geoloc']['lng'] = $lng;
         }
+        $subjectArea = get_subject_area_by_name($record['course_subject']);
+        if($subjectArea[0]) {
+            $record['subject_area_image'] = wp_get_attachment_image_src($subjectArea[0]->image, 'large')[0];
+            $record['subject_area_icon'] = wp_get_attachment_image_src($subjectArea[0]->icon, 'large')[0];
+        }
         $record['url'] = './index.php/college-courses/' . $course->post_name;
         $index->saveObject($record);
         $count++;
     }
 
-    return 'Function not implemented yet';
+    return 'Indexed ' . $count . ' Courses in Algolia';
 }
 
 /**
