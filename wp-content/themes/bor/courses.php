@@ -48,6 +48,7 @@
                                                 <p>100</p>
                                             </div>
                                         </div>
+                                        <div id="currentRefinements"></div>
                                         <div class="refinements__select">
                                             <div id="institutionsLabel" class="refinements__label">
                                                 <p>All Institutions</p>
@@ -193,6 +194,7 @@
     const distanceSlider = document.querySelector("#distanceSlider");
     const currentPosition = document.querySelector("#currentPosition");
 
+
     // Filter Labels and dropdowns
     const institutionsLabel = document.querySelector("#institutionsLabel");
     const institutionsDropdown = document.querySelector("#institutionsDropdown");
@@ -207,7 +209,6 @@
     // Event listeners
     zipCodeInput.addEventListener("change", (e) => setQueryForAroundLatLng(e));
     zipCodeClear.addEventListener("click", clearZipCode);
-
     distanceSlider.addEventListener("change", (e) => setQueryForAroundRadius(e));
     currentPosition.addEventListener("click", (e) => getCurrentLocation(e));
     institutionsLabel.addEventListener("click", () => {
@@ -296,8 +297,66 @@
             }`;
         };
 
-        // Create the custom widget
+
         const coursesCustomHits = instantsearch.connectors.connectHits(renderHits);
+
+        // // Create the render function
+        const createDataAttribtues = refinement =>
+            Object.keys(refinement)
+            .map(key => `data-${key}="${refinement[key]}"`)
+            .join(' ');
+
+        const renderListItem = item => `
+                    ${item.refinements
+                        .map(
+                        refinement =>
+                            `<li>
+                            ${refinement.label}
+                            <button ${createDataAttribtues(refinement)}>&times;</button>
+                            </li>`
+                        )
+                        .join('')}
+                `;
+
+        const renderCurrentRefinements = (renderOptions, isFirstRender) => {
+            const {
+                items,
+                refine,
+                widgetParams
+            } = renderOptions;
+
+            widgetParams.container.innerHTML = `
+                <ul class="courses__current-refinements">
+                ${
+                    getQueryParamsObjectFromString(window.location.search).query != undefined ?
+                    `<li>${getQueryParamsObjectFromString(window.location.search).query}
+                        <button id="clearSearch">&times;</button>
+                    </li>` : ''
+                }
+                ${items.map(renderListItem).join('')}
+                </ul>
+            `;
+            document.querySelector('#clearSearch')?.addEventListener("click", clearSearch);
+
+            [...widgetParams.container.querySelectorAll('button')].forEach(element => {
+                element.addEventListener('click', event => {
+                    const item = Object.keys(event.currentTarget.dataset).reduce(
+                        (acc, key) => ({
+                            ...acc,
+                            [key]: event.currentTarget.dataset[key],
+                        }), {}
+                    );
+
+                    refine(item);
+                });
+            });
+
+        };
+
+        const customCurrentRefinements = instantsearch.connectors.connectCurrentRefinements(
+            renderCurrentRefinements
+        );
+
 
         const latLng = new google.maps.LatLng(30.4515, -91.1871);
 
@@ -350,6 +409,9 @@
                     },
                 ],
             }),
+            customCurrentRefinements({
+                container: document.querySelector('#currentRefinements')
+            }),
             coursesCustomHits({
                 container: document.querySelector("#coursesHits"),
             }),
@@ -394,7 +456,9 @@
             console.log(courseSubject);
             const valArray = courseSubject.split(";");
             const formattedArray = valArray.map(item => decodeURI(item).replace(/%26/g, '&'));
-            console.log({formattedArray});
+            console.log({
+                formattedArray
+            });
             formattedArray.forEach(facet => {
                 courses_search.helper.addDisjunctiveFacetRefinement(
                     "course_subject",
@@ -491,6 +555,11 @@
         courses_search.helper.search();
     }
 
+    function clearSearch(){
+
+        courses_search.helper.setQuery('');
+        courses_search.helper.search();
+    }
     function setQueryForAroundLatLng(e) {
         const zipCode = e.target.value;
         let lat = "";

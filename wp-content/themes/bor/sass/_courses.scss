@@ -493,3 +493,22 @@
     }
   }
 }
+
+
+.courses__current-refinements{
+  display: flex;
+  flex-wrap: wrap;
+  li {
+    font-size: 12px;
+    background-color: $checkbox-gray;
+    border-radius: 30px;
+    color: $dark-blue;
+    margin: 0.2rem 0;
+    padding: 0 0.5rem;
+  }
+  button {
+    font-size: 12px;
+    background-color: transparent;
+    border: none;
+  }
+}
