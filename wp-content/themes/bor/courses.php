@@ -61,7 +61,7 @@
 
                                         </div>
                                         <div class="refinements__select">
-                                            <div id="subjectAreasLabel" class="refinements__label">
+                                            <div id="subjectAreaLabel" class="refinements__label">
                                                 <div class="refinements__title">
                                                     <p>Subject Areas</p> &nbsp;
                                                     <span>Ex: Human Services, Marketing</span>
@@ -69,8 +69,8 @@
                                                 <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
 
                                             </div>
-                                            <div id="subjectAreasDropdown" class="refinements__dropdown">
-                                                <div id="subjectAreasMenu"></div>
+                                            <div id="subjectAreaDropdown" class="refinements__dropdown">
+                                                <div id="subjectAreaMenu"></div>
 
                                             </div>
 
@@ -198,7 +198,8 @@
     const institutionsDropdown = document.querySelector("#institutionsDropdown");
     const typeLabel = document.querySelector("#typeLabel");
     const typeDropdown = document.querySelector("#typeDropdown");
-
+    const subjectAreaLabel = document.querySelector("#subjectAreaLabel");
+    const subjectAreaDropdown = document.querySelector("#subjectAreaDropdown");
     // Initialize
     document.addEventListener("DOMContentLoaded", initializeAlgolia);
     document.addEventListener("DOMContentLoaded", setInitialStateFromQueryParams);
@@ -216,6 +217,10 @@
     typeLabel.addEventListener("click", () => {
         typeLabel.classList.toggle("open");
         typeDropdown.classList.toggle("open");
+    });
+    subjectAreaLabel.addEventListener("click", () => {
+        subjectAreaLabel.classList.toggle("open");
+        subjectAreaDropdown.classList.toggle("open");
     });
 
     // Algolia Config
@@ -315,8 +320,8 @@
                 sortBy: ["name:asc"],
             }),
             instantsearch.widgets.refinementList({
-                container: document.querySelector("#institutionMenu"),
-                attribute: "institution",
+                container: document.querySelector("#subjectAreaMenu"),
+                attribute: "course_subject",
                 sortBy: ["name:asc"],
             }),
 
@@ -358,25 +363,48 @@
     function setInitialStateFromQueryParams() {
         const queryParamsString = window.location.search;
         const queryObject = getQueryParamsObjectFromString(queryParamsString);
-
         const institution = queryObject["institution"];
         const modality = queryObject["modality"];
         const aroundRadius = queryObject["aroundRadius"];
         const aroundLatLng = queryObject["aroundLatLng"];
         const query = queryObject["query"];
+        const courseSubject = queryObject["course_subject"];
 
         if (institution) {
-            const valArray = institution.split(",");
-            courses_search.helper.addDisjunctiveFacetRefinement(
-                "institution",
-                valArray
-            );
+            const valArray = institution.split(";");
+            valArray.forEach(facet => {
+                courses_search.helper.addDisjunctiveFacetRefinement(
+                    "institution",
+                    facet
+                );
+            })
+
         }
 
         if (modality) {
-            const valArray = modality.split(",");
-            courses_search.helper.addDisjunctiveFacetRefinement("modality", valArray);
+            const valArray = modality.split(";");
+            valArray.forEach(facet => {
+                courses_search.helper.addDisjunctiveFacetRefinement(
+                    "modality",
+                    facet
+                );
+            })
         }
+        if (courseSubject) {
+            console.log(courseSubject);
+            const valArray = courseSubject.split(";");
+            const formattedArray = valArray.map(item => decodeURI(item).replace(/%26/g, '&'));
+            console.log({formattedArray});
+            formattedArray.forEach(facet => {
+                courses_search.helper.addDisjunctiveFacetRefinement(
+                    "course_subject",
+                    facet
+                );
+            });
+
+            console.log(courses_search.helper.state);
+        }
+
 
         if (aroundRadius) {
             courses_search.helper.setQueryParameter("aroundRadius", aroundRadius);
@@ -423,6 +451,7 @@
 
         let queryParamString = '?';
 
+        console.log(state.disjunctiveFacetsRefinements);
 
         const aroundLatLng =
             state.aroundLatLng;
@@ -433,14 +462,19 @@
         if (aroundRadius) {
             queryParamString = `${queryParamString}aroundRadius=${aroundRadius}&`;
         }
-        const institutions = state.disjunctiveFacetsRefinements.institution.join(",");
+        const institutions = state.disjunctiveFacetsRefinements.institution.join(";");
         if (institutions) {
             queryParamString = `${queryParamString}institution=${institutions}&`;
         }
-        const modalities = state.disjunctiveFacetsRefinements.modality.join(",");
+        const modalities = state.disjunctiveFacetsRefinements.modality.join(";");
         if (modalities) {
             queryParamString = `${queryParamString}modality=${modalities}&`;
         }
+        const courseSubjects = state.disjunctiveFacetsRefinements.course_subject.join(";").replace(/&/g, '%26');;
+        if (courseSubjects) {
+            queryParamString = `${queryParamString}course_subject=${encodeURI(courseSubjects)}&`;
+        }
+
 
         const query = state.query;
         if (query) {
@@ -726,6 +760,7 @@
     filterToggle.addEventListener('click', toggleFilter);
     const filterOptions = document.querySelector('#filterOptions');
     filterOptions.addEventListener('click', filterOptions);
+
     function toggleFilter() {
         filterToggle.classList.toggle('closed');
         filterOptions.classList.toggle('closed');

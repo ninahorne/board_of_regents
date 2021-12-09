@@ -639,8 +639,8 @@ function index_courses_in_algolia()
     $index->setSettings([
         'attributesForFaceting' => [
             "institution",
-            "modality"
-            // TODO add subject area
+            "modality",
+            "course_subject"
         ],
 
     ]);
