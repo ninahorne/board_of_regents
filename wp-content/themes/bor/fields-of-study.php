@@ -7,7 +7,7 @@
 
 <?php include('header.php'); ?>
 <div id="content">
-    <div id="coursesByCampus">
+    <div id="fieldsOfStudy">
         <div class="courses-page__banner">
             <div class="flex-vertical-center">
                 <div class="container">

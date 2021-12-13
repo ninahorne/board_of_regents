@@ -1194,7 +1194,9 @@ a.unformatted.cta:hover {
   width: 100%;
   max-width: 800px;
 }
-.ugb-video-popup .ugb-video-preview, .ugb-video-popup a, .ugb-video-popup .ugb-play-button {
+.ugb-video-popup .ugb-video-preview,
+.ugb-video-popup a,
+.ugb-video-popup .ugb-play-button {
   position: absolute;
   top: 0;
   left: 0;
@@ -1235,6 +1237,13 @@ a.unformatted.cta:hover {
 }
 .ugb-video-popup svg {
   fill: #fff !important;
+}
+
+.ais-SearchBox-form:before {
+  background-repeat: no-repeat;
+  height: 2rem;
+  width: 2rem;
+  margin-top: -7px;
 }
 
 header .vertical-line {
@@ -1670,10 +1679,6 @@ a:visited {
   width: calc(100% - 1rem);
   box-shadow: 0px 23px 29px #0000000a;
 }
-.counselors-page__benefits .cta {
-  max-width: 235px;
-  line-height: 65px;
-}
 
 .counselors-page__benefit-item img {
   display: block;
@@ -2082,11 +2087,11 @@ a:visited {
 }
 
 .courses-page__item__details {
-  font-size: 16px;
-  padding: 1rem;
+  font-size: 1.6rem;
+  padding: 3rem;
 }
 .courses-page__item__details * {
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 .courses-page__item__details ul {
   list-style: disc;
@@ -2096,6 +2101,17 @@ a:visited {
 .fields-of-study__fixed-width {
   max-width: 700px;
   margin: 0 auto;
+}
+
+#fieldsOfStudy .modal-content h5 {
+  font-size: 2rem;
+}
+#fieldsOfStudy .modal-content i {
+  font-size: 2rem;
+  margin: 1rem;
+}
+#fieldsOfStudy .modal-content i:hover {
+  cursor: pointer;
 }
 
 .faq-preview__wrapper {
@@ -3103,7 +3119,7 @@ html {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1000px;
 }
 
 /** blue section **/

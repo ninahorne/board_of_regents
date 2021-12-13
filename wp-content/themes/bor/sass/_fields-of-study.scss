@@ -80,10 +80,10 @@
 }
 
 .courses-page__item__details{
-    font-size: 16px;
-    padding: 1rem;
+    font-size: 1.6rem;
+    padding: 3rem;
     * {
-        font-size: 16px;
+        font-size: 1.6rem;
     }
     ul {
         list-style: disc;
@@ -96,4 +96,18 @@
 .fields-of-study__fixed-width{
     max-width: 700px;
     margin: 0 auto;
+}
+#fieldsOfStudy {
+    .modal-content {
+        h5 {
+            font-size: 2rem;
+        }
+        i  {
+            font-size: 2rem;
+            margin: 1rem;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
 }
