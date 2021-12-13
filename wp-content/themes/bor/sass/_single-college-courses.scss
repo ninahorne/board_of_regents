@@ -7,16 +7,14 @@
   @media screen and (max-width: 768px) {
     padding: 0;
     .cta {
-      height: 45px;
-      line-height: 45px;
       font-size: 14px;
       margin-left: 0;
     }
   }
+  @media screen and (max-width: 567px) {
+    .course__share {
 
-  .course__share {
-    p {
-      @media screen and (max-width: 567px) {
+      p {
         display: none;
       }
     }
@@ -69,8 +67,8 @@
 }
 .course__detail {
   display: flex;
-  align-items: flex-start;
-  margin: 1rem;
+  align-items: center;
+  margin: 1rem 0rem;
   p {
     color: white;
     margin: 0 0 0 1rem;
@@ -117,9 +115,6 @@
       flex: 1 0 0;
     }
   }
-  .tab-content {
-    padding: 0rem 2rem;
-  }
 }
 
 .course__prereq {
@@ -150,14 +145,21 @@
     }
   }
   .background__orange-brush-stroke {
-    position: relative;
-    top: 100px;
-
+    position: absolute;
+    padding: 2.5rem;
+    margin-right: -100px;
+    max-width: 100%;
     @media screen and (max-width: 991px) {
       top: unset;
       width: 500px;
-      margin: 3rem auto;
+      margin: 0.5rem auto;
       max-width: 100%;
+      position: unset;
+    }
+
+    @media screen and (max-width: 567px) {
+      padding: 2rem;
+      margin-right: -1rem;
     }
   }
   .background__white {

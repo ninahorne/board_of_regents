@@ -8,12 +8,24 @@
                     <div class="course__share">
                         <p>Share this course</p>
                         <div class="results__icon">
-                            <a href="mailto:?subject=LA Dual Enrollment Course - <?php the_title() ?>&body=Check out this Louisiana Dual Enrollmnet Course: <?php the_title() ?>!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
+                            <a id="emailShare" href="mailto:?subject=LA Dual Enrollment Course - <?php the_title() ?>&body=Check out this Louisiana Dual Enrollmnet Course: <?php the_title() ?>!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
                             </a>
                         </div>
                         <div class="results__icon">
-                            <img id="pdfShare" onclick="generatePDF('<?php the_title(); ?>')" src="<?php echo get_template_directory_uri(); ?>/images/file-pdf-solid.svg" alt="">
+                            <img id="pdfShare" onclick="generatePDF(
+                                '<?php the_title() ?>', 
+                                '<?php the_field('course_full_title') ?>',
+                                '<?php the_field('institution') ?>',
+                                '<?php the_field('description') ?>', 
+                                '<?php the_field('cost_per_course') ?>', 
+                                '<?php the_field('modality') ?>', 
+                                '<?php the_field('semester') ?>', 
+                                '<?php the_field('number_of_credit_hours') ?>', 
+                                '<?php the_field('satellite_campus') ?>', 
+                                '<?php the_field('coures_prerequisite') ?>',
+                                '<?php the_field('course_subject') ?>'
+                            )" src="<?php echo get_template_directory_uri(); ?>/images/file-pdf-solid.svg" alt="">
                         </div>
                     </div>
                 </div>
@@ -21,6 +33,7 @@
                     <?php the_field('institution') ?> |
                     <?php the_field('course_abbreviation') ?> <?php the_field('course_number'); ?>
                     <br />
+
                     Louisiana Common Course (<?php the_field('la_common_course_number'); ?>)
 
                 </p>
@@ -61,7 +74,7 @@
                             <?php endif; ?>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 position-relative">
                         <div class="background__orange-brush-stroke background__brush-stroke--large">
                             <img class="m-1 course__image" src="<?php the_field('image') ?>" alt="">
                         </div>
@@ -133,12 +146,12 @@
                                 <h3>Dual Enrollment Contact</h3>
 
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-sm-4">
                                         <p class="m-0"><?php echo get_field('registrar_name', $post_id) ?></p>
                                         <p class="m-0"><?php echo get_field('registrar_contact_information', $post_id) ?></p>
 
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-sm-8">
                                         <a target="_blank" class="d-block unformatted" href="<?php echo get_field('transfer_form') ?>"><i class="fas fa-external-link-alt"></i>&nbsp;Request information on transcript/transfer</a>
                                         <a class="unformatted" href="mailto:<?php echo get_field('registrar_contact_information') ?>"><i class="far fa-envelope"></i>&nbsp;&nbsp;Contact the registrar </a>
 
@@ -160,14 +173,91 @@
 </div>
 <?php include('footer.php') ?>
 <script>
-    function generatePDF(title) {
-        const course = document.querySelector('.background__orange-brush-stroke');
+    function generatePDF(
+        fileName,
+        title,
+        subtitle,
+        description,
+        cost,
+        type,
+        semester,
+        creditHours,
+        satellite,
+        prerequisites,
+        subjectArea
+    ) {
+        console.log({
+            fileName,
+            title,
+            subtitle,
+            description,
+            cost,
+            type,
+            semester,
+            creditHours,
+            prerequisites,
+            subjectArea
+        });
+        const div = document.createElement('div');
+        const h1 = document.createElement('h1');
+        h1.innerText = title;
+        const h6 = document.createElement('h6');
+        h6.innerText = subtitle;
+        const p = document.createElement('p');
+        p.innerText = description;
+
+        const ul = document.createElement('ul');
+        const costContent = document.createElement('li');
+        costContent.innerText = `Cost: $${cost}`;
+        const typeContent = document.createElement('li');
+        typeContent.innerText = `Type: ${type}`;
+        const semesterContent = document.createElement('li');
+        semesterContent.innerText = `Semester: ${semester}`;
+        const creditHoursContent = document.createElement('li');
+        creditHoursContent.innerText = `Credit Hours: ${creditHours}`;
+        const satelliteCampusContent = document.createElement('li');
+        satelliteCampusContent.innerText = `Satellite Campus: ${satellite}`;
+        const prereqInfo = document.createElement('li');
+        prereqInfo.innerText = `Prerequisites: ${prerequisites}`;
+        const subjectAreaInfo = document.createElement('li');
+        subjectAreaInfo.innerText = `Subject Area: ${subjectArea}`;
+
+
+        if (cost) {
+            ul.appendChild(costContent);
+        }
+        if (type) {
+            ul.appendChild(typeContent);
+        }
+        if (semester) {
+            ul.appendChild(semesterContent);
+        }
+        if (creditHours) {
+            ul.appendChild(creditHoursContent);
+        }
+        if (satellite) {
+            ul.appendChild(satelliteCampusContent);
+        }
+  
+        if (prerequisites) {
+            ul.appendChild(prereqInfo);
+        }
+        if (subjectArea) {
+            ul.appendChild(subjectAreaInfo);
+        }
+
+        div.appendChild(h1);
+        div.appendChild(h6);
+        div.appendChild(p);
+        div.appendChild(ul);
+        console.dir(div);
+
         html2pdf().set({
             margin: 5,
             pagebreak: {
                 mode: ['css', 'legacy']
             }
-        }).from(course).save(title);
+        }).from(div).save(fileName);
 
     }
 </script>

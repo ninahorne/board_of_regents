@@ -255,7 +255,6 @@ a.cta {
 @media screen and (max-width: 767px) {
   .cta {
     display: block;
-    height: 60px;
     margin: 2rem auto;
     font-size: 16px;
     text-align: center;
@@ -295,4 +294,8 @@ a.unformatted {
   &:hover{
     cursor: pointer;
   }
+}
+
+.position-relative{
+  position: relative;
 }

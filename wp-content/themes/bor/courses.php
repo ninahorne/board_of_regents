@@ -21,12 +21,12 @@
 
                                 </div>
                                 <div class="mt-3 mb-3">
-                                    <h6 id="filterToggle"><img src="<?php echo get_template_directory_uri(); ?>/images/sliders-h-solid.svg">&nbsp;&nbsp;&nbsp;Filters&nbsp;&nbsp;&nbsp;<img class="filter__arrow" src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg"></h6>
-                                    <div id="filterOptions">
+                                    <h6 class="align-center closed" id="filterToggle"><img src="<?php echo get_template_directory_uri(); ?>/images/sliders-h-solid.svg">&nbsp;&nbsp;&nbsp;Filters&nbsp;&nbsp;&nbsp;<img class="filter__arrow" src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg"></h6>
+                                    <div id="filterOptions" class="closed">
                                         <hr>
                                         <div class="row">
                                             <div class="col-6">
-                                                <h6>Distance</h6>
+                                                <h6 class="mt-2">Distance</h6>
                                             </div>
                                             <div class="col-6">
                                                 <div class="search__zip">
@@ -90,7 +90,6 @@
                                             </div>
 
                                         </div>
-                                        <hr>
                                     </div>
 
                                 </div>
@@ -113,7 +112,7 @@
                             <div class="results__share">
 
                                 <div class="results__icon">
-                                    <a href="mailto:?subject=LA Board of Regents - Dual Enrollment Courses&body=Check out these Louisiana Dual Enrollment Courses!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
+                                    <a id="emailShare" href="mailto:?subject=LA Board of Regents - Dual Enrollment Courses&body=Check out these Louisiana Dual Enrollment Courses!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
                                         <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
                                     </a>
                                 </div>
@@ -143,7 +142,7 @@
                             <div class="course__links">
                                 <p>See how courses transfer <br /> between institutions.
                                 </p>
-                                <a style=" margin: 1rem 1rem 1rem 0rem;" href="./index.php/courses" class="cta unformatted">
+                                <a href="./index.php/courses" class="cta unformatted">
                                     Articulation Matrix &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
                                 </a>
                             </div>
@@ -153,7 +152,7 @@
                             <div class="course__links">
                                 <p>All your <br /> questions answered.
                                 </p>
-                                <a style=" margin: 1rem 1rem 1rem 0rem;" href="./index.php/faqs" class="cta unformatted">
+                                <a href="./index.php/faqs" class="cta unformatted">
                                     FAQs &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
                                 </a>
                             </div>
@@ -163,7 +162,7 @@
                             <div class="course__links">
                                 <p>See what types of careers <br /> each field of study may lead to.
                                 </p>
-                                <a style=" margin: 1rem 1rem 1rem 0rem;" href="./index.php/fields-of-study" class="cta unformatted">
+                                <a href="./index.php/fields-of-study" class="cta unformatted">
                                     Fields of Study &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
                                 </a>
                             </div>
