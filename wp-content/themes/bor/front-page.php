@@ -18,9 +18,9 @@
 
     <section>
         <div class="container">
-            <div class="row">
+            <div class="row align-center">
                 <div class="col-md-6">
-                    <h1>What is dual enrollment?</h1>
+                    <h2>What is dual enrollment?</h2>
                     <p>
                         Dual Enrollment is the opportunity for a student to be enrolled
                         in high school and college at the same time. A dual enrollment
@@ -51,16 +51,16 @@
     </section>
     <section>
         <div class="container">
-            <div class="row">
+            <div class="row align-center">
                 <div class="col-md-6">
                     <div class="flex-center">
-                        <div class="background__blue-brush-stroke mt-5">
+                        <div class="background__blue-brush-stroke">
                             <img style="max-width: 430px" src="<?php echo get_template_directory_uri(); ?>/images/art.png" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <h1 class="text-lg-right"">What kinds of courses are offered?</h1>
+                    <h2 class="text-lg-right"">What kinds of courses are offered?</h2>
                     <p class="text-lg-right">
                         Courses are available for scientists, mechanics, writers, film producers,
                         lawyers, musicians, artists, doctors, and much, much more. College and university
@@ -84,7 +84,7 @@
     </section>
     <section>
         <div class="container">
-            <h1 class="text-center">How does dual enrollment work?</h1>
+            <h2 class="text-center">How does dual enrollment work?</h2>
             <div class="mt-4 mb-4">
                 <div class="row home-page__section-two__graphic">
                     <div class="col-lg-3  col-xl-2 offset-lg-1">
@@ -140,7 +140,7 @@
                 </div>
 
                 <div class="mt-4 mb-4">
-                    <a style="width: 300px; max-width: 100%;" href="./index.php/faqs?question=how%20to%20apply" class="unformatted cta cta--center">
+                    <a href="./index.php/faqs?question=how%20to%20apply" class="unformatted cta cta--center">
                         See Application Help &nbsp;&nbsp; <i class="fa fa-long-arrow-alt-right"></i>
                     </a>
                 </div>
@@ -153,12 +153,12 @@
     <section>
         <div class="container">
             <div class="background__light-orange home-page__section-three">
-                <h1 class="text-center">
+                <h2 class="text-center">
                     Are you ready to get
                     <span class="color-orange">
                         double the credit
                     </span> for your hard work?
-                </h1>
+                </h2>
                 <?php include('video.php'); ?>
 
             </div>

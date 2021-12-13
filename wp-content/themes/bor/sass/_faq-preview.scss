@@ -24,7 +24,6 @@
   @include rubikMedium();
   color: $orange;
   font-weight: 700;
-  font-size: 20px;
   margin-bottom: 1rem;
   &:hover {
     cursor: pointer;
@@ -43,12 +42,7 @@
     padding-top: 1rem;
     padding-left: 1rem;
   }
-  li,
-  a,
-  span,
-  p {
-    font-size: 20px;
-  }
+ 
 
   &.faq-preview__answer--open {
     max-height: 1000px;
@@ -58,11 +52,11 @@
 }
 
 .faq-preview__view-all {
-  font-size: clamp(16px, 20px, 20px);
   color: $dark-gray;
   font-weight: 600;
   margin-top: 2rem;
   position: relative;
+  font-size: 1.5rem;
   &:after {
     content: "";
     display: block;

@@ -1,6 +1,6 @@
 <div class="container pl-5 pr-5">
     <div class="row steps-to-enrollment">
-        <div class="col-lg-4">
+        <div class="col-lg-5">
             <h2>Steps to Dual Enrollment</h2>
             <div class="tabs d-flex align-items-start">
                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-7">
             <div class="d-flex align-items-start">
 
                 <div class="tab-content" id="stepsToEnrollmentTabs">

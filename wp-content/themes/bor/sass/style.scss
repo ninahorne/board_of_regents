@@ -163,7 +163,7 @@ h1 {
 /* Front Page */
 .front-page__full-width-image {
   width: 100vw;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 180px);
   min-height: 500px;
   @include backgroundImageWithGradient(
     "../images/dual-enrollment-home-banner.jpg"
@@ -193,7 +193,7 @@ img {
 /* Secondary Navigation */
 .secondary-navigation {
   width: 100vw;
-  height: 87px;
+  height: 7.5rem;
   background-color: $blue;
   color: white;
 }
@@ -252,6 +252,7 @@ img {
   }
 }
 
+
 @media screen and (max-width: 767px) {
   .home-page__section-three {
     padding: 2rem;
@@ -277,6 +278,7 @@ img {
 html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  font-size: 10px;
 }
 
 .container {

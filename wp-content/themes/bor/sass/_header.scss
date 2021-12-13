@@ -5,9 +5,8 @@ header {
     margin: 1rem 0;
   }
 
-  .navbar-collapse{
+  .navbar-collapse {
     justify-content: space-evenly;
-
   }
   ul {
     margin: 0px;
@@ -17,10 +16,10 @@ header {
       a {
         text-decoration: none;
         color: inherit;
-        font-size: 17px;
+        font-size: 1.2rem;
         position: relative;
-        &::after{
-          content: '';
+        &::after {
+          content: "";
           width: 100%;
           display: block;
           height: 2px;
@@ -30,7 +29,7 @@ header {
         &:hover {
           text-decoration: none;
           color: inherit;
-          &::after{
+          &::after {
             opacity: 1;
             transition: opacity 0.5s ease-in;
           }
@@ -44,55 +43,50 @@ header {
 }
 
 .navbar {
-  height: 100px;
+  height: 7.5rem;
 }
 
 .navbar-brand {
   img {
-    height: 84px;
+    height: 5rem;
   }
 }
 
 @media screen and (max-width: 1000px) {
-    header {
-        ul {
-            li {
-                a {
-                    font-size: 14px;
-
-                }
-            }
+  header {
+    ul {
+      li {
+        a {
+          font-size: 14px;
         }
+      }
     }
-    .navbar-brand{
-        img {
-            width: 150px;
-        }
+  }
+  .navbar-brand {
+    img {
+      width: 150px;
     }
-    
+  }
 }
 @media screen and (max-width: 767px) {
-    .navbar {
-        & > .container {
-            background-color: white;
-            padding: 1rem;
-        }
+  .navbar {
+    & > .container {
+      background-color: white;
+      padding: 1rem;
     }
-    .navbar-brand{
-        img {
-            width: 400px
-        }
+  }
+  .navbar-brand {
+    img {
+      width: 400px;
     }
-    
+  }
 }
 @media screen and (max-width: 565px) {
-    
-    .navbar-brand{
-        img {
-            width: 230px;
-        }
+  .navbar-brand {
+    img {
+      width: 230px;
     }
-    
+  }
 }
 #menu-first {
   li {
@@ -119,7 +113,7 @@ header {
     .vertical-line {
       display: none;
     }
-    .navbar-collapse{
+    .navbar-collapse {
       margin-bottom: 1rem;
     }
   }
@@ -156,4 +150,9 @@ header {
       border-color: $blue;
     }
   }
+}
+
+.navbar-nav {
+  width: 100%;
+  justify-content: space-evenly;
 }

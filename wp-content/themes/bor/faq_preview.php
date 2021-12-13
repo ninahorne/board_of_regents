@@ -3,7 +3,7 @@
         <p class="faq-preview__small-header">
             How else can we help?
         </p>
-        <h1>Frequently Asked Questions</h1>
+        <h2>Frequently Asked Questions</h2>
         <?php
         global $wpdb;
 
@@ -82,7 +82,7 @@
 
         foreach ($first_three_student_faqs as $faq) {
             echo "<div class='faq-preview__faq'>
-                    <h3 onclick='toggleFaq(\"FAQ-" . strval($faq->count) . "\")' class='faq-preview__question'>" . $faq->question . "</h3> 
+                    <h4 onclick='toggleFaq(\"FAQ-" . strval($faq->count) . "\")' class='faq-preview__question'>" . $faq->question . "</h4> 
                     <div id='FAQ-" . strval($faq->count) . "' class='faq-preview__answer'>
                         <p>" . $faq->answer . "</p>
                     </div>

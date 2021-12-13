@@ -29,22 +29,26 @@
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 3rem;
   font-weight: 900;
 }
 h2 {
-  font-size: 30px;
+  font-size: 2.2rem;
 }
 h3,
 h2,
 h1 {
   font-weight: 900;
 }
+h3, h4 {
+  font-size: 1.5rem;
+}
+
 p,
 li,
 a,
-h3 {
-  font-size: 20px;
+h6 {
+  font-size: 1.5rem;
 }
 
 @media screen and (max-width: 1000px) {
@@ -68,6 +72,14 @@ h3 {
   align-items: center;
   justify-content: center;
   height: 100%;
+}
+.align-center{
+  display: flex;
+  align-items: center;
+}
+.justify-center {
+  display: flex;
+  justify-content: center;
 }
 .flex-vertical-center {
   display: flex;
@@ -142,6 +154,7 @@ section {
 
 .background__blue-brush-stroke {
   @include backgroundImage("../images/blue-brush-stroke.svg");
+  padding: 2rem;
   img {
     margin-left: 0.5rem;
     margin-bottom: 0rem;
@@ -216,22 +229,23 @@ section {
   color: $dark-blue;
 }
 .cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: $orange;
   color: white;
-  font-size: 20px;
-  border-radius: 20px;
-  height: 66px;
-  padding: 0 2rem;
+  border-radius: 12px;
+  padding: 1.2rem 2rem;
   outline: none;
   border: none;
+  width: fit-content;
+  max-width: 100%;
   &:hover{
     background-color: $trans-orange;
   }
 }
 a.cta {
-  line-height: 66px;
   color: white !important;
-  display: block;
 }
 
 .cta--center {

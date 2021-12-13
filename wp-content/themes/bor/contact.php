@@ -21,7 +21,7 @@
                                 <?php echo do_shortcode('[wpforms id="207" title="true"]') ?>
                             </div>
                             <div class="col-md-7">
-                                <div class="px-3">
+                                <div class="px-5">
                                     <h1 class="color-white">We want to hear from you!</h1>
                                     <h3 class="color-white">Please provide your feedback.</h3>
                                     <p class="color-white">

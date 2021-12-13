@@ -35,8 +35,9 @@
     display: block;
     margin: 5px auto 0px;
   }
-  h2 {
+  h3 {
     font-weight: 400;
+    font-size: 1.8rem;
   }
 }
 
@@ -54,10 +55,7 @@
   .counselors-page__benefits {
     padding: 2rem;
 
-    .cta {
-      max-width: 201px;
-      line-height: 62px;
-    }
+
   }
 }
 

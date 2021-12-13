@@ -63,3 +63,12 @@ $adminbar-recovery-exit-background-alt: mix(black, $adminbar-recovery-exit-backg
 $menu-customizer-text: mix( $base-color, $text-color, 40% ) !default;
 
 $low-contrast-theme: "false" !default;
+
+
+// breakpoints
+$mobile: 567;
+$tablet: 768;
+$desktop: 992;
+$md-desktop: 1200;
+$lg-desktop: 1400;
+$xl-desktop: 1600;

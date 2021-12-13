@@ -27,14 +27,14 @@
       line-height: 1;
       content: "\f002";
       color: $medium-gray;
-      margin-top: -6px;
+      margin-top: -4px;
       margin-left: 5px;
     }
     .ais-SearchBox-input {
       border-radius: 36px;
       box-shadow: none;
       padding-left: 50px;
-      font-size: 20px;
+      font-size: 1.4rem;
       color: $dark-gray;
       &::placeholder {
         color: $medium-gray;
@@ -52,7 +52,7 @@
 .faq__result {
   background-color: white;
   border-radius: 20px;
-  padding: 1rem 2rem;
+  padding: 2rem;
   margin: 1rem 0;
 }
 .faq__result__question {

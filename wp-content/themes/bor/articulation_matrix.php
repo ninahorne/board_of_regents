@@ -24,7 +24,7 @@
             </span>
             Lastly, the Louisiana Statewide Common Course Catalog provides course rubrics, numbers and course descriptions for all courses listed in the matrix to help students find the most beficial course for their future.
         </p>
-        <a href="./career-pathways" style="max-width: 315px; line-height: 65px;" class="cta unformatted color-white">Download Spreadsheet &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i></a>
+        <a href="./career-pathways" class="cta unformatted color-white">Download Spreadsheet &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i></a>
         <a style="max-width: 148px" target="_blank" href="https://regents.la.gov/master-course-articulation/" class="btn faq-preview__view-all"><i class="fas fa-share"></i>&nbsp;&nbsp;More Info</a>
 
     </div>
