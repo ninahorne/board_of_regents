@@ -139,13 +139,15 @@ function add_course_to_wp_db($record)
         'post_type' => 'college-courses',
         'post_status' => 'publish'
     ));
+
+
     add_post_meta($id, 'course_full_title', $fullTitle);
     add_post_meta($id, 'course_subject', $fields->{'Course Subject'});
     add_post_meta($id, 'semester', $fields->{'Semester'});
     add_post_meta($id, 'course_number', $fields->{'Course Number'});
     add_post_meta($id, 'course_abbreviation', $fields->{'Course Abbreviation'});
     add_post_meta($id, 'number_of_credit_hours', $fields->{'# of Credit Hours'});
-    add_post_meta($id, 'description', $fields->{'Description'});
+    add_post_meta($id, 'description', filterOutNBSP($fields->{'Description'}));
     add_post_meta($id, 'la_common_course_number', $fields->{'LA Common Course Number'});
     add_post_meta($id, 'institution', $fields->{'Institution'});
     add_post_meta($id, 'satellite_campus', $fields->{'Satellite Campus'});
@@ -160,6 +162,10 @@ function add_course_to_wp_db($record)
         add_post_meta($id, 'image', wp_get_attachment_image_src($subjectArea[0]->image, 'medium')[0]);
     }
 
+}
+
+function filterOutNBSP($input){
+    return trim($input, "\xC2\xA0");
 }
 
 

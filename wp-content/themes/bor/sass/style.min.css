@@ -2488,10 +2488,18 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 #sortBy .ais-HitsPerPage-select,
 #sortBy .ais-MenuSelect-select,
 #sortBy .ais-SortBy-select {
-  margin: 0rem 1rem 1.5rem;
+  margin: 0rem 0rem 1.5rem 1rem;
   width: auto;
   font-size: 14px;
   height: 3rem;
+}
+@media screen and (max-width: 567px) {
+  #sortBy .ais-HitsPerPage-select,
+#sortBy .ais-MenuSelect-select,
+#sortBy .ais-SortBy-select {
+    margin-right: 0;
+    margin-left: 0;
+  }
 }
 
 .results__hr {

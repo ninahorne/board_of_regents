@@ -540,11 +540,11 @@
                         value: "courses_full_title_asc",
                     },
                     {
-                        label: "Price (asc)",
+                        label: "Price (low to high)",
                         value: "courses_cost_per_course_asc",
                     },
                     {
-                        label: "Price (desc)",
+                        label: "Price (high to low)",
                         value: "courses_cost_per_course_desc",
                     },
                 ],

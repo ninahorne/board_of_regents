@@ -8,7 +8,7 @@
                     <div class="course__share">
                         <p>Share this course</p>
                         <div class="results__icon">
-                            <a id="emailShare" href="mailto:?subject=LA Dual Enrollment Course - <?php the_title() ?>&body=Check out this Louisiana Dual Enrollmnet Course: <?php the_title() ?>!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
+                            <a id="emailShare" href="mailto:?subject=LA Dual Enrollment Course - <?php the_title() ?>&body=Check out this Louisiana Dual Enrollment Course: <?php the_title() ?>!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
                             </a>
                         </div>
