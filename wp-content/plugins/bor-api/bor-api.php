@@ -13,10 +13,42 @@
 // /**
 //  * College Routes
 //  */
-// function get_colleges()
-// {
-//    return 'get colleges'
-// }
+function get_colleges()
+{
+    $args = [
+        'numberposts' => 99999,
+        'post_type' => 'college'
+    ];
+
+    $posts = get_posts($args);
+
+    $college_links = [];
+    $jsonResponse = '{ "colleges": [ ';
+
+    foreach ($posts as $college) {
+        $system = '';
+        $campus = '';
+        $lat = 0;
+        $long = 0;
+        $post_id = $college->ID;
+        $system = get_field('system', $post_id);
+        $campus = get_field('campus', $post_id);;
+        $lat = get_field('latitude', $post_id);;
+        $long = get_field('longitude', $post_id);;
+        $college = new stdClass();
+        $college->objectId = $post_id;
+        $college->system = $system;
+        $college->campus = $campus;
+        $college->lat = $lat;
+        $college->long = $long;
+        array_push($college_links, $college);
+    }
+
+    $jsonResponse = rtrim($jsonResponse, ',');
+    $jsonResponse = $jsonResponse . ' ] }';
+
+    return $college_links;
+}
 // function create_colleges()
 // {
 //     return 'create colleges';
@@ -30,22 +62,21 @@
 //     return 'delete colleges';
 // }
 
-// function register_college_routes()
-// {
-//     register_rest_route('bor', 'colleges', [
-//         'methods' => 'GET', 'callback' => 'get_colleges'
-
-//     ]);
-//     register_rest_route('bor', 'colleges', [
-//         'methods' => 'POST', 'callback' => 'create_colleges'
-//     ]);
-//     register_rest_route('bor', 'colleges', [
-//         'methods' => 'PUT', 'callback' => 'update_colleges'
-//     ]);
-//     register_rest_route('bor', 'colleges', [
-//         'methods' => 'DELETE', 'callback' => 'delete_colleges'
-//     ]);
-// }
+function register_college_routes()
+{
+    register_rest_route('bor', 'colleges', [
+        'methods' => 'GET', 'callback' => 'get_colleges'
+    ]);
+    // register_rest_route('bor', 'colleges', [
+    //     'methods' => 'POST', 'callback' => 'create_colleges'
+    // ]);
+    // register_rest_route('bor', 'colleges', [
+    //     'methods' => 'PUT', 'callback' => 'update_colleges'
+    // ]);
+    // register_rest_route('bor', 'colleges', [
+    //     'methods' => 'DELETE', 'callback' => 'delete_colleges'
+    // ]);
+}
 
 // /**
 //  * Field Routes
@@ -117,7 +148,7 @@
 //         add_post_meta($id, 'image', get_field("image", $post->ID));
 
 //     }
-    
+
 //     return 'Success';
 // }
 
@@ -161,7 +192,7 @@
 //         add_post_meta($id, '_geoloc', $geoloc);
 
 //     }
-    
+
 //     return 'Success';
 // }
 
@@ -174,9 +205,9 @@
 // }
 
 
-// add_action(
-//     'rest_api_init',
-//     function () {
-//         register_update_CPT_routes();
-//     }
-// );
+add_action(
+    'rest_api_init',
+    function () {
+        register_college_routes();
+    }
+);

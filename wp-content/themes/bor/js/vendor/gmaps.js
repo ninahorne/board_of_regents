@@ -2,8 +2,7 @@ var map;
 var markers = [];
 var lastWindow;
 
-function initialize(collegeLinks) {
-  var colleges = collegeLinks.colleges;
+function initialize(colleges) {
   var bounds = new google.maps.LatLngBounds();
   var mapOptions = {
     mapTypeId: "roadmap",
@@ -18,6 +17,7 @@ function initialize(collegeLinks) {
 
   // Loop through our array of markers & place each one on the map
   for (i = 0; i < colleges.length; i++) {
+
     var position = new google.maps.LatLng(colleges[i].lat, colleges[i].long);
     bounds.extend(position);
     marker = new google.maps.Marker({

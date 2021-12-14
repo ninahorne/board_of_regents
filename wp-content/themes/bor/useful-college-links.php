@@ -97,14 +97,13 @@
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.responseText) {
-                const myObj = JSON.parse(this.responseText);
-                initialize(myObj);
+                initialize(JSON.parse(this.responseText));
             }
 
         };
 
         try {
-            xhttp.open("GET", "../../wp-content/themes/bor/get_colleges.php");
+            xhttp.open("GET", "../index.php/wp-json/bor/colleges");
             xhttp.send();
         } catch {
             console.log('error');
