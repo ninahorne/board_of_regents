@@ -24,7 +24,8 @@
                                 '<?php the_field('number_of_credit_hours') ?>', 
                                 '<?php the_field('satellite_campus') ?>', 
                                 '<?php the_field('coures_prerequisite') ?>',
-                                '<?php the_field('course_subject') ?>'
+                                '<?php the_field('course_subject') ?>',
+                                '<?php the_field('image') ?>'
                             )" src="<?php echo get_template_directory_uri(); ?>/images/file-pdf-solid.svg" alt="">
                         </div>
                     </div>
@@ -173,7 +174,7 @@
 </div>
 <?php include('footer.php') ?>
 <script>
-    function generatePDF(
+    async function generatePDF(
         fileName,
         title,
         subtitle,
@@ -184,29 +185,31 @@
         creditHours,
         satellite,
         prerequisites,
-        subjectArea
+        subjectArea,
+        image
     ) {
-        console.log({
-            fileName,
-            title,
-            subtitle,
-            description,
-            cost,
-            type,
-            semester,
-            creditHours,
-            prerequisites,
-            subjectArea
-        });
+
         const div = document.createElement('div');
+        div.style.padding = '4rem';
+        div.classList.add('course__pdf');
         const h1 = document.createElement('h1');
         h1.innerText = title;
         const h6 = document.createElement('h6');
         h6.innerText = subtitle;
         const p = document.createElement('p');
         p.innerText = description;
+        const imageEl = document.createElement('div');
+        imageEl.classList.add("pdf__image");
+
+        const row = document.createElement('div');
+        row.classList.add('pdf__row');
+
+        const leftColumn = document.createElement('div');
+        const rightColumn = document.createElement('div');
+
 
         const ul = document.createElement('ul');
+        ul.style.listStyle = 'circle';
         const costContent = document.createElement('li');
         costContent.innerText = `Cost: $${cost}`;
         const typeContent = document.createElement('li');
@@ -238,19 +241,45 @@
         if (satellite) {
             ul.appendChild(satelliteCampusContent);
         }
-  
-        if (prerequisites) {
-            ul.appendChild(prereqInfo);
-        }
+
         if (subjectArea) {
             ul.appendChild(subjectAreaInfo);
         }
 
-        div.appendChild(h1);
-        div.appendChild(h6);
-        div.appendChild(p);
-        div.appendChild(ul);
-        console.dir(div);
+        leftColumn.appendChild(h1);
+        leftColumn.appendChild(h6);
+        leftColumn.appendChild(p);
+        leftColumn.appendChild(ul);
+        rightColumn.appendChild(imageEl);
+
+        row.appendChild(leftColumn);
+        row.appendChild(rightColumn);
+        div.appendChild(row);
+
+        const prereqTitle = document.createElement('h4');
+        prereqTitle.innerText = 'Prerequisites:';
+        const costInfoTitle = document.createElement('h4');
+        costInfoTitle.innerText = 'Cost Info:';
+        const usefulLinksTitle = document.createElement('h4');
+        usefulLinksTitle.innerText = 'Useful Links:';
+        usefulLinksTitle.classList.add('page-break-before');
+
+        const prerequisiteInfo = document.querySelector('#v-pills-prerequisites');
+        const prereqClone = prerequisiteInfo.cloneNode(true);
+        prereqClone.classList.remove('fade');
+        const costInfo = document.querySelector('#v-pills-cost');
+        const usefulLinks = document.querySelector('#v-pills-links');
+        const costInfoClone = costInfo.cloneNode(true);
+        costInfoClone.classList.remove('fade');
+        const usefulLinksClone = usefulLinks.cloneNode(true);
+        usefulLinksClone.classList.remove('fade');
+
+        div.appendChild(prereqTitle);
+        div.appendChild(prereqClone);
+        div.appendChild(costInfoTitle);
+        div.appendChild(costInfoClone);
+        div.appendChild(usefulLinksTitle);
+        div.appendChild(usefulLinksClone);
 
         html2pdf().set({
             margin: 5,

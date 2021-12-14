@@ -3041,6 +3041,30 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   max-width: 100%;
 }
 
+.course__pdf .tab-pane {
+  page-break-inside: avoid;
+}
+.course__pdf h4 {
+  padding: 20px 0px;
+  border-bottom: 1px solid #ddd;
+}
+.course__pdf .pdf__row {
+  display: flex;
+  align-items: center;
+}
+.course__pdf .pdf__image {
+  background-image: url("http://localhost/board%20of%20regents/wp-content/uploads/2021/12/robina-weermeijer-IHfOpAzzjHM-unsplash-e1638852379666-1024x1024.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  width: 400px;
+  border-radius: 100%;
+  margin: 3rem auto;
+}
+.course__pdf .page-break-before {
+  page-break-before: always;
+}
+
 h1 {
   font-weight: 900;
 }
