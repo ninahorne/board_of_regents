@@ -56,19 +56,19 @@
                                             </div>
                                         </div>
                                         <div id="currentRefinements"></div>
-                                        <div class="refinements__select">
+                                        <div id="institutionsRefinements" class="refinements__select">
                                             <div id="institutionsLabel" class="refinements__label">
                                                 <p>All Institutions</p>
                                                 <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
 
                                             </div>
                                             <div id="institutionsDropdown" class="refinements__dropdown">
-                                                <div id="institutionMenu"></div>
+                                                <div tabindex="0" id="institutionMenu"></div>
 
                                             </div>
 
                                         </div>
-                                        <div class="refinements__select">
+                                        <div id="subjectAreaRefinements" class="refinements__select">
                                             <div id="subjectAreaLabel" class="refinements__label">
                                                 <div class="refinements__title">
                                                     <p>Subject Areas</p> &nbsp;
@@ -78,12 +78,12 @@
 
                                             </div>
                                             <div id="subjectAreaDropdown" class="refinements__dropdown">
-                                                <div id="subjectAreaMenu"></div>
+                                                <div tabindex="0" id="subjectAreaMenu"></div>
 
                                             </div>
 
                                         </div>
-                                        <div class="refinements__select">
+                                        <div id="typeRefinements" class="refinements__select">
                                             <div id="typeLabel" class="refinements__label">
                                                 <div class="refinements__title">
                                                     <p>Type</p> &nbsp;
@@ -92,7 +92,7 @@
                                                 <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
                                             </div>
                                             <div id="typeDropdown" class="refinements__dropdown">
-                                                <div id="typeMenu"></div>
+                                                <div tabindex="0" id="typeMenu"></div>
 
                                             </div>
 
@@ -204,10 +204,16 @@
     // Filter Labels and dropdowns
     const institutionsLabel = document.querySelector("#institutionsLabel");
     const institutionsDropdown = document.querySelector("#institutionsDropdown");
+    const institutionsRefinements = document.querySelector("#institutionsRefinements");
+
     const typeLabel = document.querySelector("#typeLabel");
     const typeDropdown = document.querySelector("#typeDropdown");
+    const typeRefinements = document.querySelector("#typeRefinements");
+
     const subjectAreaLabel = document.querySelector("#subjectAreaLabel");
     const subjectAreaDropdown = document.querySelector("#subjectAreaDropdown");
+    const subjectAreaRefinements = document.querySelector("#subjectAreaRefinements");
+
     // Initialize
     document.addEventListener("DOMContentLoaded", initializeAlgolia);
     document.addEventListener("DOMContentLoaded", setInitialStateFromQueryParams);
@@ -217,19 +223,79 @@
     zipCodeClear.addEventListener("click", clearZipCode);
     distanceSlider.addEventListener("change", (e) => setQueryForAroundRadius(e));
     currentPosition.addEventListener("click", (e) => getCurrentLocation(e));
-    institutionsLabel.addEventListener("click", () => {
-        institutionsDropdown.classList.toggle("open");
-        institutionsLabel.classList.toggle("open");
-    });
-    typeLabel.addEventListener("click", () => {
-        typeLabel.classList.toggle("open");
-        typeDropdown.classList.toggle("open");
-    });
-    subjectAreaLabel.addEventListener("click", () => {
-        subjectAreaLabel.classList.toggle("open");
-        subjectAreaDropdown.classList.toggle("open");
+
+    institutionsLabel.addEventListener("click", toggleInstitutionRefinements);
+    typeLabel.addEventListener("click", toggleTypeRefinements);
+    subjectAreaLabel.addEventListener("click", toggleSubjectAreaRefinements);
+
+    //I'm using "click" but it works with any event
+    document.addEventListener('click', function(event) {
+        const isRefinement = event.target.className.includes('ais-RefinementList');
+        if(isRefinement) return;
+        var isClickInsideSubjectArea = subjectAreaRefinements.contains(event.target);
+        var isClickInsideType = typeRefinements.contains(event.target);
+        var isClickInsideInstitutions = institutionsRefinements.contains(event.target);
+
+       
+        if (!isClickInsideSubjectArea) {
+            closeSubjectAreaRefinements()
+        }
+
+        if (!isClickInsideInstitutions) {
+            closeInstitutionRefinements();
+        }
+        if (!isClickInsideType) {
+            closeTypeRefinements();
+        }
     });
 
+    function toggleInstitutionRefinements() {
+        institutionsDropdown.classList.toggle("open");
+        institutionsLabel.classList.toggle("open");
+
+    }
+
+    function openInstitutionRefinements() {
+        institutionsDropdown.classList.add("open");
+        institutionsLabel.classList.add("open");
+
+    }
+
+    function closeInstitutionRefinements() {
+        institutionsDropdown.classList.remove("open");
+        institutionsLabel.classList.remove("open");
+
+    }
+
+    function toggleSubjectAreaRefinements() {
+        subjectAreaLabel.classList.toggle("open");
+        subjectAreaDropdown.classList.toggle("open");
+    }
+
+    function openSubjectAreaRefinements() {
+        subjectAreaLabel.classList.add("open");
+        subjectAreaDropdown.classList.add("open");
+    }
+
+    function closeSubjectAreaRefinements() {
+        subjectAreaLabel.classList.remove("open");
+        subjectAreaDropdown.classList.remove("open");
+    }
+
+    function toggleTypeRefinements() {
+        typeLabel.classList.toggle("open");
+        typeDropdown.classList.toggle("open");
+    }
+
+    function openTypeRefinements() {
+        typeLabel.classList.add("open");
+        typeDropdown.classList.add("open");
+    }
+
+    function closeTypeRefinements() {
+        typeLabel.classList.remove("open");
+        typeDropdown.classList.remove("open");
+    }
     // Algolia Config
     function initializeAlgolia() {
         const index = searchClient.initIndex("courses");
@@ -398,7 +464,7 @@
             instantsearch.widgets.sortBy({
                 container: "#sortBy",
                 items: [{
-                        label: "Default",
+                        label: "Relevant",
                         value: "courses",
                     },
                     {
@@ -459,12 +525,9 @@
             })
         }
         if (courseSubject) {
-            console.log(courseSubject);
             const valArray = courseSubject.split(";");
             const formattedArray = valArray.map(item => decodeURI(item).replace(/%26/g, '&'));
-            console.log({
-                formattedArray
-            });
+
             formattedArray.forEach(facet => {
                 courses_search.helper.addDisjunctiveFacetRefinement(
                     "course_subject",
@@ -472,18 +535,22 @@
                 );
             });
 
-            console.log(courses_search.helper.state);
         }
 
 
         if (aroundRadius) {
             courses_search.helper.setQueryParameter("aroundRadius", aroundRadius);
+            const miles = getMilesFromMeters(aroundRadius);
+            console.log({
+                miles
+            })
             setQueryForAroundRadius({
                 target: {
-                    value: aroundRadius
+                    value: miles
                 }
             });
-            distanceSlider.value = getMilesFromMeters(aroundRadius);
+
+            distanceSlider.value = miles
         }
 
         if (aroundLatLng) {
@@ -521,7 +588,6 @@
 
         let queryParamString = '?';
 
-        console.log(state.disjunctiveFacetsRefinements);
 
         const aroundLatLng =
             state.aroundLatLng;
@@ -557,15 +623,22 @@
     function setQueryForAroundRadius(e) {
         const miles = parseInt(e.target.value);
         const meters = getMetersFromMiles(miles) || 1;
+        console.log({
+            miles
+        });
+        console.log({
+            meters
+        });
         courses_search.helper.setQueryParameter("aroundRadius", meters);
         courses_search.helper.search();
     }
 
-    function clearSearch(){
+    function clearSearch() {
 
         courses_search.helper.setQuery('');
         courses_search.helper.search();
     }
+
     function setQueryForAroundLatLng(e) {
         const zipCode = e.target.value;
         let lat = "";
@@ -691,7 +764,7 @@
     }
 
     function getMetersFromMiles(miles) {
-        return Math.ceil(miles * 1609.34);
+        return Math.round(miles * 1609.34);
     }
 
     function getMilesFromKilometers(km) {
@@ -699,7 +772,7 @@
     }
 
     function getMilesFromMeters(meters) {
-        return Math.ceil(meters / 1609.34);
+        return Math.round(meters / 1609.34);
     }
 
 
