@@ -71,7 +71,6 @@
     margin: 0 0 0 1rem;
     font-size: 14px;
   }
-
 }
 
 .courses__tabs {
@@ -134,8 +133,9 @@
     }
   }
   .background__orange-brush-stroke {
+    background-repeat: no-repeat;
     position: absolute;
-    padding: 2.5rem;
+    padding: 2rem;
     margin-right: -100px;
     max-width: 100%;
     top: -90px;
@@ -149,7 +149,9 @@
 
     @media screen and (max-width: 567px) {
       padding: 2rem;
-      margin-right: -1rem;
+    }
+    img {
+      max-width: calc(100% - 1rem);
     }
   }
   .background__white {

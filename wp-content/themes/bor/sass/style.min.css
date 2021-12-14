@@ -2424,7 +2424,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 .refinements__select .refinements__label p {
   margin-bottom: 0;
   font-weight: 800;
-  font-size: 16px;
+  font-size: 1.4rem;
 }
 .refinements__select .refinements__label span {
   font-size: 12px;
@@ -2434,6 +2434,9 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 }
 .refinements__select .refinements__label.open {
   border-color: #ee7600;
+}
+.refinements__select .refinements__label.open span img {
+  transform: rotate(180deg);
 }
 .refinements__select .refinements__label .refinements__title {
   display: flex;
@@ -2488,7 +2491,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   margin: 0rem 1rem 1.5rem;
   width: auto;
   font-size: 14px;
-  height: 2rem;
+  height: 3rem;
 }
 
 .results__hr {
@@ -2499,7 +2502,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 
 .results__course {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 5fr 0.5fr;
   grid-template-rows: auto auto;
   background-color: white;
   border-radius: 5px;
@@ -2520,17 +2523,19 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 }
 .results__course .results__image .results__image__background {
   background-color: #F2F2F2;
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 1rem;
+  padding: 2rem;
 }
 @media screen and (max-width: 567px) {
   .results__course .results__image .results__image__background {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     padding: 1.3rem;
   }
 }
@@ -3030,8 +3035,9 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   }
 }
 #singleCourse .background__orange-brush-stroke {
+  background-repeat: no-repeat;
   position: absolute;
-  padding: 2.5rem;
+  padding: 2rem;
   margin-right: -100px;
   max-width: 100%;
   top: -90px;
@@ -3048,8 +3054,10 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 @media screen and (max-width: 567px) {
   #singleCourse .background__orange-brush-stroke {
     padding: 2rem;
-    margin-right: -1rem;
   }
+}
+#singleCourse .background__orange-brush-stroke img {
+  max-width: calc(100% - 1rem);
 }
 #singleCourse .background__white {
   min-height: 500px;

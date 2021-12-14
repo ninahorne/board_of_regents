@@ -117,7 +117,7 @@
     p {
       margin-bottom: 0;
       font-weight: 800;
-      font-size: 16px;
+      font-size: 1.4rem;
     }
     span {
       font-size: 12px;
@@ -128,6 +128,11 @@
     }
     &.open {
       border-color: $orange;
+      span {
+        img {
+          transform: rotate(180deg);
+        }
+      }
     }
 
     .refinements__title {
@@ -186,7 +191,7 @@
     margin: 0rem 1rem 1.5rem;
     width: auto;
     font-size: 14px;
-    height: 2rem;
+    height: 3rem;
   }
 }
 
@@ -198,7 +203,7 @@
 
 .results__course {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 5fr 0.5fr;
   grid-template-rows: auto auto;
   background-color: white;
   border-radius: 5px;
@@ -220,15 +225,17 @@
 
     .results__image__background {
       background-color: $iconBackgroundGray;
-      width: 100px;
-      height: 100px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin: 1rem;
+      padding: 2rem;
       @media screen and (max-width: 567px) {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         padding: 1.3rem;
       }
     }
@@ -282,7 +289,7 @@
       font-weight: 700;
       line-height: 2.2rem;
     }
-    .results__satellite{
+    .results__satellite {
       margin-bottom: 0;
       margin-top: 0.5rem;
       padding-bottom: 0;
@@ -377,27 +384,26 @@
     text-align: center;
     font-size: 28px;
   }
-  &.visible-sm{
+  &.visible-sm {
     display: none;
   }
   @media screen and (max-width: 567px) {
-      &.hidden-sm{
-        display: none;
-      }
-      &.visible-sm{
-        display: block;
-      }
+    &.hidden-sm {
+      display: none;
+    }
+    &.visible-sm {
+      display: block;
+    }
   }
 }
 .pagination {
   margin: 1rem 0;
-
 }
- @media screen and (max-width: 567px) {
-     #pagination{
-       margin: 0 auto;
-     }
+@media screen and (max-width: 567px) {
+  #pagination {
+    margin: 0 auto;
   }
+}
 @mixin shareIcon() {
   background-color: white;
   width: 40px;
@@ -564,7 +570,6 @@
 .results__pagination {
   display: flex;
   a {
-
     background-color: white;
     text-decoration: none;
   }

@@ -11,7 +11,7 @@
             <div class="p-2">
                 <h1 class="color-white">Courses Search</h1>
                 <div class="row">
-                    <div class="col-lg-5">
+                    <div class="col-lg-4">
                         <div class="courses__search">
                             <div class="course__categories">
                                 <div>
@@ -72,7 +72,7 @@
                                             <div id="subjectAreaLabel" class="refinements__label">
                                                 <div class="refinements__title">
                                                     <p>Subject Areas</p> &nbsp;
-                                                    <span>Ex: Human Services, Marketing</span>
+                                                    <span>Ex: Marketing</span>
                                                 </div>
                                                 <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
 
@@ -105,7 +105,7 @@
 
                     </div>
 
-                    <div class="col-lg-7">
+                    <div class="col-lg-8">
                         <div class="results__heading">
                             <h2 class="page__title">Search Results</h2>
                             <div id="sortBy"></div>
@@ -350,7 +350,7 @@
                     <div class="results__info second">
                         <p class="results__description">${item.description.substring(
                           0,
-                          100
+                        150
                         )}...</p>
 
                         <label>${item.semester}</label>
@@ -530,8 +530,9 @@
             }),
             instantsearch.widgets.sortBy({
                 container: "#sortBy",
-                items: [{
-                        label: "Relevant",
+                items: [
+                    {
+                        label: "Sort By:",
                         value: "courses",
                     },
                     {
