@@ -112,9 +112,9 @@ function add_college_to_wp_db($record)
     add_post_meta($id, 'person_completing_form', $fields->{'Person Completing Form'});
     add_post_meta($id, 'general_de_info_link', $fields->{'General DE INFO LINK'});
     add_post_meta($id, 'courses_link', $fields->{'Courses Link'});
-    add_post_meta($id, 'duel_enrollment_application', $fields->{'Dual Enrollment Application'});
+    add_post_meta($id, 'dual_enrollment_application', $fields->{'Dual Enrollment Application'});
     add_post_meta($id, 'department_contact_email', $fields->{'Department Contacts'});
-    add_post_meta($id, 'department_contact_name_', $fields->{'Department Contact Name'});
+    add_post_meta($id, 'department_contact_name', $fields->{'Department Contact Name'});
     add_post_meta($id, 'registrar_name', $fields->{'Registrar Name'});
     add_post_meta($id, 'registrar_contact_information', $fields->{'Registrar Contact Information'});
     add_post_meta($id, 'transfer_form', $fields->{'Transfer Form'});

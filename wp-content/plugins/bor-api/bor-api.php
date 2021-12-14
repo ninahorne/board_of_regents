@@ -13,42 +13,56 @@
 // /**
 //  * College Routes
 //  */
-function get_colleges()
+function get_colleges(WP_REST_Request $request)
 {
-    $args = [
-        'numberposts' => 99999,
-        'post_type' => 'college'
-    ];
 
-    $posts = get_posts($args);
+    $params = $request->get_params();
 
-    $college_links = [];
-    $jsonResponse = '{ "colleges": [ ';
+    if ($params['id']) {
+        $post_id = $params['id'];
 
-    foreach ($posts as $college) {
-        $system = '';
-        $campus = '';
-        $lat = 0;
-        $long = 0;
-        $post_id = $college->ID;
-        $system = get_field('system', $post_id);
-        $campus = get_field('campus', $post_id);;
-        $lat = get_field('latitude', $post_id);;
-        $long = get_field('longitude', $post_id);;
-        $college = new stdClass();
-        $college->objectId = $post_id;
-        $college->system = $system;
-        $college->campus = $campus;
-        $college->lat = $lat;
-        $college->long = $long;
-        array_push($college_links, $college);
+        $college['campus'] = get_field('campus', $post_id);
+        $college['departmentContactName'] = get_field('department_contact_name', $post_id);
+        $college['departmentContactEmail'] = get_field('department_contact_email', $post_id);
+        $college['dualEnrollmentApplication'] = get_field('dual_enrollment_application', $post_id);
+        $college['transferForm'] = get_field('transfer_form', $post_id);
+        $college['registrarEmail'] = get_field('registrar_contact_information', $post_id);
+
+        return $college;
+    } else {
+        $args = [
+            'numberposts' => 99999,
+            'post_type' => 'college'
+        ];
+
+        $posts = get_posts($args);
+
+        $college_links = [];
+
+        foreach ($posts as $college) {
+            $system = '';
+            $campus = '';
+            $lat = 0;
+            $long = 0;
+            $post_id = $college->ID;
+            $system = get_field('system', $post_id);
+            $campus = get_field('campus', $post_id);;
+            $lat = get_field('latitude', $post_id);;
+            $long = get_field('longitude', $post_id);;
+            $college = new stdClass();
+            $college->objectId = $post_id;
+            $college->system = $system;
+            $college->campus = $campus;
+            $college->lat = $lat;
+            $college->long = $long;
+            array_push($college_links, $college);
+        }
+
+
+        return $college_links;
     }
-
-    $jsonResponse = rtrim($jsonResponse, ',');
-    $jsonResponse = $jsonResponse . ' ] }';
-
-    return $college_links;
 }
+
 // function create_colleges()
 // {
 //     return 'create colleges';
@@ -67,9 +81,7 @@ function register_college_routes()
     register_rest_route('bor', 'colleges', [
         'methods' => 'GET', 'callback' => 'get_colleges'
     ]);
-    // register_rest_route('bor', 'colleges', [
-    //     'methods' => 'POST', 'callback' => 'create_colleges'
-    // ]);
+
     // register_rest_route('bor', 'colleges', [
     //     'methods' => 'PUT', 'callback' => 'update_colleges'
     // ]);

@@ -3,6 +3,7 @@ var markers = [];
 var lastWindow;
 
 function initialize(colleges) {
+  console.log({colleges});
   var bounds = new google.maps.LatLngBounds();
   var mapOptions = {
     mapTypeId: "roadmap",
