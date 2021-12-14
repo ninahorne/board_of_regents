@@ -39,29 +39,15 @@
 
 .slider__values {
   position: relative;
+  display: flex;
+  justify-content: space-evenly;
+
   p {
     font-size: 14px;
+    flex: 1 0 0;
+    text-align: center;
   }
-  p:first-child {
-    position: absolute;
-    left: 0;
-  }
-  p:nth-child(2) {
-    position: absolute;
-    left: 25%;
-  }
-  p:nth-child(3) {
-    position: absolute;
-    left: calc(50% - 7px);
-  }
-  p:nth-child(4) {
-    position: absolute;
-    left: calc(75% - 16px);
-  }
-  p:last-child {
-    position: absolute;
-    right: 0;
-  }
+
 }
 
 .distance__slider {

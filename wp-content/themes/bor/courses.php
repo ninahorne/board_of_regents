@@ -39,13 +39,20 @@
                                         </div>
                                         <div class="distance__slider">
                                             <label for="distanceSlider">Radius (in miles)</label>
-                                            <input id="distanceSlider" class="slider" step="25" type="range" min="0" max="100" value="50">
+                                            <input id="distanceSlider" class="slider" step="5" type="range" min="0" max="50" value="25">
+
                                             <div class="slider__values">
                                                 <p>0</p>
+                                                <p>5</p>
+                                                <p>10</p>
+                                                <p>15</p>
+                                                <p>20</p>
                                                 <p>25</p>
+                                                <p>30</p>
+                                                <p>35</p>
+                                                <p>40</p>
+                                                <p>45</p>
                                                 <p>50</p>
-                                                <p>75</p>
-                                                <p>100</p>
                                             </div>
                                         </div>
                                         <div id="currentRefinements"></div>
@@ -182,7 +189,7 @@
     // Globals
     let courses_search;
     let zipCode;
-    let aroundRadius = 50;
+    let aroundRadius = 25;
     let algLatLng;
     let geocoder = new google.maps.Geocoder();
     let isFirstRender = true;

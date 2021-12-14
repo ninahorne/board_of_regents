@@ -2347,29 +2347,13 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 
 .slider__values {
   position: relative;
+  display: flex;
+  justify-content: space-evenly;
 }
 .slider__values p {
   font-size: 14px;
-}
-.slider__values p:first-child {
-  position: absolute;
-  left: 0;
-}
-.slider__values p:nth-child(2) {
-  position: absolute;
-  left: 25%;
-}
-.slider__values p:nth-child(3) {
-  position: absolute;
-  left: calc(50% - 7px);
-}
-.slider__values p:nth-child(4) {
-  position: absolute;
-  left: calc(75% - 16px);
-}
-.slider__values p:last-child {
-  position: absolute;
-  right: 0;
+  flex: 1 0 0;
+  text-align: center;
 }
 
 .distance__slider {
