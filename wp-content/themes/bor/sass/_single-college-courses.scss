@@ -13,7 +13,6 @@
   }
   @media screen and (max-width: 567px) {
     .course__share {
-
       p {
         display: none;
       }
@@ -56,35 +55,23 @@
 }
 
 .course__details {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-
-  @media screen and (max-width: 567px) {
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-  }
+  display: flex;
+  flex-wrap: wrap;
 }
 .course__detail {
   display: flex;
   align-items: center;
-  margin: 1rem 0rem;
+  flex: 0 0 33%;
+  margin: 1rem 0;
+  @media screen and (max-width: 567px) {
+    flex: 0 0 50%;
+  }
   p {
     color: white;
     margin: 0 0 0 1rem;
     font-size: 14px;
   }
 
-  @media screen and (max-width: 991px) {
-    flex: 0 0 50%;
-    margin-left: 0;
-    margin-right: 0;
-    justify-content: flex-start;
-
-    p {
-      font-size: 14px;
-    }
-  }
 }
 
 .courses__tabs {
@@ -118,7 +105,6 @@
     }
   }
 }
-
 
 .course__prereq {
   font-size: 14px;
@@ -182,28 +168,28 @@
   max-width: 100%;
 }
 
-.course__pdf{
-  .tab-pane{
+.course__pdf {
+  .tab-pane {
     page-break-inside: avoid;
   }
   h4 {
     padding: 20px 0px;
     border-bottom: 1px solid #ddd;
   }
-  .pdf__row{
+  .pdf__row {
     display: flex;
     align-items: center;
-
   }
-  .pdf__image{
-    @include backgroundImage('http://localhost/board%20of%20regents/wp-content/uploads/2021/12/robina-weermeijer-IHfOpAzzjHM-unsplash-e1638852379666-1024x1024.jpg');
+  .pdf__image {
+    @include backgroundImage(
+      "http://localhost/board%20of%20regents/wp-content/uploads/2021/12/robina-weermeijer-IHfOpAzzjHM-unsplash-e1638852379666-1024x1024.jpg"
+    );
     height: 400px;
     width: 400px;
     border-radius: 100%;
     margin: 3rem auto;
   }
-  .page-break-before{
+  .page-break-before {
     page-break-before: always;
   }
 }
-

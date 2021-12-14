@@ -2949,37 +2949,25 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 }
 
 .course__details {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-}
-@media screen and (max-width: 567px) {
-  .course__details {
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-  }
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .course__detail {
   display: flex;
   align-items: center;
-  margin: 1rem 0rem;
+  flex: 0 0 33%;
+  margin: 1rem 0;
+}
+@media screen and (max-width: 567px) {
+  .course__detail {
+    flex: 0 0 50%;
+  }
 }
 .course__detail p {
   color: white;
   margin: 0 0 0 1rem;
   font-size: 14px;
-}
-@media screen and (max-width: 991px) {
-  .course__detail {
-    flex: 0 0 50%;
-    margin-left: 0;
-    margin-right: 0;
-    justify-content: flex-start;
-  }
-  .course__detail p {
-    font-size: 14px;
-  }
 }
 
 .courses__tabs {

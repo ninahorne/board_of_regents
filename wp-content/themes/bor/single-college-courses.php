@@ -45,22 +45,35 @@
                             <?php the_field("description") ?>
                         </p>
                         <div class="course__details">
-                            <div class="course__detail">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/money-check-edit-alt-light.svg" alt="">
-                                <p> Cost:&nbsp;$<?php the_field('cost_per_course') ?></p>
-                            </div>
-                            <div class="course__detail">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/school-light.svg" alt="">
-                                <p><?php the_field('modality') ?></p>
-                            </div>
-                            <div class="course__detail">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/calendar-alt-light.svg" alt="" />
-                                <p><?php the_field('semester') ?></p>
-                            </div>
-                            <div class="course__detail">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/clock.svg" alt="" />
-                                <p> Credit Hours:&nbsp;<?php echo the_field('number_of_credit_hours') ?></p>
-                            </div>
+                            <?php if (get_field('cost_per_course')) : ?>
+                                <div class="course__detail">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/images/money-check-edit-alt-light.svg" alt="">
+                                    <p> Cost:&nbsp;$<?php the_field('cost_per_course') ?></p>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if (get_field('modality')) : ?>
+                                <div class="course__detail">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/images/school-light.svg" alt="">
+                                    <p><?php the_field('modality') ?></p>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if (get_field('semester')) : ?>
+                                <div class="course__detail">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/images/calendar-alt-light.svg" alt="" />
+                                    <p><?php the_field('semester') ?></p>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if (get_field('number_of_credit_hours')) : ?>
+                                <div class="course__detail">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/images/clock.svg" alt="" />
+                                    <p> Credit Hours:&nbsp;<?php echo the_field('number_of_credit_hours') ?></p>
+                                </div>
+                            <?php endif; ?>
+
+
                             <?php if (get_field('general_education')) : ?>
                                 <div class="course__detail">
                                     <img src="<?php echo get_template_directory_uri() ?>/images/users-class-light.svg" alt="" />
