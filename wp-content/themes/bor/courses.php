@@ -513,17 +513,20 @@
                 attribute: "institution",
                 title: "All Institutions",
                 sortBy: ["name:asc"],
+                limit: 100
             }),
             instantsearch.widgets.refinementList({
                 container: document.querySelector("#subjectAreaMenu"),
                 attribute: "course_subject",
                 sortBy: ["name:asc"],
+                limit: 100
             }),
 
             instantsearch.widgets.refinementList({
                 container: document.querySelector("#typeMenu"),
                 attribute: "modality",
                 sortBy: ["name:asc"],
+                limit: 100
             }),
             instantsearch.widgets.sortBy({
                 container: "#sortBy",
