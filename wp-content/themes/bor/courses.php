@@ -345,7 +345,7 @@
                         document.querySelector("#zipCode").value
                       } </p>
                         <p class="results__title">${item.course_full_title}</p>
-                        
+                        ${item.satellite_campus ? `<p class="results__satellite">${item.satellite_campus}</p>` : null}
                     </div>
                     <div class="results__info second">
                         <p class="results__description">${item.description.substring(

@@ -2585,6 +2585,13 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   font-weight: 700;
   line-height: 2.2rem;
 }
+.results__course .results__info .results__satellite {
+  margin-bottom: 0;
+  margin-top: 0.5rem;
+  padding-bottom: 0;
+  font-size: 1.4rem;
+  font-style: italic;
+}
 .results__course .results__info .results__description {
   font-weight: 400;
   font-size: 14px;
