@@ -118,19 +118,19 @@
                             <div id="pagination"></div>
                             <div class="results__share">
                                 <h6 class="results__share-text hidden-sm">Share these results</h6>
-                                <div class="results__icon">
+                                <div data-bs-toggle="tooltip" data-bs-placement="top" title="Email Results" class="results__icon">
                                     <a id="emailShare" href="mailto:?subject=LA Board of Regents - Dual Enrollment Courses&body=Check out these Louisiana Dual Enrollment Courses!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
                                         <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
                                     </a>
                                 </div>
-                                <div id='pdfShare' class="results__icon">
+                                <div data-bs-toggle="tooltip" data-bs-placement="top" title="Export Results as PDF" id='pdfShare' class="results__icon">
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/file-pdf-solid.svg" alt="">
                                 </div>
-                                <div id='csvShare' class="results__icon">
+                                <div data-bs-toggle="tooltip" data-bs-placement="top" title="Share Results as CSV" id='csvShare' class="results__icon">
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/file-csv-solid.svg" alt="">
 
                                 </div>
-                                <div id='qrShare' class="results__icon">
+                                <div data-bs-toggle="tooltip" data-bs-placement="top" title="Share Results via QR Code" id='qrShare' class="results__icon">
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/qrcode-solid.svg" alt="">
                                 </div>
                             </div>
@@ -218,6 +218,8 @@
     // Initialize
     document.addEventListener("DOMContentLoaded", initializeAlgolia);
     document.addEventListener("DOMContentLoaded", setInitialStateFromQueryParams);
+    document.addEventListener("DOMContentLoaded", activateTooltips);
+
 
     // Event listeners
     zipCodeInput.addEventListener("change", (e) => setQueryForAroundLatLng(e));
@@ -530,8 +532,7 @@
             }),
             instantsearch.widgets.sortBy({
                 container: "#sortBy",
-                items: [
-                    {
+                items: [{
                         label: "Sort By:",
                         value: "courses",
                     },
@@ -1032,6 +1033,19 @@
     function toggleFilter() {
         filterToggle.classList.toggle('closed');
         filterOptions.classList.toggle('closed');
+    }
+
+
+    // Initiate Tool Tips
+
+    function activateTooltips() {
+        console.log('here')
+        const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        tooltips.forEach(
+            tooltip => {
+                var tooltip = new bootstrap.Tooltip(tooltip)
+            }
+        )
     }
 </script>
 

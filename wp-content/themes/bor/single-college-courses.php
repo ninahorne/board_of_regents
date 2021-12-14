@@ -7,12 +7,12 @@
                     <a href="javascript:history.go(-1)" class="cta unformatted"><i class="fa fa-long-arrow-alt-left"></i>&nbsp;&nbsp;Back</a>
                     <div class="course__share">
                         <p>Share this course</p>
-                        <div class="results__icon">
+                        <div data-bs-toggle="tooltip" data-bs-placement="top" title="Share Course via Email" class="results__icon">
                             <a id="emailShare" href="mailto:?subject=LA Dual Enrollment Course - <?php the_title() ?>&body=Check out this Louisiana Dual Enrollment Course: <?php the_title() ?>!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
                             </a>
                         </div>
-                        <div class="results__icon">
+                        <div data-bs-toggle="tooltip" data-bs-placement="top" title="Share Course via PDF" class="results__icon">
                             <img id="pdfShare" onclick="generatePDF(
                                 '<?php the_title() ?>', 
                                 '<?php the_field('course_full_title') ?>',
@@ -196,6 +196,8 @@
             </div>
             <?php include('footer.php') ?>
             <script>
+                document.addEventListener("DOMContentLoaded", activateTooltips);
+
                 async function generatePDF(
                     fileName,
                     title,
@@ -310,5 +312,17 @@
                         }
                     }).from(div).save(fileName);
 
+                }
+
+                // Initiate Tool Tips
+
+                function activateTooltips() {
+                    console.log('here')
+                    const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+                    tooltips.forEach(
+                        tooltip => {
+                            var tooltip = new bootstrap.Tooltip(tooltip)
+                        }
+                    )
                 }
             </script>
