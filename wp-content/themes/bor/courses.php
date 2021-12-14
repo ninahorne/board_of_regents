@@ -231,12 +231,12 @@
     //I'm using "click" but it works with any event
     document.addEventListener('click', function(event) {
         const isRefinement = event.target.className.includes('ais-RefinementList');
-        if(isRefinement) return;
+        if (isRefinement) return;
         var isClickInsideSubjectArea = subjectAreaRefinements.contains(event.target);
         var isClickInsideType = typeRefinements.contains(event.target);
         var isClickInsideInstitutions = institutionsRefinements.contains(event.target);
 
-       
+
         if (!isClickInsideSubjectArea) {
             closeSubjectAreaRefinements()
         }
@@ -313,7 +313,7 @@
             },
         });
 
-        // Create the render function
+        // Custom Hits
         const renderHits = (renderOptions, isFirstRender) => {
             const {
                 hits,
@@ -372,7 +372,7 @@
 
         const coursesCustomHits = instantsearch.connectors.connectHits(renderHits);
 
-        // // Create the render function
+        // Custom Refinements
         const createDataAttribtues = refinement =>
             Object.keys(refinement)
             .map(key => `data-${key}="${refinement[key]}"`)
@@ -430,6 +430,67 @@
         );
 
 
+        // Custom pagination
+        // 1. Create a render function
+        const renderPagination = (renderOptions, isFirstRender) => {
+            const {
+                pages,
+                currentRefinement,
+                isFirstPage,
+                isLastPage,
+                widgetParams,
+                refine,
+            } = renderOptions;
+
+            let page = isFirstPage ? 1 : currentRefinement;
+
+            document.querySelector('#pagination').innerHTML = `
+                <ul class="results__pagination">
+                ${
+                !isFirstPage
+                ? `
+                    <li class="pagination__prev">
+                        <a href="" data-value="${page - 1}"><</a>
+                    </li>
+                    <li>
+                        <a href="" data-value="${page - 1}">
+                            ${page - 1}
+                        </a>
+                    </li>
+                    `
+                : ''
+                }
+                <li class="pagination__current">${page}</li>
+                ${
+                    !isLastPage
+                    ? 
+                    `<li>
+                        <a href="" data-value="${page + 1}">
+                            ${page + 1}
+                        </a>
+                    </li>
+                    <li class="pagination__next">
+                        <a  data-value="${page + 1}" href="#">></a>
+                    </li>
+                        `
+                    : ''
+                 }`;
+
+            [...widgetParams.container.querySelectorAll('a')].forEach(element => {
+                element.addEventListener('click', event => {
+                    event.preventDefault();
+                    refine(event.currentTarget.dataset.value);
+                    widgetParams.scrollTo.scrollIntoView();
+                });
+            });
+
+        };
+
+        const customPagination = instantsearch.connectors.connectPagination(
+            renderPagination
+        );
+
+
         const latLng = new google.maps.LatLng(30.4515, -91.1871);
 
         courses_search.addWidgets([
@@ -441,9 +502,11 @@
                 placeholder: "Search",
                 showSubmit: true,
             }),
-            instantsearch.widgets.pagination({
-                container: "#pagination",
+            customPagination({
+                container: document.querySelector("#pagination"),
+                scrollTo: document.querySelector('.results__heading')
             }),
+
             instantsearch.widgets.refinementList({
                 container: document.querySelector("#institutionMenu"),
                 attribute: "institution",
@@ -503,6 +566,7 @@
         const aroundLatLng = queryObject["aroundLatLng"];
         const query = queryObject["query"];
         const courseSubject = queryObject["course_subject"];
+        const page = queryObject['refine'];
 
         if (institution) {
             const valArray = institution.split(";");
@@ -566,6 +630,14 @@
             courses_search.helper.setQuery(query);
         }
 
+        console.log('set initial state');
+        console.log({
+            page
+        });
+        console.log(courses_search.helper)
+        if (page) {
+            courses_search.helper.setPage(page);
+        }
         courses_search.helper.search();
     }
 
@@ -588,6 +660,14 @@
 
         let queryParamString = '?';
 
+        console.log(state);
+        const page = state.page;
+        console.log({
+            page
+        })
+        if (page) {
+            queryParamString = `${queryParamString}refine=${page}&`;
+        }
 
         const aroundLatLng =
             state.aroundLatLng;
@@ -651,7 +731,13 @@
                     if (status == google.maps.GeocoderStatus.OK) {
                         lat = results[0].geometry.location.lat();
                         lng = results[0].geometry.location.lng();
-                        algLatLng = `${lat}, ${lng}`;
+                        algLatLng = `
+                $ {
+                    lat
+                }, $ {
+                    lng
+                }
+                `;
                         console.log({
                             lat,
                             lng
@@ -845,9 +931,22 @@
             const li = document.createElement('li');
             const div = document.createElement('div');
             const h3 = document.createElement('h3');
-            h3.innerText = `${hit.course_full_title} at ${hit.institution}`;
+            h3.innerText = `
+                $ {
+                    hit.course_full_title
+                }
+                at $ {
+                    hit.institution
+                }
+                `;
             const h6 = document.createElement('h6');
-            h6.innerText = `${hit.semester} | Subject Area | Cost: $${hit.cost_per_course}`
+            h6.innerText = `
+                $ {
+                    hit.semester
+                } | Subject Area | Cost: $$ {
+                    hit.cost_per_course
+                }
+                `
             const p = document.createElement('p');
             p.innerText = hit.description;
             li.style.pageBreakInside = 'avoid';
@@ -882,8 +981,16 @@
             aroundRadius: aroundRadius,
             aroundLatLng: aroundLatLng,
             facetFilters: [
-                `institution:${institution}`,
-                `modality:${modality}`,
+                `
+                institution: $ {
+                    institution
+                }
+                `,
+                `
+                modality: $ {
+                    modality
+                }
+                `,
             ]
         });
 
@@ -895,7 +1002,15 @@
                 page: i + 1,
                 aroundRadius: aroundRadius,
                 aroundLatLng: aroundLatLng,
-                facetFilters: [`institution:${institution}`, `modality:${modality}`, ]
+                facetFilters: [`
+                institution: $ {
+                    institution
+                }
+                `, `
+                modality: $ {
+                    modality
+                }
+                `, ]
             });
             let actHits = page_of_hits.hits;
             results.push(...page_of_hits.hits);
