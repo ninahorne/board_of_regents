@@ -95,7 +95,7 @@
                         </div>
                     </div>
 
-                    <div class="tab-content" style="max-width: 800px">
+                    <div class="tab-content pb-4" style="max-width: 800px">
                         <div class="tab-pane fade show active" id="v-pills-prerequisites" role="tabpanel" aria-labelledby="v-pills-one-tab">
                             <?php if (get_field('coures_prerequisite')) : ?>
                                 <h2 class='mb-4'><?php the_field('coures_prerequisite'); ?></h2>
@@ -142,151 +142,160 @@
                             }
                             ?>
 
-                            <h2><?php echo get_field('campus', $post_id) ?></h2>
                             <div class="course__college">
-                                <h3>Dual Enrollment Contact</h3>
-
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <p class="m-0"><?php echo get_field('registrar_name', $post_id) ?></p>
-                                        <p class="m-0"><?php echo get_field('registrar_contact_information', $post_id) ?></p>
+                                    <div class="col-md-5">
+                                        <h2><?php echo get_field('campus', $post_id) ?></h2>
+                                        <a target="_blank" class="unformatted" href="<?php echo get_field('dual_enrollment_application', $post_id) ?>">
+                                            <i class="fas fa-external-link-alt"></i>&nbsp;Go to Dual Enrollment Application*
+                                        </a>
+                                        <p class="footnote">*Note: Some postsecondary institutions require account creation for application.
+                                        <p>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <h3>Dual Enrollment Contact</h3>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p class="mb-0"><?php echo get_field('department_contact_name', $post_id) ?></p>
+                                                <a class="unformatted" href="mailto:<?php echo get_field('department_contact_email', $post_id) ?>"><?php echo get_field('department_contact_email', $post_id) ?></a>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <?php if (get_field('transfer_form', $post_id)) : ?>
+                                                    <a target="_blank" class="d-block unformatted" href="<?php echo get_field('transfer_form', $post_id) ?>">
+                                                    <?php endif; ?>
+                                                    <i class="fas fa-external-link-alt"></i>&nbsp;Request information on transcript/transfer</a>
+                                                    <?php if (get_field('registrar_email', $post_id)) : ?>
+                                                        <a class="unformatted" href="mailto:<?php echo get_field('registrar_email', $post_id) ?>"><i class="far fa-envelope"></i>&nbsp;&nbsp;Contact the Registrar </a>
+                                                    <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <a target="_blank" style='max-width: 285px;' href="<?php echo get_field('institution_url', $post_id) ?>" class="cta unformatted">Visit College Website&nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i></a>
 
                                     </div>
-                                    <div class="col-sm-8">
-                                        <a target="_blank" class="d-block unformatted" href="<?php echo get_field('transfer_form') ?>"><i class="fas fa-external-link-alt"></i>&nbsp;Request information on transcript/transfer</a>
-                                        <a class="unformatted" href="mailto:<?php echo get_field('registrar_contact_information') ?>"><i class="far fa-envelope"></i>&nbsp;&nbsp;Contact the registrar </a>
-
-                                    </div>
-
                                 </div>
                             </div>
-                            <div class="mt-3">
-                                <a target="_blank" style='max-width: 285px;' href="<?php echo get_field('institution_url', $post_id) ?>" class="cta unformatted">Visit College Website&nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i></a>
 
-                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-        </div>
-    </div>
-</div>
-<?php include('footer.php') ?>
-<script>
-    async function generatePDF(
-        fileName,
-        title,
-        subtitle,
-        description,
-        cost,
-        type,
-        semester,
-        creditHours,
-        satellite,
-        prerequisites,
-        subjectArea,
-        image
-    ) {
+            <?php include('footer.php') ?>
+            <script>
+                async function generatePDF(
+                    fileName,
+                    title,
+                    subtitle,
+                    description,
+                    cost,
+                    type,
+                    semester,
+                    creditHours,
+                    satellite,
+                    prerequisites,
+                    subjectArea,
+                    image
+                ) {
 
-        const div = document.createElement('div');
-        div.style.padding = '4rem';
-        div.classList.add('course__pdf');
-        const h1 = document.createElement('h1');
-        h1.innerText = title;
-        const h6 = document.createElement('h6');
-        h6.innerText = subtitle;
-        const p = document.createElement('p');
-        p.innerText = description;
-        const imageEl = document.createElement('div');
-        imageEl.classList.add("pdf__image");
+                    const div = document.createElement('div');
+                    div.style.padding = '4rem';
+                    div.classList.add('course__pdf');
+                    const h1 = document.createElement('h1');
+                    h1.innerText = title;
+                    const h6 = document.createElement('h6');
+                    h6.innerText = subtitle;
+                    const p = document.createElement('p');
+                    p.innerText = description;
+                    const imageEl = document.createElement('div');
+                    imageEl.classList.add("pdf__image");
 
-        const row = document.createElement('div');
-        row.classList.add('pdf__row');
+                    const row = document.createElement('div');
+                    row.classList.add('pdf__row');
 
-        const leftColumn = document.createElement('div');
-        const rightColumn = document.createElement('div');
+                    const leftColumn = document.createElement('div');
+                    const rightColumn = document.createElement('div');
 
 
-        const ul = document.createElement('ul');
-        ul.style.listStyle = 'circle';
-        const costContent = document.createElement('li');
-        costContent.innerText = `Cost: $${cost}`;
-        const typeContent = document.createElement('li');
-        typeContent.innerText = `Type: ${type}`;
-        const semesterContent = document.createElement('li');
-        semesterContent.innerText = `Semester: ${semester}`;
-        const creditHoursContent = document.createElement('li');
-        creditHoursContent.innerText = `Credit Hours: ${creditHours}`;
-        const satelliteCampusContent = document.createElement('li');
-        satelliteCampusContent.innerText = `Satellite Campus: ${satellite}`;
-        const prereqInfo = document.createElement('li');
-        prereqInfo.innerText = `Prerequisites: ${prerequisites}`;
-        const subjectAreaInfo = document.createElement('li');
-        subjectAreaInfo.innerText = `Subject Area: ${subjectArea}`;
+                    const ul = document.createElement('ul');
+                    ul.style.listStyle = 'circle';
+                    const costContent = document.createElement('li');
+                    costContent.innerText = `Cost: $${cost}`;
+                    const typeContent = document.createElement('li');
+                    typeContent.innerText = `Type: ${type}`;
+                    const semesterContent = document.createElement('li');
+                    semesterContent.innerText = `Semester: ${semester}`;
+                    const creditHoursContent = document.createElement('li');
+                    creditHoursContent.innerText = `Credit Hours: ${creditHours}`;
+                    const satelliteCampusContent = document.createElement('li');
+                    satelliteCampusContent.innerText = `Satellite Campus: ${satellite}`;
+                    const prereqInfo = document.createElement('li');
+                    prereqInfo.innerText = `Prerequisites: ${prerequisites}`;
+                    const subjectAreaInfo = document.createElement('li');
+                    subjectAreaInfo.innerText = `Subject Area: ${subjectArea}`;
 
 
-        if (cost) {
-            ul.appendChild(costContent);
-        }
-        if (type) {
-            ul.appendChild(typeContent);
-        }
-        if (semester) {
-            ul.appendChild(semesterContent);
-        }
-        if (creditHours) {
-            ul.appendChild(creditHoursContent);
-        }
-        if (satellite) {
-            ul.appendChild(satelliteCampusContent);
-        }
+                    if (cost) {
+                        ul.appendChild(costContent);
+                    }
+                    if (type) {
+                        ul.appendChild(typeContent);
+                    }
+                    if (semester) {
+                        ul.appendChild(semesterContent);
+                    }
+                    if (creditHours) {
+                        ul.appendChild(creditHoursContent);
+                    }
+                    if (satellite) {
+                        ul.appendChild(satelliteCampusContent);
+                    }
 
-        if (subjectArea) {
-            ul.appendChild(subjectAreaInfo);
-        }
+                    if (subjectArea) {
+                        ul.appendChild(subjectAreaInfo);
+                    }
 
-        leftColumn.appendChild(h1);
-        leftColumn.appendChild(h6);
-        leftColumn.appendChild(p);
-        leftColumn.appendChild(ul);
-        rightColumn.appendChild(imageEl);
+                    leftColumn.appendChild(h1);
+                    leftColumn.appendChild(h6);
+                    leftColumn.appendChild(p);
+                    leftColumn.appendChild(ul);
+                    rightColumn.appendChild(imageEl);
 
-        row.appendChild(leftColumn);
-        row.appendChild(rightColumn);
-        div.appendChild(row);
+                    row.appendChild(leftColumn);
+                    row.appendChild(rightColumn);
+                    div.appendChild(row);
 
-        const prereqTitle = document.createElement('h4');
-        prereqTitle.innerText = 'Prerequisites:';
-        const costInfoTitle = document.createElement('h4');
-        costInfoTitle.innerText = 'Cost Info:';
-        const usefulLinksTitle = document.createElement('h4');
-        usefulLinksTitle.innerText = 'Useful Links:';
-        usefulLinksTitle.classList.add('page-break-before');
+                    const prereqTitle = document.createElement('h4');
+                    prereqTitle.innerText = 'Prerequisites:';
+                    const costInfoTitle = document.createElement('h4');
+                    costInfoTitle.innerText = 'Cost Info:';
+                    const usefulLinksTitle = document.createElement('h4');
+                    usefulLinksTitle.innerText = 'Useful Links:';
+                    usefulLinksTitle.classList.add('page-break-before');
 
-        const prerequisiteInfo = document.querySelector('#v-pills-prerequisites');
-        const prereqClone = prerequisiteInfo.cloneNode(true);
-        prereqClone.classList.remove('fade');
-        const costInfo = document.querySelector('#v-pills-cost');
-        const usefulLinks = document.querySelector('#v-pills-links');
-        const costInfoClone = costInfo.cloneNode(true);
-        costInfoClone.classList.remove('fade');
-        const usefulLinksClone = usefulLinks.cloneNode(true);
-        usefulLinksClone.classList.remove('fade');
+                    const prerequisiteInfo = document.querySelector('#v-pills-prerequisites');
+                    const prereqClone = prerequisiteInfo.cloneNode(true);
+                    prereqClone.classList.remove('fade');
+                    const costInfo = document.querySelector('#v-pills-cost');
+                    const usefulLinks = document.querySelector('#v-pills-links');
+                    const costInfoClone = costInfo.cloneNode(true);
+                    costInfoClone.classList.remove('fade');
+                    const usefulLinksClone = usefulLinks.cloneNode(true);
+                    usefulLinksClone.classList.remove('fade');
 
-        div.appendChild(prereqTitle);
-        div.appendChild(prereqClone);
-        div.appendChild(costInfoTitle);
-        div.appendChild(costInfoClone);
-        div.appendChild(usefulLinksTitle);
-        div.appendChild(usefulLinksClone);
+                    div.appendChild(prereqTitle);
+                    div.appendChild(prereqClone);
+                    div.appendChild(costInfoTitle);
+                    div.appendChild(costInfoClone);
+                    div.appendChild(usefulLinksTitle);
+                    div.appendChild(usefulLinksClone);
 
-        html2pdf().set({
-            margin: 5,
-            pagebreak: {
-                mode: ['css', 'legacy']
-            }
-        }).from(div).save(fileName);
+                    html2pdf().set({
+                        margin: 5,
+                        pagebreak: {
+                            mode: ['css', 'legacy']
+                        }
+                    }).from(div).save(fileName);
 
-    }
-</script>
+                }
+            </script>

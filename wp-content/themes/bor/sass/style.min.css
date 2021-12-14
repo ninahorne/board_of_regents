@@ -2948,6 +2948,9 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   }
 }
 
+.courses__tabs {
+  min-height: 300px;
+}
 .courses__tabs .nav-link {
   background-color: white;
   color: #404040;
@@ -3009,6 +3012,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   padding: 2.5rem;
   margin-right: -100px;
   max-width: 100%;
+  top: -90px;
 }
 @media screen and (max-width: 991px) {
   #singleCourse .background__orange-brush-stroke {

@@ -88,6 +88,8 @@
 }
 
 .courses__tabs {
+  min-height: 300px;
+
   .nav-link {
     background-color: white;
     color: $dark-gray;
@@ -116,6 +118,7 @@
     }
   }
 }
+
 
 .course__prereq {
   font-size: 14px;
@@ -149,6 +152,7 @@
     padding: 2.5rem;
     margin-right: -100px;
     max-width: 100%;
+    top: -90px;
     @media screen and (max-width: 991px) {
       top: unset;
       width: 500px;

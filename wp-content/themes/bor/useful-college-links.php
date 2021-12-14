@@ -128,25 +128,29 @@
             const college = JSON.parse(this.responseText);
             console.log(college);
             console.log(college.campus)
-            selectedCollege.innerHTML = `<div class="useful-college-links__selected-result">
-            <i onclick="clearSelectedCollege()" class="far fa-times-circle"></i>
-            <div class="row">
-                 <div class="col-md-5">
-                     <h2>${college.campus}</h2>
-                     <a target="_blank" class="unformatted" href="${college.dualEnrollmentApplication}"><i class="fas fa-external-link-alt"></i>&nbsp;Go to Dual Enrollment Application*</a>
-                     <p class="footnote">*Note: Some postsecondary institutions require account creation for application.<p>
-                </div>
-                <div class="col-md-7">
-                    <h3>Dual Enrollment Contact</h3>
-                    <div class="row">
-                        <div class="col-lg-6">                             <p>${college.departmentContactName}</p>
-                            <a class="unformatted" href="mailto:${college.departmentContactEmail}">${college.departmentContactEmail}</a>                         </div>           <div class="col-lg-6">
-                             <a target="_blank" class="d-block unformatted" href="${college.transferForm}"><i class="fas fa-external-link-alt"></i>&nbsp;Request information on transcript/transfer</a>
-
-                             ${college.registrarEmail ? `<a class="unformatted" href="mailto:${college.registrarEmail}"><i class="far fa-envelope"></i>&nbsp;&nbsp;Contact the Registrar </a>` : ''}
-                            
-                         </div>'
-             </div>`;
+            selectedCollege.innerHTML = `
+            <div class="useful-college-links__selected-result">
+                <i onclick="clearSelectedCollege()" class="far fa-times-circle"></i>
+                <div class="row">
+                    <div class="col-md-5">
+                        <h2>${college.campus}</h2>
+                        <a target="_blank" class="unformatted" href="${college.dualEnrollmentApplication}">
+                            <i class="fas fa-external-link-alt"></i>&nbsp;Go to Dual Enrollment Application*
+                        </a>
+                        <p class="footnote">*Note: Some postsecondary institutions require account creation for application.<p>
+                    </div>
+                    <div class="col-md-7">
+                        <h3>Dual Enrollment Contact</h3>
+                        <div class="row">
+                            <div class="col-lg-6"> 
+                                <p>${college.departmentContactName}</p>
+                                <a class="unformatted" href="mailto:${college.departmentContactEmail}">${college.departmentContactEmail}</a>                         
+                            </div>           
+                            <div class="col-lg-6">
+                                <a target="_blank" class="d-block unformatted" href="${college.transferForm}"><i class="fas fa-external-link-alt"></i>&nbsp;Request information on transcript/transfer</a>
+                                ${college.registrarEmail ? `<a class="unformatted" href="mailto:${college.registrarEmail}"><i class="far fa-envelope"></i>&nbsp;&nbsp;Contact the Registrar </a>` : ''}
+                         </div>
+            </div>`;
         };
         var body = {
             objectId
