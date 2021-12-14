@@ -362,7 +362,7 @@
 .results__share-text {
   color: white;
   margin: 0;
-  display: none;
+  margin-right: 1rem;
   @media screen and (max-width: 567px) {
     display: block;
     flex: 1 0 100%;
@@ -370,11 +370,27 @@
     text-align: center;
     font-size: 28px;
   }
+  &.visible-sm{
+    display: none;
+  }
+  @media screen and (max-width: 567px) {
+      &.hidden-sm{
+        display: none;
+      }
+      &.visible-sm{
+        display: block;
+      }
+  }
 }
 .pagination {
   margin: 1rem 0;
-}
 
+}
+ @media screen and (max-width: 567px) {
+     #pagination{
+       margin: 0 auto;
+     }
+  }
 @mixin shareIcon() {
   background-color: white;
   width: 40px;

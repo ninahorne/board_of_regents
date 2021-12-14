@@ -117,7 +117,7 @@
                         <div class="results__footer">
                             <div id="pagination"></div>
                             <div class="results__share">
-
+                                <h6 class="results__share-text hidden-sm">Share these results</h6>
                                 <div class="results__icon">
                                     <a id="emailShare" href="mailto:?subject=LA Board of Regents - Dual Enrollment Courses&body=Check out these Louisiana Dual Enrollment Courses!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
                                         <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
@@ -134,7 +134,8 @@
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/qrcode-solid.svg" alt="">
                                 </div>
                             </div>
-                            <h6 class="results__share-text">Share these results</h6>
+
+                            <h6 class="results__share-text visible-sm">Share these results</h6>
 
                         </div>
                         <div id="qrCode"></div>

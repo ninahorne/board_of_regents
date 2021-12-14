@@ -2673,7 +2673,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 .results__share-text {
   color: white;
   margin: 0;
-  display: none;
+  margin-right: 1rem;
 }
 @media screen and (max-width: 567px) {
   .results__share-text {
@@ -2684,11 +2684,27 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
     font-size: 28px;
   }
 }
+.results__share-text.visible-sm {
+  display: none;
+}
+@media screen and (max-width: 567px) {
+  .results__share-text.hidden-sm {
+    display: none;
+  }
+  .results__share-text.visible-sm {
+    display: block;
+  }
+}
 
 .pagination {
   margin: 1rem 0;
 }
 
+@media screen and (max-width: 567px) {
+  #pagination {
+    margin: 0 auto;
+  }
+}
 .results__icon {
   background-color: white;
   width: 40px;
