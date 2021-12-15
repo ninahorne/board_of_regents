@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-7be">
+        <div class="col-lg-7">
             <div class="d-flex align-items-start">
 
                 <div class="tab-content" id="stepsToEnrollmentTabs">

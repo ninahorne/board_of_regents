@@ -930,7 +930,7 @@ h1 {
 }
 
 h2 {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
 }
 
 h3,
@@ -959,7 +959,7 @@ h6 {
 li,
 a,
 h3 {
-    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+    font-size: 1.4rem;
   }
 
   h2 {
@@ -1148,7 +1148,6 @@ a.cta {
 @media screen and (max-width: 767px) {
   .cta {
     display: block;
-    margin: 2rem auto;
     font-size: 16px;
     text-align: center;
   }
@@ -1191,6 +1190,15 @@ a.unformatted.cta:hover {
   position: relative;
 }
 
+.mr-1 {
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 567px) {
+  .flex-md-column {
+    flex-direction: column;
+  }
+}
 .ugb-video-popup {
   position: relative;
   margin: 3rem auto;
@@ -1266,7 +1274,7 @@ header ul li {
 header ul li a {
   text-decoration: none;
   color: inherit;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   position: relative;
 }
 header ul li a::after {
@@ -1290,8 +1298,11 @@ header ul li a:visited {
 }
 
 .navbar {
-  height: 7.5rem;
+  height: 7rem;
   z-index: 2;
+}
+.navbar .fa-search {
+  font-size: 1.5rem;
 }
 
 .navbar-brand img {
@@ -1380,6 +1391,10 @@ header ul li a:visited {
   justify-content: space-evenly;
 }
 
+.ais-SearchBox-form {
+  height: 4rem;
+}
+
 footer {
   background-color: #143595;
   padding: 4rem 0;
@@ -1405,13 +1420,6 @@ a:visited {
   font-size: 1.7rem;
 }
 
-@media screen and (max-width: 1000px) {
-  .footer__title,
-.footer__title .span,
-.footer__title a {
-    font-size: calc(20px + 6 * ((100vw - 320px) / 680));
-  }
-}
 .footer__nav-links {
   margin: 1rem 0;
   padding: 0;
@@ -1538,25 +1546,17 @@ a:visited {
   cursor: pointer;
 }
 
-@media screen and (max-width: 1024px) {
-  .steps-to-enrollment {
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-}
-@media screen and (max-width: 767px) {
-  .steps-to-enrollment {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-  }
-}
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .steps-to-enrollment .tab-content {
     margin-top: 2rem;
   }
 
   .steps-to-enrollment .tabs .nav-link {
     font-size: 16px;
+  }
+
+  .steps-to-enrollment .tabs {
+    margin-bottom: 2rem;
   }
 }
 /* Students Page */
@@ -2268,13 +2268,6 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
     margin-left: 1rem;
     margin-right: 1rem;
   }
-
-  .white-card .white-card__item {
-    height: auto;
-  }
-  .white-card .white-card__item h5 {
-    font-size: 1.4rem;
-  }
 }
 .white-card {
   background-color: white;
@@ -2297,13 +2290,18 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   font-size: 2rem;
 }
 .white-card .white-card__item {
-  padding: 0.2rem;
+  padding: 1rem 0.2rem;
   border-bottom: 1px dashed #404040;
   margin: 0.5rem;
   height: 100%;
 }
 .white-card .white-card__item.white-card__item--no-border {
   border: none;
+}
+@media screen and (max-width: 567px) {
+  .white-card .white-card__item {
+    height: auto;
+  }
 }
 
 .page__title {
@@ -2480,6 +2478,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 }
 .results__heading img {
   margin: 0 auto;
+  width: 180px;
 }
 
 #sortBy {
@@ -2514,7 +2513,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   grid-template-rows: auto auto;
   background-color: white;
   border-radius: 5px;
-  padding: 2rem 0.5rem;
+  padding: 1rem 0.5rem;
   margin: 1rem 0;
   border: 1px solid #a3a3a3;
 }
@@ -2645,13 +2644,16 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   justify-content: center;
   align-items: center;
 }
+.results__course .results__chevron img {
+  height: 20px;
+}
 @media screen and (max-width: 567px) {
   .results__course .results__chevron {
     display: none;
   }
 }
 .results__course p {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 700;
 }
 
@@ -2763,7 +2765,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   font-size: 14px;
   text-align: center;
 }
-@media screen and (max-width: 567px) {
+@media screen and (max-width: 768px) {
   .course__links p {
     margin-bottom: 1rem;
   }
@@ -2831,7 +2833,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 .filter__arrow {
   display: none;
 }
-@media screen and (max-width: 567px) {
+@media screen and (max-width: 768px) {
   .filter__arrow {
     display: inline-block;
   }
@@ -2847,7 +2849,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   transform: rotate(0deg);
 }
 
-@media screen and (max-width: 567px) {
+@media screen and (max-width: 768px) {
   #filterOptions.closed {
     max-height: 0;
     overflow: hidden;
@@ -3068,12 +3070,12 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   padding: 2rem;
   margin-right: -100px;
   max-width: 100%;
-  bottom: -90px;
+  top: -90px;
   right: 5rem;
 }
 @media screen and (max-width: 991px) {
   #singleCourse .background__orange-brush-stroke {
-    bottom: unset;
+    top: unset;
     width: 500px;
     margin: 0.5rem auto;
     max-width: 100%;
@@ -3138,14 +3140,19 @@ h1 {
 
 /* Front Page */
 .front-page__full-width-image {
-  width: 100vw;
-  height: calc(100vh - 180px);
-  min-height: 500px;
   background-image: linear-gradient(90deg, #0000009a 0%, #00000036 67%, #00000000 100%), url("../images/dual-enrollment-home-banner.jpg");
   background-size: cover;
   background-position: center;
+  width: 100vw;
+  height: calc(100vh - 180px);
+  min-height: 500px;
   display: flex;
   align-items: center;
+}
+@media screen and (max-width: 768px) {
+  .front-page__full-width-image {
+    padding: 2rem;
+  }
 }
 .front-page__full-width-image h1,
 .front-page__full-width-image p {
@@ -3162,7 +3169,7 @@ img {
     background-size: cover;
     background-position: center;
     align-items: flex-end;
-    height: calc(100vh - 143px);
+    height: calc(100vh - 116px);
     background-position: left center;
   }
 }
@@ -3385,6 +3392,11 @@ input[type=search] {
   flex-direction: column;
   display: flex;
   justify-content: flex-end;
+}
+@media screen and (max-width: 1366px) {
+  .page__banner {
+    height: 400px;
+  }
 }
 .page__banner h1 {
   color: white;

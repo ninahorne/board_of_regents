@@ -162,15 +162,18 @@ h1 {
 
 /* Front Page */
 .front-page__full-width-image {
-  width: 100vw;
-  height: calc(100vh - 180px);
-  min-height: 500px;
   @include backgroundImageWithGradient(
     "../images/dual-enrollment-home-banner.jpg"
   );
+  width: 100vw;
+  height: calc(100vh - 180px);
+  min-height: 500px;
   display: flex;
   align-items: center;
 
+  @media screen and (max-width: 768px) {
+    padding: 2rem;
+  }
   h1,
   p {
     color: white;
@@ -185,7 +188,7 @@ img {
       "../images/dual-enrollment-home-banner--mobile.jpg"
     );
     align-items: flex-end;
-    height: calc(100vh - 143px);
+    height: calc(100vh - 116px);
     background-position: left center;
   }
 }
@@ -427,6 +430,10 @@ input[type="search"] {
   flex-direction: column;
   display: flex;
   justify-content: flex-end;
+
+  @media screen and (max-width: 1366px) {
+    height: 400px;
+  }
   h1 {
     color: white;
     margin-bottom: 120px;
@@ -434,7 +441,6 @@ input[type="search"] {
 
   &.page__banner--info {
     @include backgroundImageWithGradient("../images/students-banner.jpg");
-
     @media screen and (max-width: 768px) {
       @include backgroundImageWithGradient(
         "../images/students-banner--mobile.jpg"

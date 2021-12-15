@@ -139,10 +139,10 @@
     padding: 2rem;
     margin-right: -100px;
     max-width: 100%;
-    bottom: -90px;
+    top: -90px;
     right: 5rem;
     @media screen and (max-width: 991px) {
-      bottom: unset;
+      top: unset;
       width: 500px;
       margin: 0.5rem auto;
       max-width: 100%;

@@ -41,7 +41,7 @@ function initializeHeaderAlgolia() {
             </h3>
             </a>
             {{#details}}
-            <div class="my-3">...{{#helpers.snippet}}{ "attribute": "details", "highlightedTagName": "mark" }{{/helpers.snippet}}...</div>
+              <div class="my-3">{{#helpers.snippet}}{ "attribute": "details", "highlightedTagName": "mark" }{{/helpers.snippet}}...</div>
             {{/details}}
           </article>
           `,

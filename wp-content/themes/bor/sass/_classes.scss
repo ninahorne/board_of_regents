@@ -33,7 +33,7 @@ h1 {
   font-weight: 900;
 }
 h2 {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
 }
 h3,
 h2,
@@ -59,7 +59,7 @@ h6 {
   li,
   a,
   h3 {
-    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+    font-size: 1.4rem;
   }
   h2 {
     font-size: calc(18px + 6 * ((100vw - 320px) / 680));
@@ -255,7 +255,6 @@ a.cta {
 @media screen and (max-width: 767px) {
   .cta {
     display: block;
-    margin: 2rem auto;
     font-size: 16px;
     text-align: center;
   }
@@ -299,3 +298,15 @@ a.unformatted {
 .position-relative{
   position: relative;
 }
+
+
+.mr-1{
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 567px) {
+    .flex-md-column{
+      flex-direction: column;
+    }
+}
+

@@ -16,7 +16,7 @@ header {
       a {
         text-decoration: none;
         color: inherit;
-        font-size: 1.2rem;
+        font-size: 1.6rem;
         position: relative;
         &::after {
           content: "";
@@ -43,8 +43,11 @@ header {
 }
 
 .navbar {
-  height: 7.5rem;
+  height: 7rem;
   z-index: 2;
+  .fa-search{
+    font-size: 1.5rem;
+  }
 }
 
 .navbar-brand {
@@ -156,4 +159,9 @@ header {
 .navbar-nav {
   width: 100%;
   justify-content: space-evenly;
+}
+
+
+.ais-SearchBox-form{
+  height: 4rem;
 }

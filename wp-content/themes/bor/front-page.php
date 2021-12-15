@@ -4,7 +4,7 @@
         <div class="front-page__full-width-image">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-lg-6">
                         <h1>Welcome to Louisiana’s Dual Enrollment resource.</h1>
                         <p>The Louisiana Board of Regents has developed this information to help students, families, and counselors access dual enrollment opportunities throughout the state. We’re glad you’re here!</p>
                     </div>
@@ -34,7 +34,7 @@
                         Dual enrollment courses are much more affordable than college
                         credits, so they save money as well as time.
                     </p>
-                    <a style="max-width: 210px;" href="./index.php/faqs" class="cta unformatted">
+                    <a href="./index.php/faqs" class="cta unformatted">
                         Learn more &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
                     </a>
                 </div>
@@ -55,7 +55,7 @@
                 <div class="col-md-6">
                     <div class="flex-center">
                         <div class="background__blue-brush-stroke">
-                            <img style="max-width: 430px" src="<?php echo get_template_directory_uri(); ?>/images/art.png" alt="">
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/art.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -70,10 +70,10 @@
                         art, and technology subjects. Browse your options here.
                     </p>
                     <div class="d-flex flex-lg-row flex-md-column">
-                        <a style="max-width: 210px; margin: 1rem 1rem 1rem 0rem;" href="./index.php/courses" class="cta unformatted">
-                            Courses &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
+                        <a href="./index.php/courses" class="mt-1 mr-1 cta unformatted">
+                            Courses &nbsp;&nbsp;<i class=" fa fa-long-arrow-alt-right"></i>
                         </a>
-                        <a style="max-width: 240px; margin: 1rem 1rem 1rem 0rem;" href="./index.php/fields-of-study" class="cta unformatted">
+                        <a  href="./index.php/fields-of-study" class="mt-1 mr-1 cta unformatted">
                             Fields of Study &nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i>
                         </a>
                     </div>
