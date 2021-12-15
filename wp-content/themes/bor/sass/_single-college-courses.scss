@@ -61,7 +61,7 @@
 .course__detail {
   display: flex;
   align-items: center;
-  flex: 0 0 33%;
+  flex: 1 0 33%;
   margin: 1rem 0;
   @media screen and (max-width: 567px) {
     flex: 0 0 50%;
@@ -128,6 +128,7 @@
 #singleCourse {
   .background__blue {
     padding: 2rem;
+    min-height: 475px;
     @media screen and (max-width: 567px) {
       padding: 1rem;
     }
@@ -138,9 +139,10 @@
     padding: 2rem;
     margin-right: -100px;
     max-width: 100%;
-    top: -90px;
+    bottom: -90px;
+    right: 5rem;
     @media screen and (max-width: 991px) {
-      top: unset;
+      bottom: unset;
       width: 500px;
       margin: 0.5rem auto;
       max-width: 100%;

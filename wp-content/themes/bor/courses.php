@@ -101,6 +101,7 @@
 
                                 </div>
                             </div>
+                            <div id="nbHits"></div>
                         </div>
 
                     </div>
@@ -111,6 +112,7 @@
                             <div id="sortBy"></div>
                             <img src="<?php echo get_template_directory_uri(); ?>/images/search-illustration.svg" alt="">
                         </div>
+
                         <hr class="results__hr">
                         <div id="coursesHits">
                         </div>
@@ -118,19 +120,19 @@
                             <div id="pagination"></div>
                             <div class="results__share">
                                 <h6 class="results__share-text hidden-sm">Share these results</h6>
-                                <div data-bs-toggle="tooltip" data-bs-placement="top" title="Email Results" class="results__icon">
-                                    <a id="emailShare" href="mailto:?subject=LA Board of Regents - Dual Enrollment Courses&body=Check out these Louisiana Dual Enrollment Courses!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
+                                <div data-bs-toggle="tooltip" data-bs-placement="top" title="Email List" class="results__icon">
+                                    <a target="_blank" id="emailShare" href="mailto:?subject=LA Board of Regents - Dual Enrollment Courses&body=Check out these Louisiana Dual Enrollment Courses!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
                                         <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
                                     </a>
                                 </div>
-                                <div data-bs-toggle="tooltip" data-bs-placement="top" title="Export Results as PDF" id='pdfShare' class="results__icon">
+                                <div data-bs-toggle="tooltip" data-bs-placement="top" title="Download PDF" id='pdfShare' class="results__icon">
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/file-pdf-solid.svg" alt="">
                                 </div>
-                                <div data-bs-toggle="tooltip" data-bs-placement="top" title="Share Results as CSV" id='csvShare' class="results__icon">
+                                <div data-bs-toggle="tooltip" data-bs-placement="top" title="Download CSV" id='csvShare' class="results__icon">
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/file-csv-solid.svg" alt="">
 
                                 </div>
-                                <div data-bs-toggle="tooltip" data-bs-placement="top" title="Share Results via QR Code" id='qrShare' class="results__icon">
+                                <div data-bs-toggle="tooltip" data-bs-placement="top" title="Create a QR Code" id='qrShare' class="results__icon">
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/qrcode-solid.svg" alt="">
                                 </div>
                             </div>
@@ -138,7 +140,9 @@
                             <h6 class="results__share-text visible-sm">Share these results</h6>
 
                         </div>
-                        <div id="qrCode"></div>
+                        <div id="qrCode">
+
+                        </div>
 
                     </div>
                 </div>
@@ -306,13 +310,17 @@
         courses_search = instantsearch({
             indexName: "courses",
             searchClient,
-            hitsPerPage: 4,
             searchFunction(helper) {
+
                 if (!isFirstRender) {
                     setQueryParams(helper.state);
                 }
                 helper.search();
                 isFirstRender = false;
+                console.log(
+                    courses_search.renderState.courses.hits.results?.nbHits
+                );
+                console.log(courses_search.renderState.courses.hits.results?.nbHits);
             },
         });
 
@@ -328,7 +336,7 @@
               hits.length
                 ? hits
                     .map((item) => {
-                      return `<a class='results__link' href='${
+                      return `<a target="_blank" class='results__link' href='${
                         item.url
                       }'><div class='results__course'>
                     <div class="results__image">
@@ -337,17 +345,23 @@
                         </div>
                     </div>
                     <div class="results__info first">
+                         <div class="d-flex">
+                            <p class="results__distance">
+                                ${item.institution}
+                            </p>
                         <p class="results__distance ${
                           document.querySelector("#zipCode").value
                             ? ""
                             : "hidden"
-                        }"><img src="<?php echo get_template_directory_uri(); ?>/images/biking-solid.svg" />&nbsp; ${getDistanceInMiles(
+                        }"> &nbsp;&nbsp;&nbsp;<img src="<?php echo get_template_directory_uri(); ?>/images/biking-solid.svg" />&nbsp; ${getDistanceInMiles(
                         item
                       )} miles from ${
                         document.querySelector("#zipCode").value
                       } </p>
+                      </div>
+
                         <p class="results__title">${item.course_full_title}</p>
-                        ${item.satellite_campus ? `<p class="results__satellite">${item.satellite_campus}</p>` : null}
+                        ${item.satellite_campus && item.satellite_campus != 'none'? `<p class="results__satellite">${item.satellite_campus}</p>` : ''}
                     </div>
                     <div class="results__info second">
                         <p class="results__description">${item.description.substring(
@@ -356,10 +370,11 @@
                         )}...</p>
 
                         <label>${item.semester}</label>
-                        <label>${item.course_subject}</label>
                         <label class="green">Cost: $${
                           item.cost_per_course
                         }</label>
+                        <label>${item.course_subject}</label>
+                       
                     </div>
                     
                     <div class="results__chevron">
@@ -493,12 +508,28 @@
             renderPagination
         );
 
+        // Custom stats Widget
+        const renderStats = (renderOptions, isFirstRender) => {
+            const {
+                nbHits,
+                widgetParams
+            } = renderOptions;
+
+            widgetParams.container.innerHTML = `
+                <p class="results__stats">Showing ${nbHits} results</p>
+                `
+        };
+
+        const customStats = instantsearch.connectors.connectStats(
+            renderStats
+        );
+
 
         const latLng = new google.maps.LatLng(30.4515, -91.1871);
 
         courses_search.addWidgets([
             instantsearch.widgets.configure({
-                hitsPerPage: 4,
+                hitsPerPage: 10,
             }),
             instantsearch.widgets.searchBox({
                 container: "#coursesSearchBox",
@@ -556,6 +587,9 @@
             coursesCustomHits({
                 container: document.querySelector("#coursesHits"),
             }),
+            customStats({
+                container: document.querySelector('#nbHits')
+            })
         ]);
 
 
@@ -573,6 +607,7 @@
         const query = queryObject["query"];
         const courseSubject = queryObject["course_subject"];
         const page = queryObject['refine'];
+
 
         if (institution) {
             const valArray = institution.split(";");
@@ -611,9 +646,7 @@
         if (aroundRadius) {
             courses_search.helper.setQueryParameter("aroundRadius", aroundRadius);
             const miles = getMilesFromMeters(aroundRadius);
-            console.log({
-                miles
-            })
+
             setQueryForAroundRadius({
                 target: {
                     value: miles
@@ -636,11 +669,7 @@
             courses_search.helper.setQuery(query);
         }
 
-        console.log('set initial state');
-        console.log({
-            page
-        });
-        console.log(courses_search.helper)
+
         if (page) {
             courses_search.helper.setPage(page);
         }
@@ -666,11 +695,8 @@
 
         let queryParamString = '?';
 
-        console.log(state);
         const page = state.page;
-        console.log({
-            page
-        })
+
         if (page) {
             queryParamString = `${queryParamString}refine=${page}&`;
         }
@@ -709,12 +735,7 @@
     function setQueryForAroundRadius(e) {
         const miles = parseInt(e.target.value);
         const meters = getMetersFromMiles(miles) || 1;
-        console.log({
-            miles
-        });
-        console.log({
-            meters
-        });
+
         courses_search.helper.setQueryParameter("aroundRadius", meters);
         courses_search.helper.search();
     }
@@ -744,10 +765,7 @@
                     lng
                 }
                 `;
-                        console.log({
-                            lat,
-                            lng
-                        });
+
                         courses_search.helper.setQueryParameter("aroundLatLng", algLatLng);
                         courses_search.helper.setQueryParameter(
                             "aroundRadius",
@@ -878,6 +896,11 @@
 
     function generateQRCode() {
         new QRCode(document.getElementById("qrCode"), window.location.href);
+        const qrCode = document.querySelector('#qrCode');
+        const paragraph = document.createElement('p');
+
+        paragraph.innerText = 'This QR code can be downloaded and shared to bring people directly to these search results from their cellphone\'s camera.';
+        qrCode.appendChild(paragraph)
     }
     async function generatePDF() {
         const results = await getSearchResultsForSharing();
@@ -1039,7 +1062,6 @@
     // Initiate Tool Tips
 
     function activateTooltips() {
-        console.log('here')
         const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
         tooltips.forEach(
             tooltip => {

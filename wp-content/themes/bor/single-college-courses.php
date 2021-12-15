@@ -7,12 +7,12 @@
                     <a href="javascript:history.go(-1)" class="cta unformatted"><i class="fa fa-long-arrow-alt-left"></i>&nbsp;&nbsp;Back</a>
                     <div class="course__share">
                         <p>Share this course</p>
-                        <div data-bs-toggle="tooltip" data-bs-placement="top" title="Share Course via Email" class="results__icon">
+                        <div data-bs-toggle="tooltip" data-bs-placement="top" title="Email Course" class="results__icon">
                             <a id="emailShare" href="mailto:?subject=LA Dual Enrollment Course - <?php the_title() ?>&body=Check out this Louisiana Dual Enrollment Course: <?php the_title() ?>!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
                             </a>
                         </div>
-                        <div data-bs-toggle="tooltip" data-bs-placement="top" title="Share Course via PDF" class="results__icon">
+                        <div data-bs-toggle="tooltip" data-bs-placement="top" title="Download PDF" class="results__icon">
                             <img id="pdfShare" onclick="generatePDF(
                                 '<?php the_title() ?>', 
                                 '<?php the_field('course_full_title') ?>',
@@ -114,7 +114,7 @@
                                 <h2 class='mb-4'><?php the_field('coures_prerequisite'); ?></h2>
                             <?php endif; ?>
                             <?php if (!get_field('coures_prerequisite')) : ?>
-                                <p>There are no prerequisites for this course.</p>
+                                <p>There are no known prerequisites for this course.</p>
                             <?php endif; ?>
 
                             <p class="course__prereq">
@@ -130,7 +130,8 @@
                                 </div>
 
                                 <p class="mt-4">This course’s costs might be lower due to funding from your local high school.</p>
-
+                                <p> If you have more questions about costs, please contact your school counselor or check out our FAQs.</p>
+                                <a href="./index.php/faqs" class="cta unformatted">Cost FAQs&nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i></a>
                             </div>
 
                         </div>
@@ -170,7 +171,7 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <p class="mb-0"><?php echo get_field('department_contact_name', $post_id) ?></p>
-                                                <a class="unformatted" href="mailto:<?php echo get_field('department_contact_email', $post_id) ?>"><?php echo get_field('department_contact_email', $post_id) ?></a>
+                                                <a class="unformatted" target="_blank" href="mailto:<?php echo get_field('department_contact_email', $post_id) ?>"><?php echo get_field('department_contact_email', $post_id) ?></a>
                                             </div>
                                             <div class="col-lg-6">
                                                 <?php if (get_field('transfer_form', $post_id)) : ?>

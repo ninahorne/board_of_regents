@@ -2623,7 +2623,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   padding: 0.5rem 1rem;
   font-size: 14px;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 10px;
 }
 .results__course .results__info label.green {
   background-color: #0C9418;
@@ -2631,7 +2631,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   padding: 0.5rem 1rem;
   font-size: 14px;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 10px;
   color: white;
 }
 .results__course .results__info label:hover {
@@ -2901,6 +2901,25 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   color: #a3a3a3;
 }
 
+#qrCode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#qrCode p {
+  color: white;
+  font-size: 1.2rem;
+  padding: 2rem;
+}
+
+.results__stats {
+  color: white;
+  text-align: center;
+  margin: 1rem;
+  font-family: "Arvo";
+  font-weight: 600;
+}
+
 .course__row {
   display: flex;
   justify-content: space-between;
@@ -2969,7 +2988,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 .course__detail {
   display: flex;
   align-items: center;
-  flex: 0 0 33%;
+  flex: 1 0 33%;
   margin: 1rem 0;
 }
 @media screen and (max-width: 567px) {
@@ -3036,6 +3055,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 
 #singleCourse .background__blue {
   padding: 2rem;
+  min-height: 475px;
 }
 @media screen and (max-width: 567px) {
   #singleCourse .background__blue {
@@ -3048,11 +3068,12 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   padding: 2rem;
   margin-right: -100px;
   max-width: 100%;
-  top: -90px;
+  bottom: -90px;
+  right: 5rem;
 }
 @media screen and (max-width: 991px) {
   #singleCourse .background__orange-brush-stroke {
-    top: unset;
+    bottom: unset;
     width: 500px;
     margin: 0.5rem auto;
     max-width: 100%;
