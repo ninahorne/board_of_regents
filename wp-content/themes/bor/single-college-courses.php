@@ -1,5 +1,5 @@
 <?php include('header.php') ?>
-<div id="content">
+<div id="content" class="overflow-x-hidden">
     <div id="singleCourse">
         <div class="background__blue">
             <div class="container">
@@ -34,8 +34,10 @@
                     <?php the_field('institution') ?> |
                     <?php the_field('course_abbreviation') ?> <?php the_field('course_number'); ?>
                     <br />
+                    <?php if (get_field('la_common_course_number')) : ?>
+                        Louisiana Common Course (<?php the_field('la_common_course_number'); ?>)
 
-                    Louisiana Common Course (<?php the_field('la_common_course_number'); ?>)
+                    <?php endif; ?>
 
                 </p>
                 <div class="row">
@@ -131,7 +133,7 @@
 
                                 <p class="mt-4">This course’s costs might be lower due to funding from your local high school.</p>
                                 <p> If you have more questions about costs, please contact your school counselor or check out our FAQs.</p>
-                                <a href="./index.php/faqs" class="cta unformatted">Cost FAQs&nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i></a>
+                                <a href="./index.php/faqs?tags=Cost" class="cta unformatted">Cost FAQs&nbsp;&nbsp;<i class="fa fa-long-arrow-alt-right"></i></a>
                             </div>
 
                         </div>

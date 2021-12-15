@@ -546,7 +546,7 @@ function index_generic_page_search_in_algolia()
 
             if ($key == "what_is_the_faq") {
                 $record['title'] = $value;
-                $record['url_params'] = './index.php/faqs?question=' . urlencode($value);
+                $record['url_params'] = './index.php/faqs?query=' . urlencode($value);
             }
             if ($key == 'what_is_the_answer') {
                 $record['details'] = str_replace('&nbsp;', ' ', $value);

@@ -48,44 +48,35 @@
 <script>
     var faqs_search;
     var openFirstResultTimer;
+    let isFirstRender = true;
+    document.addEventListener("DOMContentLoaded", setInitialStateFromQueryParams);
 
     initializeAlgolia();
-    checkForQueryParamsAndOpenModal();
 
-    function checkForQueryParamsAndOpenModal() {
-        const queryParams = window.location.search;
 
-        if (queryParams) {
-            const faq = queryParams.replace('?question=', '');
-            const input = document.querySelector('#faqSearchBox .ais-SearchBox-input');
-            var decodedFAQ = decodeURI(faq);
-            decodedFAQ = decodedFAQ.replace(/%3F/g,' ').replace(/%2F/g, ' ');
-            input.value = decodedFAQ;
-            faqs_search.helper.state.query = decodedFAQ;
-            faqs_search.helper.search();
-            clearParams();
-        }
-    }
- 
+
+
     function openFirstResult() {
         openFirstResultTimer = setTimeout(() => {
             const results = document.querySelector('.faq__result__question');
             results.click();
         }, 500);
-        
+
     }
-    
+
 
     function initializeAlgolia() {
         faqs_search = instantsearch({
             indexName: "faqs",
             searchClient,
             searchFunction(helper) {
-                // Ensure we only trigger a search when there's a query
-                // const container = document.querySelector("#faqResults");
+                if (!isFirstRender) {
+                    setQueryParams(helper.state);
+                }
                 clearTimeout(openFirstResultTimer);
                 helper.search();
                 openFirstResult();
+                isFirstRender = false;
             },
         });
 
@@ -207,7 +198,76 @@
         icon.classList.toggle('fa-chevron-down');
 
     }
+
     function clearParams(params) {
         window.history.replaceState(null, null, '?');
+    }
+    function setInitialStateFromQueryParams() {
+        const queryParamsString = window.location.search;
+        const queryObject = getQueryParamsObjectFromString(queryParamsString);
+        const tags = queryObject["tags"];
+        const query = queryObject["query"];
+        const page = queryObject['refine'];
+
+
+        if (tags) {
+            const valArray = tags.split(";");
+            valArray.forEach(facet => {
+                faqs_search.helper.addHierarchicalFacetRefinement(
+                    "tags",
+                    facet
+                );
+            })
+
+        }
+
+        if (query) {
+            faqs_search.helper.setQuery(query);
+        }
+
+
+        if (page) {
+            faqs_search.helper.setPage(page);
+        }
+        faqs_search.helper.search();
+    }
+
+    // Functions for manually setting queries
+    function setQueryParams(state) {
+        /** We set query params based on algolia state so that a user
+         * can share and return to this state.
+         */
+
+        let queryParamString = '?';
+
+        const page = state.page;
+        console.log(state);
+
+        if (page) {
+            queryParamString = `${queryParamString}refine=${page}&`;
+        }
+
+        const tags = state.hierarchicalFacetsRefinements.tags.join(";");
+        if (tags) {
+            queryParamString = `${queryParamString}tags=${tags}&`;
+        }
+
+        const query = state.query;
+        if (query) {
+            queryParamString = `${queryParamString}query=${query}&`;
+        }
+
+        window.history.replaceState(null, null, queryParamString);
+    }
+
+    function getQueryParamsObjectFromString(queryString) {
+        const withoutQuestion = queryString.replace("?", "");
+        const arrayOfProps = withoutQuestion.split("&");
+        const obj = arrayOfProps.reduce((obj, prop) => {
+            const [key, value] = prop.split("=");
+            obj[key] = decodeURIComponent(value);
+            return obj;
+        }, {});
+        return obj;
     }
 </script>

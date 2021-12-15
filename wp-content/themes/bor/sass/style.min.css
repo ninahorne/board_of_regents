@@ -1199,6 +1199,10 @@ a.unformatted.cta:hover {
     flex-direction: column;
   }
 }
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
 .ugb-video-popup {
   position: relative;
   margin: 3rem auto;
@@ -2607,10 +2611,13 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 .results__course .results__info .results__description {
   font-weight: 400;
   font-size: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 @media screen and (max-width: 567px) {
   .results__course .results__info .results__description {
-    padding: 1rem 0;
     flex-wrap: wrap;
     margin: 1rem;
   }
@@ -2927,6 +2934,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   justify-content: space-between;
   padding: 3rem 0;
   align-items: center;
+  margin: 1rem 0;
 }
 @media screen and (max-width: 768px) {
   .course__row {

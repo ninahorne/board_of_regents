@@ -317,10 +317,6 @@
                 }
                 helper.search();
                 isFirstRender = false;
-                console.log(
-                    courses_search.renderState.courses.hits.results?.nbHits
-                );
-                console.log(courses_search.renderState.courses.hits.results?.nbHits);
             },
         });
 
@@ -364,10 +360,7 @@
                         ${item.satellite_campus && item.satellite_campus != 'none'? `<p class="results__satellite">${item.satellite_campus}</p>` : ''}
                     </div>
                     <div class="results__info second">
-                        <p class="results__description">${item.description.substring(
-                          0,
-                        150
-                        )}...</p>
+                        <p class="results__description">${item.description}...</p>
 
                         <label>${item.semester}</label>
                         <label class="green">Cost: $${

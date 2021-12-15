@@ -304,8 +304,11 @@
     .results__description {
       font-weight: 400;
       font-size: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
       @media screen and (max-width: 567px) {
-        padding: 1rem 0;
         flex-wrap: wrap;
         margin: 1rem;
       }
