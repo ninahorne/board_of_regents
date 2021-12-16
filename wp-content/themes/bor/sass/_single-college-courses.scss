@@ -138,12 +138,10 @@
     background-repeat: no-repeat;
     position: absolute;
     padding: 2rem;
-    margin-right: -100px;
-    max-width: 100%;
-    top: -90px;
-    right: 5rem;
+    bottom: -120px;
+    right: 0rem;
+    width: 50%;
     @media screen and (max-width: 991px) {
-      top: unset;
       width: 500px;
       margin: 0.5rem auto;
       max-width: 100%;
@@ -186,9 +184,8 @@
     align-items: center;
   }
   .pdf__image {
-    @include backgroundImage(
-      "http://localhost/board%20of%20regents/wp-content/uploads/2021/12/robina-weermeijer-IHfOpAzzjHM-unsplash-e1638852379666-1024x1024.jpg"
-    );
+    background-position: center;
+    background-size: cover;
     height: 400px;
     width: 400px;
     border-radius: 100%;

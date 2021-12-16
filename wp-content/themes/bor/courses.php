@@ -332,6 +332,7 @@
               hits.length
                 ? hits
                     .map((item) => {
+                        console.log(item.url)
                       return `<a target="_blank" class='results__link' href='${
                         item.url
                       }'><div class='results__course'>
@@ -360,7 +361,7 @@
                         ${item.satellite_campus && item.satellite_campus != 'none'? `<p class="results__satellite">${item.satellite_campus}</p>` : ''}
                     </div>
                     <div class="results__info second">
-                        <p class="results__description">${item.description}...</p>
+                        <p class="results__description">${format(item.description)}...</p>
 
                         <label>${item.semester}</label>
                         <label class="green">Cost: $${
@@ -700,8 +701,16 @@
             queryParamString = `${queryParamString}aroundLatLng=${aroundLatLng}&`;
         }
         const aroundRadius = state.aroundRadius;
+        console.log({
+            aroundRadius
+        })
+
         if (aroundRadius) {
             queryParamString = `${queryParamString}aroundRadius=${aroundRadius}&`;
+            console.log({
+                aroundRadius
+            })
+
         }
         const institutions = state.disjunctiveFacetsRefinements.institution.join(";");
         if (institutions) {
@@ -751,13 +760,7 @@
                     if (status == google.maps.GeocoderStatus.OK) {
                         lat = results[0].geometry.location.lat();
                         lng = results[0].geometry.location.lng();
-                        algLatLng = `
-                $ {
-                    lat
-                }, $ {
-                    lng
-                }
-                `;
+                        algLatLng = `${lat}, ${lng}`;
 
                         courses_search.helper.setQueryParameter("aroundLatLng", algLatLng);
                         courses_search.helper.setQueryParameter(
@@ -832,7 +835,6 @@
     // Unit conversion functions
     function getDistanceInMiles(item) {
         if (algLatLng) {
-            // TODO can i get rid of this?
             const itemLatLng = item._geoloc;
             const [lat, lng] = algLatLng.split(",");
             const userLatLng = {
@@ -953,22 +955,9 @@
             const li = document.createElement('li');
             const div = document.createElement('div');
             const h3 = document.createElement('h3');
-            h3.innerText = `
-                $ {
-                    hit.course_full_title
-                }
-                at $ {
-                    hit.institution
-                }
-                `;
+            h3.innerText = `${hit.course_full_title} at ${hit.institution}`;
             const h6 = document.createElement('h6');
-            h6.innerText = `
-                $ {
-                    hit.semester
-                } | Subject Area | Cost: $$ {
-                    hit.cost_per_course
-                }
-                `
+            h6.innerText = `${hit.semester} | Subject Area | Cost: $${hit.cost_per_course}`
             const p = document.createElement('p');
             p.innerText = hit.description;
             li.style.pageBreakInside = 'avoid';
@@ -1003,16 +992,7 @@
             aroundRadius: aroundRadius,
             aroundLatLng: aroundLatLng,
             facetFilters: [
-                `
-                institution: $ {
-                    institution
-                }
-                `,
-                `
-                modality: $ {
-                    modality
-                }
-                `,
+                `institution:${institution}`,`modality:${modality}`,
             ]
         });
 
@@ -1024,15 +1004,7 @@
                 page: i + 1,
                 aroundRadius: aroundRadius,
                 aroundLatLng: aroundLatLng,
-                facetFilters: [`
-                institution: $ {
-                    institution
-                }
-                `, `
-                modality: $ {
-                    modality
-                }
-                `, ]
+                facetFilters: [`institution:${institution}`, `modality:${modality}`, ]
             });
             let actHits = page_of_hits.hits;
             results.push(...page_of_hits.hits);
@@ -1061,6 +1033,13 @@
                 var tooltip = new bootstrap.Tooltip(tooltip)
             }
         )
+    }
+
+    function format(input){
+        console.log({input});
+        const formatted = input.replaceAll(/&nbsp;/gi, ' ').replaceAll('&#160', ' ').replaceAll('&NonBreakingSpace', ' ').replace(/\s/g,' ');
+        console.log({formatted});
+        return formatted;
     }
 </script>
 

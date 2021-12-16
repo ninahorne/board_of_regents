@@ -37,7 +37,7 @@ function plugin_setup_menu()
  */
 function sync_courses_airtable_with_wp_db()
 {
-    // TODO: Add checkbox for whether or not to delete
+
     // current courses
     delete_current_courses_in_wp_db();
 
@@ -107,6 +107,7 @@ function add_college_to_wp_db($record)
         'post_type' => 'college',
         'post_status' => 'publish'
     ));
+
     add_post_meta($id, 'campus', $fields->CAMPUS);
     add_post_meta($id, 'system', $fields->SYSTEM);
     add_post_meta($id, 'person_completing_form', $fields->{'Person Completing Form'});
@@ -146,7 +147,7 @@ function add_course_to_wp_db($record)
     add_post_meta($id, 'semester', $fields->{'Semester'});
     add_post_meta($id, 'course_number', $fields->{'Course Number'});
     add_post_meta($id, 'course_abbreviation', $fields->{'Course Abbreviation'});
-    add_post_meta($id, 'number_of_credit_hours', $fields->{'# of Credit Hours'});
+    add_post_meta($id, 'number_of_credit_hours', $fields->{'Number of Credit Hours'});
     add_post_meta($id, 'description', filterOutNBSP($fields->{'Description'}));
     add_post_meta($id, 'la_common_course_number', $fields->{'LA Common Course Number'});
     add_post_meta($id, 'institution', $fields->{'Institution'});
@@ -165,7 +166,7 @@ function add_course_to_wp_db($record)
 }
 
 function filterOutNBSP($input){
-    return trim($input, "\xC2\xA0");
+    return trim($input, "&nbsp;");
 }
 
 
@@ -176,6 +177,7 @@ function delete_current_courses_in_wp_db()
 
     $deletePosts = $wpdb->get_results("DELETE FROM wp_posts WHERE post_type='college-courses'");
     $deletePostMeta = $wpdb->get_results("DELETE FROM wp_postmeta WHERE post_id NOT IN (SELECT id FROM wp_posts)");
+    echo 'Deleted courses';
 }
 function delete_current_colleges_in_wp_db()
 {
@@ -646,8 +648,20 @@ function index_courses_in_algolia()
         'attributesForFaceting' => [
             "institution",
             "modality",
-            "course_subject"
+            "course_subject",
         ],
+        'searchableAttributes' => [
+            "corresponding_hs_course",
+            "course_abbreviation",
+            "course_full_title",
+            "description",
+            "la_common_course_number",
+            "institution",
+            "modality",
+            "course_subject",
+            "semester",
+            "course_prerequisite"
+        ]
 
     ]);
     $index->clearObjects()->wait();
@@ -659,6 +673,7 @@ function index_courses_in_algolia()
     $cc_query = new WP_Query($cc_args);
 
     $courses = $cc_query->posts;
+    print_r(count($courses));
     $count = 0;
     foreach ($courses as $course) {
         global $wpdb;
@@ -717,7 +732,7 @@ function dual_enrollment_init()
     // Courses Section
     echo "
     <h1>Courses</h1>
-    <p>TODO: remind user to backup DB before updating coureses </p>
+    <p>TODO: remind user to backup DB before updating courses </p>
     <a target='_blank' href='https://airtable.com/appYWq35ZeV7QE3QG/tblOyRDVaO09F802t/viw5LelXpFetJfvuP?blocks=hide'> View AirTable </a>
     <div>
     <form method='post'>
@@ -746,6 +761,8 @@ function dual_enrollment_init()
         <button type='submit' name='algolia_fields' value='algolia_fields'>Index Fields of Study in Algolia</button>
         <button type='submit' name='algolia_courses' value='algolia_courses'>Index Courses in Algolia</button>
         <button type='submit' name='algolia_page_search' value='algolia_page_search'>Index Sitewide Search in Algolia</button>
+        <button type='submit' name='delete_courses' value='delete_courses'>Delete Courses</button>
+
     </form>
     ";
 
@@ -756,7 +773,7 @@ function dual_enrollment_init()
         index_faqs_in_algolia();
     };
     if ($_POST['algolia_fields']) {
-        index_fields_of_study_in_algolia();
+       index_fields_of_study_in_algolia();
     };
     if ($_POST['algolia_courses']) {
         index_courses_in_algolia();
@@ -764,4 +781,9 @@ function dual_enrollment_init()
     if ($_POST['algolia_page_search']) {
         index_generic_page_search_in_algolia();
     };
+    if ($_POST['delete_courses']) {
+        delete_current_courses_in_wp_db();
+    };
+
+
 }

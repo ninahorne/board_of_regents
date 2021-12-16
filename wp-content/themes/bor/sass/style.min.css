@@ -2533,7 +2533,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   justify-content: center;
 }
 .results__course .results__image .results__image__background {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -2632,7 +2632,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   font-size: 10px;
 }
 .results__course .results__info label.green {
-  background-color: #0C9418;
+  background-color: #0c9418;
   border-radius: 36px;
   padding: 0.5rem 1rem;
   font-size: 14px;
@@ -3049,7 +3049,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 
 .course__cost {
   display: flex;
-  color: #0C9418;
+  color: #0c9418;
   align-items: center;
   justify-items: center;
 }
@@ -3076,14 +3076,12 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   background-repeat: no-repeat;
   position: absolute;
   padding: 2rem;
-  margin-right: -100px;
-  max-width: 100%;
-  top: -90px;
-  right: 5rem;
+  bottom: -120px;
+  right: 0rem;
+  width: 50%;
 }
 @media screen and (max-width: 991px) {
   #singleCourse .background__orange-brush-stroke {
-    top: unset;
     width: 500px;
     margin: 0.5rem auto;
     max-width: 100%;
@@ -3126,9 +3124,8 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   align-items: center;
 }
 .course__pdf .pdf__image {
-  background-image: url("http://localhost/board%20of%20regents/wp-content/uploads/2021/12/robina-weermeijer-IHfOpAzzjHM-unsplash-e1638852379666-1024x1024.jpg");
-  background-size: cover;
   background-position: center;
+  background-size: cover;
   height: 400px;
   width: 400px;
   border-radius: 100%;
@@ -3267,6 +3264,19 @@ html {
   font-size: 10px;
 }
 
+@media (min-width: 576px) {
+  .container,
+.container-sm {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container,
+.container-md,
+.container-sm {
+    max-width: 720px;
+  }
+}
 .container {
   max-width: 1000px;
 }

@@ -2,13 +2,13 @@
 <div id="content" class="overflow-x-hidden">
     <div id="singleCourse">
         <div class="background__blue">
-            <div class="container">
+            <div class="container position-relative">
                 <div class="course__row">
-                    <a href="javascript:history.go(-1)" class="cta unformatted"><i class="fa fa-long-arrow-alt-left"></i>&nbsp;&nbsp;Back</a>
+                    <a href="./index.php/courses" class="cta unformatted"><i class="fa fa-long-arrow-alt-left"></i>&nbsp;&nbsp;Back</a>
                     <div class="course__share">
                         <p>Share this course</p>
                         <div data-bs-toggle="tooltip" data-bs-placement="top" title="Email Course" class="results__icon">
-                            <a id="emailShare" href="mailto:?subject=LA Dual Enrollment Course - <?php the_title() ?>&body=Check out this Louisiana Dual Enrollment Course: <?php the_title() ?>!  <?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
+                            <a id="emailShare" href="mailto:?subject=LA Dual Enrollment Course - <?php the_title() ?>&body=Check out this Louisiana Dual Enrollment Course: %0D%0A<?php the_title() ?>! %0D%0A<?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
                             </a>
                         </div>
@@ -23,7 +23,7 @@
                                 '<?php the_field('semester') ?>', 
                                 '<?php the_field('number_of_credit_hours') ?>', 
                                 '<?php the_field('satellite_campus') ?>', 
-                                '<?php the_field('coures_prerequisite') ?>',
+                                '<?php the_field('course_prerequisite') ?>',
                                 '<?php the_field('course_subject') ?>',
                                 '<?php the_field('image') ?>'
                             )" src="<?php echo get_template_directory_uri(); ?>/images/file-pdf-solid.svg" alt="">
@@ -90,7 +90,7 @@
                             <?php endif; ?>
                         </div>
                     </div>
-                    <div class="col-lg-6 position-relative">
+                    <div class="col-lg-6 ">
                         <div class="background__orange-brush-stroke background__brush-stroke--large">
                             <img class="m-1 course__image" src="<?php the_field('image') ?>" alt="">
                         </div>
@@ -112,10 +112,10 @@
 
                     <div class="tab-content pb-4" style="max-width: 800px">
                         <div class="tab-pane fade show active" id="v-pills-prerequisites" role="tabpanel" aria-labelledby="v-pills-one-tab">
-                            <?php if (get_field('coures_prerequisite')) : ?>
-                                <h2 class='mb-4'><?php the_field('coures_prerequisite'); ?></h2>
+                            <?php if (get_field('course_prerequisite')) : ?>
+                                <h2 class='mb-4'><?php the_field('course_prerequisite'); ?></h2>
                             <?php endif; ?>
-                            <?php if (!get_field('coures_prerequisite')) : ?>
+                            <?php if (!get_field('course_prerequisite')) : ?>
                                 <p>There are no known prerequisites for this course.</p>
                             <?php endif; ?>
 
@@ -218,6 +218,7 @@
 
                     const div = document.createElement('div');
                     div.style.padding = '4rem';
+
                     div.classList.add('course__pdf');
                     const h1 = document.createElement('h1');
                     h1.innerText = title;
@@ -227,6 +228,8 @@
                     p.innerText = description;
                     const imageEl = document.createElement('div');
                     imageEl.classList.add("pdf__image");
+                    console.log(image);
+                    imageEl.style.backgroundImage = `url(${image})`;
 
                     const row = document.createElement('div');
                     row.classList.add('pdf__row');
