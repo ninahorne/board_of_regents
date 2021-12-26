@@ -47,7 +47,7 @@ function sync_courses_airtable_with_wp_db()
         'base'    => 'appYWq35ZeV7QE3QG'
     ));
 
-    $request = $airtable->getContent('COURSES 12.1.21.V2');
+    $request = $airtable->getContent('COURSES 12.16.21.V3');
     $i = 0;
 
     /**
@@ -125,15 +125,14 @@ function add_college_to_wp_db($record)
     add_post_meta($id, 'latitude', $fields->{'Latitude'});
     add_post_meta($id, 'longitude', $fields->{'Longitude'});
     add_post_meta($id, 'institution_url', $fields->{'Institution URL'});
-    
-
 }
 
 
 function add_course_to_wp_db($record)
 {
     $fields = $record->fields;
-    $fullTitle = $fields->{'Course Full Title'};
+    $fullTitle = filterOutNBSP($fields->{'Course Full Title'});
+    $description = filterOutNBSP($fields->{'Description'});
     $title = $fields->ID;
     $id = wp_insert_post(array(
         'post_title' => $title,
@@ -141,14 +140,13 @@ function add_course_to_wp_db($record)
         'post_status' => 'publish'
     ));
 
-
     add_post_meta($id, 'course_full_title', $fullTitle);
     add_post_meta($id, 'course_subject', $fields->{'Course Subject'});
     add_post_meta($id, 'semester', $fields->{'Semester'});
     add_post_meta($id, 'course_number', $fields->{'Course Number'});
     add_post_meta($id, 'course_abbreviation', $fields->{'Course Abbreviation'});
     add_post_meta($id, 'number_of_credit_hours', $fields->{'Number of Credit Hours'});
-    add_post_meta($id, 'description', filterOutNBSP($fields->{'Description'}));
+    add_post_meta($id, 'description', $description);
     add_post_meta($id, 'la_common_course_number', $fields->{'LA Common Course Number'});
     add_post_meta($id, 'institution', $fields->{'Institution'});
     add_post_meta($id, 'satellite_campus', $fields->{'Satellite Campus'});
@@ -159,14 +157,17 @@ function add_course_to_wp_db($record)
     add_post_meta($id, 'course_prerequisite', $fields->{'Course Prerequisite'});
     add_post_meta($id, 'cost_per_course', intval(substr($fields->{'Cost per Course'}, 1)));
     $subjectArea = get_subject_area_by_name($fields->{'Course Subject'});
-    if($subjectArea[0]) {
+    if ($subjectArea[0]) {
         add_post_meta($id, 'image', wp_get_attachment_image_src($subjectArea[0]->image, 'medium')[0]);
     }
-
 }
 
-function filterOutNBSP($input){
-    return trim($input, "&nbsp;");
+function filterOutNBSP($input)
+{
+    $html = htmlentities($input); 
+    $noSpaces = str_replace("&nbsp;", " ", $html);
+    $trimmed = trim($noSpaces, ' ');
+    return $trimmed;
 }
 
 
@@ -623,15 +624,15 @@ function index_generic_page_search_in_algolia()
         foreach ($post_metas as $meta) {
             $key = $meta->meta_key;
             $value = $meta->meta_value;
-            if($key == 'course_full_title') {
+            if ($key == 'course_full_title') {
                 $record['title'] = $value;
             }
-            if($key == 'description') {
+            if ($key == 'description') {
                 $record['details'] = $value;
             }
         }
         $record['objectID'] = $post->ID;
-        $record['url_params'] = './index.php/college-courses/' . $post->post_name;
+        $record['url_params'] = '../index.php/college-courses/' . $post->post_name;
         $index->saveObject($record);
         $count++;
     }
@@ -673,7 +674,6 @@ function index_courses_in_algolia()
     $cc_query = new WP_Query($cc_args);
 
     $courses = $cc_query->posts;
-    print_r(count($courses));
     $count = 0;
     foreach ($courses as $course) {
         global $wpdb;
@@ -691,15 +691,22 @@ function index_courses_in_algolia()
             $substring = substr($key, 0, 1);
             $record['objectID'] = $course->ID;
             if ($key == 'modality') {
-                $pieces = explode(",", $value);
                 $modality = [];
-                foreach ($pieces as $piece) {
-                    $modality = $piece;
+                if (strpos($value, 'In-person')) {
+                    array_push($modality, 'In-Person');
+                }
+                if (strpos($value, 'Online')) {
+                    array_push($modality, 'Online');
+                }
+
+                if (strpos($value, 'Hybrid')) {
+                    array_push($modality, 'Hybrid');
                 }
                 $record['modality'] = $modality;
-            }
-            if ($substring != "_") {
-                $record[$meta->meta_key] = $meta->meta_value;
+            } else {
+                if ($substring != "_") {
+                    $record[$meta->meta_key] = $meta->meta_value;
+                }
             }
         }
 
@@ -711,7 +718,7 @@ function index_courses_in_algolia()
             $record['_geoloc']['lng'] = $lng;
         }
         $subjectArea = get_subject_area_by_name($record['course_subject']);
-        if($subjectArea[0]) {
+        if ($subjectArea[0]) {
             $record['subject_area_image'] = wp_get_attachment_image_src($subjectArea[0]->image, 'medium')[0];
             $record['subject_area_icon'] = wp_get_attachment_image_src($subjectArea[0]->icon, 'medium')[0];
         }
@@ -738,7 +745,6 @@ function dual_enrollment_init()
     <form method='post'>
         <button type='submit' name='courses' value='courses'>Sync Courses Data with AirTable</button>
         <button type='submit' name='colleges' value='courses'>Sync Colleges Data with AirTable</button>
-
     </form>
     </div>
     
@@ -773,7 +779,7 @@ function dual_enrollment_init()
         index_faqs_in_algolia();
     };
     if ($_POST['algolia_fields']) {
-       index_fields_of_study_in_algolia();
+        index_fields_of_study_in_algolia();
     };
     if ($_POST['algolia_courses']) {
         index_courses_in_algolia();
@@ -784,6 +790,4 @@ function dual_enrollment_init()
     if ($_POST['delete_courses']) {
         delete_current_courses_in_wp_db();
     };
-
-
 }

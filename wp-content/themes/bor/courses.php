@@ -39,7 +39,7 @@
                                         </div>
                                         <div class="distance__slider">
                                             <label for="distanceSlider">Radius (in miles)</label>
-                                            <input id="distanceSlider" class="slider" step="5" type="range" min="0" max="50" value="25">
+                                            <input disabled id="distanceSlider" class="slider" step="5" type="range" min="0" max="50" value="25">
 
                                             <div class="slider__values">
                                                 <p>0</p>
@@ -71,8 +71,8 @@
                                         <div id="subjectAreaRefinements" class="refinements__select">
                                             <div id="subjectAreaLabel" class="refinements__label">
                                                 <div class="refinements__title">
-                                                    <p>Subject Areas</p> &nbsp;
-                                                    <span>Ex: Marketing</span>
+                                                    <p>Subject Areas</p>
+                                                    <span>&nbsp;&nbsp;&nbsp;Ex: Marketing</span>
                                                 </div>
                                                 <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
 
@@ -86,8 +86,8 @@
                                         <div id="typeRefinements" class="refinements__select">
                                             <div id="typeLabel" class="refinements__label">
                                                 <div class="refinements__title">
-                                                    <p>Type</p> &nbsp;
-                                                    <span>Ex: College - On Campus</span>
+                                                    <p>Type</p>
+                                                    <span>&nbsp;&nbsp;&nbsp;Ex: College - On Campus</span>
                                                 </div>
                                                 <span><img src="<?php echo get_template_directory_uri(); ?>/images/sort-down-solid.svg" /></span>
                                             </div>
@@ -361,12 +361,11 @@
                         ${item.satellite_campus && item.satellite_campus != 'none'? `<p class="results__satellite">${item.satellite_campus}</p>` : ''}
                     </div>
                     <div class="results__info second">
-                        <p class="results__description">${format(item.description)}...</p>
-
-                        <label>${item.semester}</label>
+                        <p class="results__description">${item.description}...</p>
                         <label class="green">Cost: $${
                           item.cost_per_course
                         }</label>
+                        <label>${item.semester}</label>
                         <label>${item.course_subject}</label>
                        
                     </div>
@@ -454,12 +453,12 @@
                 refine,
             } = renderOptions;
 
-            let page = isFirstPage ? 1 : currentRefinement;
+            let page = currentRefinement == 0 ? 1 : currentRefinement;
 
             document.querySelector('#pagination').innerHTML = `
                 <ul class="results__pagination">
                 ${
-                !isFirstPage
+                page != 1
                 ? `
                     <li class="pagination__prev">
                         <a href="" data-value="${page - 1}"><</a>
@@ -558,7 +557,7 @@
             instantsearch.widgets.sortBy({
                 container: "#sortBy",
                 items: [{
-                        label: "Sort By:",
+                        label: "Most Relevant",
                         value: "courses",
                     },
                     {
@@ -701,15 +700,11 @@
             queryParamString = `${queryParamString}aroundLatLng=${aroundLatLng}&`;
         }
         const aroundRadius = state.aroundRadius;
-        console.log({
-            aroundRadius
-        })
+
 
         if (aroundRadius) {
             queryParamString = `${queryParamString}aroundRadius=${aroundRadius}&`;
-            console.log({
-                aroundRadius
-            })
+
 
         }
         const institutions = state.disjunctiveFacetsRefinements.institution.join(";");
@@ -771,6 +766,7 @@
 
                         const times = document.querySelector(".search__zip span");
                         times.classList.remove("hidden");
+                        distanceSlider.disabled = false;
                     }
                 }
             );
@@ -823,6 +819,7 @@
     // Zip code functions
     function clearZipCode() {
         zipCodeInput.value = "";
+        distanceSlider.disabled = true;
         triggerZipCodeChangeEvent();
 
     }
@@ -899,13 +896,41 @@
     }
     async function generatePDF() {
         const results = await getSearchResultsForSharing();
-        const html = convertResultsIntoHTML(results);
-        html2pdf().set({
-            margin: 5,
-            pagebreak: {
-                mode: ['css', 'legacy']
-            }
-        }).from(html).save('LA-Dual-Enrollment-Courses-Results');
+        const html = await convertResultsIntoHTML(results);
+
+        const container = document.createElement('div');
+        const h2 = document.createElement('h2');
+        h2.innerText = "Louisiana Dual Enrollment Courses";
+        container.appendChild(h2);
+
+        let worker = html2pdf()
+            .set({
+                margin: 5,
+                pagebreak: {
+                    mode: ['css', 'legacy']
+                }
+            })
+            .from(container);
+
+        if (html.length > 1) {
+            worker = worker.toPdf() // worker is now a jsPDF instance
+
+            // add each element/page individually to the PDF render process
+            html.slice(1).forEach((element, index) => {
+                worker = worker
+                    .get('pdf')
+                    .then(pdf => {
+                        pdf.addPage()
+                    })
+                    .from(element)
+                    .toContainer()
+                    .toCanvas()
+                    .toPdf()
+            })
+        }
+
+        worker = worker.save('LA-Dual-Enrollment-Courses-Results')
+
 
     }
 
@@ -944,32 +969,38 @@
     }
 
     function convertResultsIntoHTML(hits) {
-        const container = document.createElement('div');
-        const h2 = document.createElement('h2');
-        h2.innerText = "Louisiana Dual Enrollment Courses";
-        const ol = document.createElement('ol');
-        ol.style.padding = "3rem";
-        container.style.padding = "2rem";
 
+
+        const html = [];
         hits.forEach(hit => {
-            const li = document.createElement('li');
-            const div = document.createElement('div');
-            const h3 = document.createElement('h3');
-            h3.innerText = `${hit.course_full_title} at ${hit.institution}`;
-            const h6 = document.createElement('h6');
-            h6.innerText = `${hit.semester} | Subject Area | Cost: $${hit.cost_per_course}`
-            const p = document.createElement('p');
-            p.innerText = hit.description;
-            li.style.pageBreakInside = 'avoid';
-            div.appendChild(h3);
-            div.appendChild(h6);
-            div.appendChild(p);
-            li.appendChild(div);
-            ol.appendChild(li);
+            const container = document.createElement('div');
+            const ul = document.createElement('ul');
+            ul.style.padding = "3rem";
+            ul.style.listStyle = 'circle';
+            container.style.padding = "2rem";
+            container.classList.add('pdf__results')
+            hit.forEach(
+                list => {
+                    const li = document.createElement('li');
+                    const div = document.createElement('div');
+                    const h3 = document.createElement('h3');
+                    h3.innerText = `${list.course_full_title} at ${list.institution}`;
+                    const h6 = document.createElement('h6');
+                    h6.innerText = `${list.semester} | Subject Area | Cost: $${list.cost_per_course}`
+                    const p = document.createElement('p');
+                    p.innerText = list.description;
+                    li.style.pageBreakInside = 'avoid';
+                    div.appendChild(h3);
+                    div.appendChild(h6);
+                    div.appendChild(p);
+                    li.appendChild(div);
+                    ul.appendChild(li);
+                }
+            )
+            container.appendChild(ul);
+            html.push(container);
         });
-        container.appendChild(h2);
-        container.appendChild(ol);
-        return container;
+        return Promise.resolve(html);
     }
 
     async function getSearchResultsForSharing() {
@@ -992,10 +1023,9 @@
             aroundRadius: aroundRadius,
             aroundLatLng: aroundLatLng,
             facetFilters: [
-                `institution:${institution}`,`modality:${modality}`,
+                `institution:${institution}`, `modality:${modality}`,
             ]
         });
-
         nbPages = hits.nbPages;
 
 
@@ -1007,7 +1037,7 @@
                 facetFilters: [`institution:${institution}`, `modality:${modality}`, ]
             });
             let actHits = page_of_hits.hits;
-            results.push(...page_of_hits.hits);
+            results.push(page_of_hits.hits);
         }
         return Promise.resolve(results);
 
@@ -1035,10 +1065,10 @@
         )
     }
 
-    function format(input){
-        console.log({input});
-        const formatted = input.replaceAll(/&nbsp;/gi, ' ').replaceAll('&#160', ' ').replaceAll('&NonBreakingSpace', ' ').replace(/\s/g,' ');
-        console.log({formatted});
+    function format(input) {
+
+        const formatted = input.replaceAll(/&nbsp;/gi, ' ').replaceAll('&#160', ' ').replaceAll('&NonBreakingSpace', ' ').replace(/\s/g, ' ');
+
         return formatted;
     }
 </script>

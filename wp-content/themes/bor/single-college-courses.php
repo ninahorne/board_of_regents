@@ -8,25 +8,30 @@
                     <div class="course__share">
                         <p>Share this course</p>
                         <div data-bs-toggle="tooltip" data-bs-placement="top" title="Email Course" class="results__icon">
-                            <a id="emailShare" href="mailto:?subject=LA Dual Enrollment Course - <?php the_title() ?>&body=Check out this Louisiana Dual Enrollment Course: %0D%0A<?php the_title() ?>! %0D%0A<?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
+                            <a id="emailShare" href="mailto:?subject=LA Dual Enrollment Course - <?php the_title() ?>&body=Check out this Louisiana Dual Enrollment Course: <?php the_title() ?>! %0D%0A %0D%0A<?php echo 'https://' . getenv('HTTP_HOST') . $_SERVER['REQUEST_URI'] ?>">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/envelope-solid.svg" alt="">
                             </a>
                         </div>
-                        <div data-bs-toggle="tooltip" data-bs-placement="top" title="Download PDF" class="results__icon">
-                            <img id="pdfShare" onclick="generatePDF(
+                        <?php
+
+                        $id = get_the_ID();
+                        $image = get_field('image', $id);
+                        ?>
+                        <div id="pdfShare" onclick="generatePDF(
                                 '<?php the_title() ?>', 
                                 '<?php the_field('course_full_title') ?>',
                                 '<?php the_field('institution') ?>',
-                                '<?php the_field('description') ?>', 
+                                '<?php echo htmlentities(addslashes(get_field('description', $id))) ?>', 
                                 '<?php the_field('cost_per_course') ?>', 
                                 '<?php the_field('modality') ?>', 
                                 '<?php the_field('semester') ?>', 
                                 '<?php the_field('number_of_credit_hours') ?>', 
                                 '<?php the_field('satellite_campus') ?>', 
-                                '<?php the_field('course_prerequisite') ?>',
+                                '<?php echo htmlentities(addslashes(get_field('course_prerequisite', $id))) ?>',
                                 '<?php the_field('course_subject') ?>',
-                                '<?php the_field('image') ?>'
-                            )" src="<?php echo get_template_directory_uri(); ?>/images/file-pdf-solid.svg" alt="">
+                                '<?php echo addslashes(get_field('image', $id)) ?>'
+                            )" data-bs-toggle="tooltip" data-bs-placement="top" title="Download PDF" class="results__icon">
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/file-pdf-solid.svg" alt="">
                         </div>
                     </div>
                 </div>
@@ -92,7 +97,7 @@
                     </div>
                     <div class="col-lg-6 ">
                         <div class="background__orange-brush-stroke background__brush-stroke--large">
-                            <img class="m-1 course__image" src="<?php the_field('image') ?>" alt="">
+                            <img class="m-1 course__image" src="<?php echo get_field('image', $id) ?>" alt="">
                         </div>
                     </div>
                 </div>
