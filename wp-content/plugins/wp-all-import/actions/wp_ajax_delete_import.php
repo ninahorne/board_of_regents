@@ -77,7 +77,7 @@ function pmxi_wp_ajax_delete_import(){
 				$is_all_records_deleted = $import->deletePostsAjax( ! $params['is_delete_posts'], $params['is_delete_images'], $params['is_delete_attachments'] );
 
 				$response['result'] = (empty($params['import_ids'][$key + 1])) ? $is_all_records_deleted : false;
-				$response['msg']    = sprintf(__('Import #%d - %d records deleted', 'wp_all_import_plugin'), $import->id, $import->deleted);
+				$response['msg']    = sprintf(__('Import #%d - %d records deleted', 'wp_all_import_plugin'), intval($import->id), intval($import->deleted));
 
 				if ( $is_all_records_deleted === true )
 				{

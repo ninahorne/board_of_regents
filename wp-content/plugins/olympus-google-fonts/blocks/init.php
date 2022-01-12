@@ -137,9 +137,9 @@ function olympus_google_fonts_block_render( $attributes ) {
 		$style .= "color: {$color}{$forced};";
 	}
 
-	$output .= '<' . $block_type . ' class="fonts-plugin-block" style="' . $style . '">';
+	$output .= '<' . $block_type . ' class="fonts-plugin-block" style="' . esc_attr( $style ) . '">';
 	$output .= $content;
 	$output .= '</' . $block_type . '>';
 
-	return $output;
+	return wp_kses_post( $output );
 }

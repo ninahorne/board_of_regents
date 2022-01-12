@@ -57,11 +57,11 @@
 								<td class="txt_center">
 
 									<p class="wpallimport-root-element">
-										<?php echo PMXI_Plugin::$session->source['root_element'];?>
+										<?php echo wp_kses_post(PMXI_Plugin::$session->source['root_element']);?>
 									</p>								
 									<input type="text" id="goto_element" value="1"/>
 									<span class="wpallimport-elements-information">
-										<?php printf(__('of <span class="wpallimport-elements-count-info">%s</span>','wp_all_import_plugin'), PMXI_Plugin::$session->count);?> 
+										<?php printf(__('of <span class="wpallimport-elements-count-info">%s</span>','wp_all_import_plugin'), intval(PMXI_Plugin::$session->count));?>
 									</span>																	
 
 								</td>
@@ -100,11 +100,11 @@
 					<div class="import_information">
 						<?php if (PMXI_Plugin::$session->wizard_type == 'new') :?>
 						<h3>
-							<?php printf(__('Each <span>&lt;<span class="root_element">%s</span>&gt;</span> element will be imported into a <span>New %s</span>'), PMXI_Plugin::$session->source['root_element'], $custom_type->labels->singular_name); ?>
+							<?php printf(__('Each <span>&lt;<span class="root_element">%s</span>&gt;</span> element will be imported into a <span>New %s</span>'), esc_attr(PMXI_Plugin::$session->source['root_element']), esc_attr($custom_type->labels->singular_name)); ?>
 						</h3>
 						<?php else: ?>
 						<h3>
-							<?php printf(__('Data in <span>&lt;<span class="root_element">%s</span>&gt;</span> elements will be imported to <span>%s</span>'), PMXI_Plugin::$session->source['root_element'], $custom_type->labels->name); ?>
+							<?php printf(__('Data in <span>&lt;<span class="root_element">%s</span>&gt;</span> elements will be imported to <span>%s</span>'), esc_attr(PMXI_Plugin::$session->source['root_element']), esc_attr($custom_type->labels->name)); ?>
 						</h3>
 						<?php endif; ?>
 						
@@ -171,7 +171,7 @@
 						<td style="width:5%; font-weight:bold; color: #000;"><?php _e('XPath','wp_all_import_plugin');?></td>
 						<td style="width:95%;">
 							<input type="text" name="xpath" value="<?php echo esc_attr($post['xpath']) ?>" style="max-width:none;" />					
-							<input type="hidden" id="root_element" name="root_element" value="<?php echo PMXI_Plugin::$session->source['root_element']; ?>"/>					
+							<input type="hidden" id="root_element" name="root_element" value="<?php echo esc_attr(PMXI_Plugin::$session->source['root_element']); ?>"/>
 						</td>
 					</tr>
 				</table>				
@@ -202,7 +202,7 @@
 	<hr>
 
 	<p class="wpallimport-submit-buttons" style="text-align:center;">
-		<a href="<?php echo add_query_arg('action', 'index', $this->baseUrl); ?>" class="back rad3"><?php _e('Back to Step 1','wp_all_import_plugin');?></a>
+		<a href="<?php echo esc_url(add_query_arg('action', 'index', $this->baseUrl)); ?>" class="back rad3"><?php _e('Back to Step 1','wp_all_import_plugin');?></a>
 		&nbsp;
 		<input type="hidden" name="is_submitted" value="1" />
 		<?php wp_nonce_field('choose-elements', '_wpnonce_choose-elements') ?>

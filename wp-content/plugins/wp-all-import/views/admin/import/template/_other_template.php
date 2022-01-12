@@ -5,7 +5,7 @@ $custom_type = get_post_type_object( $post_type );
 <div class="wpallimport-collapsed closed wpallimport-section ">
 	<div class="wpallimport-content-section ">
 		<div class="wpallimport-collapsed-header">
-			<h3><?php printf(__('Other %s Options','wp_all_import_plugin'), $custom_type->labels->singular_name);?></h3>	
+			<h3><?php printf(__('Other %s Options','wp_all_import_plugin'), esc_attr($custom_type->labels->singular_name));?></h3>
 		</div>
 		<div class="wpallimport-collapsed-content" style="padding: 0;">
 			<div class="wpallimport-collapsed-content-inner">
@@ -148,8 +148,8 @@ $custom_type = get_post_type_object( $post_type );
 								<?php $post_formats = get_theme_support( 'post-formats' ); ?>
 
 								<div class="input">
-									<input type="radio" id="post_format_<?php echo "standart_" . $post_type; ?>" name="post_format" value="0" <?php echo (empty($post['post_format']) or ( empty($post_formats) )) ? 'checked="checked"' : '' ?> />
-									<label for="post_format_<?php echo "standart_" . $post_type; ?>"><?php _e( "Standard", 'wp_all_import_plugin') ?></label>
+									<input type="radio" id="post_format_<?php echo "standart_" . esc_attr($post_type); ?>" name="post_format" value="0" <?php echo (empty($post['post_format']) or ( empty($post_formats) )) ? 'checked="checked"' : '' ?> />
+									<label for="post_format_<?php echo "standart_" . esc_attr($post_type); ?>"><?php _e( "Standard", 'wp_all_import_plugin') ?></label>
 								</div>
 
 								<?php								
@@ -158,7 +158,7 @@ $custom_type = get_post_type_object( $post_type );
 											?>
 											<div class="input">
 												<input type="radio" id="post_format_<?php echo esc_attr($post_format); ?>" name="post_format" value="<?php echo esc_attr($post_format); ?>" <?php echo $post_format == $post['post_format'] ? 'checked="checked"' : '' ?> />
-												<label for="post_format_<?php echo esc_attr($post_format); ?>"><?php _e( ucfirst($post_format), 'wp_all_import_plugin') ?></label>
+												<label for="post_format_<?php echo esc_attr($post_format); ?>"><?php _e( ucfirst(esc_attr($post_format)), 'wp_all_import_plugin') ?></label>
 											</div>
 											<?php
 										}

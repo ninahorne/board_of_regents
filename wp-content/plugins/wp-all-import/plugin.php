@@ -3,7 +3,7 @@
 Plugin Name: WP All Import
 Plugin URI: http://www.wpallimport.com/wordpress-xml-csv-import/?utm_source=import-plugin-free&utm_medium=wp-plugins-page&utm_campaign=upgrade-to-pro
 Description: The most powerful solution for importing XML and CSV files to WordPress. Create Posts and Pages with content from any XML or CSV file. A paid upgrade to WP All Import Pro is available for support and additional features.
-Version: 3.6.4
+Version: 3.6.5
 Author: Soflyy
 */
 
@@ -25,7 +25,7 @@ define('WP_ALL_IMPORT_ROOT_URL', rtrim(plugin_dir_url(__FILE__), '/'));
  */
 define('WP_ALL_IMPORT_PREFIX', 'pmxi_');
 
-define('PMXI_VERSION', '3.6.4');
+define('PMXI_VERSION', '3.6.5');
 
 define('PMXI_EDITION', 'free');
 
@@ -897,11 +897,11 @@ final class PMXI_Plugin {
 		$uploads = wp_upload_dir();
 
 		if ( ! is_dir($uploads['basedir'] . DIRECTORY_SEPARATOR . self::LOGS_DIRECTORY) or ! is_writable($uploads['basedir'] . DIRECTORY_SEPARATOR . self::LOGS_DIRECTORY)) {
-			die(sprintf(__('Uploads folder %s must be writable', 'wp_all_import_plugin'), $uploads['basedir'] . DIRECTORY_SEPARATOR . self::LOGS_DIRECTORY));
+			die(sprintf(__('Uploads folder %s must be writable', 'wp_all_import_plugin'), esc_attr($uploads['basedir'] . DIRECTORY_SEPARATOR . self::LOGS_DIRECTORY)));
 		}
 
 		if ( ! is_dir($uploads['basedir'] . DIRECTORY_SEPARATOR . WP_ALL_IMPORT_UPLOADS_BASE_DIRECTORY) or ! is_writable($uploads['basedir'] . DIRECTORY_SEPARATOR . WP_ALL_IMPORT_UPLOADS_BASE_DIRECTORY)) {
-			die(sprintf(__('Uploads folder %s must be writable', 'wp_all_import_plugin'), $uploads['basedir'] . DIRECTORY_SEPARATOR . WP_ALL_IMPORT_UPLOADS_BASE_DIRECTORY));
+			die(sprintf(__('Uploads folder %s must be writable', 'wp_all_import_plugin'), esc_attr($uploads['basedir'] . DIRECTORY_SEPARATOR . WP_ALL_IMPORT_UPLOADS_BASE_DIRECTORY)));
 		}
 
 		// create/update required database tables
@@ -1072,7 +1072,7 @@ final class PMXI_Plugin {
 				<div class="error"><p>
 					<?php printf(
 							__('<b>%s Plugin</b>: Current sql user %s doesn\'t have ALTER privileges', 'pmwi_plugin'),
-							self::getInstance()->getName(), DB_USER
+							esc_attr(self::getInstance()->getName()), esc_attr(DB_USER)
 					) ?>
 				</p></div>
 				<?php

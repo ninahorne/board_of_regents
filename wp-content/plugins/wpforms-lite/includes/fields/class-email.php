@@ -769,13 +769,15 @@ class WPForms_Field_Email extends WPForms_Field {
 		// Get a filtered form content.
 		$form_data = json_decode( stripslashes( $form['post_content'] ), true );
 
-		foreach ( $form_data['fields'] as $key => $field ) {
-			if ( $field['type'] !== 'email' ) {
-				continue;
-			}
+		if ( ! empty( $form_data['fields'] ) ) {
+			foreach ( (array) $form_data['fields'] as $key => $field ) {
+				if ( empty( $field['type'] ) || $field['type'] !== 'email' ) {
+					continue;
+				}
 
-			$form_data['fields'][ $key ]['allowlist'] = ! empty( $field['allowlist'] ) ? implode( PHP_EOL, $this->sanitize_restricted_rules( $field['allowlist'] ) ) : '';
-			$form_data['fields'][ $key ]['denylist']  = ! empty( $field['denylist'] ) ? implode( PHP_EOL, $this->sanitize_restricted_rules( $field['denylist'] ) ) : '';
+				$form_data['fields'][ $key ]['allowlist'] = ! empty( $field['allowlist'] ) ? implode( PHP_EOL, $this->sanitize_restricted_rules( $field['allowlist'] ) ) : '';
+				$form_data['fields'][ $key ]['denylist']  = ! empty( $field['denylist'] ) ? implode( PHP_EOL, $this->sanitize_restricted_rules( $field['denylist'] ) ) : '';
+			}
 		}
 
 		$form['post_content'] = wpforms_encode( $form_data );

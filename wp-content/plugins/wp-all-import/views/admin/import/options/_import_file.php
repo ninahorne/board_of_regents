@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	var plugin_url = '<?php echo WP_ALL_IMPORT_ROOT_URL; ?>';
+	var plugin_url = '<?php echo esc_url(WP_ALL_IMPORT_ROOT_URL); ?>';
 </script>
 
 <div class="change_file">
@@ -22,7 +22,7 @@
 					<?php 
 					if ( ! empty($upload_validation) ): 										
 						$file_type = strtoupper(pmxi_getExtension($post['file']));
-						printf(__('This %s file has errors and is not valid.', 'wp_all_import_plugin'), $file_type);
+						printf(__('This %s file has errors and is not valid.', 'wp_all_import_plugin'), esc_attr($file_type));
 					endif;
 					?>
 				</h4>
@@ -102,7 +102,7 @@
 								<input type="hidden" name="file" value="<?php if ('file' == $import->type) echo esc_attr($import->path); ?>"/>	
 								
 								<div class="wpallimport-note" style="margin: 0 auto; ">
-									<?php printf(__('Files uploaded to <strong>%s</strong> will appear in this list.', 'wp_all_import_plugin'), $upload_dir['basedir'] . '/wpallimport/files'); ?>									
+									<?php printf(__('Files uploaded to <strong>%s</strong> will appear in this list.', 'wp_all_import_plugin'), esc_attr($upload_dir['basedir'] . '/wpallimport/files')); ?>
 								</div>
 								<div class="wpallimport-free-edition-notice">									
 									<a href="https://www.wpallimport.com/checkout/?edd_action=add_to_cart&download_id=2707176&edd_options%5Bprice_id%5D=1&utm_source=import-plugin-free&utm_medium=error&utm_campaign=use-existing-file" target="_blank" class="upgrade_link"><?php _e('Upgrade to the Pro edition of WP All Import to Use Existing Files', 'wp_all_import_plugin');?></a>

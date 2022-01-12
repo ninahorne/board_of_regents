@@ -35,7 +35,7 @@ if ( ! empty($post_taxonomies)):
 													<div class="input sub_input">
 														<div class="input">
 															<input type="radio" name="tax_logic[<?php echo esc_attr($ctx->name);?>]" value="single" id="tax_logic_single_<?php echo esc_attr($ctx->name);?>" class="switcher" <?php echo (empty($post['tax_logic'][$ctx->name]) or $post['tax_logic'][$ctx->name] == 'single') ? 'checked="checked"' : ''; ?>/>
-															<label for="tax_logic_single_<?php echo esc_attr($ctx->name);?>"><?php printf(__('Each %s has just one %s', 'wp_all_import_plugin'), $custom_type->labels->singular_name, $ctx->labels->singular_name); ?></label>
+															<label for="tax_logic_single_<?php echo esc_attr($ctx->name);?>"><?php printf(__('Each %s has just one %s', 'wp_all_import_plugin'), esc_attr($custom_type->labels->singular_name), esc_attr($ctx->labels->singular_name)); ?></label>
 															<div class="switcher-target-tax_logic_single_<?php echo esc_attr($ctx->name);?> sub_input">
 																<input type="hidden" name="term_assing[<?php echo esc_attr($ctx->name);?>]" value="0"/>
 																<input type="checkbox" name="term_assing[<?php echo esc_attr($ctx->name);?>]" <?php echo (isset($post['term_assing'][$ctx->name])) ? (( ! empty($post['term_assing'][$ctx->name]) ) ? 'checked="checked"' : '') : 'checked="checked"'; ?> title="<?php _e('Assign post to the taxonomy.','wp_all_import_plugin');?>" value="1"/>
@@ -43,12 +43,12 @@ if ( ! empty($post_taxonomies)):
 																<div class="input tax_is_full_search_single" style="margin: 10px 0;">
 																	<input type="hidden" name="tax_is_full_search_single[<?php echo esc_attr($ctx->name); ?>]" value="0"/>
 																	<input type="checkbox" id="tax_is_full_search_single_<?php echo esc_attr($ctx->name); ?>" class="switcher" <?php if ( ! empty($post['tax_is_full_search_single'][$ctx->name]) ) echo "checked='checked'"; ?> name="tax_is_full_search_single[<?php echo esc_attr($ctx->name); ?>]" value="1"/>
-																	<label for="tax_is_full_search_single_<?php echo esc_attr($ctx->name);?>"><?php printf(__('Try to match terms to existing child %s', 'wp_all_import_plugin'), $ctx->labels->name); ?></label>
+																	<label for="tax_is_full_search_single_<?php echo esc_attr($ctx->name);?>"><?php printf(__('Try to match terms to existing child %s', 'wp_all_import_plugin'), esc_attr($ctx->labels->name)); ?></label>
 																	<div class="switcher-target-tax_is_full_search_single_<?php echo esc_attr($ctx->name); ?> sub_input">
 																		<div class="input tax_assign_to_one_term_single" style="margin: 10px 0;">
 																			<input type="hidden" name="tax_assign_to_one_term_single[<?php echo esc_attr($ctx->name); ?>]" value="0"/>
 																			<input type="checkbox" id="tax_assign_to_one_term_single_<?php echo esc_attr($ctx->name); ?>" <?php if ( ! empty($post['tax_assign_to_one_term_single'][$ctx->name]) ) echo "checked='checked'"; ?> name="tax_assign_to_one_term_single[<?php echo esc_attr($ctx->name); ?>]" value="1"/>
-																			<label for="tax_assign_to_one_term_single_<?php echo esc_attr($ctx->name);?>"><?php printf(__('Only assign %s to the imported %s, not the entire hierarchy', 'wp_all_import_plugin'), $custom_type->labels->name, $ctx->labels->singular_name); ?></label>
+																			<label for="tax_assign_to_one_term_single_<?php echo esc_attr($ctx->name);?>"><?php printf(__('Only assign %s to the imported %s, not the entire hierarchy', 'wp_all_import_plugin'), esc_attr($custom_type->labels->name), esc_attr($ctx->labels->singular_name)); ?></label>
 																			<a href="#help" class="wpallimport-help" title="<?php _e('By default all categories above the matched category will also be assigned to the post. If enabled, only the imported category will be assigned to the post.', 'wp_all_import_plugin'); ?>" style="position:relative; top: -1px;">?</a>
 																		</div>
 																	</div>
@@ -57,21 +57,21 @@ if ( ! empty($post_taxonomies)):
 														</div>
 														<div class="input">
 															<input type="radio" name="tax_logic[<?php echo esc_attr($ctx->name);?>]" value="multiple" id="tax_logic_multiple_<?php echo esc_attr($ctx->name);?>" class="switcher" <?php echo (!empty($post['tax_logic'][$ctx->name]) and $post['tax_logic'][$ctx->name] == 'multiple') ? 'checked="checked"' : ''; ?>/>
-															<label for="tax_logic_multiple_<?php echo esc_attr($ctx->name);?>"><?php printf(__('Each %s has multiple %s', 'wp_all_import_plugin'), $custom_type->labels->singular_name, $ctx->labels->name); ?></label>
+															<label for="tax_logic_multiple_<?php echo esc_attr($ctx->name);?>"><?php printf(__('Each %s has multiple %s', 'wp_all_import_plugin'), esc_attr($custom_type->labels->singular_name), esc_attr($ctx->labels->name)); ?></label>
 															<div class="switcher-target-tax_logic_multiple_<?php echo esc_attr($ctx->name);?> sub_input">
 																<input type="hidden" name="multiple_term_assing[<?php echo esc_attr($ctx->name);?>]" value="1"/>
 																<input type="text" class="widefat multiple_xpath_field" name="tax_multiple_xpath[<?php echo esc_attr($ctx->name); ?>]" value="<?php echo ( ! empty($post['tax_multiple_xpath'][$ctx->name])) ? esc_textarea($post['tax_multiple_xpath'][$ctx->name]) : ''; ?>" style="width:50%;"/>
 																<label><?php _e('Separated by', 'wp_all_import_plugin'); ?></label>										
-																<input type="text" class="small tax_delim" name="tax_multiple_delim[<?php echo esc_attr($ctx->name); ?>]" value="<?php echo ( ! empty($post['tax_multiple_delim'][$ctx->name]) ) ? str_replace("&amp;","&", htmlentities(htmlentities($post['tax_multiple_delim'][$ctx->name]))) : ',' ?>" />
+																<input type="text" class="small tax_delim" name="tax_multiple_delim[<?php echo esc_attr($ctx->name); ?>]" value="<?php echo esc_attr(( ! empty($post['tax_multiple_delim'][$ctx->name]) ) ? str_replace("&amp;","&", htmlentities(htmlentities($post['tax_multiple_delim'][$ctx->name]))) : ','); ?>" />
 																<div class="input tax_is_full_search_multiple" style="margin: 10px 0;">
 																	<input type="hidden" name="tax_is_full_search_multiple[<?php echo esc_attr($ctx->name); ?>]" value="0"/>
 																	<input type="checkbox" id="tax_is_full_search_multiple_<?php echo esc_attr($ctx->name); ?>" class="switcher" <?php if ( ! empty($post['tax_is_full_search_multiple'][$ctx->name]) ) echo "checked='checked'"; ?> name="tax_is_full_search_multiple[<?php echo esc_attr($ctx->name); ?>]" value="1"/>
-																	<label for="tax_is_full_search_multiple_<?php echo esc_attr($ctx->name);?>"><?php printf(__('Try to match terms to existing child %s', 'wp_all_import_plugin'), $ctx->labels->name); ?></label>
+																	<label for="tax_is_full_search_multiple_<?php echo esc_attr($ctx->name);?>"><?php printf(__('Try to match terms to existing child %s', 'wp_all_import_plugin'), esc_attr($ctx->labels->name)); ?></label>
 																	<div class="switcher-target-tax_is_full_search_multiple_<?php echo esc_attr($ctx->name); ?> sub_input">
 																		<div class="input tax_assign_to_one_term_multiple" style="margin: 10px 0;">
 																			<input type="hidden" name="tax_assign_to_one_term_multiple[<?php echo esc_attr($ctx->name); ?>]" value="0"/>
 																			<input type="checkbox" id="tax_assign_to_one_term_multiple_<?php echo esc_attr($ctx->name); ?>" <?php if ( ! empty($post['tax_assign_to_one_term_multiple'][$ctx->name]) ) echo "checked='checked'"; ?> name="tax_assign_to_one_term_multiple[<?php echo esc_attr($ctx->name); ?>]" value="1"/>
-																			<label for="tax_assign_to_one_term_multiple_<?php echo esc_attr($ctx->name);?>"><?php printf(__('Only assign %s to the imported %s, not the entire hierarchy', 'wp_all_import_plugin'), $custom_type->labels->name, $ctx->labels->singular_name); ?></label>
+																			<label for="tax_assign_to_one_term_multiple_<?php echo esc_attr($ctx->name);?>"><?php printf(__('Only assign %s to the imported %s, not the entire hierarchy', 'wp_all_import_plugin'), esc_attr($custom_type->labels->name), esc_attr($ctx->labels->singular_name)); ?></label>
 																			<a href="#help" class="wpallimport-help" title="<?php _e('By default all categories above the matched category will also be assigned to the post. If enabled, only the imported category will be assigned to the post.', 'wp_all_import_plugin'); ?>" style="position:relative; top: -1px;">?</a>
 																		</div>
 																	</div>
@@ -81,7 +81,7 @@ if ( ! empty($post_taxonomies)):
 														<?php if ($ctx->hierarchical): ?>
 														<div class="input">
 															<input type="radio" name="tax_logic[<?php echo esc_attr($ctx->name);?>]" value="hierarchical" id="tax_logic_hierarchical_<?php echo esc_attr($ctx->name);?>" class="switcher" <?php echo (!empty($post['tax_logic'][$ctx->name]) and $post['tax_logic'][$ctx->name] == 'hierarchical') ? 'checked="checked"' : ''; ?>/>
-															<label for="tax_logic_hierarchical_<?php echo esc_attr($ctx->name);?>"><?php printf(__('%ss have hierarchical (parent/child) %s (i.e. Sports > Golf > Clubs > Putters)', 'wp_all_import_plugin'), $custom_type->labels->singular_name, $ctx->labels->name); ?></label>
+															<label for="tax_logic_hierarchical_<?php echo esc_attr($ctx->name);?>"><?php printf(__('%ss have hierarchical (parent/child) %s (i.e. Sports > Golf > Clubs > Putters)', 'wp_all_import_plugin'), esc_attr($custom_type->labels->singular_name), esc_attr($ctx->labels->name)); ?></label>
 															<div class="switcher-target-tax_logic_hierarchical_<?php echo esc_attr($ctx->name);?> sub_input">
 																<div class="input">
 																	<input type="hidden" name="tax_hierarchical_logic_entire[<?php echo esc_attr($ctx->name);?>]" value="0" />
@@ -120,15 +120,15 @@ if ( ! empty($post_taxonomies)):
 																		<div class="input">
 																			<input type="hidden" name="tax_hierarchical_last_level_assign[<?php echo esc_attr($ctx->name); ?>]" value="0" />
 																			<input type="checkbox" id="tax_hierarchical_last_level_assign_<?php echo esc_attr($ctx->name); ?>" name="tax_hierarchical_last_level_assign[<?php echo esc_attr($ctx->name); ?>]" value="1" <?php echo ( ! empty($post['tax_hierarchical_last_level_assign'][$ctx->name])) ? 'checked="checked"': '' ?> />
-																			<label for="tax_hierarchical_last_level_assign_<?php echo esc_attr($ctx->name); ?>"><?php printf(__('Only assign %s to the bottom level term in the hierarchy', 'wp_all_import_plugin'), $custom_type->label) ?></label>
+																			<label for="tax_hierarchical_last_level_assign_<?php echo esc_attr($ctx->name); ?>"><?php printf(__('Only assign %s to the bottom level term in the hierarchy', 'wp_all_import_plugin'), esc_attr($custom_type->label)); ?></label>
 																		</div>
 																		<div class="input">
 																			<input type="hidden" name="is_tax_hierarchical_group_delim[<?php echo esc_attr($ctx->name); ?>]" value="0" />
 																			<input type="checkbox" id="is_tax_hierarchical_group_delim_<?php echo esc_attr($ctx->name); ?>" name="is_tax_hierarchical_group_delim[<?php echo esc_attr($ctx->name); ?>]" value="1" class="switcher" <?php echo ( ! empty($post['is_tax_hierarchical_group_delim'][$ctx->name])) ? 'checked="checked"': '' ?> />
-																			<label for="is_tax_hierarchical_group_delim_<?php echo esc_attr($ctx->name); ?>"><?php printf(__('Separate hierarchy groups via symbol', 'wp_all_import_plugin'), $custom_type->label) ?></label>
+																			<label for="is_tax_hierarchical_group_delim_<?php echo esc_attr($ctx->name); ?>"><?php printf(__('Separate hierarchy groups via symbol', 'wp_all_import_plugin'), esc_attr($custom_type->label)) ?></label>
 																			<div class="switcher-target-is_tax_hierarchical_group_delim_<?php echo esc_attr($ctx->name);?> sub_input">
 																				<label><?php _e('Separated by', 'wp_all_import_plugin'); ?></label>										
-																				<input type="text" class="small tax_delim" name="tax_hierarchical_group_delim[<?php echo esc_attr($ctx->name); ?>]" value="<?php echo ( ! empty($post['tax_hierarchical_group_delim'][$ctx->name]) ) ? str_replace("&amp;","&", htmlentities(htmlentities($post['tax_hierarchical_group_delim'][$ctx->name]))) : '|' ?>" />
+																				<input type="text" class="small tax_delim" name="tax_hierarchical_group_delim[<?php echo esc_attr($ctx->name); ?>]" value="<?php echo esc_attr(( ! empty($post['tax_hierarchical_group_delim'][$ctx->name]) ) ? str_replace("&amp;","&", htmlentities(htmlentities($post['tax_hierarchical_group_delim'][$ctx->name]))) : '|'); ?>" />
 																			</div>
 																		</div>
 																		<a class="preview_taxonomies" href="javascript:void(0);" style="top:-35px; float: right; position: relative;" rel="preview_taxonomies"><?php _e('Preview', 'wp_all_import_plugin'); ?></a>
@@ -142,7 +142,7 @@ if ( ! empty($post_taxonomies)):
 																	<input type="checkbox" name="tax_hierarchical_logic_manual[<?php echo esc_attr($ctx->name);?>]" value="1" id="hierarchical_logic_manual_<?php echo esc_attr($ctx->name);?>" class="switcher" <?php echo (!empty($post['tax_hierarchical_logic_manual'][$ctx->name])) ? 'checked="checked"' : ''; ?>/>
 																	<label for="hierarchical_logic_manual_<?php echo esc_attr($ctx->name);?>"><?php _e('Manually design the hierarchy with drag & drop', 'wp_all_import_plugin'); ?></label>
 																	<div class="switcher-target-hierarchical_logic_manual_<?php echo esc_attr($ctx->name);?> sub_input">
-																		<p style="margin-bottom: 10px;"><?php printf(__('Drag the <img src="%s" class="wpallimport-drag-icon"/> to the right to create a child, drag up and down to re-order.'), WP_ALL_IMPORT_ROOT_URL . '/static/img/drag.png'); ?></p>
+																		<p style="margin-bottom: 10px;"><?php printf(__('Drag the <img src="%s" class="wpallimport-drag-icon"/> to the right to create a child, drag up and down to re-order.'), esc_url(WP_ALL_IMPORT_ROOT_URL . '/static/img/drag.png')); ?></p>
 																		<ol class="sortable no-margin" style="margin-left: 20px;">
 																			<?php
 																			if ( ! empty($post['post_taxonomies'][$ctx->name]) ):
@@ -206,7 +206,7 @@ if ( ! empty($post_taxonomies)):
 																		<?php do_action('pmxi_category_options_view', ((!empty($post['post_taxonomies'][$ctx->name])) ? $post['post_taxonomies'][$ctx->name] : false), $ctx->name, $post_type, $ctx->labels->name); ?>														
 																		<div class="input" style="margin-left:17px;">
 																			<label><?php _e('Separated by', 'wp_all_import_plugin'); ?></label>										
-																			<input type="text" class="small tax_delim" name="tax_manualhierarchy_delim[<?php echo esc_attr($ctx->name); ?>]" value="<?php echo ( ! empty($post['tax_manualhierarchy_delim'][$ctx->name]) ) ? str_replace("&amp;","&", htmlentities(htmlentities($post['tax_manualhierarchy_delim'][$ctx->name]))) : ',' ?>" />
+																			<input type="text" class="small tax_delim" name="tax_manualhierarchy_delim[<?php echo esc_attr($ctx->name); ?>]" value="<?php echo esc_attr(( ! empty($post['tax_manualhierarchy_delim'][$ctx->name]) ) ? str_replace("&amp;","&", htmlentities(htmlentities($post['tax_manualhierarchy_delim'][$ctx->name]))) : ','); ?>" />
 																		</div>
 																		<a href="javascript:void(0);" class="icon-item add-new-ico"><?php _e('Add Another Row','wp_all_import_plugin');?></a>
 																	</div>																	
@@ -220,7 +220,7 @@ if ( ! empty($post_taxonomies)):
 															?>
 															<input type="hidden" name="tax_enable_mapping[<?php echo esc_attr($ctx->name); ?>]" value="0"/>
 															<input type="checkbox" id="tax_mapping_<?php echo esc_attr($ctx->name); ?>" class="pmxi_tax_mapping switcher" <?php if ( ! empty($post['tax_enable_mapping'][$ctx->name]) ) echo "checked='checked'"; ?> name="tax_enable_mapping[<?php echo esc_attr($ctx->name); ?>]" value="1"/>
-															<label for="tax_mapping_<?php echo esc_attr($ctx->name);?>"><?php printf(__('Enable Mapping for %s', 'wp_all_import_plugin'), $ctx->labels->name); ?></label>
+															<label for="tax_mapping_<?php echo esc_attr($ctx->name);?>"><?php printf(__('Enable Mapping for %s', 'wp_all_import_plugin'), esc_attr($ctx->labels->name)); ?></label>
 															<div class="switcher-target-tax_mapping_<?php echo esc_attr($ctx->name);?> sub_input custom_type" rel="tax_mapping">
 																<fieldset style="padding: 0;">															
 																	<table cellpadding="0" cellspacing="5" class="tax-form-table" rel="tax_mapping_<?php echo esc_attr($ctx->name); ?>" style="width: 100%;">

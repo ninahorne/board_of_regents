@@ -168,7 +168,7 @@
 
 										<div class="input" style="display:inline-block; margin-right: 20px;">
 											<input type="button" class="button-primary wp_all_import_save_functions" disabled="disabled" value="<?php _e("Save Functions", 'wp_all_import_plugin'); ?>"/>
-											<a href="#help" class="wpallimport-help" title="<?php printf(__("Add functions here for use during your import. You can access this file at %s", "wp_all_import_plugin"), preg_replace("%.*wp-content%", "wp-content", $functions));?>" style="top: 0;">?</a>
+											<a href="#help" class="wpallimport-help" title="<?php printf(__("Add functions here for use during your import. You can access this file at %s", "wp_all_import_plugin"), esc_attr(preg_replace("%.*wp-content%", "wp-content", $functions)));?>" style="top: 0;">?</a>
 											<div class="wp_all_import_functions_preloader"></div>
 										</div>						
 										<div class="input wp_all_import_saving_status" style="display:inline-block;">
@@ -230,9 +230,9 @@
 						<input type="hidden" name="security" value="<?php echo wp_create_nonce( "wp_all_import_preview" ); ?>" />									
 
 						<?php if ($this->isWizard):?>
-							<a href="<?php echo add_query_arg('action', 'element', $this->baseUrl) ?>" class="back rad3" style="float:none;"><?php _e('Back to Step 2', 'wp_all_import_plugin') ?></a>
+							<a href="<?php echo esc_url(add_query_arg('action', 'element', $this->baseUrl)); ?>" class="back rad3" style="float:none;"><?php _e('Back to Step 2', 'wp_all_import_plugin') ?></a>
 						<?php else: ?>
-							<a href="<?php echo remove_query_arg('id', remove_query_arg('action', $this->baseUrl)); ?>" class="back rad3" style="float:none;"><?php _e('Back to Manage Imports', 'wp_all_import_plugin') ?></a>
+							<a href="<?php echo esc_url(remove_query_arg('id', remove_query_arg('action', $this->baseUrl))); ?>" class="back rad3" style="float:none;"><?php _e('Back to Manage Imports', 'wp_all_import_plugin') ?></a>
 						<?php endif; ?>					
 						<input type="submit" class="button button-primary button-hero wpallimport-large-button" value="<?php _e( ($this->isWizard) ? 'Continue to Step 4' : 'Update Template', 'wp_all_import_plugin') ?>" />
 					</div>

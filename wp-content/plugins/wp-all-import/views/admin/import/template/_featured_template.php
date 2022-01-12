@@ -40,7 +40,7 @@
 								<div class="input">
 									<?php $wp_uploads = wp_upload_dir(); ?>																					
 									<input type="radio" name="<?php echo esc_attr($section_slug); ?>download_images" value="no" class="switcher" id="<?php echo esc_attr($section_slug); ?>download_images_no" <?php echo ("no" == $post[$section_slug . 'download_images']) ? 'checked="checked"' : '';?>/>
-									<label for="<?php echo esc_attr($section_slug); ?>download_images_no"><?php printf(__('Use images currently uploaded in %s', 'wp_all_import_plugin'), preg_replace('%.*wp-content/%', 'wp-content/', $wp_uploads['basedir'] . DIRECTORY_SEPARATOR . PMXI_Plugin::FILES_DIRECTORY . DIRECTORY_SEPARATOR) ); ?></label>
+									<label for="<?php echo esc_attr($section_slug); ?>download_images_no"><?php printf(__('Use images currently uploaded in %s', 'wp_all_import_plugin'), preg_replace('%.*wp-content/%', 'wp-content/', esc_attr($wp_uploads['basedir'] . DIRECTORY_SEPARATOR . PMXI_Plugin::FILES_DIRECTORY . DIRECTORY_SEPARATOR)) ); ?></label>
 								</div>
 								<div class="switcher-target-<?php echo esc_attr($section_slug); ?>download_images_no" style="padding-left:27px;">
 									<label for="<?php echo esc_attr($section_slug); ?>featured_delim"><?php _e('Enter image filenames one per line, or separate them with a ', 'wp_all_import_plugin');?></label>

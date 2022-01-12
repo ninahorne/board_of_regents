@@ -1,7 +1,7 @@
 <?php $custom_type = get_post_type_object( $post_type ); ?>
 
 <script type="text/javascript">
-	var plugin_url = '<?php echo WP_ALL_IMPORT_ROOT_URL; ?>';
+	var plugin_url = '<?php echo esc_url(WP_ALL_IMPORT_ROOT_URL); ?>';
 </script>
 
 <div class="wpallimport-collapsed closed nested_options wpallimport-section">

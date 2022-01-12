@@ -16,11 +16,11 @@
 				<?php if (empty($post['custom_name'])): ?>
 				<div class="input cf_welcome">
 					<?php if ( ! empty($meta_keys) ):?>
-						<h1 style="font-size:23px; color:#40acad;"><?php printf(__('Your website is using Custom Fields to store data for %s.', 'wp_all_import_plugin'), $custom_type->labels->name); ?></h1>
+						<h1 style="font-size:23px; color:#40acad;"><?php printf(__('Your website is using Custom Fields to store data for %s.', 'wp_all_import_plugin'), esc_attr($custom_type->labels->name)); ?></h1>
 						<a class="autodetect_cf auto_detect_cf" href="javascript:void(0);" rel="auto_detect_cf"><?php _e('See Detected Fields', 'wp_all_import_plugin'); ?></a>
 					<?php else: ?>
-						<h1 style="font-size:23px; color:#40acad;"><?php printf(__('No Custom Fields are present in your database for %s.', 'wp_all_import_plugin'), $custom_type->labels->name); ?></h1>
-						<p class="wpallimport-note"><?php printf(__('Manually create a %s, and fill out each field you want to import data to. WP All Import will then display these fields as available for import below.', 'wp_all_import_plugin'), $custom_type->labels->singular_name); ?></p>
+						<h1 style="font-size:23px; color:#40acad;"><?php printf(__('No Custom Fields are present in your database for %s.', 'wp_all_import_plugin'), esc_attr($custom_type->labels->name)); ?></h1>
+						<p class="wpallimport-note"><?php printf(__('Manually create a %s, and fill out each field you want to import data to. WP All Import will then display these fields as available for import below.', 'wp_all_import_plugin'), esc_attr($custom_type->labels->singular_name)); ?></p>
 					<?php endif;?>
 					<a href="javascript:void(0);" class="wpallimport-dismiss-cf-welcome"><?php _e('Hide Notice', 'wp_all_import_plugin'); ?></a>				
 				</div>
@@ -29,7 +29,7 @@
 						<span class="cf_detected"></span> 
 						<a class="autodetect_cf clear_detected_cf" href="javascript:void(0);" rel="clear_detected_cf"><?php _e('Clear All Fields', 'wp_all_import_plugin'); ?></a>
 					</h1>
-					<p class="wpallimport-note"><?php printf(__('If not all fields were detected, manually create a %s, and fill out each field you want to import data to. Then create a new import, and WP All Import will display these fields as available for import below.', 'wp_all_import_plugin'), $custom_type->labels->singular_name); ?></p>
+					<p class="wpallimport-note"><?php printf(__('If not all fields were detected, manually create a %s, and fill out each field you want to import data to. Then create a new import, and WP All Import will display these fields as available for import below.', 'wp_all_import_plugin'), esc_attr($custom_type->labels->singular_name)); ?></p>
 					<a href="javascript:void(0);" class="wpallimport-dismiss-cf-welcome"><?php _e('Hide Notice', 'wp_all_import_plugin'); ?></a>				
 				</div>			
 				<?php endif; ?>
@@ -196,7 +196,7 @@
 																						<input type="text" class="mapping_from widefat" value="<?php echo esc_attr($k); ?>">
 																					</td>
 																					<td>
-																						<input type="text" class="mapping_to widefat" value="<?php echo (is_array($value)) ? $value[$k] : $value; ?>">
+																						<input type="text" class="mapping_to widefat" value="<?php echo esc_attr((is_array($value)) ? $value[$k] : $value); ?>">
 																					</td>
 																					<td class="action remove">
 																						<a href="#remove" style="right:-10px;"></a>

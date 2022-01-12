@@ -273,7 +273,7 @@ class PMXI_API
 					<div class="input" style="margin: 0px;">
 						<?php $wp_uploads = wp_upload_dir(); ?>																					
 						<input type="radio" name="<?php echo esc_attr($params['addon_prefix']);?>[download_image][<?php echo esc_attr($params['field_key']);?>]" value="no" id="<?php echo sanitize_title(esc_attr($params['field_name'])); ?>_no" <?php echo ("yes" != $params['download_image']) ? 'checked="checked"' : '';?>/>
-						<label for="<?php echo sanitize_title(esc_attr($params['field_name'])); ?>_no"><?php printf(__('Use image(s) currently uploaded in %s', 'wp_all_import_plugin'), $wp_uploads['basedir'] . DIRECTORY_SEPARATOR . PMXI_Plugin::FILES_DIRECTORY . DIRECTORY_SEPARATOR); ?></label>
+						<label for="<?php echo sanitize_title(esc_attr($params['field_name'])); ?>_no"><?php printf(__('Use image(s) currently uploaded in %s', 'wp_all_import_plugin'), esc_url($wp_uploads['basedir'] . DIRECTORY_SEPARATOR . PMXI_Plugin::FILES_DIRECTORY . DIRECTORY_SEPARATOR)); ?></label>
 					</div>						
 					<div class="input">						
 						<input type="text" name="<?php echo esc_attr($params['field_name']); ?>" style="width:100%;" placeholder="" value="<?php echo esc_attr($params['field_value']); ?>"/>
@@ -293,7 +293,7 @@ class PMXI_API
 					<div class="input" style="margin: 0px;">
 						<?php $wp_uploads = wp_upload_dir(); ?>																					
 						<input type="radio" name="<?php echo esc_attr($params['addon_prefix']);?>[download_image][<?php echo esc_attr($params['field_key']);?>]" value="no" id="<?php echo sanitize_title(esc_attr($params['field_name'])); ?>_no" <?php echo ("yes" != $params['download_image']) ? 'checked="checked"' : '';?>/>
-						<label for="<?php echo sanitize_title(esc_attr($params['field_name'])); ?>_no"><?php printf(__('Use file(s) currently uploaded in %s', 'wp_all_import_plugin'), $wp_uploads['basedir'] . DIRECTORY_SEPARATOR . PMXI_Plugin::FILES_DIRECTORY . DIRECTORY_SEPARATOR); ?></label>
+						<label for="<?php echo sanitize_title(esc_attr($params['field_name'])); ?>_no"><?php printf(__('Use file(s) currently uploaded in %s', 'wp_all_import_plugin'), esc_url($wp_uploads['basedir'] . DIRECTORY_SEPARATOR . PMXI_Plugin::FILES_DIRECTORY . DIRECTORY_SEPARATOR)); ?></label>
 					</div>						
 					<div class="input">						
 						<input type="text" name="<?php echo esc_attr($params['field_name']); ?>" style="width:100%;" placeholder="" value="<?php echo esc_attr($params['field_value']); ?>"/>

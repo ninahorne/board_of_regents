@@ -767,7 +767,7 @@ class PMXI_Admin_Settings extends PMXI_Controller_Admin {
 
 						$file_type = strtoupper(pmxi_getExtension($upload_result['source']['path']));
 
-						$error_message = sprintf(__("Please verify that the file you uploading is a valid %s file.", "wp_all_import_plugin"), $file_type);
+						$error_message = sprintf(__("Please verify that the file you uploading is a valid %s file.", "wp_all_import_plugin"), esc_attr($file_type));
 
 						exit(json_encode(array("jsonrpc" => "2.0", "error" => array("code" => 102, "message" => $error_message), "is_valid" => false, "id" => "id")));
 					

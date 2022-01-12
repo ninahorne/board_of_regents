@@ -61,7 +61,7 @@
 						<?php
 							$wp_uploads = wp_upload_dir();
 						?>
-						<?php printf(__('Imported files, chunks, logs and temporary files will be placed in a folder with a randomized name inside of %s.', 'wp_all_import_plugin'), $wp_uploads['basedir'] . '/wpallimport' ); ?>
+						<?php printf(__('Imported files, chunks, logs and temporary files will be placed in a folder with a randomized name inside of %s.', 'wp_all_import_plugin'), esc_attr($wp_uploads['basedir'] . '/wpallimport' )); ?>
 					</p>
 				</td>
 			</tr>
@@ -75,7 +75,7 @@
 			<tr>
 				<th scope="row"><label><?php _e('Clean Up Temp Files', 'wp_all_import_plugin'); ?></label></th>
 				<td>
-					<a class="button-primary wpallimport-clean-up-tmp-files" href="<?php echo add_query_arg(array('action' => 'cleanup'), $this->baseUrl); ?>"><?php _e('Clean Up', 'wp_all_import_plugin'); ?></a>
+					<a class="button-primary wpallimport-clean-up-tmp-files" href="<?php echo esc_url(add_query_arg(array('action' => 'cleanup'), $this->baseUrl)); ?>"><?php _e('Clean Up', 'wp_all_import_plugin'); ?></a>
 					<p class="description"><?php _e('Attempt to remove temp files left over by imports that were improperly terminated.', 'wp_all_import_plugin'); ?></p>
 				</td>
 			</tr>
@@ -156,7 +156,7 @@
 
 	<div class="input" style="display:inline-block; margin-right: 20px;">
 		<input type="button" class="button-primary wp_all_import_save_functions" disabled="disabled" value="<?php _e("Save Functions", 'wp_all_import_plugin'); ?>"/>
-		<a href="#help" class="wpallimport-help" title="<?php printf(__("Add functions here for use during your import. You can access this file at %s", "wp_all_import_plugin"), preg_replace("%.*wp-content%", "wp-content", $functions));?>" style="top: 0;">?</a>							
+		<a href="#help" class="wpallimport-help" title="<?php printf(__("Add functions here for use during your import. You can access this file at %s", "wp_all_import_plugin"), esc_attr(preg_replace("%.*wp-content%", "wp-content", $functions)));?>" style="top: 0;">?</a>
 		<div class="wp_all_import_functions_preloader"></div>
 	</div>						
 	<div class="input wp_all_import_saving_status" style="display:inline-block;">

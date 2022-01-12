@@ -1,9 +1,9 @@
 <!-- Preload Images -->
 
-<img src="<?php echo PMXI_Plugin::ROOT_URL . '/static/img/soflyy-logo.svg'; ?>" class="wpallimport-preload-image"/>
+<img src="<?php echo esc_url(PMXI_Plugin::ROOT_URL . '/static/img/soflyy-logo.svg'); ?>" class="wpallimport-preload-image"/>
 
 <script type="text/javascript">
-	var plugin_url = '<?php echo WP_ALL_IMPORT_ROOT_URL; ?>';
+	var plugin_url = '<?php echo esc_url(WP_ALL_IMPORT_ROOT_URL); ?>';
 </script>
 
 <table class="wpallimport-layout wpallimport-step-1">
@@ -67,7 +67,7 @@
 					                <a id="select-files" href="javascript:void(0);" <?php if (empty($post['filepath'])):?>style="display:none;"<?php endif; ?> /><?php _e('Click here to select file from your computer...', 'wp_all_import_plugin'); ?></a>
 					                <div id="progressbar" class="wpallimport-progressbar">
 					                	<?php if (!empty($post['filepath'])):?>
-					                	<span><?php _e('Upload Complete', 'wp_all_import_plugin');?></span> - <?php echo basename($post['filepath']); ?>
+					                	<span><?php _e('Upload Complete', 'wp_all_import_plugin');?></span> - <?php echo esc_attr(basename($post['filepath'])); ?>
 					                	<?php endif; ?>
 					                </div>
 					                <div id="progress" class="wpallimport-progress" <?php if (!empty($post['filepath'])):?>style="visibility: visible; display: block;"<?php endif; ?>>
@@ -110,7 +110,7 @@
 								<input type="hidden" name="file" value="<?php echo esc_attr($post['file']); ?>"/>									
 								
 								<div class="wpallimport-note" style="margin: 0 auto; font-size: 13px;">
-									<?php printf(__('Files uploaded to <strong>%s</strong> will appear in this list.', 'wp_all_import_plugin'), $upload_dir['basedir'] . '/wpallimport/files') ?>
+									<?php printf(__('Files uploaded to <strong>%s</strong> will appear in this list.', 'wp_all_import_plugin'), esc_attr($upload_dir['basedir'] . '/wpallimport/files')) ?>
 									<div class="wpallimport-free-edition-notice">									
 										<a href="https://www.wpallimport.com/checkout/?edd_action=add_to_cart&download_id=2707176&edd_options%5Bprice_id%5D=1&utm_source=import-plugin-free&utm_medium=upgrade-notice&utm_campaign=use-existing-file" target="_blank" class="upgrade_link"><?php _e('Upgrade to the Pro edition of WP All Import to Use Existing Files', 'wp_all_import_plugin');?></a>
 										<p><?php _e('If you already own it, remove the free edition and install the Pro edition.', 'wp_all_import_plugin'); ?></p>
@@ -474,7 +474,7 @@
 									<?php 
 									if ( ! empty($upload_validation) ): 										
 										$file_type = strtoupper(pmxi_getExtension($post['file']));
-										printf(__('Please verify that the file you using is a valid %s file.', 'wp_all_import_plugin'), $file_type); 
+										printf(__('Please verify that the file you using is a valid %s file.', 'wp_all_import_plugin'), esc_attr($file_type));
 									endif;
 									?>
 								</h4>

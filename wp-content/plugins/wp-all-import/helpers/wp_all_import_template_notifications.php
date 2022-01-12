@@ -11,7 +11,7 @@ if ( ! function_exists('wp_all_import_template_notifications') )
 			{
 				if (class_exists($key)) continue;
 
-				$notifications[] = sprintf(__('The import template you are using requires the %s. If you continue without it your data may import incorrectly.<br/><br/><a href="%s" target="_blank">' . ($addon['paid'] ? 'Purchase' : 'Download') . ' the %s</a>.', 'wp_all_import_plugin'), $addon['name'], $addon['url'], $addon['name']);							
+				$notifications[] = sprintf(__('The import template you are using requires the %s. If you continue without it your data may import incorrectly.<br/><br/><a href="%s" target="_blank">' . ($addon['paid'] ? 'Purchase' : 'Download') . ' the %s</a>.', 'wp_all_import_plugin'), esc_attr($addon['name']), esc_url($addon['url']), esc_attr($addon['name']));
 			}
 		}				
 		else // Custom Import Template
