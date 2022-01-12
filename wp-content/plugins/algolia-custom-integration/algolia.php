@@ -14,6 +14,7 @@ function index_courses_in_algolia()
             "institution",
             "modality",
             "course_subject",
+            "semester"
         ],
         'searchableAttributes' => [
             "corresponding_hs_course",
