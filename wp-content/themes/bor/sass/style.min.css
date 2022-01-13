@@ -2398,9 +2398,10 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
   position: relative;
   display: flex;
   justify-content: space-evenly;
+  margin: 0 7px;
 }
 .slider__values p {
-  font-size: 14px;
+  font-size: 12px;
   flex: 1 0 0;
   text-align: center;
 }

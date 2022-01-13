@@ -16,7 +16,7 @@
             <span class="bold">
                 The Articulation Matrix is a useful tool for dual enrollment students.
             </span>
-            Students can know ahead of time how their courses will transfer to other post-secondary institutions. This allows high school students to take dual enrollment courses at a campus in close proximity to their high school, while allowing the credits to count towards other post-secondary choices.
+            Students can know ahead of time how their courses will transfer to other postsecondary institutions. This allows high school students to take dual enrollment courses at a campus in close proximity to their high school, while allowing the credits to count towards other post-secondary choices.
             <br />
             <br />
             <span class="bold">
