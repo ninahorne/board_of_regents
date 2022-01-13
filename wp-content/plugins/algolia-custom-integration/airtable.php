@@ -4,12 +4,8 @@
 // If you're using Composer, require the Composer autoload
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/wp-cli.php';
-
+require_once  '../../../wp-load.php';
 use \TANIOS\Airtable\Airtable;
-$airtable = new Airtable(array(
-    'api_key' => 'keyOScHBLXWZxH8EU',
-    'base'    => 'appYWq35ZeV7QE3QG'
-));
 
 /**
  * Deletes current courses in the DB, and fetches courses from 
@@ -18,38 +14,34 @@ $airtable = new Airtable(array(
  */
 function sync_courses_airtable_with_wp_db()
 {
-    try{
-        // current courses
-        delete_current_courses_in_wp_db();
-    
-    
-        $airtable = new Airtable(array(
-            'api_key' => 'keyOScHBLXWZxH8EU',
-            'base'    => 'appYWq35ZeV7QE3QG'
-        ));
-    
-        $request = $airtable->getContent('COURSES FINAL');
-        $i = 0;
-    
-    
-        /**
-         * Loop through records in AirTable
-         * and create course in WP DB
-         */
-        // do {
-        //     $response = $request->getResponse();
-        //     $records = $response['records'];
-        //     foreach ($records as $record) {
-        //         add_course_to_wp_db($record);
-        //         $i++;
-        //     }
-        // } while ($request = $response->next());
-    
-        echo 'Success! ' . $i . ' courses added to the WP DB.';
-    } catch (Exception $e){
-        echo $e->getMessage();
-    }
 
+    // current courses
+
+    delete_current_courses_in_wp_db();
+
+    $airtable = new Airtable(array(
+        'api_key' => 'keyOScHBLXWZxH8EU',
+        'base'    => 'appYWq35ZeV7QE3QG'
+    ));
+
+    $request = $airtable->getContent('COURSES FINAL');
+    $i = 0;
+
+
+    /**
+     * Loop through records in AirTable
+     * and create course in WP DB
+     */
+    do {
+        $response = $request->getResponse();
+        $records = $response['records'];
+        foreach ($records as $record) {
+            add_course_to_wp_db($record);
+            $i++;
+        }
+    } while ($request = $response->next());
+
+    echo 'Success! ' . $i . ' courses added to the WP DB.';
 }
 
 /**
@@ -102,7 +94,6 @@ function delete_current_courses_in_wp_db()
 
     $deletePosts = $wpdb->get_results("DELETE FROM wp_posts WHERE post_type='college-courses'");
     $deletePostMeta = $wpdb->get_results("DELETE FROM wp_postmeta WHERE post_id NOT IN (SELECT id FROM wp_posts)");
-
 }
 
 function add_college_to_wp_db($record)
@@ -204,21 +195,15 @@ function get_college_by_abbrev($abbrev)
     return $cc_query->posts;
 }
 
+try {
+    sync_courses_airtable_with_wp_db();
 
-if($_POST['data'] == 'courses') {
-    try{
-        sync_courses_airtable_with_wp_db();
-
-    } catch(Exception $e){
-        echo $e->getMessage();
+    if ($_POST['data'] == 'courses') {
     }
+    if ($_POST['data'] == 'colleges') {
 
-}
-if($_POST['data'] == 'colleges') {
-    try{
         sync_colleges_airtable_with_wp_db();
-
-    } catch(Exception $e){
-        echo $e->getMessage();
     }
+} catch (Exception $e) {
+    echo $e->getMessage();
 }

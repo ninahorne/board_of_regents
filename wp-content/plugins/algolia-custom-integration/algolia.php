@@ -1,4 +1,6 @@
 <?php
+require_once  '../../../wp-load.php';
+
 global $algolia;
 
 $algolia = \Algolia\AlgoliaSearch\SearchClient::create("L1FLYTXGGK", "03caa5e233bd994477a0d3416be67e70");
@@ -6,7 +8,6 @@ $algolia = \Algolia\AlgoliaSearch\SearchClient::create("L1FLYTXGGK", "03caa5e233
 
 function index_courses_in_algolia()
 {
-    // TODO mark items as "upcoming semester"
     global $algolia;
     $index = $algolia->initIndex('courses');
     $index->setSettings([

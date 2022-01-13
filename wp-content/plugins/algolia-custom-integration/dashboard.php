@@ -8,17 +8,18 @@
         margin: 5px !important;
     }
 
-   .dual-enrollment-dashboard  section{
+    .dual-enrollment-dashboard section {
         padding: 1rem 2rem;
         background-color: white;
         margin: 2rem;
         border: 1px solid black;
         border-radius: 4px;
     }
-    .dual-enrollment-dashboard  h2{
-       font-size: 25px;
-       border-bottom: 1px solid black;
-       padding: 1rem 0;
+
+    .dual-enrollment-dashboard h2 {
+        font-size: 25px;
+        border-bottom: 1px solid black;
+        padding: 1rem 0;
     }
 </style>
 <div class="dual-enrollment-dashboard">
@@ -97,7 +98,6 @@
 <script>
     const buttons = [...document.querySelectorAll('[data-action]')];
     buttons.forEach(button => {
-        console.log(button);
         button.addEventListener('click', async (e) => {
             console.log('click')
             e.preventDefault();
@@ -116,15 +116,22 @@
                 statusContainer,
                 path
             })
-            const response = await axios.post(`../wp-content/plugins/algolia-custom-integration/${path}.php`, `data=${action}`, {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+            try {
+                const response = await axios.post(`../wp-content/plugins/algolia-custom-integration/${path}.php`, `data=${action}`, {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
 
-                }
-            });
-            const data = response.data;
-            spinner.classList.add('hidden');
-            status.innerText = data;
+                    }
+                });
+                const data = response.data;
+                spinner.classList.add('hidden');
+                status.innerText = data;
+
+            } catch (error) {
+                console.log(error);
+                spinner.classList.add('hidden');
+                status.innerText = 'Error';
+            }
 
         });
     })

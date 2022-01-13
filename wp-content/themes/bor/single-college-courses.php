@@ -328,7 +328,6 @@
                 // Initiate Tool Tips
 
                 function activateTooltips() {
-                    console.log('here')
                     const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
                     tooltips.forEach(
                         tooltip => {

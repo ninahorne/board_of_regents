@@ -3044,6 +3044,7 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 .course__details {
   display: flex;
   flex-wrap: wrap;
+  min-height: 100px;
 }
 
 .course__detail {
