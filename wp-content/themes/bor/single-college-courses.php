@@ -4,7 +4,7 @@
         <div class="background__blue">
             <div class="container position-relative">
                 <div class="course__row">
-                    <a href="./index.php/courses" class="cta unformatted"><i class="fa fa-long-arrow-alt-left"></i>&nbsp;&nbsp;Back</a>
+                    <a href="javascript:history.back()" class="cta unformatted"><i class="fa fa-long-arrow-alt-left"></i>&nbsp;&nbsp;Back</a>
                     <div class="course__share">
                         <p>Share this course</p>
                         <div data-bs-toggle="tooltip" data-bs-placement="top" title="Email Course" class="results__icon">

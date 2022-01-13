@@ -8,6 +8,8 @@ let isFirstRender = true;
 
 // Form Inputs
 const zipCodeInput = document.querySelector("#zipCode");
+const zipCodeButton = document.querySelector("#zipCodeButton");
+
 const zipCodeClear = document.querySelector(".search__zip span");
 const distanceSlider = document.querySelector("#distanceSlider");
 const currentPosition = document.querySelector("#currentPosition");
@@ -37,7 +39,7 @@ document.addEventListener("DOMContentLoaded",()=> {
 
 
 // Event listeners
-zipCodeInput.addEventListener("change", (e) => setQueryForAroundLatLng(e));
+zipCodeButton.addEventListener("click", setQueryForAroundLatLng);
 zipCodeClear.addEventListener("click", clearZipCode);
 distanceSlider.addEventListener("change", (e) => setQueryForAroundRadius(e));
 currentPosition.addEventListener("click", (e) => getCurrentLocation(e));
@@ -45,7 +47,6 @@ currentPosition.addEventListener("click", (e) => getCurrentLocation(e));
 
 function activateRefinementsLabels(){
   const refinementsLabels = document.querySelectorAll('[data-refinementslabel]');
-  console.log(refinementsLabels)
   refinementsLabels.forEach(label => {
     label.addEventListener('click',toggleRefinementsLabel);
   
@@ -115,7 +116,7 @@ function initializeAlgolia() {
            ${hits.length
         ? hits
           .map((item) => {
-            return `<a target="_blank" class='results__link' href='${item.url
+            return `<a class='results__link' href='${item.url
               }'><div class='results__course'>
                    <div class="results__image">
                        <div class="results__image__background">
@@ -172,9 +173,9 @@ function initializeAlgolia() {
       .map(
         refinement =>
           `<li>
-                           ${refinement.label}
-                           <button ${createDataAttribtues(refinement)}>&times;</button>
-                           </li>`
+             ${refinement.label}
+             <button ${createDataAttribtues(refinement)}>&times;</button>
+          </li>`
       )
       .join('')}
                `;
@@ -498,7 +499,6 @@ function setQueryParams(state) {
   facets.forEach(
     facet => {
       const refinements = state.disjunctiveFacetsRefinements[facet];
-      console.log(refinements);
       if(refinements.length){
         queryParamString = `${queryParamString}${facet}=${encodeURI(refinements.join(';').replace(/&/g, '%26'))}&`
       }
@@ -528,8 +528,8 @@ function clearSearch() {
   courses_search.helper.search();
 }
 
-function setQueryForAroundLatLng(e) {
-  const zipCode = e.target.value;
+function setQueryForAroundLatLng() { 
+  const zipCode = document.querySelector("#zipCode")?.value;
   let lat = "";
   let lng = "";
   if (zipCode && zipCode != 'undefined') {
@@ -566,6 +566,7 @@ function setQueryForAroundLatLng(e) {
 }
 
 function setAroundLatLngQueryFromCurrentPosition(p) {
+  console.log(p);
   const lat = p.coords.latitude;
   const lng = p.coords.longitude;
 
@@ -581,7 +582,7 @@ function setAroundLatLngQueryFromCurrentPosition(p) {
               zipCode = results[0].address_components[j].short_name;
             // Set the value in the zipCode input box
             zipCodeInput.value = zipCode;
-            triggerZipCodeChangeEvent();
+            setQueryForAroundLatLng();
           }
         }
       }
@@ -591,8 +592,11 @@ function setAroundLatLngQueryFromCurrentPosition(p) {
 
 function getCurrentLocation(e) {
   e.preventDefault();
+  console.log('get current location')
   navigator.geolocation.getCurrentPosition(
-    setAroundLatLngQueryFromCurrentPosition
+    setAroundLatLngQueryFromCurrentPosition, ()=> {
+      alert('You have disabled location services for this website. Please change the settings in your browser to use this feature.')
+    }
   );
 }
 
@@ -605,7 +609,7 @@ function setSearchQuery(query) {
 function clearZipCode() {
   zipCodeInput.value = "";
   distanceSlider.disabled = true;
-  triggerZipCodeChangeEvent();
+  setQueryForAroundLatLng();
 
 }
 

@@ -241,12 +241,16 @@ section {
   border: none;
   width: fit-content;
   max-width: 100%;
+  &:focus{
+    outline: black thin dotted !important;
+  }
   &:hover {
     background-color: $trans-orange;
   }
 }
 a.cta {
   color: white !important;
+
 }
 
 .cta--center {

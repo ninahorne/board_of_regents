@@ -5,7 +5,7 @@
  */
 ?>
 <?php include('header.php'); ?>
-<div id="content">
+<main id="content">
     <div class="page__banner page__banner--apply">
         <div class="container">
             <div class="row">
@@ -22,5 +22,5 @@
     <div class="container">
         <?php include('articulation_matrix.php'); ?>
     </div>
-</div>
+</main>
 <?php include('footer.php'); ?>

@@ -5,7 +5,7 @@
  */
 ?>
 <?php include('header.php'); ?>
-<div id="content">
+<main id="content">
     <div class="background__blue">
         <div id="courses" class="container">
             <div class="p-2">
@@ -25,13 +25,15 @@
                                     <div id="filterOptions" class="closed">
                                         <hr>
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-5">
                                                 <h6 class="mt-2">Distance</h6>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-7">
                                                 <div class="search__zip">
+                                                    
                                                     <input id="zipCode" type="text" placeholder="Enter Zipcode">
                                                     <span class="hidden">&times;</span>
+                                                    <button id="zipCodeButton"><i class="fa fa-arrow-right"></i></button>
                                                 </div>
                                                 <a id="currentPosition" class="distance__location" href="">Current location <img src="<?php echo get_template_directory_uri(); ?>/images/location-light.svg"></a>
 
@@ -202,7 +204,7 @@
         </div>
     </div>
     <div id="shareResults"></div>
-</div>
+</main>
 <script src="<?php echo get_template_directory_uri(); ?>/js/courses.js"></script>
 
 <?php include('footer.php'); ?>

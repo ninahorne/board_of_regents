@@ -1,5 +1,5 @@
 <?php include('header.php'); ?>
-<div id="content">
+<main id="content">
     <div id="frontPage">
         <div class="front-page__full-width-image">
             <div class="container">
@@ -165,6 +165,6 @@
         </div>
 
     </section>
-</div>
+</main>
 
 <?php include('footer.php'); ?>

@@ -1135,6 +1135,9 @@ section {
   width: fit-content;
   max-width: 100%;
 }
+.cta:focus {
+  outline: black thin dotted !important;
+}
 .cta:hover {
   background-color: rgba(238, 118, 0, 0.85);
 }
@@ -2849,17 +2852,25 @@ div.wpforms-container-full .wpforms-form .wpforms-page-button {
 .search__zip {
   position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: end;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-end;
 }
 .search__zip input {
-  max-width: 100%;
+  max-width: 80%;
   font-size: 1.4rem;
+  border-radius: 0px;
+}
+.search__zip button {
+  background-color: #ee7600;
+  color: white;
+  border: none;
+  border-radius: 0px;
 }
 .search__zip span {
   position: absolute;
   top: 3px;
-  right: 10px;
+  right: 25%;
   font-size: 1.5rem;
 }
 .search__zip span:hover {

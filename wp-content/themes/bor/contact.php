@@ -6,7 +6,7 @@
 ?>
 
 <?php include('header.php'); ?>
-<div id="content">
+<main id="content">
     <div id="about">
         <?php include('useful-college-links.php'); ?>
         <?php include('ask-a-question.php'); ?>
@@ -39,7 +39,7 @@
 
         </div>
     </div>
-</div>
+</main>
 
 
 

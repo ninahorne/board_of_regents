@@ -30,10 +30,11 @@
         <h3>1. Create a backup of the Website</h3>
         <p>Before making any changes to the course data, make a backup of the website using <a href='/wp-admin/options-general.php?page=updraftplus' target='_blank'>Updraft Plus
             </a>
-            &nbsp;<img width='10px' src='../wp-content/plugins/algolia-custom-integration/external-link.svg' alt='open link in new window' />&nbsp;
+            &nbsp;<img width='10px' src='../wp-content/plugins/algolia-custom-integration/external-link.svg' alt='open link in new window' />
+            If for any reason something goes wrong in this process, you can restore the WordPress DB using this plugin. 
         </p>
         <h3>2. Edit the course spreadsheet</h3>
-        <p>Edit the course data in the master <a href='https://accounts.google.com/ServiceLogin/webreauth?service=wise&passive=1209600&continue=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fu%2F3%2Fd%2F10jItTE5z-aMGDjKpHJAGQjEEVlsY9jy7JyFnXVZx5vk%2Fedit&followup=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fu%2F3%2Fd%2F10jItTE5z-aMGDjKpHJAGQjEEVlsY9jy7JyFnXVZx5vk%2Fedit&ltmpl=sheets&authuser=3&flowName=GlifWebSignIn&flowEntry=ServiceLogin#gid=0' target='_blank'>Excel Sheet
+        <p>Edit the course data in the master <a href='https://docs.google.com/spreadsheets/d/1jXpqAFdCRHX-gRzgeDjhQUkQVrQJnrDSnqpxJQ7FakM/edit#gid=0' target='_blank'>Excel Sheet
             </a>
             &nbsp;<img width='10px' src='../wp-content/plugins/algolia-custom-integration/external-link.svg' alt='open link in new window' />&nbsp;
             Make sure the data has no validation errors.
@@ -44,12 +45,14 @@
             by clicking the plus sign next to the current tabs, selecting Microsoft Excel, and uploading the spreadsheet you just downloaded.
         <div>
             <h3>4. Make sure the table is named 'COURSES FINAL' (case sensitive) </h3>
-            <p>Rename the current 'COURSES FINAL' Table to 'COURSES ARCHIVED [todays-date]'. Then rename the newly imported table to 'COURSES FINAL'. The import will not work if the table is named anything different. Make sure there are no leading or trailing spaces in the name.
+            <p>Rename the current 'COURSES FINAL' Table to 'COURSES ARCHIVED [todays-date]'. Then rename the newly imported table to 'COURSES FINAL'. The import will not work if the table is named differently. Make sure there are no leading or trailing spaces in the name.
             </p>
             <h3>6. Import the course data from AirTable into WordPress</h3>
             <p><strong>**NOTE** Doing this will delete the current course data in WordPress and overwrite it with the data in the new table</strong>
             <p>
-            <p>This process may take several minutes. Please do not refresh your browser or navigate away from this page</p>
+            <p>This process may take several minutes. Please do not refresh your browser or navigate away from this page. If anything goes wrong during this step and you are unable
+                to complete this process, reestore the website using the UpDraft backup. 
+            </p>
             <button data-action="courses" data-spinner="syncCoursesSpinner" data-status="syncCoursesStatus" data-path="airtable" class='button button-primary button-large'>Sync Courses Data with AirTable</button>
             <img width='30px' id='syncCoursesSpinner' class='hidden' src='./images/spinner-2x.gif' alt='loading..' />
             <p id='syncCoursesStatus'></p>

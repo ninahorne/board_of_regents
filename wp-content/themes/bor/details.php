@@ -5,7 +5,7 @@
  */
 ?>
 <?php include('header.php'); ?>
-<div id="content">
+<main id="content">
     <div class="page__banner page__banner--info">
         <div class="container">
             <div class="row">
@@ -19,5 +19,5 @@
         <?php include('benefits.php') ?>
         <?php include('faq_preview.php') ?>
 
-</div>
+</main>
 <?php include('footer.php'); ?>

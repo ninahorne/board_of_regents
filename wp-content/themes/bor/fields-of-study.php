@@ -6,7 +6,7 @@
 ?>
 
 <?php include('header.php'); ?>
-<div id="content">
+<main id="content">
     <div id="fieldsOfStudy">
         <div class="courses-page__banner">
             <div class="flex-vertical-center">
@@ -80,7 +80,7 @@
 
                         echo '<div class="col-lg-4 col-md-6">
                                 <div onclick="changeParams(\'' . $url_params .  '\')" id="' . $course_html_id . '"  data-bs-toggle="modal" data-bs-target="#' . $url_params . '" class="courses-page__item">
-                                    <img src="' . wp_get_attachment_image_src( $image, 'large' )[0] . '" class="courses-page__item__image" />
+                                    <img src="' . wp_get_attachment_image_src($image, 'large')[0] . '" class="courses-page__item__image" />
                                     <h5  class="text-center">' . $title . '</h5>
                                     <p  id="' . $button_html_id . '"  class="courses-page__more">
                                         <i class="fa fa-plus"></i> &nbsp;&nbsp;More Info 
@@ -113,73 +113,12 @@
         </div>
     </div>
 
-</div>
+</main>
 
 
 
 <?php include('footer.php'); ?>
 
-<script>
-    listenForAllModalsToHide();
-    checkForQueryParamsAndOpenModal();
+<script src="<?php echo get_template_directory_uri(); ?>/js/fields-of-study.js">
 
-    function checkForQueryParamsAndOpenModal() {
-        const queryParams = window.location.search;
-
-        if (queryParams) {
-            const id = queryParams.replace('?field=', '');
-            const windowHeight = window.innerHeight;
-            window.scrollTo(
-                0, windowHeight
-            );
-            setTimeout(
-                () => {
-                    openModal(id);
-
-                }, 100
-            );
-        }
-    }
-
-    function listenForAllModalsToHide() {
-        const modals = document.querySelectorAll('.modal');
-        console.log(modals.length);
-        modals.forEach(
-            modal => {
-                modal.addEventListener('hidden.bs.modal', function(event) {
-                    clearParams();
-                });
-            }
-        )
-
-    }
-
-
-    function openModal(id) {
-
-        var myModal = new bootstrap.Modal(document.getElementById(id), {
-            keyboard: false
-        });
-        myModal.show();
-    }
-
-    function clearParams(params) {
-        window.history.replaceState(null, null, '?');
-
-    }
-
-    function closeModal(id) {
-        var button = document.getElementById(id);
-
-        button.click();
-        clearParams();
-
-    }
-
-
-
-    function changeParams(params) {
-        window.history.replaceState(null, null, `?field=${params}`);
-
-    }
 </script>
