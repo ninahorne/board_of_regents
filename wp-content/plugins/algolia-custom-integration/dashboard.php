@@ -102,7 +102,6 @@
     const buttons = [...document.querySelectorAll('[data-action]')];
     buttons.forEach(button => {
         button.addEventListener('click', async (e) => {
-            console.log('click')
             e.preventDefault();
             const action = button.dataset.action;
             const spinnerId = button.dataset.spinner;
@@ -111,14 +110,10 @@
 
             const spinner = document.getElementById(spinnerId);
             const status = document.getElementById(statusContainer);
+            status.innerText = '';
 
             spinner.classList.remove('hidden');
-            console.log({
-                action,
-                spinnerId,
-                statusContainer,
-                path
-            })
+   
             try {
                 const response = await axios.post(`../wp-content/plugins/algolia-custom-integration/${path}.php`, `data=${action}`, {
                     headers: {

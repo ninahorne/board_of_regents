@@ -49,7 +49,6 @@ function index_courses_in_algolia()
         WHERE post_id LIKE $course->ID 
     ";
         $post_metas = $wpdb->get_results($querystr, OBJECT);
-
         foreach ($post_metas as $meta) {
 
             $key = $meta->meta_key;
@@ -93,9 +92,9 @@ function index_courses_in_algolia()
         $count++;
     }
 
+
     return $count;
 
-    return 10;
 }
 
 
@@ -574,4 +573,33 @@ if($_POST['data'] == 'courses') {
     } catch(Exception $e){
         echo $e->getMessage();
     }
+}
+
+
+function get_college_by_abbrev($abbrev)
+{
+    $cc_args = array(
+        'posts_per_page'   => -1,
+        'post_type'        => 'college',
+        'meta_key'         => 'campus',
+        'meta_value'       => $abbrev,
+        'limit'            => 1
+    );
+    $cc_query = new WP_Query($cc_args);
+    return $cc_query->posts;
+}
+
+
+function get_subject_area_by_name($name)
+{
+    $cc_args = array(
+        'posts_per_page'   => -1,
+        'post_type'        => 'cip_codes',
+        'meta_key'         => 'name',
+        'meta_value'       => $name,
+        'limit'            => 1
+    );
+    $cc_query = new WP_Query($cc_args);
+
+    return $cc_query->posts;
 }

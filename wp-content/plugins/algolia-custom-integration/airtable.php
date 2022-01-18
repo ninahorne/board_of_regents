@@ -191,17 +191,15 @@ function get_college_by_abbrev($abbrev)
         'limit'            => 1
     );
     $cc_query = new WP_Query($cc_args);
-
     return $cc_query->posts;
 }
 
 try {
-    sync_courses_airtable_with_wp_db();
 
     if ($_POST['data'] == 'courses') {
+        sync_courses_airtable_with_wp_db();
     }
     if ($_POST['data'] == 'colleges') {
-
         sync_colleges_airtable_with_wp_db();
     }
 } catch (Exception $e) {
