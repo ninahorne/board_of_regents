@@ -55,7 +55,7 @@
                 <div class="col-md-6">
                     <div class="flex-center">
                         <div class="background__blue-brush-stroke">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/art.png" alt="">
+                            <img src="wp-content/uploads/2022/01/art.png" alt="">
                         </div>
                     </div>
                 </div>
