@@ -165,3 +165,26 @@ header {
 .ais-SearchBox-form{
   height: 4rem;
 }
+
+.fast-forward {
+  position: relative;
+  &:hover {
+    &:after {
+      content: 'The Fast Forward program is another dual enrollment pathway, allowing students to earn a high school diploma while also earning a technical associate’s degree, transfer associate’s degree or a state-approved apprenticeship at the same time.';
+      display: block;
+      position: absolute;
+      background-color: white;
+      border-radius: 4px;
+      width: 400px;
+      max-width: 100vw;
+      padding: 2rem;
+      font-size: 1.4rem;
+      border: 1px solid $dark-gray;
+      @media screen and (max-width:768px) {
+        display: none;
+      }
+
+    }
+  }
+}
+

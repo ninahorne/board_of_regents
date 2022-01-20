@@ -53,6 +53,7 @@
 
 					));
 					?>
+					
 					<div class="vertical-line"></div>
 					<?php
 					wp_nav_menu(array(
