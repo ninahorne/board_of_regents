@@ -31,15 +31,16 @@
             <div class="container">
                 <div class="row">
                     <?php
-                    global $wpdb;
-                    $result = $wpdb->get_results("
-                                                SELECT * 
-                                                FROM  $wpdb->posts
-                                                    WHERE post_type = 'course'
-                                            
-                                            ");
+                    $cc_args = array(
+                        'posts_per_page' => -1,
+                        'post_type' => 'field-of-study',
+                        'orderby' => 'career_cluster',
+                        'order'   => 'ASC',
+                    );
+                    $cc_query = new WP_Query($cc_args);
 
-
+                    $result = $cc_query->posts;
+                    
 
                     foreach ($result as $course) {
                         $course_id = $course->ID;

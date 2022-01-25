@@ -48,7 +48,7 @@
 
                   </div>
                   <div class=" col-10 align-center">
-                    <h5>Required: 2.0 Cumulative GPA or above or good standing in high school</h5>
+                    <h5>Required: 2.0 Cumulative GPA and/or Good Standing in High School</h5>
 
                   </div>
                 </div>
@@ -230,7 +230,7 @@
 
                   </div>
                   <div class=" col-10 align-center">
-                    <h5>Required: 2.0 Cumulative GPA or above</h5>
+                    <h5>Required: 2.0 Cumulative GPA and/or Good Standing in High School</h5>
 
                   </div>
                 </div>
