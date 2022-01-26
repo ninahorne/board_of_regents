@@ -93,8 +93,7 @@ function index_courses_in_algolia()
     }
 
 
-    return $count;
-
+    return 'Indexed ' . $count . ' Course in Algolia';
 }
 
 
@@ -106,7 +105,7 @@ function index_generic_page_search_in_algolia()
     $index->clearObjects()->wait();
 
     $paged = 1;
-    $count = 0;
+    $fieldsOfStudyCount = 0;
 
     // Index Fields of Study
     $fields_response = new WP_Query([
@@ -153,8 +152,10 @@ function index_generic_page_search_in_algolia()
         }
 
         $index->saveObject($record);
-        $count++;
+        $fieldsOfStudyCount++;
     }
+
+    $faqsCount = 0;
 
     // Index FAQs
     $faqs_response = new WP_Query([
@@ -163,9 +164,7 @@ function index_generic_page_search_in_algolia()
         'post_type' => 'faq'
     ]);
 
-    if (!$faqs_response->have_posts()) {
-        return;
-    }
+
 
 
     $faqs = $faqs_response->posts;
@@ -198,8 +197,10 @@ function index_generic_page_search_in_algolia()
         }
 
         $index->saveObject($record);
-        $count++;
+        $faqsCount++;
     }
+
+    $collegesCount = 0;
 
     // Index Colleges
     $colleges = new WP_Query([
@@ -240,46 +241,50 @@ function index_generic_page_search_in_algolia()
         }
 
         $index->saveObject($record);
-        $count++;
+        $collegesCount++;
     }
 
-    // Index Courses
+    $coursesCount = 0;
+
     $coursesQuery = new WP_Query([
-        'posts_per_page' => 1000,
-        'post_type' => 'college-courses'
+        'nopaging' => true,
+        'post_type' => 'college-courses',
     ]);
+
 
     $courses = $coursesQuery->posts;
 
-    foreach ($courses as $post) {
-        global $wpdb;
+    // Index Courses
 
-        $querystr = "
-                SELECT *
-                FROM $wpdb->postmeta 
-                WHERE post_id LIKE $post->ID 
-            ";
-        $post_metas = $wpdb->get_results($querystr, OBJECT);
+        foreach ($courses as $post) {
+            global $wpdb;
+
+            $querystr = "
+                    SELECT *
+                    FROM $wpdb->postmeta 
+                    WHERE post_id LIKE $post->ID 
+                ";
+            $post_metas = $wpdb->get_results($querystr, OBJECT);
 
 
-        foreach ($post_metas as $meta) {
-            $key = $meta->meta_key;
-            $value = $meta->meta_value;
-            if ($key == 'course_full_title') {
-                $record['title'] = $value;
+            foreach ($post_metas as $meta) {
+                $key = $meta->meta_key;
+                $value = $meta->meta_value;
+                if ($key == 'course_full_title') {
+                    $record['title'] = $value;
+                }
+                if ($key == 'description') {
+                    $record['details'] = $value;
+                }
             }
-            if ($key == 'description') {
-                $record['details'] = $value;
-            }
+            $record['objectID'] = $post->ID;
+            $record['url_params'] = '../index.php/college-courses/' . $post->post_name;
+            $index->saveObject($record);
+            $coursesCount++;
         }
-        $record['objectID'] = $post->ID;
-        $record['url_params'] = '../index.php/college-courses/' . $post->post_name;
-        $index->saveObject($record);
-        $count++;
-    }
 
-    // TODO make return message more meaningful
-    return 'Indexed sitewide search.';
+
+    return 'Indexed ' . $fieldsOfStudyCount . ' Fields of Study links, ' . $faqsCount . ' FAQs links, ' . $collegesCount . ' College links, and '  . $coursesCount . ' Courses links for sitewide search.';
 }
 
 /**
@@ -370,7 +375,7 @@ function index_faqs_in_algolia()
 
 
     $posts_response = new WP_Query([
-        'posts_per_page' => 1000,
+        'posts_per_page' => -1,
         'paged' => $paged,
         'post_type' => 'faq',
         'orderby' => 'post_date',
@@ -525,52 +530,54 @@ function index_fields_of_study_in_algolia()
 
 
 
-if($_POST['data'] == 'courses_and_site') {
-    try{
-        $countCourses = index_courses_in_algolia();
-        index_generic_page_search_in_algolia();
+if ($_POST['data'] == 'courses_and_site') {
+    try {
+        $response = [];
+        $response[] = index_courses_in_algolia();
+        $response[] = index_generic_page_search_in_algolia();
 
-        echo 'Success! Indexed ' . $countCourses . ' courses in Algolia';
-    } catch(Exception $e){
+        foreach($response as $message){
+            echo $message . PHP_EOL;
+        }
+    } catch (Exception $e) {
         echo $e->getMessage();
     }
- 
 }
 
-if($_POST['data'] == 'site') {
-    try{
-        index_generic_page_search_in_algolia();
-    } catch(Exception $e){
+if ($_POST['data'] == 'site') {
+    try {
+        $response = index_generic_page_search_in_algolia();
+        echo $response;
+    } catch (Exception $e) {
         echo $e->getMessage();
     }
-
 }
 
-if($_POST['data'] == 'fields') {
-    try{
+if ($_POST['data'] == 'fields') {
+    try {
         index_fields_of_study_in_algolia();
-    } catch(Exception $e){
+    } catch (Exception $e) {
         echo $e->getMessage();
     }
 }
-if($_POST['data'] == 'FAQs') {
-    try{
+if ($_POST['data'] == 'FAQs') {
+    try {
         index_faqs_in_algolia();
-    } catch(Exception $e){
+    } catch (Exception $e) {
         echo $e->getMessage();
     }
 }
-if($_POST['data'] == 'colleges') {
-    try{
+if ($_POST['data'] == 'colleges') {
+    try {
         index_colleges_in_algolia();
-    } catch(Exception $e){
+    } catch (Exception $e) {
         echo $e->getMessage();
     }
 }
-if($_POST['data'] == 'courses') {
-    try{
+if ($_POST['data'] == 'courses') {
+    try {
         index_courses_in_algolia();
-    } catch(Exception $e){
+    } catch (Exception $e) {
         echo $e->getMessage();
     }
 }
