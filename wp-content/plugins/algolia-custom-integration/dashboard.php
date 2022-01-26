@@ -31,38 +31,30 @@
         <p>Before making any changes to the course data, make a backup of the website using <a href='/wp-admin/options-general.php?page=updraftplus' target='_blank'>Updraft Plus
             </a>
             &nbsp;<img width='10px' src='../wp-content/plugins/algolia-custom-integration/external-link.svg' alt='open link in new window' />
-            If for any reason something goes wrong in this process, you can restore the WordPress DB using this plugin. 
+            If for any reason something goes wrong in this process, you can restore the WordPress DB using this plugin.
         </p>
-        <h3>2. Edit the course spreadsheet</h3>
-        <p>Edit the course data in the master <a href='https://docs.google.com/spreadsheets/d/1jXpqAFdCRHX-gRzgeDjhQUkQVrQJnrDSnqpxJQ7FakM/edit#gid=0' target='_blank'>Excel Sheet
+        <h3>2. Complete the data collection steps</h3>
+        <p>Follow the instructions for Data Submission, Data Review, and Data Import explained in this
+            <a href='https://docs.google.com/document/d/1ucCoORJRxoX6SFcX7ARdMAYFEokv4fLEo0zy7LrFUpI/edit?resourcekey=0-3r80FqtFjwlflBXHztJGNg' target='_blank'>Google Doc
             </a>
             &nbsp;<img width='10px' src='../wp-content/plugins/algolia-custom-integration/external-link.svg' alt='open link in new window' />&nbsp;
-            Make sure the data has no validation errors.
         </p>
-        <h3>3. Import the Excel Sheet into AirTable</h3>
-        <p>Download the completed Excel sheet to your computer. Then add a new tab (Table) to this <a target='_blank' href='https://airtable.com/appYWq35ZeV7QE3QG/tblOyRDVaO09F802t/viw5LelXpFetJfvuP?blocks=hide'> AirTable </a>
-            &nbsp;<img width='10px' src='../wp-content/plugins/algolia-custom-integration/external-link.svg' alt='open link in new window' />&nbsp;
-            by clicking the plus sign next to the current tabs, selecting Microsoft Excel, and uploading the spreadsheet you just downloaded.
-        <div>
-            <h3>4. Make sure the table is named 'COURSES FINAL' (case sensitive) </h3>
-            <p>Rename the current 'COURSES FINAL' Table to 'COURSES ARCHIVED [todays-date]'. Then rename the newly imported table to 'COURSES FINAL'. The import will not work if the table is named differently. Make sure there are no leading or trailing spaces in the name.
-            </p>
-            <h3>6. Import the course data from AirTable into WordPress</h3>
-            <p><strong>**NOTE** Doing this will delete the current course data in WordPress and overwrite it with the data in the new table</strong>
-            <p>
-            <p>This process may take several minutes. Please do not refresh your browser or navigate away from this page. If anything goes wrong during this step and you are unable
-                to complete this process, reestore the website using the UpDraft backup. 
-            </p>
-            <button data-action="courses" data-spinner="syncCoursesSpinner" data-status="syncCoursesStatus" data-path="airtable" class='button button-primary button-large'>Sync Courses Data with AirTable</button>
-            <img width='30px' id='syncCoursesSpinner' class='hidden' src='./images/spinner-2x.gif' alt='loading..' />
-            <p id='syncCoursesStatus'></p>
-            <h3>7. Index the courses in Algolia</h3>
-            <p><strong>**NOTE** Failure to do this will lead to inconsistent data across the site</strong>
-            <p>
-            <p>Algolia is a powerful search engine in use across the site. We need to send Algolia the updated data to display on the Courses Page and in the Sitewide Page Search Feature.</p>
-            <button data-action="courses_and_site" data-spinner="indexCoursesAndSiteSpinner" data-status="indexCoursesAndSiteStatus" data-path="algolia" class='button button-primary button-large'>Index Courses and Sitewide Search in Algolia</button>
-            <img width='30px' id='indexCoursesAndSiteSpinner' class='hidden' src='./images/spinner-2x.gif' alt='loading..' />
-            <p id='indexCoursesAndSiteStatus'></p>
+        <h3>3. Import the course data from AirTable into WordPress</h3>
+        <p><strong>**NOTE** Doing this will delete the current course data in WordPress and overwrite it with the data in the new table</strong>
+        <p>
+        <p>This process may take several minutes. Please do not refresh your browser or navigate away from this page. If anything goes wrong during this step and you are unable
+            to complete this process, restore the website using the UpDraft backup.
+        </p>
+        <button data-action="courses" data-spinner="syncCoursesSpinner" data-status="syncCoursesStatus" data-path="airtable" class='button button-primary button-large'>Sync Courses Data with AirTable</button>
+        <img width='30px' id='syncCoursesSpinner' class='hidden' src='./images/spinner-2x.gif' alt='loading..' />
+        <p id='syncCoursesStatus'></p>
+        <h3>4. Index the courses in Algolia</h3>
+        <p><strong>**NOTE** Failure to do this will lead to inconsistent data across the site</strong>
+        <p>
+        <p>Algolia is a powerful search engine in use across the site. We need to send Algolia the updated data to display on the Courses Page and in the Sitewide Page Search Feature.</p>
+        <button data-action="courses_and_site" data-spinner="indexCoursesAndSiteSpinner" data-status="indexCoursesAndSiteStatus" data-path="algolia" class='button button-primary button-large'>Index Courses and Sitewide Search in Algolia</button>
+        <img width='30px' id='indexCoursesAndSiteSpinner' class='hidden' src='./images/spinner-2x.gif' alt='loading..' />
+        <p id='indexCoursesAndSiteStatus'></p>
 
 
     </section>
@@ -113,7 +105,7 @@
             status.innerText = '';
 
             spinner.classList.remove('hidden');
-   
+
             try {
                 const response = await axios.post(`../wp-content/plugins/algolia-custom-integration/${path}.php`, `data=${action}`, {
                     headers: {

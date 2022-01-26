@@ -1,22 +1,31 @@
-
 # BEGIN WordPress
 # The directives (lines) between "BEGIN WordPress" and "END WordPress" are
 # dynamically generated, and should only be modified via WordPress filters.
 # Any changes to the directives between these markers will be overwritten.
-RewriteCond %{REQUEST_FILENAME} -s
-RewriteCond %{HTTP_USER_AGENT} !facebookexternalhit/[0-9]
-RewriteCond %{HTTP_USER_AGENT} !Twitterbot/[0-9]
-RewriteCond %{HTTP_USER_AGENT} !Googlebot/[0-9]
-RewriteRule wp-content/uploads/wp-import-export-lite(\/[A-Za-z0-9_@.\/&+-]+)+\.([A-Za-z0-9_@.\/&+-]+)$ [L]
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-RewriteBase /board%20of%20regents/
+RewriteBase /
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /board%20of%20regents/index.php [L]
+RewriteRule . /index.php [L]
 </IfModule>
 
-
 # END WordPress
+
+# =============================================
+# lock down word press admin
+# access is only allowed from:
+#	Claiborne Suite 
+#	Claiborne Video Network (includes ISB VPN)
+#	BOR's Frey rack
+#	Karthik's and James' remote locations
+# =============================================
+
+<Files wp-config.php>
+    Order allow,deny
+    Deny from all
+</Files>
+
+

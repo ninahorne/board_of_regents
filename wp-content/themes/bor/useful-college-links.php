@@ -70,7 +70,7 @@
                             results.click();
                         }, 100
                     )
-                }, 2000
+                }, 1000
 
             )
 
@@ -164,7 +164,7 @@
 
     function initializeUsefulLinkSearch() {
         useful_links_search = instantsearch({
-            indexName: "college",
+            indexName: "colleges_asc",
             searchClient,
             searchFunction(helper) {
                 // Ensure we only trigger a search when there's a query

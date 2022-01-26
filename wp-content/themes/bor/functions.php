@@ -271,7 +271,7 @@ function bor_remove_menu_items()
 	remove_menu_page('edit.php?post_type=college');
 	remove_menu_page('edit.php?post_type=college-courses');
 }
-add_action('admin_menu', 'bor_remove_menu_items');
+// add_action('admin_menu', 'bor_remove_menu_items');
 
 /** Redirect form single post type for CIP Codes, Colleges, and Fields of Study */
 function redirect_faq_single()

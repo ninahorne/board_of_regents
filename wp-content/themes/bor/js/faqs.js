@@ -193,6 +193,7 @@ function setQueryParams(state) {
 	let queryParamString = '?';
 
 	const page = state.page;
+	console.log(state);
 
 	if (page) {
 		queryParamString = `${queryParamString}refine=${page}&`;

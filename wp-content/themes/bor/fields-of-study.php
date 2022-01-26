@@ -32,10 +32,11 @@
                 <div class="row">
                     <?php
                     $cc_args = array(
-                        'posts_per_page' => -1,
+                        'posts_per_page' => 20,
                         'post_type' => 'field-of-study',
-                        'orderby' => 'career_cluster',
-                        'order'   => 'ASC',
+                        'order_by' => 'date',
+                        'order' => 'DESC'
+
                     );
                     $cc_query = new WP_Query($cc_args);
 

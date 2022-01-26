@@ -44,7 +44,7 @@
 					</div>
 					<p class="footer__copyright">
 						Copyright
-						<a href="<?php echo esc_url(__('https://regents.la.gov/', 'bor')); ?>target='_blank'">
+						<a target='_blank' href="<?php echo esc_url(__('https://regents.la.gov/', 'bor')); ?>">
 							<?php
 							/* translators: %s: CMS name, i.e. WordPress. */
 							printf(esc_html__('Louisiana Board of Regents'));

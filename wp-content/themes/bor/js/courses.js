@@ -142,7 +142,7 @@ function initializeAlgolia() {
                    </div>
                    <div class="results__info second">
                        <p class="results__description">${item.description}...</p>
-                       <label class="green">Cost: $${item.cost_per_course
+                       <label class="green">Cost: $${item.minimum_cost && item.maximum_cost ? `$${item.minimum_cost}-$${item.maximum_cost}` : item.cost_per_course
               }</label>
                        <label>${item.semester}</label>
                        <label>${item.course_subject}</label>

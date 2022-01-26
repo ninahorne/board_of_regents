@@ -153,6 +153,9 @@ function add_course_to_wp_db($record)
     add_post_meta($id, 'general_education', $fields->{'General Ed'});
     add_post_meta($id, 'course_prerequisite', $fields->{'Course Prerequisite'});
     add_post_meta($id, 'cost_per_course', intval(substr($fields->{'Cost per Course'}, 1)));
+    add_post_meta($id, 'maximum_cost', intval(substr($fields->{'Maximum cost'},1)));
+    add_post_meta($id, 'minimum_cost', intval(substr($fields->{'Minimum cost'},1)));
+
     $subjectArea = get_subject_area_by_name($fields->{'Course Subject'});
     if ($subjectArea[0]) {
         add_post_meta($id, 'image', wp_get_attachment_image_src($subjectArea[0]->image, 'medium')[0]);
