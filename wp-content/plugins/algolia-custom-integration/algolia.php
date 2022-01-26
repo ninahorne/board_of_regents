@@ -463,7 +463,7 @@ function index_faqs_in_algolia()
 
     $paged++;
 
-    return 'Indexed ' . $count . ' colleges in Algolia';
+    echo 'Indexed ' . $count . ' FAQs';
 }
 
 function index_fields_of_study_in_algolia()
