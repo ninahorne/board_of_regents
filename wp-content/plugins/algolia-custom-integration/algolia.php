@@ -9,7 +9,7 @@ $algolia = \Algolia\AlgoliaSearch\SearchClient::create("L1FLYTXGGK", "03caa5e233
 function index_courses_in_algolia()
 {
     global $algolia;
-    $index = $algolia->initIndex('courses');
+    $index = $algolia->initIndex('dev_courses');
     $index->setSettings([
         'attributesForFaceting' => [
             "institution",
@@ -68,7 +68,14 @@ function index_courses_in_algolia()
                     array_push($modality, 'Hybrid');
                 }
                 $record['modality'] = $modality;
-            } else {
+            } else if($key == 'cost_per_course'){
+                if(intval($value) > 0){
+                    $record['cost_per_course'] = intval($value);
+                } else {
+                    $record['cost_per_course'] = null;
+                }
+            }
+            else {
                 if ($substring != "_") {
                     $record[$meta->meta_key] = $meta->meta_value;
                 }

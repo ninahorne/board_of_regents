@@ -61,9 +61,9 @@
     </section> -->
     <section>
         <h2>All Algolia Data</h2>
-        <!-- <button data-action="courses" data-spinner="indexCoursesSpinner" data-status="indexCoursesStatus" data-path="algolia" class='button button-primary button-large'>Index Courses in Algolia</button>
+        <button data-action="courses" data-spinner="indexCoursesSpinner" data-status="indexCoursesStatus" data-path="algolia" class='button button-primary button-large'>Index Courses in Algolia</button>
         <img width='30px' id='indexCoursesSpinner' class='hidden' src='./images/spinner-2x.gif' alt='loading..' />
-        <p id='indexCoursesStatus'></p> -->
+        <p id='indexCoursesStatus'></p>
 
         <button data-action="colleges" data-spinner="indexCollegesSpinner" data-status="indexCollegesStatus" data-path="algolia" class='button button-primary button-large'>Index Colleges in Algolia</button>
         <img width='30px' id='indexCollegesSpinner' class='hidden' src='./images/spinner-2x.gif' alt='loading..' />

@@ -133,7 +133,14 @@
                             <div>
                                 <div class="course__cost">
                                     <img src="<?php echo get_template_directory_uri(); ?>/images/money-check-edit-green.svg" alt="" />
-                                    <p>Cost:&nbsp;$<?php the_field('cost_per_course') ?></p>
+                                    <p>Cost:&nbsp;
+                                        <?php if(get_field('cost_per_course') == 0) {
+                                            echo 'Not provided';
+                                        } else {
+                                            echo '$' . get_field('cost_per_course');
+                                        }
+                                        ?>
+                                    </p>
                                 </div>
 
                                 <p class="mt-4">This course’s costs might be lower due to funding from your local high school.</p>
@@ -246,7 +253,7 @@
                     const ul = document.createElement('ul');
                     ul.style.listStyle = 'circle';
                     const costContent = document.createElement('li');
-                    costContent.innerText = `Cost: $${cost}`;
+                    costContent.innerText = `Cost: ${cost != 0 ? `$${cost}` : 'Not provided'}`;
                     const typeContent = document.createElement('li');
                     typeContent.innerText = `Type: ${type}`;
                     const semesterContent = document.createElement('li');

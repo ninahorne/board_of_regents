@@ -93,10 +93,10 @@ function closeRefinements(container){
 function initializeAlgolia() {
 
   courses_search = instantsearch({
-    indexName: "courses_full_title_asc",
+    indexName: "dev_courses",
     searchClient,
     searchFunction(helper) {
-
+      
       if (!isFirstRender) {
         setQueryParams(helper.state);
       }
@@ -142,7 +142,7 @@ function initializeAlgolia() {
                    </div>
                    <div class="results__info second">
                        <p class="results__description">${item.description}...</p>
-                       <label class="green">Cost: $${item.minimum_cost && item.maximum_cost ? `$${item.minimum_cost}-$${item.maximum_cost}` : item.cost_per_course
+                       <label class="green">Cost: ${item.cost_per_course ? `$${item.cost_per_course}` : 'Not provided'
               }</label>
                        <label>${item.semester}</label>
                        <label>${item.course_subject}</label>
@@ -336,19 +336,19 @@ function initializeAlgolia() {
       container: "#sortBy",
       items: [{
         label: "Most Relevant",
-        value: "courses",
+        value: "dev_courses",
       },
-      {
-        label: "A-Z",
-        value: "courses_full_title_asc",
-      },
+      // {
+      //   label: "A-Z",
+      //   value: "courses_full_title_asc",
+      // },
       {
         label: "Price (low to high)",
-        value: "courses_cost_per_course_asc",
+        value: "dev_courses_price_asc",
       },
       {
         label: "Price (high to low)",
-        value: "courses_cost_per_course_desc",
+        value: "dev_course_price_desc",
       },
       ],
     }),
@@ -380,6 +380,11 @@ function setInitialStateFromQueryParams() {
   const courseSubject = queryObject["course_subject"];
   const semester = queryObject["semester"];
   const page = queryObject['refine'];
+  const index = queryObject['index'];
+
+  if(index){
+    courses_search.helper.setIndex(index);
+  }
 
 
   if (institution) {
@@ -505,6 +510,11 @@ function setQueryParams(state) {
     }
   )
 
+  const index = state.index;
+  if(index){
+    queryParamString = `${queryParamString}index=${index}&`;
+    
+  }
 
   const query = state.query;
   if (query) {
