@@ -3,7 +3,14 @@ $this->custom_css();
 global $wpdb;
 if (isset($_POST['submit']) && wp_verify_nonce(sanitize_text_field($_POST['wp_filemanager_root_nonce_field']), 'wp_filemanager_root_action')) {
     if(isset($_POST['fm_max_packet_allowed'])){
-        $packet_value = intval($_POST['fm_max_packet_allowed'] * 1000000);
+      $fm_max_packet_allowed = intval($_POST['fm_max_packet_allowed']);
+        $packet_value = intval($fm_max_packet_allowed * 1000000);
+        if($packet_value == 0){
+          $max_allowed_packet = 'max_allowed_packet';
+          $packet_obj = $wpdb->get_row( $wpdb->prepare( "SHOW SESSION VARIABLES WHERE (variable_name = %s)", $max_allowed_packet ) );
+          $packet_value = intval($packet_obj->Value);
+        }
+
         $set_packet_value = $wpdb->query($wpdb->prepare("SET GLOBAL max_allowed_packet = %d",$packet_value));
     }
     $save = update_option('wp_file_manager_settings', 

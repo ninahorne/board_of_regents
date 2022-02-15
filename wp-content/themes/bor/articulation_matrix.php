@@ -1,6 +1,6 @@
 <div class="m-5">
     <div class="flex-vertical-center">
-        <h1>Articulation Matrix</h1>
+        <h2>Articulation Matrix</h2>
         <p>
             <span class="bold">
                 Dual enrollment courses taken at any public postsecondary institution in Louisiana will transfer with each other.

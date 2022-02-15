@@ -122,7 +122,7 @@ class Loader {
 			],
 			[
 				'name' => 'Admin\Tools\Tools',
-				'hook' => 'admin_init',
+				'hook' => 'current_screen',
 			],
 			[
 				'name' => 'Admin\Pages\Addons',

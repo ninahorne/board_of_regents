@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 1.7.2.1 =
+- Fixed: Compatibility with PHP 8.0 and PHP 8.1.
+- Fixed: Compatibility with WordPress 5.9, including its new Full Site Editing feature.
+- Fixed: Broken cache directory path if `WP_CONTENT_DIR` is set in the `wp-config.php` without trailing slash.
+- Fixed: PHP Notice when using the `wpforms_log()` function in certain conditions.
+- Fixed: Type mismatch brakes a list of scheduled actions in Action Scheduler if typed arguments are passed.
+
 = 1.7.2 =
 - Added: Search by form name and description is available on the Forms Overview page.
 - Added: New "Author" column in the Forms Overview table to display a name of a person who created the form.

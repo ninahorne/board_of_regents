@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="flex-center">
-                    <h1>Useful College Links</h1>
+                    <h2>Useful College Links</h2>
                     <div id="usefulCollegeLinksSearchBox">
                         <span onclick="showResults()" class="useful-college-links__dropdown"></span>
                     </div>

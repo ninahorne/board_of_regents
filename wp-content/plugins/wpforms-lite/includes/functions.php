@@ -1899,24 +1899,30 @@ function wpforms_log( $title = '', $message = '', $args = array() ) {
 
 	// Filter logs types from Tools -> Logs page.
 	$logs_types = wpforms_setting( 'logs-types', false );
+
 	if ( $logs_types && empty( array_intersect( $logs_types, $types ) ) ) {
 		return;
 	}
 
 	// Filter user roles from Tools -> Logs page.
-	global $current_user;
-	$logs_user_roles = wpforms_setting( 'logs-user-roles', false );
-	if ( $logs_user_roles && empty( array_intersect( $logs_user_roles, $current_user->roles ) ) ) {
+	$current_user       = function_exists( 'wp_get_current_user' ) ? wp_get_current_user() : null;
+	$current_user_id    = $current_user ? $current_user->ID : 0;
+	$current_user_roles = $current_user ? $current_user->roles : [];
+	$logs_user_roles    = wpforms_setting( 'logs-user-roles', false );
+
+	if ( $logs_user_roles && empty( array_intersect( $logs_user_roles, $current_user_roles ) ) ) {
 		return;
 	}
 
 	// Filter logs users from Tools -> Logs page.
 	$logs_users = wpforms_setting( 'logs-users', false );
-	if ( $logs_users && ! in_array( $current_user->ID, $logs_users, true ) ) {
+
+	if ( $logs_users && ! in_array( $current_user_id, $logs_users, true ) ) {
 		return;
 	}
 
 	$log = wpforms()->get( 'log' );
+
 	if ( ! method_exists( $log, 'add' ) ) {
 		return;
 	}
@@ -1927,7 +1933,7 @@ function wpforms_log( $title = '', $message = '', $args = array() ) {
 		$types,
 		isset( $args['form_id'] ) ? absint( $args['form_id'] ) : 0,
 		isset( $args['parent'] ) ? absint( $args['parent'] ) : 0,
-		$current_user->ID
+		$current_user_id
 	);
 }
 
@@ -2704,7 +2710,7 @@ function wpforms_upload_dir() {
 	 */
 	$custom_uploads_root = apply_filters( 'wpforms_upload_root', $wpforms_upload_root );
 
-	if ( wp_is_writable( $custom_uploads_root ) ) {
+	if ( is_dir( $custom_uploads_root ) && wp_is_writable( $custom_uploads_root ) ) {
 		$wpforms_upload_root = wp_is_stream( $custom_uploads_root )
 			? $custom_uploads_root
 			: realpath( $custom_uploads_root );

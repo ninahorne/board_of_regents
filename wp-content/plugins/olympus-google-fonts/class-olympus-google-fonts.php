@@ -39,7 +39,7 @@ class Olympus_Google_Fonts {
 	 */
 	public function constants() {
 		if ( ! defined( 'OGF_VERSION' ) ) {
-			define( 'OGF_VERSION', '3.0.11' );
+			define( 'OGF_VERSION', '3.0.13' );
 		}
 
 		if ( ! defined( 'OGF_DIR_PATH' ) ) {
@@ -134,6 +134,12 @@ class Olympus_Google_Fonts {
 	 * @return array $urls           URLs to print for resource hints.
 	 */
 	public function resource_hints( $urls, $relation_type ) {
+
+		// If we are using local fonts we don't need this.
+		if ( get_theme_mod( 'fpp_host_locally' ) === true ) {
+			return $urls;
+		}
+
 		if ( wp_style_is( 'olympus-google-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
 			$urls[] = array(
 				'href' => 'https://fonts.gstatic.com',
@@ -175,6 +181,7 @@ class Olympus_Google_Fonts {
 	 * Add custom links to plugin settings page.
 	 *
 	 * @param array $links Current links array.
+	 * @return array $links Modified links array.
 	 */
 	public function links( $links ) {
 		// Customizer Settings Link.

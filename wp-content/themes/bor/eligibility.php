@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class=" col-lg-5">
-        <h1>Eligibility</h1>
+        <h2>Eligibility</h2>
         <p>
           Dual Enrollment is very accessible. For academic courses (non-technical courses), a 2.5 cumulative GPA or above is required. Then, either a subject-specific test score OR a recommendation from their counselor. To see the specific test score requirements for non-technical subjects, 
           <a href="./faqs">visit the FAQ page.</a>

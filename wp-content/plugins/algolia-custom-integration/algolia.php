@@ -9,7 +9,7 @@ $algolia = \Algolia\AlgoliaSearch\SearchClient::create("L1FLYTXGGK", "03caa5e233
 function index_courses_in_algolia()
 {
     global $algolia;
-    $index = $algolia->initIndex('dev_courses');
+    $index = $algolia->initIndex('courses');
     $index->setSettings([
         'attributesForFaceting' => [
             "institution",

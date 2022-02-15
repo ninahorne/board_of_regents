@@ -56,7 +56,7 @@ class Help {
 		$upload_dir  = wpforms_upload_dir();
 		$upload_path = ! empty( $upload_dir['path'] )
 			? trailingslashit( wp_normalize_path( $upload_dir['path'] ) )
-			: WP_CONTENT_DIR . 'uploads/wpforms/';
+			: trailingslashit( WP_CONTENT_DIR ) . 'uploads/wpforms/';
 
 		$this->settings = [
 
@@ -66,7 +66,13 @@ class Help {
 			// Docs cache file (full path).
 			'cache_file'         => $upload_path . 'cache/docs.json',
 
-			// Docs cache time to live in seconds.
+			/*
+			 * Allow modifying Help Docs cache TTL (time to live).
+			 *
+			 * @since 1.6.3
+			 *
+			 * @param int $cache_ttl Cache TTL in seconds. Defaults to 1 week.
+			 */
 			'cache_ttl'          => (int) apply_filters( 'wpforms_admin_builder_help_cache_ttl', WEEK_IN_SECONDS ),
 
 			// Static URLs.

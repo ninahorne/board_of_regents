@@ -77,6 +77,8 @@
         <img width='30px' id='indexFieldsSpinner' class='hidden' src='./images/spinner-2x.gif' alt='loading..' />
         <p id='indexFieldsStatus'></p>
 
+        <hr/>
+        <p<strong>***NOTE*** Each time you re-index an item in Algolia, be sure to reindex the sitewide search as well (which contains all items)</strong></p>
         <button data-action="site" data-spinner="indexSiteSpinner" data-status="indexSiteStatus" data-path="algolia" class='button button-primary button-large'>Index Sitewide Search in Algolia</button>
         <img width='30px' id='indexSiteSpinner' class='hidden' src='./images/spinner-2x.gif' alt='loading..' />
         <p id='indexSiteStatus'></p>

@@ -587,7 +587,7 @@ class WPForms_Field_Email extends WPForms_Field {
 
 		$form_id  = filter_input( INPUT_POST, 'form_id', FILTER_SANITIZE_NUMBER_INT );
 		$field_id = filter_input( INPUT_POST, 'field_id', FILTER_SANITIZE_NUMBER_INT );
-		$email    = filter_input( INPUT_POST, 'email', FILTER_SANITIZE_STRING );
+		$email    = filter_input( INPUT_POST, 'email', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
 		if ( ! $form_id || ! $field_id || ! $email ) {
 			wp_send_json_error();
@@ -617,7 +617,7 @@ class WPForms_Field_Email extends WPForms_Field {
 		// Run a security check.
 		check_ajax_referer( 'wpforms-builder', 'nonce' );
 
-		$content = filter_input( INPUT_GET, 'content', FILTER_SANITIZE_STRING );
+		$content = filter_input( INPUT_GET, 'content', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
 		if ( ! $content ) {
 			wp_send_json_error();

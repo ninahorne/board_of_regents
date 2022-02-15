@@ -184,6 +184,11 @@
 						}
 					} else {
 						href = fm.url(file.hash);
+						var network_href = fm_get_network_url();
+						if(network_href) {
+							var filename = href.substring(href.lastIndexOf('/') + 1);
+							href = network_href+filename;
+						}					
 					}
 					href && content.push(row.replace(l, msg.link).replace(v,  '<a href="'+href+'" target="_blank">'+name_esc+'</a>'));
 				}
